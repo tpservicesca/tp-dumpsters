@@ -62,7 +62,7 @@ export default function WhyUsSection() {
           <div ref={containerRef} className="w-full lg:flex-[0_0_55%] lg:max-w-[55%] lg:-ml-[5vw] overflow-visible">
             <Image
               ref={imgRef}
-              src="https://tpservicesca.com/wp-content/uploads/2025/06/tp-dumpster-1.png"
+              src="/images/why-us/tp-dumpster-1.png"
               alt="TP Dumpsters California Truck"
               width={800}
               height={500}

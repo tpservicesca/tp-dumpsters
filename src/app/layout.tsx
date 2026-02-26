@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     "Pinole dumpster",
   ],
   icons: {
-    icon: "https://tpservicesca.com/wp-content/uploads/2025/06/cropped-TP-32x32.png",
+    icon: "/images/logo/favicon-32x32.png",
   },
   openGraph: {
     title: "Rent a Dumpster in California! - TP Dumpsters",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://tpservicesca.com/wp-content/uploads/2025/06/red-dumpster-construction.png",
+        url: "/images/hero/red-dumpster-construction.png",
         width: 1200,
         height: 630,
         alt: "TP Dumpsters - Fast, Reliable Dumpster Rentals in California",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     description:
       "Fast, reliable dumpster rentals in the Bay Area. Same-day delivery available.",
     images: [
-      "https://tpservicesca.com/wp-content/uploads/2025/06/red-dumpster-construction.png",
+      "/images/hero/red-dumpster-construction.png",
     ],
   },
   robots: {

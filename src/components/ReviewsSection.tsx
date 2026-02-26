@@ -43,7 +43,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
           unoptimized
         />
         <Image
-          src="https://cdn.trustindex.io/assets/platform/Google/icon.svg"
+          src="/images/reviews/google-icon.svg"
           alt="Google"
           width={24}
           height={24}
@@ -58,7 +58,7 @@ function ReviewCard({ review }: { review: ReviewData }) {
       <div className="flex items-center justify-center gap-[3px] mb-4">
         <StarRating rating={review.rating} />
         <Image
-          src="https://cdn.trustindex.io/assets/platform/Google/icon.svg"
+          src="/images/reviews/google-icon.svg"
           alt="verified"
           width={18}
           height={18}

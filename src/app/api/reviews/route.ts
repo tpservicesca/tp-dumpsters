@@ -41,8 +41,7 @@ export interface ReviewsResponse {
 const FALLBACK_REVIEWS: ReviewData[] = [
   {
     name: "Jose Antonio Miranda",
-    avatar:
-      "https://lh3.googleusercontent.com/a-/ALV-UjX4wujK0H4Zb9mB1Uz5WOoOWwyCxGV65yiEdSfHRR7_KeHOqQ8=w64-h64-c-rp-mo-ba2-br100",
+    avatar: "/images/reviews/avatar-jose.jpg",
     profileUrl: "#",
     rating: 5,
     text: "Tiago and his crew were amazing and fast. My wife and I were very impressed with the quality of the work. They were very professional and knowledgeable. I highly recommend them for any project.",
@@ -51,8 +50,7 @@ const FALLBACK_REVIEWS: ReviewData[] = [
   },
   {
     name: "Caning Repair",
-    avatar:
-      "https://lh3.googleusercontent.com/a-/ALV-UjVMMXxBuBj0lQpC8QpAkYbzjCJFyVL_s3oAcl-H22Z-MXw1Lbs=w64-h64-c-rp-mo-ba2-br100",
+    avatar: "/images/reviews/avatar-caning.jpg",
     profileUrl: "#",
     rating: 5,
     text: "Great service and very reliable. They showed up on time and took care of everything. Would definitely use them again!",
@@ -61,8 +59,7 @@ const FALLBACK_REVIEWS: ReviewData[] = [
   },
   {
     name: "Michael Thompson",
-    avatar:
-      "https://lh3.googleusercontent.com/a/default-user=w64-h64-c-rp-mo-ba2-br100",
+    avatar: "/images/reviews/avatar-default.jpg",
     profileUrl: "#",
     rating: 5,
     text: "Super easy process from start to finish. Called them up, got a quote right away, and the dumpster was delivered the next morning. Pickup was just as smooth. Best dumpster rental experience in the Bay Area.",
@@ -71,8 +68,7 @@ const FALLBACK_REVIEWS: ReviewData[] = [
   },
   {
     name: "Sarah Jenkins",
-    avatar:
-      "https://lh3.googleusercontent.com/a/default-user=w64-h64-c-rp-mo-ba2-br100",
+    avatar: "/images/reviews/avatar-default.jpg",
     profileUrl: "#",
     rating: 5,
     text: "We used TP Services for our home renovation project. They were prompt, affordable, and the team was incredibly friendly. Highly recommend to anyone in the East Bay!",
@@ -81,8 +77,7 @@ const FALLBACK_REVIEWS: ReviewData[] = [
   },
   {
     name: "David Nguyen",
-    avatar:
-      "https://lh3.googleusercontent.com/a/default-user=w64-h64-c-rp-mo-ba2-br100",
+    avatar: "/images/reviews/avatar-default.jpg",
     profileUrl: "#",
     rating: 5,
     text: "Fantastic service! I needed a dumpster for a big cleanout and they made the whole process seamless. Fair pricing and great communication throughout. Will be a repeat customer for sure.",

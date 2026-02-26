@@ -47,7 +47,7 @@ export default function Header() {
         <div className="flex items-center">
           <a href="https://tpservicesca.com/">
             <Image
-              src="https://tpservicesca.com/wp-content/uploads/2025/06/TP.png"
+              src="/images/logo/TP.png"
               alt="TP Dumpsters Logo"
               width={140}
               height={70}

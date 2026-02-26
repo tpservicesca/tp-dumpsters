@@ -18,9 +18,8 @@ const jsonLd = {
   url: "https://tpservicesca.com",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
-  image:
-    "https://tpservicesca.com/wp-content/uploads/2025/06/TP.png",
-  logo: "https://tpservicesca.com/wp-content/uploads/2025/06/TP.png",
+  image: "/images/logo/TP.png",
+  logo: "/images/logo/TP.png",
   address: {
     "@type": "PostalAddress",
     streetAddress: "3201 Ramona Street",

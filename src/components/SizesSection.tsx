@@ -5,7 +5,7 @@ const sizes = [
   {
     name: "10 Yard",
     subtitle: "Best for: Heavy Materials or Small Cleanouts",
-    image: "https://tpservicesca.com/wp-content/uploads/2025/06/1.png",
+    image: "/images/sizes/10-yard.png",
     imageAlt: "9 yard Dumpster in California - TP Dumpsters",
     description: "Compact size, ideal for tight spaces and heavy debris.",
     features: [
@@ -17,7 +17,7 @@ const sizes = [
   {
     name: "20 Yard",
     subtitle: "Best for: Medium Home Projects & Cleanouts",
-    image: "https://tpservicesca.com/wp-content/uploads/2025/06/2-1.png",
+    image: "/images/sizes/20-yard.png",
     imageAlt: "20 yard Dumpster in California - TP Dumpsters",
     description: "Versatile and popular for most home and renovation projects.",
     features: [
@@ -30,7 +30,7 @@ const sizes = [
   {
     name: "30 Yard",
     subtitle: "Best for: Large Renovations & Construction",
-    image: "https://tpservicesca.com/wp-content/uploads/2025/06/Agregar-un-subtitulo.png",
+    image: "/images/sizes/30-yard.png",
     imageAlt: "30 yard Dumpster in California - TP Dumpsters",
     description: "Extra capacity for contractors or big household cleanups.",
     features: [

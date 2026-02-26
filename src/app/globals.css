@@ -38,7 +38,7 @@ html {
 
 /* Hero background blend */
 .hero-bg {
-  background-image: url('https://tpservicesca.com/wp-content/uploads/2025/06/red-dumpster-construction.png'), radial-gradient(circle at bottom, #666666 0%, #000000 100%);
+  background-image: url('/images/hero/red-dumpster-construction.png'), radial-gradient(circle at bottom, #666666 0%, #000000 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
