@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
@@ -22,19 +23,59 @@ export async function POST(request: Request) {
     // Generate booking ID
     const bookingId = `TP-${Date.now().toString(36).toUpperCase()}`;
 
-    const bookingRecord = {
-      id: bookingId,
-      ...booking,
-      status: "pending",
-      createdAt: new Date().toISOString(),
-    };
+    // 1. Create or find customer
+    const { data: customer, error: customerError } = await supabaseAdmin
+      .from("customers")
+      .insert({
+        name: booking.customerName,
+        phone: booking.customerPhone,
+        email: booking.customerEmail || null,
+      })
+      .select("id")
+      .single();
 
-    // TODO: Save to Supabase when configured
-    // For now, log it
-    console.log("NEW BOOKING:", JSON.stringify(bookingRecord, null, 2));
+    if (customerError) {
+      console.error("Customer insert error:", customerError);
+      return NextResponse.json(
+        { error: "Failed to save customer" },
+        { status: 500 }
+      );
+    }
 
-    // TODO: Send Telegram notification
-    // TODO: Send email confirmation
+    // 2. Create booking record
+    const { error: bookingError } = await supabaseAdmin
+      .from("bookings")
+      .insert({
+        booking_id: bookingId,
+        customer_id: customer.id,
+        service_type: booking.service.serviceType,
+        dumpster_size: booking.service.size,
+        base_price: booking.service.basePrice,
+        extra_days: booking.extraDays,
+        extra_day_fee: booking.extraDayFee,
+        total_price: booking.totalPrice,
+        delivery_date: booking.deliveryDate,
+        pickup_date: booking.pickupDate,
+        address: booking.address,
+        city: booking.city,
+        zip_code: booking.zipCode,
+        notes: booking.notes || null,
+        status: "pending",
+      });
+
+    if (bookingError) {
+      console.error("Booking insert error:", bookingError);
+      return NextResponse.json(
+        { error: "Failed to save booking" },
+        { status: 500 }
+      );
+    }
+
+    // 3. Log for monitoring
+    console.log(`✅ NEW BOOKING: ${bookingId} | ${booking.service.serviceType} ${booking.service.size} | ${booking.customerName} | ${booking.city} | $${booking.totalPrice}`);
+
+    // TODO: Send Telegram notification to TP team
+    // TODO: Send email/SMS confirmation to customer
 
     return NextResponse.json({
       success: true,
