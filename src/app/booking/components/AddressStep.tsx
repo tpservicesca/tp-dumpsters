@@ -72,7 +72,7 @@ declare global {
   }
 }
 
-const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "";
+const GOOGLE_MAPS_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
 
 export default function AddressStep({ booking, updateBooking, onNext, onBack }: Props) {
   const [errors, setErrors] = useState<Record<string, string | null>>({});
