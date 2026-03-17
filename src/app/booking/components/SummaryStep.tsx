@@ -127,8 +127,8 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
       {/* Terms */}
       <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-6">
         <p className="text-xs text-amber-800 font-[var(--font-poppins)]">
-          📋 <strong>Cancellation policy:</strong> Full refund if cancelled 24+ hours before delivery.
-          Less than 24 hours: $150 fee. After dispatch: $300 fee.
+          📋 <strong>Cancellation policy:</strong> 90% refund if cancelled 24+ hours before delivery.
+          No refund within 24 hours of scheduled delivery.
           Mattresses, appliances & tires incur extra fees ($20–$60 each).
         </p>
       </div>
