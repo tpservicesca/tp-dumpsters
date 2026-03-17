@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     const bookingId = `TP-${Date.now().toString(36).toUpperCase()}`;
 
     // 1. Create or find customer
-    const { data: customer, error: customerError } = await supabaseAdmin
+    const { data: customer, error: customerError } = await supabase
       .from("customers")
       .insert({
         name: booking.customerName,
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     }
 
     // 2. Create booking record
-    const { error: bookingError } = await supabaseAdmin
+    const { error: bookingError } = await supabase
       .from("bookings")
       .insert({
         booking_id: bookingId,
