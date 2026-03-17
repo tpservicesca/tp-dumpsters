@@ -72,8 +72,7 @@ declare global {
   }
 }
 
-// Google Maps temporarily disabled until billing/referrer issues resolved
-const GOOGLE_MAPS_KEY = "";
+const GOOGLE_MAPS_KEY = "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
 
 export default function AddressStep({ booking, updateBooking, onNext, onBack }: Props) {
   const [errors, setErrors] = useState<Record<string, string | null>>({});
