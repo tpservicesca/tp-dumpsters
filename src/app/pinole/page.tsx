@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
+import CityFaqsSection from "@/components/CityFaqsSection";
+import AboutCitySection from "@/components/AboutCitySection";
 import ReviewsSection from "@/components/ReviewsSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import GallerySection from "@/components/GallerySection";
@@ -9,6 +11,97 @@ import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PinoleHero from "./components/PinoleHero";
 import PinoleLocation from "./components/PinoleLocation";
+
+const pinoleFaqs = [
+  {
+    question: "Do I need a permit to place a dumpster on the street in Pinole?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        If the dumpster is going on a public street in Pinole, you may need a temporary encroachment
+        permit from the City of Pinole Public Works. On your own driveway or private property, no
+        permit is typically required. We can advise you based on your specific location.
+      </p>
+    ),
+  },
+  {
+    question: "How quickly can I get a dumpster delivered in Pinole?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        We offer <strong>same-day delivery</strong> to Pinole and surrounding areas like Hercules,
+        El Sobrante, and San Pablo. Call before noon for best availability. Our yard is nearby so
+        response times are fast.
+      </p>
+    ),
+  },
+  {
+    question: "What size dumpster is best for a home cleanout in Pinole?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        For a garage or single-room cleanout, the <strong>9-yard dumpster</strong> is perfect. For a full
+        home cleanout or estate cleanout, go with the <strong>20-yard</strong>. If you&apos;re doing a major
+        renovation, the 30-yard gives you the most capacity.
+      </p>
+    ),
+  },
+  {
+    question: "Can you deliver to Pinole's hillside neighborhoods?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        Absolutely. We regularly deliver to Pinole Valley, Linda Heights, and the hillside areas.
+        Our drivers know the steep driveways and narrow streets. Just give us your address and
+        we&apos;ll confirm access before delivery.
+      </p>
+    ),
+  },
+  {
+    question: "Do you also serve Hercules, El Sobrante, and San Pablo?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        Yes! We serve all of West Contra Costa County including Hercules, El Sobrante, San Pablo,
+        Rodeo, Crockett, Richmond, and El Cerrito. Same fast service, same transparent pricing.
+      </p>
+    ),
+  },
+  {
+    question: "What materials can I put in a dumpster in Pinole?",
+    answer: (
+      <>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">We accept general debris from remodels, cleanouts, landscaping, and construction. The 9-yard can also handle heavy materials:</p>
+        <ul className="list-disc pl-5 mb-2.5">
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Clean soil, concrete, bricks, or mixed</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">General construction and demolition debris</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Yard waste and landscaping materials</li>
+        </ul>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+          <strong>Not allowed:</strong> hazardous waste, wet paint, batteries, propane tanks, or medical waste.
+        </p>
+      </>
+    ),
+  },
+];
+
+const pinoleAbout = {
+  cityName: "Pinole",
+  intro:
+    "Pinole is a charming small city in West Contra Costa County, known for its family-friendly neighborhoods, hillside views, and growing community of homeowners investing in their properties. From home renovations in Pinole Valley to landscaping projects near the Pinole Shores, residents here need reliable waste removal they can count on. TP Dumpsters is proud to serve Pinole and the surrounding communities with fast, affordable dumpster rentals.",
+  highlights: [
+    "Located nearby — fast delivery times to all Pinole neighborhoods",
+    "Experience with Pinole's hillside properties and residential streets",
+    "Transparent pricing with no hidden fees or surprise charges",
+    "Bilingual support (English & Spanish) for easy communication",
+    "Serving Pinole plus Hercules, El Sobrante, San Pablo, and more",
+  ],
+  commonProjects: [
+    "Home remodels and kitchen/bathroom upgrades in Pinole Valley",
+    "Garage and estate cleanouts in Old Town Pinole",
+    "Landscaping and backyard renovation projects",
+    "Roofing tear-offs and exterior improvements",
+    "Construction debris removal for local contractors",
+    "Decluttering and moving cleanouts in Tara Hills",
+  ],
+  closingText:
+    "Pinole homeowners and contractors trust TP Dumpsters for straightforward pricing, fast delivery, and friendly bilingual service. Whether you're clearing out a garage, remodeling your kitchen, or managing a construction site, we have the right dumpster for your project. Call us at (510) 650-2083 for a free quote today.",
+};
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Pinole, CA | Same-Day Service - TP Dumpsters",
@@ -143,7 +236,9 @@ export default function PinolePage() {
       <PinoleHero />
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
+      <AboutCitySection {...pinoleAbout} />
       <SizesSection />
+      <CityFaqsSection cityName="Pinole" faqs={pinoleFaqs} />
       <FaqsSection />
       <ReviewsSection />
       <WhyUsSection />
