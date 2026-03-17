@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
-import ErrorBoundary from "@/components/ErrorBoundary";
-import BookingWizard from "./components/BookingWizard";
+import DynamicBookingWizard from "./components/DynamicBookingWizard";
 
 export const metadata: Metadata = {
   title: "Book a Dumpster Online | TP Dumpsters - Bay Area",
@@ -33,28 +32,9 @@ export default function BookingPage() {
         </div>
       </section>
 
-      {/* Booking wizard */}
+      {/* Booking wizard — client-only render (no SSR = no hydration issues) */}
       <section className="bg-[#f5f5f5] min-h-screen pb-20">
-        <ErrorBoundary
-          fallback={
-            <div className="w-[92%] max-w-[600px] mx-auto py-20 text-center">
-              <h2 className="text-2xl font-bold text-[#333] mb-4">
-                Something went wrong
-              </h2>
-              <p className="text-[#888] mb-6">
-                Please call us to complete your booking.
-              </p>
-              <a
-                href="tel:+15106502083"
-                className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-tp-red text-white font-bold"
-              >
-                Call (510) 650-2083
-              </a>
-            </div>
-          }
-        >
-          <BookingWizard />
-        </ErrorBoundary>
+        <DynamicBookingWizard />
       </section>
 
       <FloatingButtons />
