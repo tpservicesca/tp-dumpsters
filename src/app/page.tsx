@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import PricingTable from "@/components/PricingTable";
 import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
 import ReviewsSection from "@/components/ReviewsSection";
@@ -114,6 +115,7 @@ export default function Home() {
       <HeroSection />
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
+      <PricingTable />
       <SizesSection />
       <FaqsSection />
       <ReviewsSection />
