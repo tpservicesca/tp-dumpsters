@@ -238,7 +238,7 @@ export default function PinolePage() {
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...pinoleAbout} />
-      <PricingTable defaultCity="Pinole" />
+      <PricingTable cityName="Pinole" />
       <SizesSection />
       <CityFaqsSection cityName="Pinole" faqs={pinoleFaqs} />
       <FaqsSection />

@@ -115,7 +115,7 @@ export default function Home() {
       <HeroSection />
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
-      <PricingTable />
+      <PricingTable cityName="the Bay Area" />
       <SizesSection />
       <FaqsSection />
       <ReviewsSection />

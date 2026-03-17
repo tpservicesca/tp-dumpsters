@@ -224,7 +224,7 @@ export default function OaklandPage() {
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...oaklandAbout} />
-      <PricingTable defaultCity="Oakland" />
+      <PricingTable cityName="Oakland" />
       <SizesSection />
       <CityFaqsSection cityName="Oakland" faqs={oaklandFaqs} />
       <FaqsSection />
