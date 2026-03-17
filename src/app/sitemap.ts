@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 
 // All city pages - add new cities here and they auto-appear in sitemap
 const cities = ["oakland", "pinole"];
+const otherPages = ["booking"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://tpdumpsters.com";
@@ -23,5 +24,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...cityPages];
+  const otherPageEntries: MetadataRoute.Sitemap = otherPages.map((page) => ({
+    url: `${baseUrl}/${page}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.9,
+  }));
+
+  return [...staticPages, ...otherPageEntries, ...cityPages];
 }

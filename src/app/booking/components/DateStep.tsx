@@ -1,0 +1,195 @@
+"use client";
+
+import { useMemo } from "react";
+import type { BookingData } from "./BookingWizard";
+
+interface Props {
+  booking: BookingData;
+  updateBooking: (updates: Partial<BookingData>) => void;
+  onNext: () => void;
+  onBack: () => void;
+}
+
+function addDays(dateStr: string, days: number): string {
+  const date = new Date(dateStr + "T12:00:00");
+  date.setDate(date.getDate() + days);
+  return date.toISOString().split("T")[0];
+}
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return "";
+  const date = new Date(dateStr + "T12:00:00");
+  return date.toLocaleDateString("en-US", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function daysBetween(start: string, end: string): number {
+  const s = new Date(start + "T12:00:00");
+  const e = new Date(end + "T12:00:00");
+  return Math.round((e.getTime() - s.getTime()) / (1000 * 60 * 60 * 24));
+}
+
+export default function DateStep({ booking, updateBooking, onNext, onBack }: Props) {
+  const baseDays = booking.service?.baseDays || 7;
+
+  // Minimum delivery date = tomorrow
+  const tomorrow = useMemo(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 1);
+    return d.toISOString().split("T")[0];
+  }, []);
+
+  // Auto-calculated minimum pickup date
+  const minPickupDate = booking.deliveryDate
+    ? addDays(booking.deliveryDate, baseDays)
+    : "";
+
+  // When delivery date changes, auto-set pickup to minimum
+  const handleDeliveryChange = (date: string) => {
+    const autoPickup = addDays(date, baseDays);
+    const totalDays = baseDays;
+    const extra = Math.max(0, totalDays - baseDays);
+    updateBooking({
+      deliveryDate: date,
+      pickupDate: autoPickup,
+      extraDays: extra,
+    });
+  };
+
+  const handlePickupChange = (date: string) => {
+    if (!booking.deliveryDate) return;
+    const totalDays = daysBetween(booking.deliveryDate, date);
+    const extra = Math.max(0, totalDays - baseDays);
+    updateBooking({
+      pickupDate: date,
+      extraDays: extra,
+    });
+  };
+
+  const totalDays = booking.deliveryDate && booking.pickupDate
+    ? daysBetween(booking.deliveryDate, booking.pickupDate)
+    : 0;
+
+  const canProceed = booking.deliveryDate && booking.pickupDate && totalDays >= baseDays;
+
+  return (
+    <div>
+      <h2 className="font-[var(--font-poppins)] text-2xl font-bold text-[#333] mb-2">
+        Choose your dates
+      </h2>
+      <p className="text-sm text-[#888] mb-8 font-[var(--font-poppins)]">
+        {booking.service?.serviceType} — {booking.service?.size} includes{" "}
+        <strong>{baseDays} days</strong> of rental.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+        {/* Delivery date */}
+        <div>
+          <label className="block text-sm font-semibold text-[#333] mb-2 font-[var(--font-poppins)]">
+            📅 Delivery date
+          </label>
+          <input
+            type="date"
+            min={tomorrow}
+            value={booking.deliveryDate}
+            onChange={(e) => handleDeliveryChange(e.target.value)}
+            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-base font-[var(--font-poppins)] focus:border-tp-red focus:outline-none transition-colors"
+          />
+          {booking.deliveryDate && (
+            <p className="text-xs text-[#888] mt-1.5">
+              {formatDate(booking.deliveryDate)}
+            </p>
+          )}
+        </div>
+
+        {/* Pickup date */}
+        <div>
+          <label className="block text-sm font-semibold text-[#333] mb-2 font-[var(--font-poppins)]">
+            📅 Pickup date
+          </label>
+          <input
+            type="date"
+            min={minPickupDate}
+            value={booking.pickupDate}
+            onChange={(e) => handlePickupChange(e.target.value)}
+            disabled={!booking.deliveryDate}
+            className={`w-full px-4 py-3 border-2 rounded-xl text-base font-[var(--font-poppins)] focus:border-tp-red focus:outline-none transition-colors ${
+              !booking.deliveryDate
+                ? "border-gray-100 bg-gray-50 text-gray-300"
+                : "border-gray-200 bg-white"
+            }`}
+          />
+          {booking.pickupDate && (
+            <p className="text-xs text-[#888] mt-1.5">
+              {formatDate(booking.pickupDate)}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Pricing breakdown */}
+      {booking.deliveryDate && booking.pickupDate && (
+        <div className="bg-gray-50 rounded-xl p-5 mb-8">
+          <h3 className="font-[var(--font-poppins)] font-semibold text-[#333] mb-3">
+            📊 Price breakdown
+          </h3>
+          <div className="space-y-2 text-sm font-[var(--font-poppins)]">
+            <div className="flex justify-between">
+              <span className="text-[#666]">
+                {booking.service?.serviceType} — {booking.service?.size}
+              </span>
+              <span className="font-semibold">${booking.service?.basePrice}</span>
+            </div>
+            <div className="flex justify-between text-[#888]">
+              <span>Included rental: {baseDays} days</span>
+              <span>Included</span>
+            </div>
+            {booking.extraDays > 0 && (
+              <div className="flex justify-between text-amber-600">
+                <span>
+                  Extra days: {booking.extraDays} × ${booking.extraDayFee}/day
+                </span>
+                <span className="font-semibold">
+                  +${booking.extraDays * booking.extraDayFee}
+                </span>
+              </div>
+            )}
+            <div className="border-t pt-2 mt-2 flex justify-between">
+              <span className="font-bold text-[#333] text-base">Total</span>
+              <span className="font-bold text-tp-red text-xl font-[var(--font-oswald)]">
+                ${booking.totalPrice}
+              </span>
+            </div>
+          </div>
+          <p className="text-[10px] text-[#aaa] mt-3">
+            Total rental: {totalDays} days. Extra weight charged at $150/ton (prorated).
+          </p>
+        </div>
+      )}
+
+      <div className="flex justify-between mt-6">
+        <button
+          onClick={onBack}
+          className="px-6 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-sm text-[#666] bg-gray-100 hover:bg-gray-200 transition-colors"
+        >
+          ← Back
+        </button>
+        <button
+          onClick={onNext}
+          disabled={!canProceed}
+          className={`px-8 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-base transition-all duration-200 ${
+            canProceed
+              ? "bg-tp-red text-white hover:bg-tp-red-dark shadow-md"
+              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+          }`}
+        >
+          Next: Delivery address →
+        </button>
+      </div>
+    </div>
+  );
+}
