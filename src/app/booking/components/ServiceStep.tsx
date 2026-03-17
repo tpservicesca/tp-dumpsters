@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+import { FaCalendarDays, FaRuler, FaWeightHanging, FaCalendarCheck } from "react-icons/fa6";
 import type { BookingData, ServiceSelection } from "./BookingWizard";
 
 interface Props {
@@ -59,21 +61,18 @@ const SERVICES: ServiceSelection[] = [
   },
 ];
 
-const SERVICE_ICONS: Record<string, string> = {
-  "General Debris": "🏗️",
-  "Clean Soil": "🌱",
-  "Clean Concrete": "🧱",
-  "Mixed Materials": "🔀",
-};
-
-const SERVICE_DESCRIPTIONS: Record<string, string> = {
-  "General Debris": "Home remodels, cleanouts, landscaping, light demolition, junk removal",
-  "Clean Soil": "Must be 95% pure. No rocks, grass, gravel, mesh, wood, or garbage.",
-  "Clean Concrete": "Must be 95% pure. No rebar, no garbage.",
-  "Mixed Materials": "Soil & concrete mix. Must be 95% pure.",
-};
+const SERVICE_TABS = [
+  { type: "General Debris", icon: "🏗️", desc: "Home remodels, cleanouts, landscaping, light demolition, junk removal" },
+  { type: "Clean Soil", icon: "🌱", desc: "Must be 95% pure. No rocks, grass, gravel, mesh, wood, or garbage." },
+  { type: "Clean Concrete", icon: "🧱", desc: "Must be 95% pure. No rebar, no garbage." },
+  { type: "Mixed Materials", icon: "🔀", desc: "Soil & concrete mix. Must be 95% pure." },
+];
 
 export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
+  const [activeTab, setActiveTab] = useState(
+    booking.service?.serviceType || "General Debris"
+  );
+
   const selectedKey = booking.service
     ? `${booking.service.serviceType}-${booking.service.size}`
     : null;
@@ -82,77 +81,138 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
     updateBooking({ service, extraDays: 0 });
   };
 
-  // Group services by type
-  const serviceTypes = [...new Set(SERVICES.map((s) => s.serviceType))];
+  const activeTabInfo = SERVICE_TABS.find((t) => t.type === activeTab)!;
+  const tabServices = SERVICES.filter((s) => s.serviceType === activeTab);
 
   return (
     <div>
       <h2 className="font-[var(--font-poppins)] text-2xl font-bold text-[#333] mb-2">
         Choose your service
       </h2>
-      <p className="text-sm text-[#888] mb-8 font-[var(--font-poppins)]">
+      <p className="text-sm text-[#888] mb-6 font-[var(--font-poppins)]">
         Select the type of waste and dumpster size you need.
       </p>
 
-      {serviceTypes.map((type) => (
-        <div key={type} className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xl">{SERVICE_ICONS[type]}</span>
-            <h3 className="font-[var(--font-poppins)] text-lg font-semibold text-[#333]">
-              {type}
-            </h3>
-          </div>
-          <p className="text-xs text-[#888] mb-3 font-[var(--font-poppins)]">
-            {SERVICE_DESCRIPTIONS[type]}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            {SERVICES.filter((s) => s.serviceType === type).map((service) => {
-              const key = `${service.serviceType}-${service.size}`;
-              const isSelected = selectedKey === key;
-              return (
-                <button
-                  key={key}
-                  onClick={() => handleSelect(service)}
-                  className={`relative p-4 rounded-xl border-2 text-left transition-all duration-200 ${
-                    isSelected
-                      ? "border-tp-red bg-red-50 shadow-md"
-                      : "border-gray-200 bg-white hover:border-tp-red/50 hover:shadow-sm"
-                  }`}
-                >
-                  {isSelected && (
-                    <div className="absolute top-2 right-2 w-6 h-6 bg-tp-red rounded-full flex items-center justify-center">
-                      <span className="text-white text-xs">✓</span>
-                    </div>
-                  )}
-                  <div className="font-[var(--font-poppins)] font-bold text-lg text-[#333]">
-                    {service.size}
-                  </div>
-                  <div className="font-[var(--font-oswald)] text-2xl font-bold text-tp-red mt-1">
-                    ${service.basePrice}
-                  </div>
-                  <div className="text-xs text-[#888] mt-2 space-y-0.5">
-                    <div>📐 {service.dimensions}</div>
-                    <div>⚖️ {service.weightLimit}</div>
-                    <div>📅 {service.baseDays} days included</div>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      ))}
+      {/* Service type tabs */}
+      <div className="flex flex-wrap gap-2 mb-6">
+        {SERVICE_TABS.map((tab) => (
+          <button
+            key={tab.type}
+            onClick={() => setActiveTab(tab.type)}
+            className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold font-[var(--font-poppins)] transition-all duration-200 ${
+              activeTab === tab.type
+                ? "bg-tp-red text-white shadow-md"
+                : "bg-gray-100 text-[#555] hover:bg-gray-200"
+            }`}
+          >
+            <span>{tab.icon}</span>
+            {tab.type}
+          </button>
+        ))}
+      </div>
 
-      <div className="flex justify-end mt-6">
+      {/* Service description */}
+      <div className="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
+        <p className="font-[var(--font-poppins)] text-sm text-[#666]">
+          <strong>{activeTabInfo.icon} {activeTabInfo.type}:</strong>{" "}
+          {activeTabInfo.desc}
+        </p>
+      </div>
+
+      {/* Size cards */}
+      <div className={`grid grid-cols-1 ${tabServices.length > 1 ? "sm:grid-cols-3" : "sm:grid-cols-1 max-w-sm mx-auto"} gap-4 mb-6`}>
+        {tabServices.map((service, idx) => {
+          const key = `${service.serviceType}-${service.size}`;
+          const isSelected = selectedKey === key;
+          const isPopular = tabServices.length > 1 && idx === 1;
+
+          return (
+            <button
+              key={key}
+              onClick={() => handleSelect(service)}
+              className={`relative rounded-2xl overflow-hidden text-left transition-all duration-300 ${
+                isSelected
+                  ? "bg-black text-white shadow-xl ring-2 ring-tp-red"
+                  : isPopular
+                  ? "bg-black text-white shadow-lg"
+                  : "bg-white text-[#333] shadow-md hover:shadow-lg border border-gray-100"
+              }`}
+            >
+              {/* Selected badge */}
+              {isSelected && (
+                <div className="absolute top-0 left-0 right-0 bg-tp-red text-white text-xs font-bold text-center py-1 font-[var(--font-poppins)] uppercase tracking-wider">
+                  ✓ Selected
+                </div>
+              )}
+              {/* Popular badge */}
+              {isPopular && !isSelected && (
+                <div className="absolute top-0 left-0 right-0 bg-tp-gold text-black text-xs font-bold text-center py-1 font-[var(--font-poppins)] uppercase tracking-wider">
+                  Most Popular
+                </div>
+              )}
+
+              <div className={`p-6 ${isSelected || isPopular ? "pt-9" : ""}`}>
+                <h3 className="font-[var(--font-poppins)] text-lg font-bold mb-1">
+                  {service.size}
+                </h3>
+
+                {/* Price */}
+                <div className="flex items-baseline gap-1 mb-1 mt-2">
+                  <span className={`text-xs ${isSelected || isPopular ? "text-white/60" : "text-[#aaa]"}`}>
+                    Starting at
+                  </span>
+                </div>
+                <div className="flex items-baseline gap-1 mb-4">
+                  <span className={`font-[var(--font-oswald)] text-4xl font-bold ${isSelected ? "text-white" : isPopular ? "text-white" : "text-tp-red"}`}>
+                    ${service.basePrice}
+                  </span>
+                </div>
+
+                {/* Details */}
+                <ul className={`space-y-2 text-sm ${isSelected || isPopular ? "text-white/80" : "text-[#666]"}`}>
+                  <li className="flex items-center gap-2">
+                    <FaRuler className="text-tp-green flex-shrink-0 text-xs" />
+                    {service.dimensions}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaWeightHanging className="text-tp-green flex-shrink-0 text-xs" />
+                    {service.weightLimit}
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <FaCalendarCheck className="text-tp-green flex-shrink-0 text-xs" />
+                    {service.baseDays} days included
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="text-tp-green flex-shrink-0 text-xs">✓</span>
+                    Delivery &amp; pickup included
+                  </li>
+                </ul>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Extra fees note */}
+      {activeTab === "General Debris" && (
+        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6">
+          <p className="font-[var(--font-poppins)] text-xs text-amber-800">
+            ⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)
+          </p>
+        </div>
+      )}
+
+      <div className="flex justify-end">
         <button
           onClick={onNext}
           disabled={!booking.service}
-          className={`px-8 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-base transition-all duration-200 ${
+          className={`flex items-center gap-2 px-8 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-base transition-all duration-200 ${
             booking.service
               ? "bg-tp-red text-white hover:bg-tp-red-dark shadow-md"
               : "bg-gray-200 text-gray-400 cursor-not-allowed"
           }`}
         >
-          Next: Choose dates →
+          <FaCalendarDays /> Next: Choose dates →
         </button>
       </div>
     </div>
