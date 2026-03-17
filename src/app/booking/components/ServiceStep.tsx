@@ -10,183 +10,216 @@ interface Props {
   onNext: () => void;
 }
 
-const SERVICES: ServiceSelection[] = [
-  {
-    serviceType: "General Debris",
-    size: "10 Yard",
-    basePrice: 600,
-    baseDays: 7,
-    weightLimit: "1 ton",
-    dimensions: "12' L × 8' W × 2.5' H",
-  },
-  {
-    serviceType: "General Debris",
-    size: "20 Yard",
-    basePrice: 650,
-    baseDays: 7,
-    weightLimit: "2 tons",
-    dimensions: "16' L × 8' W × 4' H",
-  },
-  {
-    serviceType: "General Debris",
-    size: "30 Yard",
-    basePrice: 700,
-    baseDays: 7,
-    weightLimit: "3 tons",
-    dimensions: "16' L × 8' W × 6' H",
-  },
-  {
-    serviceType: "Clean Soil",
-    size: "10 Yard",
-    basePrice: 600,
-    baseDays: 3,
-    weightLimit: "No weight limit",
-    dimensions: "12' L × 8' W × 2.5' H",
-  },
-  {
-    serviceType: "Clean Concrete",
-    size: "10 Yard",
-    basePrice: 600,
-    baseDays: 3,
-    weightLimit: "No weight limit",
-    dimensions: "12' L × 8' W × 2.5' H",
-  },
-  {
-    serviceType: "Mixed Materials",
-    size: "10 Yard",
-    basePrice: 750,
-    baseDays: 3,
-    weightLimit: "No weight limit",
-    dimensions: "12' L × 8' W × 2.5' H",
-  },
-];
+/* ───────── Data types ───────── */
+interface SizeOption {
+  size: string;
+  price: number;
+  dimensions: string;
+  weightLimit: string;
+  rentalDays: number;
+}
 
-const SERVICE_TABS = [
-  { type: "General Debris", icon: "🏗️", desc: "Home remodels, cleanouts, landscaping, light demolition, junk removal" },
-  { type: "Clean Soil", icon: "🌱", desc: "Must be 95% pure. No rocks, grass, gravel, mesh, wood, or garbage." },
-  { type: "Clean Concrete", icon: "🧱", desc: "Must be 95% pure. No rebar, no garbage." },
-  { type: "Mixed Materials", icon: "🔀", desc: "Soil & concrete mix. Must be 95% pure." },
+interface ServiceCategory {
+  service: string;
+  icon: string;
+  description: string;
+  note?: string;
+  sizes: SizeOption[];
+}
+
+/* ───────── Same pricing data as PricingTable ───────── */
+const services: ServiceCategory[] = [
+  {
+    service: "General Debris",
+    icon: "🏗️",
+    description: "Home remodels, cleanouts, landscaping, light demolition, junk removal",
+    note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
+    sizes: [
+      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "1 ton", rentalDays: 7 },
+      { size: "20 Yard", price: 650, dimensions: "16' L × 8' W × 4' H", weightLimit: "2 tons", rentalDays: 7 },
+      { size: "30 Yard", price: 700, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
+    ],
+  },
+  {
+    service: "Clean Soil",
+    icon: "🌱",
+    description: "Clean loads must be 95% pure. No rocks, grass, gravel, mesh, wood, or garbage.",
+    sizes: [
+      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
+  {
+    service: "Clean Concrete",
+    icon: "🧱",
+    description: "Clean loads must be 95% pure. No rebar, no garbage.",
+    sizes: [
+      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
+  {
+    service: "Mixed Materials",
+    icon: "🔀",
+    description: "Clean soil & concrete mix. Loads must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    sizes: [
+      { size: "10 Yard", price: 750, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
 ];
 
 export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
-  const [activeTab, setActiveTab] = useState(
-    booking.service?.serviceType || "General Debris"
-  );
+  const [activeServiceIdx, setActiveServiceIdx] = useState(() => {
+    if (booking.service) {
+      const idx = services.findIndex((s) => s.service === booking.service?.serviceType);
+      return idx >= 0 ? idx : 0;
+    }
+    return 0;
+  });
+
+  const activeService = services[activeServiceIdx];
 
   const selectedKey = booking.service
     ? `${booking.service.serviceType}-${booking.service.size}`
     : null;
 
-  const handleSelect = (service: ServiceSelection) => {
+  const handleSelect = (item: SizeOption) => {
+    const service: ServiceSelection = {
+      serviceType: activeService.service,
+      size: item.size,
+      basePrice: item.price,
+      baseDays: item.rentalDays,
+      weightLimit: item.weightLimit,
+      dimensions: item.dimensions,
+    };
     updateBooking({ service, extraDays: 0 });
   };
 
-  const activeTabInfo = SERVICE_TABS.find((t) => t.type === activeTab)!;
-  const tabServices = SERVICES.filter((s) => s.serviceType === activeTab);
-
   return (
     <div>
-      <h2 className="font-[var(--font-poppins)] text-2xl font-bold text-[#333] mb-2">
-        Choose your service
+      <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2">
+        STEP 1
+      </h4>
+      <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-3">
+        Choose your dumpster
       </h2>
-      <p className="text-sm text-[#888] mb-6 font-[var(--font-poppins)]">
+      <p className="font-[var(--font-poppins)] text-sm text-[#888] mb-8">
         Select the type of waste and dumpster size you need.
       </p>
 
-      {/* Service type tabs */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        {SERVICE_TABS.map((tab) => (
+      {/* Service type tabs — identical to PricingTable */}
+      <div className="flex flex-wrap gap-2 mb-8">
+        {services.map((svc, idx) => (
           <button
-            key={tab.type}
-            onClick={() => setActiveTab(tab.type)}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-xs sm:text-sm font-semibold font-[var(--font-poppins)] transition-all duration-200 ${
-              activeTab === tab.type
+            key={svc.service}
+            onClick={() => setActiveServiceIdx(idx)}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold font-[var(--font-poppins)] transition-all duration-200 ${
+              activeServiceIdx === idx
                 ? "bg-tp-red text-white shadow-md"
-                : "bg-gray-100 text-[#555] hover:bg-gray-200"
+                : "bg-white text-[#555] border border-[#ddd] hover:border-tp-red hover:text-tp-red"
             }`}
           >
-            <span>{tab.icon}</span>
-            {tab.type}
+            <span>{svc.icon}</span>
+            {svc.service}
           </button>
         ))}
       </div>
 
       {/* Service description */}
-      <div className="bg-gray-50 rounded-xl p-4 mb-6 border border-gray-100">
+      <div className="bg-white rounded-xl p-4 mb-8 border border-[#eee]">
         <p className="font-[var(--font-poppins)] text-sm text-[#666]">
-          <strong>{activeTabInfo.icon} {activeTabInfo.type}:</strong>{" "}
-          {activeTabInfo.desc}
+          <strong>{activeService.icon} {activeService.service}:</strong>{" "}
+          {activeService.description}
         </p>
+        {activeService.note && (
+          <p className="font-[var(--font-poppins)] text-xs text-[#999] mt-2">
+            {activeService.note}
+          </p>
+        )}
       </div>
 
-      {/* Size cards */}
-      <div className={`grid grid-cols-1 ${tabServices.length > 1 ? "sm:grid-cols-3" : "sm:grid-cols-1 max-w-sm mx-auto"} gap-4 mb-6`}>
-        {tabServices.map((service, idx) => {
-          const key = `${service.serviceType}-${service.size}`;
+      {/* Price cards — identical to PricingTable but with select action */}
+      <div className={`grid grid-cols-1 ${activeService.sizes.length > 1 ? "md:grid-cols-3" : "md:grid-cols-1 max-w-md mx-auto"} gap-6`}>
+        {activeService.sizes.map((item, idx) => {
+          const key = `${activeService.service}-${item.size}`;
           const isSelected = selectedKey === key;
-          const isPopular = tabServices.length > 1 && idx === 1;
+          const isPopular = activeService.sizes.length > 1 && idx === 1;
+          const isDark = isSelected || isPopular || activeService.sizes.length === 1;
 
           return (
             <button
               key={key}
-              onClick={() => handleSelect(service)}
-              className={`relative rounded-2xl overflow-hidden text-left transition-all duration-300 ${
+              onClick={() => handleSelect(item)}
+              className={`relative rounded-2xl overflow-hidden text-left transition-all duration-300 cursor-pointer ${
                 isSelected
-                  ? "bg-black text-white shadow-xl ring-2 ring-tp-red"
+                  ? "bg-black text-white shadow-xl ring-3 ring-tp-red md:scale-[1.03]"
                   : isPopular
-                  ? "bg-black text-white shadow-lg"
-                  : "bg-white text-[#333] shadow-md hover:shadow-lg border border-gray-100"
+                  ? "bg-black text-white shadow-xl md:scale-[1.03]"
+                  : activeService.sizes.length === 1
+                  ? "bg-black text-white shadow-xl"
+                  : "bg-white text-[#333] shadow-md hover:shadow-lg"
               }`}
             >
-              {/* Selected badge */}
+              {/* Badge */}
               {isSelected && (
-                <div className="absolute top-0 left-0 right-0 bg-tp-red text-white text-xs font-bold text-center py-1 font-[var(--font-poppins)] uppercase tracking-wider">
+                <div className="absolute top-0 left-0 right-0 bg-tp-red text-white text-xs font-bold text-center py-1.5 font-[var(--font-poppins)] uppercase tracking-wider">
                   ✓ Selected
                 </div>
               )}
-              {/* Popular badge */}
               {isPopular && !isSelected && (
-                <div className="absolute top-0 left-0 right-0 bg-tp-gold text-black text-xs font-bold text-center py-1 font-[var(--font-poppins)] uppercase tracking-wider">
+                <div className="absolute top-0 left-0 right-0 bg-tp-red text-white text-xs font-bold text-center py-1.5 font-[var(--font-poppins)] uppercase tracking-wider">
                   Most Popular
                 </div>
               )}
 
-              <div className={`p-6 ${isSelected || isPopular ? "pt-9" : ""}`}>
-                <h3 className="font-[var(--font-poppins)] text-lg font-bold mb-1">
-                  {service.size}
+              <div className={`p-8 ${isSelected || isPopular ? "pt-12" : ""}`}>
+                <h3 className="font-[var(--font-poppins)] text-xl font-bold mb-1">
+                  {item.size}
                 </h3>
+                <p className={`text-sm mb-5 ${isDark ? "text-white/70" : "text-[#888]"}`}>
+                  {activeService.service}
+                </p>
 
                 {/* Price */}
-                <div className="flex items-baseline gap-1 mb-1 mt-2">
-                  <span className={`text-xs ${isSelected || isPopular ? "text-white/60" : "text-[#aaa]"}`}>
+                <div className="flex items-baseline gap-1 mb-1">
+                  <span className={`text-xs ${isDark ? "text-white/60" : "text-[#aaa]"}`}>
                     Starting at
                   </span>
                 </div>
-                <div className="flex items-baseline gap-1 mb-4">
-                  <span className={`font-[var(--font-oswald)] text-4xl font-bold ${isSelected ? "text-white" : isPopular ? "text-white" : "text-tp-red"}`}>
-                    ${service.basePrice}
+                <div className="flex items-baseline gap-1 mb-6">
+                  <span className={`font-[var(--font-oswald)] text-5xl font-bold ${isDark ? "text-white" : "text-tp-red"}`}>
+                    ${item.price}
                   </span>
                 </div>
 
                 {/* Details */}
-                <ul className={`space-y-2 text-sm ${isSelected || isPopular ? "text-white/80" : "text-[#666]"}`}>
-                  <li className="flex items-center gap-2">
-                    <FaRuler className="text-tp-green flex-shrink-0 text-xs" />
-                    {service.dimensions}
+                <ul className={`space-y-3 mb-8 text-sm ${isDark ? "text-white/80" : "text-[#666]"}`}>
+                  <li className="flex items-center gap-3">
+                    <FaRuler className="text-tp-green flex-shrink-0" />
+                    {item.dimensions}
                   </li>
-                  <li className="flex items-center gap-2">
-                    <FaWeightHanging className="text-tp-green flex-shrink-0 text-xs" />
-                    {service.weightLimit}
+                  <li className="flex items-center gap-3">
+                    <FaWeightHanging className="text-tp-green flex-shrink-0" />
+                    {item.weightLimit}
                   </li>
-                  <li className="flex items-center gap-2">
-                    <FaCalendarCheck className="text-tp-green flex-shrink-0 text-xs" />
-                    {service.baseDays} days included
+                  <li className="flex items-center gap-3">
+                    <FaCalendarCheck className="text-tp-green flex-shrink-0" />
+                    {item.rentalDays} days rental included
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-tp-green flex-shrink-0 text-xs">✓</span>
-                    Delivery &amp; pickup included
+                  <li className="flex items-center gap-3">
+                    <span className="text-tp-green flex-shrink-0">✓</span>
+                    Delivery, pickup &amp; disposal included
                   </li>
                 </ul>
+
+                {/* Select button */}
+                <div
+                  className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-lg text-base font-semibold transition-colors duration-300 font-[var(--font-poppins)] ${
+                    isSelected
+                      ? "bg-tp-green text-white"
+                      : "bg-tp-red text-white hover:bg-tp-red-dark"
+                  }`}
+                >
+                  {isSelected ? "✓ Selected" : "Select"}
+                </div>
               </div>
             </button>
           );
@@ -194,19 +227,24 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
       </div>
 
       {/* Extra fees note */}
-      {activeTab === "General Debris" && (
-        <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 mb-6">
-          <p className="font-[var(--font-poppins)] text-xs text-amber-800">
-            ⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)
+      {activeService.note && (
+        <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
+          <p className="font-[var(--font-poppins)] text-sm text-amber-800">
+            {activeService.note}
           </p>
         </div>
       )}
 
+      <p className="text-center text-xs text-[#999] mt-6 mb-8 font-[var(--font-poppins)]">
+        Extra weight charged at $150/ton (prorated). Extra days: $30/day.
+      </p>
+
+      {/* Next button */}
       <div className="flex justify-end">
         <button
           onClick={onNext}
           disabled={!booking.service}
-          className={`flex items-center gap-2 px-8 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-base transition-all duration-200 ${
+          className={`flex items-center gap-2 px-8 py-3.5 rounded-lg font-[var(--font-poppins)] font-semibold text-base transition-all duration-200 ${
             booking.service
               ? "bg-tp-red text-white hover:bg-tp-red-dark shadow-md"
               : "bg-gray-200 text-gray-400 cursor-not-allowed"
