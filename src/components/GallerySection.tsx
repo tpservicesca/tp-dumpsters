@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import { FaXmark, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
@@ -35,202 +35,236 @@ const galleryImages = [
   { src: "/images/gallery/28.jpg", alt: "TP Dumpsters" },
 ];
 
-const ITEMS_PER_PAGE = 8;
-
 export default function GallerySection() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const total = galleryImages.length;
 
-  const totalPages = Math.ceil(galleryImages.length / ITEMS_PER_PAGE);
-  const start = (currentPage - 1) * ITEMS_PER_PAGE;
-  const pageImages = galleryImages.slice(start, start + ITEMS_PER_PAGE);
+  const goTo = useCallback(
+    (index: number) => setCurrent(((index % total) + total) % total),
+    [total]
+  );
+  const next = useCallback(() => goTo(current + 1), [current, goTo]);
+  const prev = useCallback(() => goTo(current - 1), [current, goTo]);
 
-  const isModalOpen = selectedIndex !== null;
-  const currentImage = isModalOpen ? galleryImages[selectedIndex] : null;
-  const totalImages = galleryImages.length;
-
-  const closeModal = useCallback(() => {
-    setSelectedIndex(null);
-  }, []);
-
-  const goToPrev = useCallback(() => {
-    setSelectedIndex((prev) => (prev !== null && prev > 0 ? prev - 1 : prev));
-  }, []);
-
-  const goToNext = useCallback(() => {
-    setSelectedIndex((prev) =>
-      prev !== null && prev < totalImages - 1 ? prev + 1 : prev
-    );
-  }, [totalImages]);
-
-  // Keyboard: Escape, ArrowLeft, ArrowRight
+  // Autoplay
   useEffect(() => {
-    if (!isModalOpen) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") closeModal();
-      if (e.key === "ArrowLeft") goToPrev();
-      if (e.key === "ArrowRight") goToNext();
+    if (isHovered) return;
+    timerRef.current = setInterval(() => {
+      setCurrent((c) => (c + 1) % total);
+    }, 4000);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
     };
+  }, [isHovered, total]);
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [isModalOpen, closeModal, goToPrev, goToNext]);
-
-  // Lock body scroll when modal is open
+  // Keyboard nav for carousel
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (lightboxIndex !== null) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    };
+    document.addEventListener("keydown", handleKey);
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [next, prev, lightboxIndex]);
+
+  // Touch swipe
+  const handleTouchStart = (e: React.TouchEvent) =>
+    setTouchStart(e.touches[0].clientX);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+    const diff = touchStart - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+    setTouchStart(null);
+  };
+
+  // Lightbox
+  const openLightbox = () => setLightboxIndex(current);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const lbPrev = useCallback(
+    () => setLightboxIndex((p) => (p !== null && p > 0 ? p - 1 : p)),
+    []
+  );
+  const lbNext = useCallback(
+    () =>
+      setLightboxIndex((p) =>
+        p !== null && p < total - 1 ? p + 1 : p
+      ),
+    [total]
+  );
+
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    document.body.style.overflow = "hidden";
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") lbPrev();
+      if (e.key === "ArrowRight") lbNext();
+    };
+    document.addEventListener("keydown", handleKey);
     return () => {
       document.body.style.overflow = "";
+      document.removeEventListener("keydown", handleKey);
     };
-  }, [isModalOpen]);
-
-  const scrollToGallery = () => {
-    const el = document.getElementById("clients");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
-  const goToPage = (page: number) => {
-    setCurrentPage(page);
-    scrollToGallery();
-  };
-
-  // Calculate the global index from the page-relative index
-  const openModal = (pageRelativeIndex: number) => {
-    const globalIndex = start + pageRelativeIndex;
-    setSelectedIndex(globalIndex);
-  };
+  }, [lightboxIndex, closeLightbox, lbPrev, lbNext]);
 
   return (
-    <section id="clients" className="py-20 pb-15 bg-white">
-      <div className="w-[95%] max-w-[1600px] mx-auto relative">
-        <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
-          GALLERY
-        </h4>
-        <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-10 text-center">
-          Recent Services
-        </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-10 lg:gap-[100px] mb-8">
-          {pageImages.map((img, i) => (
-            <div
-              key={`${currentPage}-${i}`}
-              role="button"
-              tabIndex={0}
-              aria-label={`View ${img.alt} full size (image ${start + i + 1} of ${totalImages})`}
-              className="gallery-item rounded-2xl overflow-hidden bg-[#f0f0f0] transition-all duration-300 hover:-translate-y-[3px] hover:shadow-[0_8px_25px_rgba(0,0,0,0.15)] cursor-pointer"
-              onClick={() => openModal(i)}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(i); } }}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                width={400}
-                height={516}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
+    <>
+      <section id="clients" className="py-20 pb-15 bg-white">
+        <div className="w-[95%] max-w-[1200px] mx-auto">
+          <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
+            GALLERY
+          </h4>
+          <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-10 text-center">
+            Recent Services
+          </h2>
+
+          {/* Carousel */}
+          <div
+            className="relative w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] cursor-pointer"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onClick={openLightbox}
+          >
+            <div className="relative w-full aspect-[16/9] md:aspect-[16/8]">
+              {galleryImages.map((img, i) => (
+                <div
+                  key={i}
+                  className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                    i === current ? "opacity-100 z-10" : "opacity-0 z-0"
+                  }`}
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    className="object-cover"
+                    loading={i < 3 ? "eager" : "lazy"}
+                    sizes="(max-width: 768px) 100vw, 1200px"
+                  />
+                </div>
+              ))}
+
+              {/* Gradient overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/60 to-transparent z-20 pointer-events-none" />
+
+              {/* Counter */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-black/50 text-white/90 px-4 py-1.5 rounded-full text-xs md:text-sm font-[var(--font-poppins)] font-medium tracking-wide pointer-events-none">
+                {current + 1} / {total}
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="flex justify-end items-center gap-2.5 mt-5">
-          <button
-            className={`px-3 py-1.5 border-none bg-transparent font-[var(--font-poppins)] text-sm cursor-pointer transition-colors duration-300 ${currentPage === 1 ? "text-[#ccc]" : "text-[#666] hover:text-tp-red"}`}
-            disabled={currentPage === 1}
-            onClick={() => goToPage(currentPage - 1)}
-          >
-            Prev
-          </button>
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+
+            {/* Prev */}
             <button
-              key={page}
-              className={`px-3 py-1.5 border-none bg-transparent font-[var(--font-poppins)] text-sm cursor-pointer transition-colors duration-300 ${page === currentPage ? "text-tp-red font-bold" : "text-[#666] hover:text-tp-red"}`}
-              onClick={() => goToPage(page)}
+              onClick={(e) => {
+                e.stopPropagation();
+                prev();
+              }}
+              aria-label="Previous"
+              className="absolute top-1/2 left-3 md:left-5 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-tp-red text-white border-none rounded-full cursor-pointer text-lg md:text-xl flex justify-center items-center transition-all duration-300 backdrop-blur-sm"
             >
-              {page}
+              <FaChevronLeft />
             </button>
-          ))}
-          <button
-            className={`px-3 py-1.5 border-none bg-transparent font-[var(--font-poppins)] text-sm cursor-pointer transition-colors duration-300 ${currentPage === totalPages ? "text-[#ccc]" : "text-[#666] hover:text-tp-red"}`}
-            disabled={currentPage === totalPages}
-            onClick={() => goToPage(currentPage + 1)}
-          >
-            Next
-          </button>
+
+            {/* Next */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                next();
+              }}
+              aria-label="Next"
+              className="absolute top-1/2 right-3 md:right-5 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-black/40 hover:bg-tp-red text-white border-none rounded-full cursor-pointer text-lg md:text-xl flex justify-center items-center transition-all duration-300 backdrop-blur-sm"
+            >
+              <FaChevronRight />
+            </button>
+          </div>
+
+          {/* Dot indicators */}
+          <div className="flex justify-center items-center gap-1.5 mt-6 flex-wrap">
+            {galleryImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Go to image ${i + 1}`}
+                className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full border-none cursor-pointer transition-all duration-300 ${
+                  i === current
+                    ? "bg-tp-red scale-125"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Lightbox Modal */}
-      {isModalOpen && currentImage && (
+      {lightboxIndex !== null && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`Image viewer: ${currentImage.alt} — ${selectedIndex + 1} of ${totalImages}`}
-          className="fixed inset-0 z-[99999] bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-[fadeIn_0.2s_ease-out]"
-          onClick={closeModal}
+          className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-8 animate-[fadeIn_0.2s_ease-out]"
+          onClick={closeLightbox}
         >
-          {/* Close button */}
           <button
-            className="absolute top-3 right-3 md:top-5 md:right-5 text-white/80 hover:text-white text-xl md:text-2xl transition-colors duration-200 z-10 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60"
-            onClick={closeModal}
+            className="absolute top-3 right-3 md:top-5 md:right-5 text-white/80 hover:text-white text-xl md:text-2xl transition-colors z-10 w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60"
+            onClick={closeLightbox}
             aria-label="Close"
           >
             <FaXmark />
           </button>
 
-          {/* Previous arrow */}
           <button
-            className={`absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full text-lg md:text-xl transition-all duration-200 ${
-              selectedIndex === 0
+            className={`absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full text-lg md:text-xl transition-all ${
+              lightboxIndex === 0
                 ? "bg-white/10 text-white/30 cursor-default"
                 : "bg-black/40 text-white/80 hover:bg-black/60 hover:text-white cursor-pointer"
             }`}
             onClick={(e) => {
               e.stopPropagation();
-              goToPrev();
+              lbPrev();
             }}
-            disabled={selectedIndex === 0}
-            aria-label="Previous image"
+            disabled={lightboxIndex === 0}
+            aria-label="Previous"
           >
             <FaChevronLeft />
           </button>
 
-          {/* Next arrow */}
           <button
-            className={`absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full text-lg md:text-xl transition-all duration-200 ${
-              selectedIndex === totalImages - 1
+            className={`absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full text-lg md:text-xl transition-all ${
+              lightboxIndex === total - 1
                 ? "bg-white/10 text-white/30 cursor-default"
                 : "bg-black/40 text-white/80 hover:bg-black/60 hover:text-white cursor-pointer"
             }`}
             onClick={(e) => {
               e.stopPropagation();
-              goToNext();
+              lbNext();
             }}
-            disabled={selectedIndex === totalImages - 1}
-            aria-label="Next image"
+            disabled={lightboxIndex === total - 1}
+            aria-label="Next"
           >
             <FaChevronRight />
           </button>
 
-          {/* Image counter */}
           <div
             className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-10 bg-black/50 text-white/90 px-4 py-1.5 rounded-full text-xs md:text-sm font-[var(--font-poppins)] font-medium tracking-wide"
             onClick={(e) => e.stopPropagation()}
           >
-            {selectedIndex + 1} / {totalImages}
+            {lightboxIndex + 1} / {total}
           </div>
 
-          {/* Image container */}
           <div
             className="relative w-full h-[75vh] md:h-[82vh] max-w-4xl mx-14 md:mx-20"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={currentImage.src}
-              alt={currentImage.alt}
+              src={galleryImages[lightboxIndex].src}
+              alt={galleryImages[lightboxIndex].alt}
               fill
               className="object-contain"
               sizes="(max-width: 768px) 90vw, (max-width: 1024px) 80vw, 900px"
@@ -239,6 +273,6 @@ export default function GallerySection() {
           </div>
         </div>
       )}
-    </section>
+    </>
   );
 }
