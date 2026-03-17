@@ -6,9 +6,9 @@ import CityFaqsSection from "@/components/CityFaqsSection";
 import AboutCitySection from "@/components/AboutCitySection";
 import PricingTable from "@/components/PricingTable";
 import ErrorBoundary from "@/components/ErrorBoundary";
-import ReviewsSection from "@/components/ReviewsSection";
+import DynamicReviews from "@/components/DynamicReviews";
 import WhyUsSection from "@/components/WhyUsSection";
-import GallerySection from "@/components/GallerySection";
+import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PinoleHero from "./components/PinoleHero";
@@ -247,13 +247,9 @@ export default function PinolePage() {
         <CityFaqsSection cityName="Pinole" faqs={pinoleFaqs} />
       </ErrorBoundary>
       <FaqsSection />
-      <ErrorBoundary>
-        <ReviewsSection />
-      </ErrorBoundary>
+      <DynamicReviews />
       <WhyUsSection />
-      <ErrorBoundary>
-        <GallerySection />
-      </ErrorBoundary>
+      <DynamicGallery />
       <PinoleLocation />
       <FloatingButtons />
       <Footer />

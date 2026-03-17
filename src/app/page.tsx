@@ -4,9 +4,9 @@ import PricingTable from "@/components/PricingTable";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
-import ReviewsSection from "@/components/ReviewsSection";
+import DynamicReviews from "@/components/DynamicReviews";
 import WhyUsSection from "@/components/WhyUsSection";
-import GallerySection from "@/components/GallerySection";
+import DynamicGallery from "@/components/DynamicGallery";
 import LocationSection from "@/components/LocationSection";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
@@ -121,13 +121,9 @@ export default function Home() {
       </ErrorBoundary>
       <SizesSection />
       <FaqsSection />
-      <ErrorBoundary>
-        <ReviewsSection />
-      </ErrorBoundary>
+      <DynamicReviews />
       <WhyUsSection />
-      <ErrorBoundary>
-        <GallerySection />
-      </ErrorBoundary>
+      <DynamicGallery />
       <LocationSection />
       <FloatingButtons />
       <Footer />
