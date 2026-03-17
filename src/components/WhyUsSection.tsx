@@ -81,7 +81,7 @@ export default function WhyUsSection() {
               {pills.map((pill) => (
                 <div
                   key={pill}
-                  className="flex items-center gap-3 bg-gradient-to-br from-tp-red to-tp-red-dark text-white px-[15px] py-2.5 sm:px-5 sm:py-3 rounded-[30px] font-[var(--font-poppins)] text-xs sm:text-sm font-medium text-center justify-center"
+                  className="flex items-center gap-3 bg-gradient-to-br from-tp-red to-tp-red-dark text-white px-[15px] py-2.5 sm:px-5 sm:py-3 rounded-[30px] font-[var(--font-poppins)] text-xs sm:text-sm font-medium"
                 >
                   <span className="w-7 h-7 bg-tp-green rounded-full flex items-center justify-center flex-shrink-0">
                     <FaCheck className="text-white text-sm" />
