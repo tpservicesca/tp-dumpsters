@@ -5,6 +5,7 @@ import FaqsSection from "@/components/FaqsSection";
 import CityFaqsSection from "@/components/CityFaqsSection";
 import AboutCitySection from "@/components/AboutCitySection";
 import PricingTable from "@/components/PricingTable";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import ReviewsSection from "@/components/ReviewsSection";
 import WhyUsSection from "@/components/WhyUsSection";
 import GallerySection from "@/components/GallerySection";
@@ -224,13 +225,21 @@ export default function OaklandPage() {
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...oaklandAbout} />
-      <PricingTable cityName="Oakland" />
+      <ErrorBoundary>
+        <PricingTable cityName="Oakland" />
+      </ErrorBoundary>
       <SizesSection />
-      <CityFaqsSection cityName="Oakland" faqs={oaklandFaqs} />
+      <ErrorBoundary>
+        <CityFaqsSection cityName="Oakland" faqs={oaklandFaqs} />
+      </ErrorBoundary>
       <FaqsSection />
-      <ReviewsSection />
+      <ErrorBoundary>
+        <ReviewsSection />
+      </ErrorBoundary>
       <WhyUsSection />
-      <GallerySection />
+      <ErrorBoundary>
+        <GallerySection />
+      </ErrorBoundary>
       <OaklandLocation />
       <FloatingButtons />
       <Footer />
