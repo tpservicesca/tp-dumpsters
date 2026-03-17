@@ -125,14 +125,14 @@ export default function GallerySection() {
 
           {/* Carousel */}
           <div
-            className="relative w-full overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] cursor-pointer"
+            className="relative w-full max-w-[600px] mx-auto overflow-hidden rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.12)] cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             onClick={openLightbox}
           >
-            <div className="relative w-full aspect-[16/9] md:aspect-[16/8]">
+            <div className="relative w-full aspect-[3/4]">
               {galleryImages.map((img, i) => (
                 <div
                   key={i}
