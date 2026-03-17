@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { randomUUID } from "crypto";
 import { getPool, initDB } from "@/lib/db";
 
@@ -85,7 +85,7 @@ export async function POST(request: Request) {
     // Create Stripe Checkout Session
     const origin = request.headers.get("origin") || "https://tpdumpsters.com";
 
-    const session = await stripe.checkout.sessions.create({
+    const session = await getStripe().checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
       customer_email: booking.customerEmail || undefined,
