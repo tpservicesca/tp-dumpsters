@@ -82,20 +82,21 @@ export default function BookingWizard() {
   const handleSubmit = async () => {
     setIsSubmitting(true);
     try {
-      const res = await fetch("/api/booking", {
+      const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(booking),
       });
-      if (res.ok) {
-        setIsConfirmed(true);
-        setStep(5);
+      const data = await res.json();
+      if (res.ok && data.checkoutUrl) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.checkoutUrl;
       } else {
-        alert("Error submitting booking. Please call us at (510) 650-2083.");
+        alert("Error creating payment session. Please call us at (510) 650-2083.");
+        setIsSubmitting(false);
       }
     } catch {
-      alert("Error submitting booking. Please call us at (510) 650-2083.");
-    } finally {
+      alert("Error creating payment session. Please call us at (510) 650-2083.");
       setIsSubmitting(false);
     }
   };
