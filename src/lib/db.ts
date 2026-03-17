@@ -2,7 +2,7 @@ import mysql from "mysql2/promise";
 
 // Database config — Hostinger MySQL
 const DB_CONFIG = {
-  host: process.env.DB_HOST || "localhost",
+  host: process.env.DB_HOST || "127.0.0.1",
   user: process.env.DB_USER || "u781187371_cristoferdeita",
   password: process.env.DB_PASSWORD || "Locomen50.",
   database: process.env.DB_NAME || "u781187371_DumspterBookin",
