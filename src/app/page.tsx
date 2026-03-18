@@ -116,9 +116,10 @@ export default function Home() {
       <HeroSection />
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
-      <ErrorBoundary>
+      {/* PricingTable hidden — re-enable when ready */}
+      {/* <ErrorBoundary>
         <PricingTable cityName="the Bay Area" />
-      </ErrorBoundary>
+      </ErrorBoundary> */}
       <SizesSection />
       <FaqsSection />
       <DynamicReviews />
