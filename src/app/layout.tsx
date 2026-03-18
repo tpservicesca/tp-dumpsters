@@ -78,6 +78,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: "GtNKIqE6hxon63WpRDS_-4Y6U0_tqinf0wvazM2Nn00",
+  },
   alternates: {
     canonical: "https://tpdumpsters.com",
   },
