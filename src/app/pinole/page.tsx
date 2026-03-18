@@ -127,7 +127,7 @@ export const metadata: Metadata = {
     title: "Dumpster Rental in Pinole, CA - TP Dumpsters",
     description:
       "Affordable dumpster rentals in Pinole. 10, 20 & 30 yard dumpsters. Same-day delivery available.",
-    url: "https://tpservicesca.com/pinole",
+    url: "https://tpdumpsters.com/pinole",
     siteName: "TP Dumpsters",
     locale: "en_US",
     type: "website",
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://tpservicesca.com/pinole",
+    canonical: "https://tpdumpsters.com/pinole",
   },
 };
 
@@ -147,7 +147,7 @@ const jsonLd = {
   name: "TP Dumpsters - Pinole",
   description:
     "Affordable dumpster rentals in Pinole, CA. Serving Pinole and surrounding West Contra Costa communities with same-day delivery.",
-  url: "https://tpservicesca.com/pinole",
+  url: "https://tpdumpsters.com/pinole",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",

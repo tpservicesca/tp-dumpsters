@@ -17,7 +17,7 @@ const jsonLd = {
   name: "TP Dumpsters",
   description:
     "Fast, reliable dumpster rentals in California's Bay Area. 10, 20 & 30 yard roll-off dumpsters for contractors, remodelers and everyday cleanups.",
-  url: "https://tpservicesca.com",
+  url: "https://tpdumpsters.com",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",

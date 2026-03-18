@@ -45,7 +45,7 @@ export default function Header() {
     >
       <nav aria-label="Main navigation" className="flex items-center justify-between bg-black rounded-[5px] px-[5vh] w-full">
         <div className="flex items-center">
-          <a href="https://tpservicesca.com/">
+          <a href="https://tpdumpsters.com/">
             <Image
               src="/images/logo/TP.png"
               alt="TP Dumpsters Logo"

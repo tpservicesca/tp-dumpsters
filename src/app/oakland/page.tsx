@@ -126,7 +126,7 @@ export const metadata: Metadata = {
     title: "Dumpster Rental in Oakland, CA - TP Dumpsters",
     description:
       "Fast, reliable dumpster rentals in Oakland. 10, 20 & 30 yard dumpsters. Same-day delivery available.",
-    url: "https://tpservicesca.com/oakland",
+    url: "https://tpdumpsters.com/oakland",
     siteName: "TP Dumpsters",
     locale: "en_US",
     type: "website",
@@ -136,7 +136,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://tpservicesca.com/oakland",
+    canonical: "https://tpdumpsters.com/oakland",
   },
 };
 
@@ -146,7 +146,7 @@ const jsonLd = {
   name: "TP Dumpsters - Oakland",
   description:
     "Fast, reliable dumpster rentals in Oakland, CA. Serving all Oakland neighborhoods with same-day delivery.",
-  url: "https://tpservicesca.com/oakland",
+  url: "https://tpdumpsters.com/oakland",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
