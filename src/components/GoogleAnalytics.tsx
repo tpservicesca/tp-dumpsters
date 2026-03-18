@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Script from "next/script";
 
-const GA_ID = "G-WYM186DG5B";
+const GA_ID = "G-RLV3201E1G";
 const AW_ID = "AW-17134217839";
 const CONVERSION_LABEL = "AW-17134217839/EtBFCMDt_-EaEO_Uneo_";
 
