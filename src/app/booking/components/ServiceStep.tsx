@@ -93,6 +93,13 @@ const services: ServiceCategory[] = [
   },
 ];
 
+/* ───────── Subtexts per dumpster size ───────── */
+const sizeSubtexts: Record<string, string> = {
+  "10 Yard": "Ideal for small cleanouts",
+  "20 Yard": "Perfect for home projects",
+  "30 Yard": "Best for large jobs",
+};
+
 /* ───────── Checkmark icon ───────── */
 function Check({ className }: { className?: string }) {
   return (
@@ -177,7 +184,7 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
 
       {/* ── Price cards ── */}
       <div
-        className={`grid grid-cols-1 gap-6 items-end ${
+        className={`grid grid-cols-1 gap-5 md:gap-6 items-end ${
           activeService.sizes.length === 3
             ? "md:grid-cols-3"
             : activeService.sizes.length === 2
@@ -190,6 +197,8 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
           const isSelected = selectedKey === key;
           const isPopular = activeService.sizes.length === 3 && idx === 1;
           const isFeatured = isPopular || activeService.sizes.length === 1;
+          const isDark = isFeatured || isSelected;
+          const subtext = sizeSubtexts[item.size] || activeService.service;
 
           return (
             <button
@@ -197,12 +206,12 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
               onClick={() => handleSelect(item)}
               className={`
                 relative rounded-2xl text-left transition-all duration-300 cursor-pointer overflow-hidden
-                ${isFeatured && !isSelected
+                hover:scale-[1.03] hover:shadow-2xl
+                ${isDark
                   ? "bg-[#1a1a1a] text-white shadow-2xl md:scale-[1.04] z-10"
-                  : isSelected
-                  ? "bg-[#1a1a1a] text-white shadow-2xl ring-2 ring-tp-red md:scale-[1.04] z-10"
-                  : "bg-white text-[#333] shadow-[0_2px_20px_rgba(0,0,0,0.06)] border border-[#eee] hover:shadow-[0_4px_30px_rgba(0,0,0,0.10)] hover:border-[#ddd]"
+                  : "bg-white text-[#333] shadow-[0_2px_20px_rgba(0,0,0,0.06)] border border-[#eee]"
                 }
+                ${isSelected ? "ring-2 ring-tp-red" : ""}
               `}
             >
               {/* ── Badge ── */}
@@ -212,38 +221,39 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
                 </div>
               ) : isPopular ? (
                 <div className="bg-tp-red text-white text-[11px] font-bold text-center py-2 font-[var(--font-poppins)] uppercase tracking-widest">
-                  Most Popular
+                  ⭐ Most Popular
                 </div>
               ) : null}
 
-              <div className="px-8 pt-8 pb-8">
-                {/* ── Size label ── */}
-                <p
-                  className={`text-xs font-semibold uppercase tracking-widest mb-4 font-[var(--font-poppins)] ${
-                    isFeatured || isSelected ? "text-white/50" : "text-[#aaa]"
-                  }`}
-                >
-                  {activeService.service}
-                </p>
-
-                <h3 className="font-[var(--font-poppins)] text-lg font-bold mb-6">
-                  {item.size}
+              <div className="px-7 pt-7 pb-7 sm:px-8 sm:pt-8 sm:pb-8">
+                {/* ── Title ── */}
+                <h3 className="font-[var(--font-poppins)] text-xl font-bold mb-1">
+                  {item.size} Dumpster
                 </h3>
 
+                {/* ── Subtext ── */}
+                <p
+                  className={`text-sm mb-6 font-[var(--font-poppins)] ${
+                    isDark ? "text-white/50" : "text-[#999]"
+                  }`}
+                >
+                  {subtext}
+                </p>
+
                 {/* ── Price ── */}
-                <div className="mb-2">
+                <div className="mb-1">
                   <span
                     className={`text-xs font-medium ${
-                      isFeatured || isSelected ? "text-white/50" : "text-[#bbb]"
+                      isDark ? "text-white/40" : "text-[#bbb]"
                     }`}
                   >
                     Starting at
                   </span>
                 </div>
-                <div className="flex items-baseline gap-1 mb-8">
+                <div className="flex items-baseline gap-1 mb-7">
                   <span
                     className={`font-[var(--font-oswald)] text-[52px] leading-none font-bold ${
-                      isFeatured || isSelected ? "text-white" : "text-[#222]"
+                      isDark ? "text-white" : "text-[#222]"
                     }`}
                   >
                     ${item.price}
@@ -253,7 +263,7 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
                 {/* ── Divider ── */}
                 <div
                   className={`h-px mb-6 ${
-                    isFeatured || isSelected ? "bg-white/10" : "bg-[#eee]"
+                    isDark ? "bg-white/10" : "bg-[#eee]"
                   }`}
                 />
 
@@ -263,7 +273,7 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
                     <Check />
                     <span
                       className={`text-sm font-[var(--font-poppins)] ${
-                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                        isDark ? "text-white/80" : "text-[#555]"
                       }`}
                     >
                       {item.dimensions}
@@ -273,17 +283,17 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
                     <Check />
                     <span
                       className={`text-sm font-[var(--font-poppins)] ${
-                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                        isDark ? "text-white/80" : "text-[#555]"
                       }`}
                     >
-                      Weight limit: {item.weightLimit}
+                      {item.weightLimit} included
                     </span>
                   </li>
                   <li className="flex items-center gap-3">
                     <Check />
                     <span
                       className={`text-sm font-[var(--font-poppins)] ${
-                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                        isDark ? "text-white/80" : "text-[#555]"
                       }`}
                     >
                       {item.rentalDays}-day rental included
@@ -293,17 +303,17 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
                     <Check />
                     <span
                       className={`text-sm font-[var(--font-poppins)] ${
-                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                        isDark ? "text-white/80" : "text-[#555]"
                       }`}
                     >
-                      Delivery, pickup &amp; disposal
+                      Delivery &amp; pickup included
                     </span>
                   </li>
                   <li className="flex items-center gap-3">
                     <Check />
                     <span
                       className={`text-sm font-[var(--font-poppins)] ${
-                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                        isDark ? "text-white/80" : "text-[#555]"
                       }`}
                     >
                       No hidden fees
@@ -313,7 +323,7 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
 
                 {/* ── CTA button ── */}
                 <div
-                  className={`flex items-center justify-center w-full py-3.5 rounded-xl text-sm font-semibold transition-all duration-300 font-[var(--font-poppins)] ${
+                  className={`flex items-center justify-center w-full py-4 rounded-xl text-sm font-semibold transition-all duration-300 font-[var(--font-poppins)] ${
                     isSelected
                       ? "bg-green-500 text-white"
                       : isFeatured
