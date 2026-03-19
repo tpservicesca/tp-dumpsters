@@ -28,38 +28,65 @@ interface ServiceCategory {
 }
 
 /* ───────── Same pricing data as PricingTable ───────── */
+const GENERAL_SIZES: SizeOption[] = [
+  { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "1 ton", rentalDays: 7 },
+  { size: "20 Yard", price: 650, dimensions: "16' L × 8' W × 4' H", weightLimit: "2 tons", rentalDays: 7 },
+  { size: "30 Yard", price: 700, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
+];
+
 const services: ServiceCategory[] = [
   {
     service: "General Debris",
     icon: "🏗️",
-    description: "Home remodels, cleanouts, landscaping, light demolition, junk removal",
+    description: "Home remodels, furniture, junk, light demolition",
     note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
-    sizes: [
-      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "1 ton", rentalDays: 7 },
-      { size: "20 Yard", price: 650, dimensions: "16' L × 8' W × 4' H", weightLimit: "2 tons", rentalDays: 7 },
-      { size: "30 Yard", price: 700, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
-    ],
+    sizes: GENERAL_SIZES,
   },
   {
-    service: "Clean Soil",
-    icon: "🌱",
-    description: "Clean loads must be 95% pure. No rocks, grass, gravel, mesh, wood, or garbage.",
-    sizes: [
-      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
-    ],
+    service: "Household Junk",
+    icon: "🏠",
+    description: "Garage cleanouts, furniture removal",
+    note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
+    sizes: GENERAL_SIZES,
   },
   {
-    service: "Clean Concrete",
-    icon: "🧱",
-    description: "Clean loads must be 95% pure. No rebar, no garbage.",
-    sizes: [
-      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
-    ],
+    service: "Construction Debris",
+    icon: "🔨",
+    description: "Demolition, remodeling, construction waste",
+    sizes: GENERAL_SIZES,
+  },
+  {
+    service: "Roofing",
+    icon: "🏚️",
+    description: "Shingles, roofing tear-offs, heavy debris",
+    sizes: GENERAL_SIZES.map((s) => ({ ...s, price: s.price + 60 })),
+  },
+  {
+    service: "Yard Waste",
+    icon: "🌿",
+    description: "Landscaping, branches, leaves, yard cleanup",
+    sizes: GENERAL_SIZES,
   },
   {
     service: "Mixed Materials",
     icon: "🔀",
-    description: "Clean soil & concrete mix. Loads must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    description: "Mixed loads of debris (NOT clean). May include combinations of materials.",
+    sizes: [
+      { size: "10 Yard", price: 750, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
+  {
+    service: "Clean Soil / Concrete",
+    icon: "🌱",
+    description: "Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    sizes: [
+      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
+  {
+    service: "Brick",
+    icon: "🧱",
+    description: "Concrete, asphalt, bricks, heavy materials",
     sizes: [
       { size: "10 Yard", price: 750, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
     ],
