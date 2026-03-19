@@ -56,6 +56,12 @@ const services: ServiceCategory[] = [
     sizes: GENERAL_SIZES,
   },
   {
+    service: "Roofing",
+    icon: "🏚️",
+    description: "Shingles, roofing tear-offs, heavy debris",
+    sizes: GENERAL_SIZES.map((s) => ({ ...s, price: s.price + 60 })),
+  },
+  {
     service: "Green Waste",
     icon: "♻️",
     description: "Green waste, recyclable materials, organic debris",
