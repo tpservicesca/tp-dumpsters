@@ -12,6 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import RichmondHero from "./components/RichmondHero";
+import ServiceAreaMap from "@/components/ServiceAreaMap";
 import RichmondLocation from "./components/RichmondLocation";
 
 const richmondFaqs = [
@@ -217,6 +218,7 @@ export default function RichmondPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
+      <ServiceAreaMap />
       <RichmondLocation />
       <FloatingButtons />
       <Footer />
