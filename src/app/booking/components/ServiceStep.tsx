@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FaCalendarDays, FaRuler, FaWeightHanging, FaCalendarCheck } from "react-icons/fa6";
+import { FaCalendarDays } from "react-icons/fa6";
 import type { BookingData, ServiceSelection } from "./BookingWizard";
 
 interface Props {
@@ -27,7 +27,7 @@ interface ServiceCategory {
   sizes: SizeOption[];
 }
 
-/* ───────── Same pricing data as PricingTable ───────── */
+/* ───────── Pricing data ───────── */
 const GENERAL_SIZES: SizeOption[] = [
   { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "1 ton", rentalDays: 7 },
   { size: "20 Yard", price: 650, dimensions: "16' L × 8' W × 4' H", weightLimit: "2 tons", rentalDays: 7 },
@@ -93,6 +93,17 @@ const services: ServiceCategory[] = [
   },
 ];
 
+/* ───────── Checkmark icon ───────── */
+function Check({ className }: { className?: string }) {
+  return (
+    <span
+      className={`inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-500 text-white text-[11px] flex-shrink-0 ${className ?? ""}`}
+    >
+      ✓
+    </span>
+  );
+}
+
 export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
   const [activeServiceIdx, setActiveServiceIdx] = useState(() => {
     if (booking.service) {
@@ -122,18 +133,19 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
 
   return (
     <div>
+      {/* ── Header ── */}
       <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2">
         STEP 1
       </h4>
-      <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-3">
+      <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#222] mb-2">
         Choose your dumpster
       </h2>
-      <p className="font-[var(--font-poppins)] text-sm text-[#888] mb-8">
+      <p className="font-[var(--font-poppins)] text-[15px] text-[#999] mb-10">
         Select the type of waste and dumpster size you need.
       </p>
 
-      {/* Service type tabs — identical to PricingTable */}
-      <div className="flex flex-wrap gap-2 mb-8">
+      {/* ── Service type pills ── */}
+      <div className="flex flex-wrap gap-2 mb-10">
         {services.map((svc, idx) => (
           <button
             key={svc.service}
@@ -141,111 +153,175 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
             className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold font-[var(--font-poppins)] transition-all duration-200 ${
               activeServiceIdx === idx
                 ? "bg-tp-red text-white shadow-md"
-                : "bg-white text-[#555] border border-[#ddd] hover:border-tp-red hover:text-tp-red"
+                : "bg-[#f5f5f5] text-[#555] border border-[#e5e5e5] hover:border-tp-red hover:text-tp-red"
             }`}
           >
-            <span>{svc.icon}</span>
+            <span className="text-base">{svc.icon}</span>
             {svc.service}
           </button>
         ))}
       </div>
 
-      {/* Service description */}
-      <div className="bg-white rounded-xl p-4 mb-8 border border-[#eee]">
-        <p className="font-[var(--font-poppins)] text-sm text-[#666]">
-          <strong>{activeService.icon} {activeService.service}:</strong>{" "}
+      {/* ── Service description banner ── */}
+      <div className="bg-[#fafafa] rounded-2xl px-6 py-4 mb-10 border border-[#eee]">
+        <p className="font-[var(--font-poppins)] text-[14px] text-[#555] leading-relaxed">
+          <span className="font-semibold text-[#333]">{activeService.icon} {activeService.service}:</span>{" "}
           {activeService.description}
         </p>
         {activeService.note && (
-          <p className="font-[var(--font-poppins)] text-xs text-[#999] mt-2">
+          <p className="font-[var(--font-poppins)] text-xs text-[#aaa] mt-2 leading-relaxed">
             {activeService.note}
           </p>
         )}
       </div>
 
-      {/* Price cards — identical to PricingTable but with select action */}
-      <div className={`grid grid-cols-1 ${activeService.sizes.length > 1 ? "md:grid-cols-3" : "md:grid-cols-1 max-w-md mx-auto"} gap-6`}>
+      {/* ── Price cards ── */}
+      <div
+        className={`grid grid-cols-1 gap-6 items-end ${
+          activeService.sizes.length === 3
+            ? "md:grid-cols-3"
+            : activeService.sizes.length === 2
+            ? "md:grid-cols-2 max-w-2xl mx-auto"
+            : "md:grid-cols-1 max-w-md mx-auto"
+        }`}
+      >
         {activeService.sizes.map((item, idx) => {
           const key = `${activeService.service}-${item.size}`;
           const isSelected = selectedKey === key;
-          const isPopular = activeService.sizes.length > 1 && idx === 1;
-          const isDark = isSelected || isPopular || activeService.sizes.length === 1;
+          const isPopular = activeService.sizes.length === 3 && idx === 1;
+          const isFeatured = isPopular || activeService.sizes.length === 1;
 
           return (
             <button
               key={key}
               onClick={() => handleSelect(item)}
-              className={`relative rounded-2xl overflow-hidden text-left transition-all duration-300 cursor-pointer ${
-                isSelected
-                  ? "bg-black text-white shadow-xl ring-3 ring-tp-red md:scale-[1.03]"
-                  : isPopular
-                  ? "bg-black text-white shadow-xl md:scale-[1.03]"
-                  : activeService.sizes.length === 1
-                  ? "bg-black text-white shadow-xl"
-                  : "bg-white text-[#333] shadow-md hover:shadow-lg"
-              }`}
+              className={`
+                relative rounded-2xl text-left transition-all duration-300 cursor-pointer overflow-hidden
+                ${isFeatured && !isSelected
+                  ? "bg-[#1a1a1a] text-white shadow-2xl md:scale-[1.04] z-10"
+                  : isSelected
+                  ? "bg-[#1a1a1a] text-white shadow-2xl ring-2 ring-tp-red md:scale-[1.04] z-10"
+                  : "bg-white text-[#333] shadow-[0_2px_20px_rgba(0,0,0,0.06)] border border-[#eee] hover:shadow-[0_4px_30px_rgba(0,0,0,0.10)] hover:border-[#ddd]"
+                }
+              `}
             >
-              {/* Badge */}
-              {isSelected && (
-                <div className="absolute top-0 left-0 right-0 bg-tp-red text-white text-xs font-bold text-center py-1.5 font-[var(--font-poppins)] uppercase tracking-wider">
+              {/* ── Badge ── */}
+              {isSelected ? (
+                <div className="bg-tp-red text-white text-[11px] font-bold text-center py-2 font-[var(--font-poppins)] uppercase tracking-widest">
                   ✓ Selected
                 </div>
-              )}
-              {isPopular && !isSelected && (
-                <div className="absolute top-0 left-0 right-0 bg-tp-red text-white text-xs font-bold text-center py-1.5 font-[var(--font-poppins)] uppercase tracking-wider">
+              ) : isPopular ? (
+                <div className="bg-tp-red text-white text-[11px] font-bold text-center py-2 font-[var(--font-poppins)] uppercase tracking-widest">
                   Most Popular
                 </div>
-              )}
+              ) : null}
 
-              <div className={`p-8 ${isSelected || isPopular ? "pt-12" : ""}`}>
-                <h3 className="font-[var(--font-poppins)] text-xl font-bold mb-1">
-                  {item.size}
-                </h3>
-                <p className={`text-sm mb-5 ${isDark ? "text-white/70" : "text-[#888]"}`}>
+              <div className="px-8 pt-8 pb-8">
+                {/* ── Size label ── */}
+                <p
+                  className={`text-xs font-semibold uppercase tracking-widest mb-4 font-[var(--font-poppins)] ${
+                    isFeatured || isSelected ? "text-white/50" : "text-[#aaa]"
+                  }`}
+                >
                   {activeService.service}
                 </p>
 
-                {/* Price */}
-                <div className="flex items-baseline gap-1 mb-1">
-                  <span className={`text-xs ${isDark ? "text-white/60" : "text-[#aaa]"}`}>
+                <h3 className="font-[var(--font-poppins)] text-lg font-bold mb-6">
+                  {item.size}
+                </h3>
+
+                {/* ── Price ── */}
+                <div className="mb-2">
+                  <span
+                    className={`text-xs font-medium ${
+                      isFeatured || isSelected ? "text-white/50" : "text-[#bbb]"
+                    }`}
+                  >
                     Starting at
                   </span>
                 </div>
-                <div className="flex items-baseline gap-1 mb-6">
-                  <span className={`font-[var(--font-oswald)] text-5xl font-bold ${isDark ? "text-white" : "text-tp-red"}`}>
+                <div className="flex items-baseline gap-1 mb-8">
+                  <span
+                    className={`font-[var(--font-oswald)] text-[52px] leading-none font-bold ${
+                      isFeatured || isSelected ? "text-white" : "text-[#222]"
+                    }`}
+                  >
                     ${item.price}
                   </span>
                 </div>
 
-                {/* Details */}
-                <ul className={`space-y-3 mb-8 text-sm ${isDark ? "text-white/80" : "text-[#666]"}`}>
+                {/* ── Divider ── */}
+                <div
+                  className={`h-px mb-6 ${
+                    isFeatured || isSelected ? "bg-white/10" : "bg-[#eee]"
+                  }`}
+                />
+
+                {/* ── Feature list ── */}
+                <ul className="space-y-4 mb-8">
                   <li className="flex items-center gap-3">
-                    <FaRuler className="text-tp-green flex-shrink-0" />
-                    {item.dimensions}
+                    <Check />
+                    <span
+                      className={`text-sm font-[var(--font-poppins)] ${
+                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                      }`}
+                    >
+                      {item.dimensions}
+                    </span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <FaWeightHanging className="text-tp-green flex-shrink-0" />
-                    {item.weightLimit}
+                    <Check />
+                    <span
+                      className={`text-sm font-[var(--font-poppins)] ${
+                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                      }`}
+                    >
+                      Weight limit: {item.weightLimit}
+                    </span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <FaCalendarCheck className="text-tp-green flex-shrink-0" />
-                    {item.rentalDays} days rental included
+                    <Check />
+                    <span
+                      className={`text-sm font-[var(--font-poppins)] ${
+                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                      }`}
+                    >
+                      {item.rentalDays}-day rental included
+                    </span>
                   </li>
                   <li className="flex items-center gap-3">
-                    <span className="text-tp-green flex-shrink-0">✓</span>
-                    Delivery, pickup &amp; disposal included
+                    <Check />
+                    <span
+                      className={`text-sm font-[var(--font-poppins)] ${
+                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                      }`}
+                    >
+                      Delivery, pickup &amp; disposal
+                    </span>
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <Check />
+                    <span
+                      className={`text-sm font-[var(--font-poppins)] ${
+                        isFeatured || isSelected ? "text-white/80" : "text-[#555]"
+                      }`}
+                    >
+                      No hidden fees
+                    </span>
                   </li>
                 </ul>
 
-                {/* Select button */}
+                {/* ── CTA button ── */}
                 <div
-                  className={`flex items-center justify-center gap-2 w-full py-3.5 rounded-lg text-base font-semibold transition-colors duration-300 font-[var(--font-poppins)] ${
+                  className={`flex items-center justify-center w-full py-3.5 rounded-xl text-sm font-semibold transition-all duration-300 font-[var(--font-poppins)] ${
                     isSelected
-                      ? "bg-tp-green text-white"
-                      : "bg-tp-red text-white hover:bg-tp-red-dark"
+                      ? "bg-green-500 text-white"
+                      : isFeatured
+                      ? "bg-tp-red text-white hover:brightness-110"
+                      : "bg-transparent text-[#333] border-2 border-[#222] hover:bg-[#222] hover:text-white"
                   }`}
                 >
-                  {isSelected ? "✓ Selected" : "Select"}
+                  {isSelected ? "✓ Selected" : "Select this dumpster"}
                 </div>
               </div>
             </button>
@@ -253,28 +329,28 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
         })}
       </div>
 
-      {/* Extra fees note */}
+      {/* ── Extra fees note ── */}
       {activeService.note && (
-        <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4 text-center">
-          <p className="font-[var(--font-poppins)] text-sm text-amber-800">
+        <div className="mt-8 bg-amber-50/80 border border-amber-200/60 rounded-2xl px-6 py-4 text-center">
+          <p className="font-[var(--font-poppins)] text-sm text-amber-700">
             {activeService.note}
           </p>
         </div>
       )}
 
-      <p className="text-center text-xs text-[#999] mt-6 mb-8 font-[var(--font-poppins)]">
-        Extra weight charged at $150/ton (prorated). Extra days: $30/day.
+      <p className="text-center text-xs text-[#bbb] mt-8 mb-10 font-[var(--font-poppins)]">
+        Extra weight charged at $150/ton (prorated) · Extra days: $30/day
       </p>
 
-      {/* Next button */}
+      {/* ── Next button ── */}
       <div className="flex justify-end">
         <button
           onClick={onNext}
           disabled={!booking.service}
-          className={`flex items-center gap-2 px-8 py-3.5 rounded-lg font-[var(--font-poppins)] font-semibold text-base transition-all duration-200 ${
+          className={`flex items-center gap-2 px-8 py-3.5 rounded-xl font-[var(--font-poppins)] font-semibold text-sm transition-all duration-200 ${
             booking.service
-              ? "bg-tp-red text-white hover:bg-tp-red-dark shadow-md"
-              : "bg-gray-200 text-gray-400 cursor-not-allowed"
+              ? "bg-tp-red text-white hover:brightness-110 shadow-lg shadow-red-500/20"
+              : "bg-gray-100 text-gray-400 cursor-not-allowed"
           }`}
         >
           <FaCalendarDays /> Next: Choose dates →
