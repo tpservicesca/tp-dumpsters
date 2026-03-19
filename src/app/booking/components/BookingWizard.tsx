@@ -31,6 +31,7 @@ export interface BookingData {
   customerPhone: string;
   customerEmail: string;
   notes: string;
+  authorizedCharges: boolean;
 }
 
 const EXTRA_DAY_FEE = 30; // $30/day — confirm with business
@@ -49,6 +50,7 @@ const initialBooking: BookingData = {
   customerPhone: "",
   customerEmail: "",
   notes: "",
+  authorizedCharges: false,
 };
 
 const STEPS = [

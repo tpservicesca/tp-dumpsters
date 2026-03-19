@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { FaCreditCard, FaPhone } from "react-icons/fa6";
 import type { BookingData } from "./BookingWizard";
 
@@ -22,6 +23,7 @@ function formatDate(dateStr: string): string {
 }
 
 export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }: Props) {
+  const [authorizedCharges, setAuthorizedCharges] = useState(false);
   const baseDays = booking.service?.baseDays || 7;
 
   return (
@@ -133,6 +135,21 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
         </p>
       </div>
 
+      {/* Authorization checkbox */}
+      <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
+        <label className="flex items-start gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={authorizedCharges}
+            onChange={(e) => setAuthorizedCharges(e.target.checked)}
+            className="mt-1 w-4 h-4 accent-tp-red flex-shrink-0"
+          />
+          <span className="text-xs text-[#555] font-[var(--font-poppins)] leading-relaxed">
+            I authorize TP Dumpsters to charge my card for any additional fees incurred during the rental period, including but not limited to: extra weight ($150/ton prorated), additional rental days ($30/day), and prohibited/hazardous items found in the dumpster ($20–$60 per item). I understand these charges may be processed after the dumpster is picked up.
+          </span>
+        </label>
+      </div>
+
       <div className="flex flex-col sm:flex-row justify-between gap-3 mt-6">
         <button
           onClick={onBack}
@@ -149,8 +166,8 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
           </a>
           <button
             onClick={onSubmit}
-            disabled={isSubmitting}
-            className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-[var(--font-poppins)] font-bold text-base bg-tp-red text-white hover:bg-tp-red-dark shadow-lg transition-all duration-200 disabled:opacity-50"
+            disabled={isSubmitting || !authorizedCharges}
+            className="flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-[var(--font-poppins)] font-bold text-base bg-tp-red text-white hover:bg-tp-red-dark shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <FaCreditCard />
             {isSubmitting ? "Redirecting to payment..." : "💳 Pay & confirm booking"}

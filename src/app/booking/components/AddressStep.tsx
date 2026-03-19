@@ -13,7 +13,7 @@ interface Props {
 /* ───────── Validation helpers ───────── */
 function validateName(name: string): string | null {
   if (name.trim().length < 2) return "Name must be at least 2 characters";
-  if (!/^[a-zA-ZáéíóúñÁÉÍÓÚÑüÜ\s'-]+$/.test(name.trim()))
+  if (!/^[a-zA-ZáéíóúñÁÉÍÓÚÑüÜ0-9\s'.,&-]+$/.test(name.trim()))
     return "Name contains invalid characters";
   return null;
 }
@@ -26,7 +26,7 @@ function validatePhone(phone: string): string | null {
 }
 
 function validateEmail(email: string): string | null {
-  if (!email) return null; // optional
+  if (!email || !email.trim()) return "Email is required";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     return "Please enter a valid email";
   return null;
@@ -195,6 +195,7 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
     booking.zipCode.trim() !== "" &&
     booking.customerName.trim().length >= 2 &&
     booking.customerPhone.replace(/\D/g, "").length >= 10 &&
+    booking.customerEmail.trim() !== "" &&
     !validateName(booking.customerName) &&
     !validatePhone(booking.customerPhone) &&
     !validateEmail(booking.customerEmail) &&
@@ -224,11 +225,11 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">
-              Full name *
+              Name or company *
             </label>
             <input
               type="text"
-              placeholder="John Smith"
+              placeholder="John Smith or Company Name"
               value={booking.customerName}
               onChange={(e) => updateBooking({ customerName: e.target.value })}
               onBlur={() => handleBlur("customerName")}
@@ -261,7 +262,7 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
           </div>
           <div className="sm:col-span-2">
             <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">
-              Email (optional — for confirmation)
+              Email *
             </label>
             <input
               type="email"

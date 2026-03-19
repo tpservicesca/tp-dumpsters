@@ -73,6 +73,14 @@ export async function POST(request: Request) {
       console.error("DB write error (continuing):", dbError);
     }
 
+    // Create Stripe Customer for future charges
+    const stripeCustomer = await getStripe().customers.create({
+      email: booking.customerEmail,
+      name: booking.customerName,
+      phone: booking.customerPhone,
+      metadata: { booking_id: bookingId },
+    });
+
     // Build line item description
     const description = [
       `${booking.service.serviceType} - ${booking.service.size} Dumpster`,
@@ -88,7 +96,8 @@ export async function POST(request: Request) {
     const session = await getStripe().checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      customer_email: booking.customerEmail || undefined,
+      customer: stripeCustomer.id,
+      payment_intent_data: { setup_future_usage: 'off_session' },
       line_items: [
         {
           price_data: {
@@ -114,6 +123,7 @@ export async function POST(request: Request) {
         address: booking.address,
         city: booking.city,
         zip_code: booking.zipCode,
+        authorized_charges: String(booking.authorizedCharges || false),
       },
       success_url: `${origin}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
       cancel_url: `${origin}/booking?cancelled=true`,
