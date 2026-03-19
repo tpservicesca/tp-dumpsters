@@ -152,19 +152,19 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
       </p>
 
       {/* ── Service type pills ── */}
-      <div className="flex flex-wrap gap-2 mb-10">
+      <div className="grid grid-cols-2 md:flex md:flex-wrap gap-2 mb-10">
         {services.map((svc, idx) => (
           <button
             key={svc.service}
             onClick={() => setActiveServiceIdx(idx)}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold font-[var(--font-poppins)] transition-all duration-200 ${
+            className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-full text-sm font-semibold font-[var(--font-poppins)] transition-all duration-200 ${
               activeServiceIdx === idx
                 ? "bg-tp-red text-white shadow-md"
                 : "bg-[#f5f5f5] text-[#555] border border-[#e5e5e5] hover:border-tp-red hover:text-tp-red"
             }`}
           >
             <span className="text-base">{svc.icon}</span>
-            {svc.service}
+            <span className="truncate">{svc.service}</span>
           </button>
         ))}
       </div>
