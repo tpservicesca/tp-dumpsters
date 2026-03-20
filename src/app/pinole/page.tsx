@@ -40,7 +40,7 @@ const pinoleFaqs = [
     question: "What size dumpster is best for a home cleanout in Pinole?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        For a garage or single-room cleanout, the <strong>9-yard dumpster</strong> is perfect. For a full
+        For a garage or single-room cleanout, the <strong>10-yard dumpster</strong> is perfect. For a full
         home cleanout or estate cleanout, go with the <strong>20-yard</strong>. If you&apos;re doing a major
         renovation, the 30-yard gives you the most capacity.
       </p>
@@ -69,7 +69,7 @@ const pinoleFaqs = [
     question: "What materials can I put in a dumpster in Pinole?",
     answer: (
       <>
-        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">We accept general debris from remodels, cleanouts, landscaping, and construction. The 9-yard can also handle heavy materials:</p>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">We accept general debris from remodels, cleanouts, landscaping, and construction. The 10-yard can also handle heavy materials:</p>
         <ul className="list-disc pl-5 mb-2.5">
           <li className="text-sm text-[#666] leading-[1.7] mb-1">Clean soil, concrete, bricks, or mixed</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">General construction and demolition debris</li>

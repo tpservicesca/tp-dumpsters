@@ -41,7 +41,7 @@ const oaklandFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         For a typical kitchen or bathroom remodel in Oakland, a <strong>20-yard dumpster</strong> is usually
         the best fit. For whole-home renovations or multi-room projects, go with the 30-yard. For
-        small cleanouts or concrete/soil, the 9-yard works great.
+        small cleanouts or concrete/soil, the 10-yard works great.
       </p>
     ),
   },

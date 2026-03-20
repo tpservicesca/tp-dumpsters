@@ -17,9 +17,9 @@ const leftFaqs: FaqItem[] = [
           Ensure clear, level space like a driveway or open area with no overhead obstacles. (L x W x H)
         </p>
         <ul className="list-disc pl-5 mb-2.5">
-          <li className="text-sm text-[#666] leading-[1.7] mb-1">9-yard: 13L x 9W x 3.5H&apos;</li>
-          <li className="text-sm text-[#666] leading-[1.7] mb-1">20-yard: 17L x 9W x 5H</li>
-          <li className="text-sm text-[#666] leading-[1.7] mb-1">30-yard: 17L x 9W x 7H</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">10-yard: 12&apos;L x 8&apos;W x 2.5&apos;H</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">20-yard: 16&apos;L x 8&apos;W x 4&apos;H</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">30-yard: 16&apos;L x 8&apos;W x 6&apos;H</li>
         </ul>
       </>
     ),
@@ -31,10 +31,10 @@ const leftFaqs: FaqItem[] = [
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Standard rental includes:</p>
         <ul className="list-disc pl-5 mb-2.5">
           <li className="text-sm text-[#666] leading-[1.7] mb-1">
-            <strong>5 days</strong> for 9-yard dumpsters used for clean soil, concrete, bricks, or mixed (soil &amp; concrete).
+            <strong>3 days</strong> for 10-yard dumpsters used for clean soil, concrete, bricks, or mixed materials.
           </li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">
-            <strong>7 days</strong> for all dumpsters used for debris (9, 20, and 30-yard).
+            <strong>7 days</strong> for all dumpsters used for debris (10, 20, and 30-yard).
           </li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">
             Need more time? Additional days are available at <strong>$30/day</strong> (24-hour notice required).
@@ -50,7 +50,7 @@ const leftFaqs: FaqItem[] = [
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">We accept:</p>
         <ul className="list-disc pl-5 mb-2.5">
           <li className="text-sm text-[#666] leading-[1.7] mb-1">General debris from home remodels, cleanouts, light demolition, landscaping, etc.</li>
-          <li className="text-sm text-[#666] leading-[1.7] mb-1">Clean soil, concrete, bricks or mixed (in 9-yard dumpsters only).</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Clean soil, concrete, bricks or mixed materials (in 10-yard dumpsters only).</li>
         </ul>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Not allowed:</p>
         <ul className="list-disc pl-5 mb-2.5">
@@ -66,10 +66,10 @@ const leftFaqs: FaqItem[] = [
       <>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Each dumpster has a weight limit:</p>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Heavy materials:</p>
-        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">9-yard for heavy materials (clean soil, concrete, bricks, or mixed (soil &amp; concrete) has no weight limit.</p>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">10-yard for heavy materials (clean soil, concrete, bricks, or mixed materials) has no weight limit.</p>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">For general debris:</p>
         <ul className="list-disc pl-5 mb-2.5">
-          <li className="text-sm text-[#666] leading-[1.7] mb-1">9-yard: 1 ton</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">10-yard: 1 ton</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">20-yard: 2 tons</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">30-yard: 3 tons</li>
         </ul>
