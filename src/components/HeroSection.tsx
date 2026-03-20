@@ -4,7 +4,7 @@ export default function HeroSection() {
   return (
     <section id="home" className="hero-bg relative min-h-screen flex flex-col justify-center items-center pt-[15vh] pb-[6vh] text-center">
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/45 z-[1]"></div>
+      <div className="absolute inset-0 bg-black/25 z-[1]"></div>
 
       {/* Content */}
       <div className="relative z-[2] px-5 pb-10">
