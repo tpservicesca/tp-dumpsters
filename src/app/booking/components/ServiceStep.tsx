@@ -46,14 +46,7 @@ const services: ServiceCategory[] = [
   {
     service: "Household Clean Out",
     icon: "🏠",
-    description: "Full house cleanouts, furniture removal, decluttering",
-    note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
-    sizes: GENERAL_SIZES,
-  },
-  {
-    service: "Garage Clean Out",
-    icon: "🚗",
-    description: "Garage cleanouts, storage cleanup, old equipment disposal",
+    description: "House & garage cleanouts, furniture removal, decluttering",
     note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
     sizes: GENERAL_SIZES,
   },
@@ -67,18 +60,12 @@ const services: ServiceCategory[] = [
     service: "Roofing",
     icon: "🏚️",
     description: "Shingles, roofing tear-offs, heavy debris",
-    sizes: GENERAL_SIZES.map((s) => ({ ...s, price: s.price + 60 })),
+    sizes: GENERAL_SIZES,
   },
   {
     service: "Green Waste",
     icon: "♻️",
-    description: "Green waste, recyclable materials, organic debris",
-    sizes: GENERAL_SIZES,
-  },
-  {
-    service: "Yard Waste",
-    icon: "🌿",
-    description: "Landscaping, branches, leaves, yard cleanup",
+    description: "Landscaping, branches, leaves, yard cleanup, organic debris",
     sizes: GENERAL_SIZES,
   },
   {
@@ -102,16 +89,7 @@ const services: ServiceCategory[] = [
   {
     service: "Mixed Materials",
     icon: "🔀",
-    description: "Clean soil & concrete mix. Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
-    note: "⚠️ Extra fee: $150 if prohibited items are added",
-    sizes: [
-      { size: "10 Yard", price: 749, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
-    ],
-  },
-  {
-    service: "Bricks",
-    icon: "🧱",
-    description: "Bricks only. Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    description: "Clean soil, concrete & bricks mix. Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
     note: "⚠️ Extra fee: $150 if prohibited items are added",
     sizes: [
       { size: "10 Yard", price: 749, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
