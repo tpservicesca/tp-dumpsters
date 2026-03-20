@@ -25,10 +25,38 @@ function validatePhone(phone: string): string | null {
   return null;
 }
 
+/* Common email domain typos */
+const DOMAIN_TYPOS: Record<string, string> = {
+  "gmial.com": "gmail.com", "gmaill.com": "gmail.com", "gmal.com": "gmail.com",
+  "gmil.com": "gmail.com", "gmai.com": "gmail.com", "gmail.co": "gmail.com",
+  "gnail.com": "gmail.com", "gmsil.com": "gmail.com", "gamil.com": "gmail.com",
+  "yaho.com": "yahoo.com", "yahooo.com": "yahoo.com", "yhoo.com": "yahoo.com",
+  "yahoo.co": "yahoo.com", "yhaoo.com": "yahoo.com",
+  "hotmal.com": "hotmail.com", "hotmial.com": "hotmail.com", "hotmil.com": "hotmail.com",
+  "hotmail.co": "hotmail.com", "hotamil.com": "hotmail.com",
+  "outlok.com": "outlook.com", "outloo.com": "outlook.com", "outlool.com": "outlook.com",
+  "iclod.com": "icloud.com", "icoud.com": "icloud.com", "icloud.co": "icloud.com",
+};
+
+const VALID_TLDS = ["com", "net", "org", "edu", "gov", "co", "us", "io", "info", "biz", "me"];
+
 function validateEmail(email: string): string | null {
   if (!email || !email.trim()) return "Email is required";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     return "Please enter a valid email";
+
+  const domain = email.split("@")[1]?.toLowerCase();
+  if (!domain) return "Please enter a valid email";
+
+  // Check for common domain typos
+  if (DOMAIN_TYPOS[domain]) {
+    return `Did you mean ${email.split("@")[0]}@${DOMAIN_TYPOS[domain]}?`;
+  }
+
+  // Check TLD
+  const tld = domain.split(".").pop();
+  if (tld && tld.length < 2) return "Email domain looks incorrect";
+
   return null;
 }
 
@@ -66,6 +94,8 @@ declare global {
             };
           };
         };
+        LatLng: new (lat: number, lng: number) => unknown;
+        LatLngBounds: new (sw: unknown, ne: unknown) => unknown;
       };
     };
     initGooglePlaces?: () => void;
@@ -116,6 +146,13 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
         componentRestrictions: { country: "us" },
         types: ["address"],
         fields: ["address_components", "formatted_address"],
+        /* Restrict to Bay Area / service counties:
+           Contra Costa, Alameda, San Francisco, San Mateo, Marin, Solano, Sonoma, Napa, Santa Clara */
+        bounds: new window.google.maps.LatLngBounds(
+          new window.google.maps.LatLng(37.1, -122.6), // SW corner (south Bay Area)
+          new window.google.maps.LatLng(38.5, -121.5)  // NE corner (north Bay Area + Solano)
+        ),
+        strictBounds: true,
       }
     );
 
@@ -283,7 +320,7 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
 
       {/* Address */}
       <div className="mb-6">
-        <h3 className="font-[var(--font-poppins)] font-semibold text-[#333] mb-3 text-sm">
+        <h3 className="font-[var(--font-poppins)] font-semibold text-[#333] mb-1 text-sm">
           📍 Delivery address
           {GOOGLE_MAPS_KEY && (
             <span className="text-xs text-[#aaa] font-normal ml-2">
@@ -291,6 +328,9 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
             </span>
           )}
         </h3>
+        <p className="text-xs text-[#999] mb-3 font-[var(--font-poppins)]">
+          We deliver to the San Francisco Bay Area — Contra Costa, Alameda, San Francisco, San Mateo, Marin, Solano, and surrounding counties.
+        </p>
         <div className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">

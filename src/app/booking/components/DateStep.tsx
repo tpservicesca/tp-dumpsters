@@ -81,10 +81,18 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
       <h2 className="font-[var(--font-poppins)] text-2xl font-bold text-[#333] mb-2">
         Choose your dates
       </h2>
-      <p className="text-sm text-[#888] mb-8 font-[var(--font-poppins)]">
+      <p className="text-sm text-[#888] mb-4 font-[var(--font-poppins)]">
         {booking.service?.serviceType} — {booking.service?.size} includes{" "}
         <strong>{baseDays} days</strong> of rental.
       </p>
+
+      {/* Info banner */}
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-8">
+        <p className="text-sm text-blue-800 font-[var(--font-poppins)]">
+          ℹ️ <strong>Pickup date is set automatically</strong> based on your rental period ({baseDays} days).
+          Need more time? You can select a later pickup date below — extra days are <strong>$49/day</strong>.
+        </p>
+      </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
         {/* Delivery date */}
@@ -110,6 +118,7 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
         <div>
           <label className="block text-sm font-semibold text-[#333] mb-2 font-[var(--font-poppins)]">
             📅 Pickup date
+            <span className="text-xs text-green-600 font-normal ml-2">✓ Auto-set</span>
           </label>
           <input
             type="date"
@@ -126,6 +135,11 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
           {booking.pickupDate && (
             <p className="text-xs text-[#888] mt-1.5">
               {formatDate(booking.pickupDate)}
+              {booking.extraDays > 0 && (
+                <span className="text-amber-600 font-semibold ml-1">
+                  (+{booking.extraDays} extra day{booking.extraDays > 1 ? "s" : ""} = +${booking.extraDays * booking.extraDayFee})
+                </span>
+              )}
             </p>
           )}
         </div>
