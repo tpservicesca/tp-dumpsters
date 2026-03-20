@@ -33,7 +33,9 @@ export interface BookingData {
   customerName: string;
   customerPhone: string;
   customerEmail: string;
+  dumpsterContents: string;
   notes: string;
+  billingAddress: string;
   authorizedCharges: boolean;
 }
 
@@ -55,7 +57,9 @@ const initialBooking: BookingData = {
   customerName: "",
   customerPhone: "",
   customerEmail: "",
+  dumpsterContents: "",
   notes: "",
+  billingAddress: "",
   authorizedCharges: false,
 };
 

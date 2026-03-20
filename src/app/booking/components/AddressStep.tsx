@@ -146,9 +146,13 @@ const GOOGLE_MAPS_KEY = "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
 export default function AddressStep({ booking, updateBooking, onNext, onBack }: Props) {
   const [errors, setErrors] = useState<Record<string, string | null>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [showBilling, setShowBilling] = useState(booking.billingAddress !== "");
   const addressInputRef = useRef<HTMLInputElement>(null);
+  const billingInputRef = useRef<HTMLInputElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const autocompleteRef = useRef<any>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const billingAutocompleteRef = useRef<any>(null);
 
   // Load Google Places script
   useEffect(() => {
@@ -236,6 +240,21 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
       initAutocomplete();
     }
   }, [initAutocomplete]);
+
+  // Init billing autocomplete
+  useEffect(() => {
+    if (!showBilling || !window.google || !billingInputRef.current || billingAutocompleteRef.current) return;
+    billingAutocompleteRef.current = new window.google.maps.places.Autocomplete(
+      billingInputRef.current,
+      { componentRestrictions: { country: "us" }, types: ["address"], fields: ["formatted_address"] }
+    );
+    billingAutocompleteRef.current.addListener("place_changed", () => {
+      const place = billingAutocompleteRef.current?.getPlace();
+      if (place?.formatted_address) {
+        updateBooking({ billingAddress: place.formatted_address });
+      }
+    });
+  }, [showBilling, updateBooking]);
 
   /* ───────── Validation on blur ───────── */
   const handleBlur = (field: string) => {
@@ -422,16 +441,75 @@ export default function AddressStep({ booking, updateBooking, onNext, onBack }: 
         </div>
       </div>
 
-      {/* Notes */}
+      {/* Dumpster contents */}
+      <div className="mb-6">
+        <h3 className="font-[var(--font-poppins)] font-semibold text-[#333] mb-3 text-sm">
+          🗑️ What will the dumpster contain?
+        </h3>
+        <textarea
+          placeholder="Example: Old furniture, drywall, wood scraps, carpet..."
+          value={booking.dumpsterContents}
+          onChange={(e) => updateBooking({ dumpsterContents: e.target.value })}
+          rows={2}
+          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none transition-colors resize-none"
+        />
+        <p className="text-[11px] text-[#aaa] mt-1 font-[var(--font-poppins)]">
+          This helps us prepare the right dumpster for your project.
+        </p>
+      </div>
+
+      {/* Billing address (optional) */}
+      <div className="mb-6">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="font-[var(--font-poppins)] font-semibold text-[#333] text-sm">
+            💳 Billing address
+            <span className="text-xs text-[#aaa] font-normal ml-2">(optional)</span>
+          </h3>
+          {!showBilling && (
+            <button
+              onClick={() => setShowBilling(true)}
+              className="text-xs text-tp-red font-semibold font-[var(--font-poppins)] hover:underline"
+            >
+              + Add different billing address
+            </button>
+          )}
+        </div>
+        {!showBilling && (
+          <p className="text-xs text-[#999] font-[var(--font-poppins)]">
+            Same as delivery address by default.
+          </p>
+        )}
+        {showBilling && (
+          <div className="space-y-2">
+            <input
+              ref={billingInputRef}
+              type="text"
+              placeholder="Start typing your billing address..."
+              value={booking.billingAddress}
+              onChange={(e) => updateBooking({ billingAddress: e.target.value })}
+              className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none transition-colors"
+              autoComplete="off"
+            />
+            <button
+              onClick={() => { setShowBilling(false); updateBooking({ billingAddress: "" }); }}
+              className="text-xs text-[#999] font-[var(--font-poppins)] hover:text-tp-red"
+            >
+              ✕ Use delivery address instead
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Additional comments */}
       <div className="mb-6">
         <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">
-          Special instructions (optional)
+          Additional comments (optional)
         </label>
         <textarea
-          placeholder="Driveway on the left side, gate code 1234, etc."
+          placeholder="Gate code, placement instructions, special access notes..."
           value={booking.notes}
           onChange={(e) => updateBooking({ notes: e.target.value })}
-          rows={3}
+          rows={2}
           className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none transition-colors resize-none"
         />
       </div>
