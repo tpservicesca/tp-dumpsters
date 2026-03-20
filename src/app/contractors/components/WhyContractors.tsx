@@ -3,7 +3,7 @@ import {
   FaRecycle,
   FaCalendarCheck,
   FaHandshake,
-  FaHardHat,
+  FaHelmetSafety,
   FaCreditCard,
 } from "react-icons/fa6";
 
@@ -24,7 +24,7 @@ const benefits = [
     text: "Construction debris, roofing shingles, concrete, dirt, mixed materials — we handle it all. One call, one solution.",
   },
   {
-    icon: <FaHardHat className="text-3xl text-tp-red" />,
+    icon: <FaHelmetSafety className="text-3xl text-tp-red" />,
     title: "We Understand Construction",
     text: "Our team speaks your language. We know what a 20-yard can hold, when you need a swap, and how to place it right.",
   },
