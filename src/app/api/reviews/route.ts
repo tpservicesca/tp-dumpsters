@@ -71,7 +71,7 @@ const FALLBACK_REVIEWS: ReviewData[] = [
     avatar: "/images/reviews/avatar-default.jpg",
     profileUrl: "#",
     rating: 5,
-    text: "We used TP Services for our home renovation project. They were prompt, affordable, and the team was incredibly friendly. Highly recommend to anyone in the East Bay!",
+    text: "We used TP Dumpsters for our home renovation project. They were prompt, affordable, and the team was incredibly friendly. Highly recommend to anyone in the East Bay!",
     date: "5 months ago",
     publishTime: "",
   },

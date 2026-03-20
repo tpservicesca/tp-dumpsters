@@ -29,7 +29,7 @@ const galleryImages = [
   { src: "/images/gallery/22.jpg", alt: "TP Dumpsters" },
   { src: "/images/gallery/23.jpg", alt: "TP Dumpsters" },
   { src: "/images/gallery/24.jpg", alt: "TP Dumpsters" },
-  { src: "/images/gallery/25.jpg", alt: "TP Services" },
+  { src: "/images/gallery/25.jpg", alt: "TP Dumpsters" },
   { src: "/images/gallery/26.jpg", alt: "TP Dumpsters" },
   { src: "/images/gallery/27.jpg", alt: "TP Dumpster California" },
   { src: "/images/gallery/28.jpg", alt: "TP Dumpsters" },
