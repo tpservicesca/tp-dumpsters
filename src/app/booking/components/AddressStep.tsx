@@ -25,20 +25,45 @@ function validatePhone(phone: string): string | null {
   return null;
 }
 
-/* Common email domain typos */
+/* Common valid email domains */
+const VALID_DOMAINS = [
+  "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "icloud.com",
+  "aol.com", "mail.com", "protonmail.com", "zoho.com", "ymail.com",
+  "live.com", "msn.com", "comcast.net", "att.net", "verizon.net",
+  "sbcglobal.net", "me.com", "mac.com", "pm.me",
+];
+
+/* Common email domain typos → correction */
 const DOMAIN_TYPOS: Record<string, string> = {
   "gmial.com": "gmail.com", "gmaill.com": "gmail.com", "gmal.com": "gmail.com",
   "gmil.com": "gmail.com", "gmai.com": "gmail.com", "gmail.co": "gmail.com",
   "gnail.com": "gmail.com", "gmsil.com": "gmail.com", "gamil.com": "gmail.com",
+  "gmail.con": "gmail.com", "gmail.om": "gmail.com", "gmail.cm": "gmail.com",
+  "gmail.comm": "gmail.com", "gmail.cim": "gmail.com", "gmail.vom": "gmail.com",
+  "gmaul.com": "gmail.com", "gmali.com": "gmail.com", "gimail.com": "gmail.com",
   "yaho.com": "yahoo.com", "yahooo.com": "yahoo.com", "yhoo.com": "yahoo.com",
-  "yahoo.co": "yahoo.com", "yhaoo.com": "yahoo.com",
+  "yahoo.co": "yahoo.com", "yhaoo.com": "yahoo.com", "yahoo.con": "yahoo.com",
   "hotmal.com": "hotmail.com", "hotmial.com": "hotmail.com", "hotmil.com": "hotmail.com",
-  "hotmail.co": "hotmail.com", "hotamil.com": "hotmail.com",
+  "hotmail.co": "hotmail.com", "hotamil.com": "hotmail.com", "hotmail.con": "hotmail.com",
   "outlok.com": "outlook.com", "outloo.com": "outlook.com", "outlool.com": "outlook.com",
+  "outlook.co": "outlook.com", "outllok.com": "outlook.com", "outlook.con": "outlook.com",
   "iclod.com": "icloud.com", "icoud.com": "icloud.com", "icloud.co": "icloud.com",
+  "icloud.con": "icloud.com",
 };
 
-const VALID_TLDS = ["com", "net", "org", "edu", "gov", "co", "us", "io", "info", "biz", "me"];
+/* Levenshtein distance for fuzzy domain matching */
+function levenshtein(a: string, b: string): number {
+  const m = a.length, n = b.length;
+  const dp: number[][] = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+  for (let i = 0; i <= m; i++) dp[i][0] = i;
+  for (let j = 0; j <= n; j++) dp[0][j] = j;
+  for (let i = 1; i <= m; i++)
+    for (let j = 1; j <= n; j++)
+      dp[i][j] = a[i-1] === b[j-1]
+        ? dp[i-1][j-1]
+        : 1 + Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]);
+  return dp[m][n];
+}
 
 function validateEmail(email: string): string | null {
   if (!email || !email.trim()) return "Email is required";
@@ -48,14 +73,28 @@ function validateEmail(email: string): string | null {
   const domain = email.split("@")[1]?.toLowerCase();
   if (!domain) return "Please enter a valid email";
 
-  // Check for common domain typos
+  // Check for exact known typos
   if (DOMAIN_TYPOS[domain]) {
     return `Did you mean ${email.split("@")[0]}@${DOMAIN_TYPOS[domain]}?`;
   }
 
   // Check TLD
-  const tld = domain.split(".").pop();
-  if (tld && tld.length < 2) return "Email domain looks incorrect";
+  const tld = domain.split(".").pop() || "";
+  if (tld.length < 2) return "Email domain looks incorrect";
+  
+  // Common TLD typos
+  if (["con", "cim", "vom", "comm", "cm", "om"].includes(tld)) {
+    return "Check your email — the domain ending looks incorrect";
+  }
+
+  // Fuzzy match: if domain is close to a known domain (1-2 chars off), suggest
+  if (!VALID_DOMAINS.includes(domain)) {
+    for (const valid of VALID_DOMAINS) {
+      if (levenshtein(domain, valid) <= 2) {
+        return `Did you mean ${email.split("@")[0]}@${valid}?`;
+      }
+    }
+  }
 
   return null;
 }

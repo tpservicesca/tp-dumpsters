@@ -18,13 +18,18 @@ export default function BookingPage() {
   return (
     <>
       <Header />
-      {/* Hero banner */}
-      <section className="bg-black pt-28 pb-10 text-center">
-        <div className="w-[92%] sm:w-[80%] max-w-[900px] mx-auto">
+      {/* Hero banner with background image */}
+      <section className="relative pt-28 pb-12 text-center overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/dumpsters/worker-action.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="relative z-10 w-[92%] sm:w-[80%] max-w-[900px] mx-auto">
           <h1 className="font-[var(--font-oswald)] text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white uppercase mb-3 tracking-wide">
             Book Your Dumpster
           </h1>
-          <p className="font-[var(--font-poppins)] text-sm sm:text-base text-white/70 max-w-lg mx-auto">
+          <p className="font-[var(--font-poppins)] text-sm sm:text-base text-white/80 max-w-lg mx-auto">
             Choose your service, pick your dates, and get an instant quote.
             <br />
             <span className="text-tp-gold font-semibold">Same-day delivery available!</span>
