@@ -4,7 +4,12 @@ export default function ContractorsHero() {
   return (
     <section
       id="home"
-      className="hero-bg relative min-h-screen flex flex-col justify-center items-center pt-[15vh] pb-[6vh] text-center"
+      className="relative min-h-screen flex flex-col justify-center items-center pt-[15vh] pb-[6vh] text-center"
+      style={{
+        backgroundImage: "url('/images/dumpsters/construction-site.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50 z-[1]" />

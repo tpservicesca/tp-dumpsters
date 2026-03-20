@@ -5,6 +5,7 @@ const services = [
     description:
       "Remodeling debris, drywall, framing, fixtures — our 10, 20, and 30 yard dumpsters handle any construction project from kitchen renovations to full tear-downs.",
     sizes: "10, 20 & 30 Yard",
+    image: "/images/dumpsters/construction-site.jpg",
   },
   {
     icon: "🏚️",
@@ -12,6 +13,7 @@ const services = [
     description:
       "Shingles, underlayment, flashing — roofing debris is heavy. We offer dumpsters sized specifically for roofing tear-offs with appropriate weight limits.",
     sizes: "10, 20 & 30 Yard",
+    image: "/images/dumpsters/commercial-tarped.jpg",
   },
   {
     icon: "🌿",
@@ -19,6 +21,7 @@ const services = [
     description:
       "Branches, sod, dirt, stumps — whether you're clearing a backyard or redesigning a commercial landscape, we've got the right dumpster.",
     sizes: "10, 20 & 30 Yard",
+    image: "/images/dumpsters/yard-waste-driveway.jpg",
   },
   {
     icon: "🧱",
@@ -26,6 +29,7 @@ const services = [
     description:
       "Heavy materials need proper handling. Our 10-yard dumpsters for concrete and brick come with no weight limit — load it up.",
     sizes: "10 Yard (no weight limit)",
+    image: "/images/dumpsters/dumpster-dirt-sunny.jpg",
   },
   {
     icon: "🌱",
@@ -33,6 +37,7 @@ const services = [
     description:
       "Excavation, grading, or foundation work generates a lot of clean soil. Our dedicated soil dumpsters have no weight limit and 3-day rentals.",
     sizes: "10 Yard (no weight limit)",
+    image: "/images/dumpsters/worker-action.jpg",
   },
   {
     icon: "🏠",
@@ -40,6 +45,7 @@ const services = [
     description:
       "Property flips, estate cleanouts, tenant turnovers — clear everything out fast so your crew can start the real work.",
     sizes: "10, 20 & 30 Yard",
+    image: "/images/dumpsters/delivery-residential.jpg",
   },
 ];
 
@@ -58,8 +64,17 @@ export default function ContractorServices() {
           {services.map((s) => (
             <div
               key={s.title}
-              className="bg-white rounded-2xl p-7 border border-[#eee] hover:shadow-lg transition-all duration-300"
+              className="bg-white rounded-2xl overflow-hidden border border-[#eee] hover:shadow-lg transition-all duration-300"
             >
+              {/* Service image */}
+              <div className="h-44 overflow-hidden">
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="p-7">
               <span className="text-4xl mb-4 block">{s.icon}</span>
               <h3 className="font-[var(--font-poppins)] text-lg font-bold text-[#222] mb-2">
                 {s.title}
@@ -70,6 +85,7 @@ export default function ContractorServices() {
               <span className="inline-block bg-tp-red/10 text-tp-red text-xs font-semibold px-3 py-1.5 rounded-full font-[var(--font-poppins)]">
                 {s.sizes}
               </span>
+              </div>
             </div>
           ))}
         </div>
