@@ -138,6 +138,7 @@ declare global {
       };
     };
     initGooglePlaces?: () => void;
+    initGooglePlacesInternal?: () => void;
   }
 }
 
