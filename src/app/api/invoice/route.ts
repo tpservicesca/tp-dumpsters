@@ -61,35 +61,85 @@ export async function POST(request: NextRequest) {
 
     const stripe = getStripe();
 
-    // Create or find customer
+    // Parse delivery address into components
+    const addressParts = deliveryAddress.split(",").map((s: string) => s.trim());
+    const shipLine1 = addressParts[0] || deliveryAddress;
+    const shipCity = addressParts[1] || "";
+    const shipStateZip = addressParts[2] || "";
+    const shipState = shipStateZip.split(/\s+/)[0] || "";
+    const shipZip = shipStateZip.split(/\s+/).slice(1).join(" ") || "";
+
+    // Parse billing address
+    const billParts = (billingAddress || deliveryAddress).split(",").map((s: string) => s.trim());
+    const billLine1 = billParts[0] || "";
+    const billCity = billParts[1] || "";
+    const billStateZip = billParts[2] || "";
+    const billState = billStateZip.split(/\s+/)[0] || "";
+    const billZip = billStateZip.split(/\s+/).slice(1).join(" ") || "";
+
+    // Create customer with full address details
     const customer = await stripe.customers.create({
       name: customerName,
       email: customerEmail || "dumpster@tpservicesca.com",
       phone: customerPhone || undefined,
-      address: billingAddress ? { line1: billingAddress } : undefined,
-      shipping: { name: customerName, address: { line1: deliveryAddress } },
+      address: {
+        line1: billLine1,
+        city: billCity,
+        state: billState,
+        postal_code: billZip,
+        country: "US",
+      },
+      shipping: {
+        name: customerName,
+        phone: customerPhone || undefined,
+        address: {
+          line1: shipLine1,
+          city: shipCity,
+          state: shipState,
+          postal_code: shipZip,
+          country: "US",
+        },
+      },
     });
 
-    // Create invoice item
-    const description = `${size} ${serviceType} Dumpster${dims ? ` (${dims})` : ""} — ${days}-day rental${weight ? `, ${weight} included` : ""}. Delivery: ${deliveryAddress}`;
+    // Create invoice item with short description (details go in invoice note)
+    const itemDescription = `${size.replace(" Yard", "-yard")} dumpster for ${serviceType.toLowerCase()}`;
 
     await stripe.invoiceItems.create({
       customer: customer.id,
-      description,
+      description: itemDescription,
       amount: unitPrice * 100,
       currency: "usd",
       quantity: qty,
     });
 
-    // Create invoice
+    // Build detailed rental terms note
+    const termsNote = [
+      `General Rental Terms:`,
+      ``,
+      `${size} dumpster for ${serviceType.toLowerCase()}`,
+      `Rental includes ${days} days — extra days: $49/day`,
+      `Weight limit: ${weight}`,
+      `Overweight fee: $125 per extra ton (prorated)`,
+      `Extra fees may vary for mattresses, appliances, and tires, depending on the size`,
+      `Do not exceed the marked fill line`,
+      `No prohibited materials`,
+      `24h notice required — $150 cancellation fee`,
+      ``,
+      `Card payment: use the "pay online" link above`,
+      `Zelle: TP PAVERS SERVICE INC - 510 253 62 30`,
+    ].join("\n");
+
+    // Create invoice with detailed terms
     const invoiceParams: Record<string, unknown> = {
       customer: customer.id,
       collection_method: "send_invoice" as const,
       days_until_due: 7,
+      description: termsNote,
       custom_fields: [
         { name: "Delivery Address", value: deliveryAddress.substring(0, 40) },
       ],
-      footer: "Terms: Extra days $49/day | Extra weight $125/ton | Cancel: 24h notice, $150 fee | Zelle: TP PAVERS SERVICE INC 510-253-6230",
+      footer: "Thanks for choosing TP Dumpsters! We provide reliable, on-time service with excellent customer support across the Bay Area.",
       pending_invoice_items_behavior: "include" as const,
     };
 
