@@ -98,7 +98,11 @@ export async function POST(request: Request) {
       payment_method_types: ["card"],
       mode: "payment",
       customer: stripeCustomer.id,
-      payment_intent_data: { setup_future_usage: 'off_session' },
+      payment_intent_data: {
+        setup_future_usage: 'off_session',
+        statement_descriptor: 'TP DUMPSTERS',
+        statement_descriptor_suffix: 'DUMPSTER',
+      },
       line_items: [
         {
           price_data: {
