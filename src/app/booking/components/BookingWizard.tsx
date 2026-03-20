@@ -25,6 +25,8 @@ export interface BookingData {
   extraDays: number;
   extraDayFee: number;
   totalPrice: number;
+  subtotal: number;
+  onlineDiscount: number;
   address: string;
   city: string;
   zipCode: string;
@@ -36,6 +38,7 @@ export interface BookingData {
 }
 
 const EXTRA_DAY_FEE = 49; // $49/day — updated 2026-03-20
+const ONLINE_DISCOUNT = 0.05; // 5% discount for online booking
 
 const initialBooking: BookingData = {
   service: null,
@@ -44,6 +47,8 @@ const initialBooking: BookingData = {
   extraDays: 0,
   extraDayFee: EXTRA_DAY_FEE,
   totalPrice: 0,
+  subtotal: 0,
+  onlineDiscount: 0,
   address: "",
   city: "",
   zipCode: "",
@@ -70,10 +75,13 @@ export default function BookingWizard() {
   const updateBooking = (updates: Partial<BookingData>) => {
     setBooking((prev) => {
       const updated = { ...prev, ...updates };
-      // Recalculate total price
+      // Recalculate total price with 5% online discount
       if (updated.service) {
-        updated.totalPrice =
-          updated.service.basePrice + updated.extraDays * updated.extraDayFee;
+        const subtotal = updated.service.basePrice + updated.extraDays * updated.extraDayFee;
+        const discount = Math.round(subtotal * ONLINE_DISCOUNT * 100) / 100;
+        updated.subtotal = subtotal;
+        updated.onlineDiscount = discount;
+        updated.totalPrice = Math.round((subtotal - discount) * 100) / 100;
       }
       return updated;
     });

@@ -172,11 +172,22 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
                 </span>
               </div>
             )}
+            {booking.onlineDiscount > 0 && (
+              <div className="flex justify-between text-green-600">
+                <span>💰 Online booking discount (5%)</span>
+                <span className="font-semibold">-${booking.onlineDiscount.toFixed(2)}</span>
+              </div>
+            )}
             <div className="border-t pt-2 mt-2 flex justify-between">
               <span className="font-bold text-[#333] text-base">Total</span>
-              <span className="font-bold text-tp-red text-xl font-[var(--font-oswald)]">
-                ${booking.totalPrice}
-              </span>
+              <div className="text-right">
+                {booking.onlineDiscount > 0 && (
+                  <span className="text-sm text-[#999] line-through mr-2">${booking.subtotal}</span>
+                )}
+                <span className="font-bold text-tp-red text-xl font-[var(--font-oswald)]">
+                  ${booking.totalPrice.toFixed(2)}
+                </span>
+              </div>
             </div>
           </div>
           <p className="text-[10px] text-[#aaa] mt-3">

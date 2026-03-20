@@ -114,11 +114,22 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
               <span>+${booking.extraDays * booking.extraDayFee}</span>
             </div>
           )}
+          {booking.onlineDiscount > 0 && (
+            <div className="flex justify-between text-green-400">
+              <span>💰 Online booking discount (5%)</span>
+              <span>-${booking.onlineDiscount.toFixed(2)}</span>
+            </div>
+          )}
           <div className="border-t border-white/20 pt-3 mt-3 flex justify-between items-baseline">
             <span className="font-bold text-lg">Total</span>
-            <span className="font-[var(--font-oswald)] text-3xl font-bold">
-              ${booking.totalPrice}
-            </span>
+            <div className="text-right">
+              {booking.onlineDiscount > 0 && (
+                <span className="text-sm text-white/40 line-through mr-2">${booking.subtotal}</span>
+              )}
+              <span className="font-[var(--font-oswald)] text-3xl font-bold">
+                ${booking.totalPrice.toFixed(2)}
+              </span>
+            </div>
           </div>
         </div>
         <p className="text-[10px] text-white/40 mt-3">

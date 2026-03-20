@@ -34,6 +34,9 @@ export default function BookingPage() {
             <br />
             <span className="text-tp-gold font-semibold">Same-day delivery available!</span>
           </p>
+          <div className="mt-4 inline-block bg-green-500/90 text-white px-5 py-2 rounded-full font-[var(--font-poppins)] text-sm font-bold">
+            💰 Save 5% when you book online!
+          </div>
         </div>
       </section>
 
