@@ -37,7 +37,7 @@ const leftFaqs: FaqItem[] = [
             <strong>7 days</strong> for all dumpsters used for debris (10, 20, and 30-yard).
           </li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">
-            Need more time? Additional days are available at <strong>$30/day</strong> (24-hour notice required).
+            Need more time? Additional days are available at <strong>$49/day</strong> (24-hour notice required).
           </li>
         </ul>
       </>
@@ -73,7 +73,7 @@ const leftFaqs: FaqItem[] = [
           <li className="text-sm text-[#666] leading-[1.7] mb-1">20-yard: 2 tons</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">30-yard: 3 tons</li>
         </ul>
-        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Extra weight is charged at <strong>$150 per ton (prorated)</strong>. Fill to the marked line.</p>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Extra weight is charged at <strong>$125 per ton (prorated)</strong>. Fill to the marked line.</p>
       </>
     ),
   },
@@ -102,9 +102,8 @@ const rightFaqs: FaqItem[] = [
     answer: (
       <>
         <ul className="list-disc pl-5 mb-2.5">
-          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>Full refund</strong>: Cancel at least 24 hours before delivery.</li>
-          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>$150 fee</strong>: Cancel with less than 24 hours notice.</li>
-          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>$300 fee</strong>: Cancel after the dumpster is already dispatched.</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>$150 cancellation fee</strong>: 24-hour notice required.</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>No cancellations</strong> after the dumpster has been dispatched.</li>
         </ul>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">No refunds for unused rental time once delivered.</p>
       </>

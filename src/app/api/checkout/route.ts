@@ -87,7 +87,7 @@ export async function POST(request: Request) {
       `Delivery: ${booking.deliveryDate}`,
       `Pickup: ${booking.pickupDate}`,
       `${booking.address}, ${booking.city}, ${booking.zipCode}`,
-      booking.extraDays > 0 ? `+${booking.extraDays} extra day(s) @ $30/day` : null,
+      booking.extraDays > 0 ? `+${booking.extraDays} extra day(s) @ $49/day` : null,
     ].filter(Boolean).join(" | ");
 
     // Create Stripe Checkout Session

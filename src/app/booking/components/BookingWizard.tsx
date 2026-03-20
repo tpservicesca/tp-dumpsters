@@ -35,7 +35,7 @@ export interface BookingData {
   authorizedCharges: boolean;
 }
 
-const EXTRA_DAY_FEE = 30; // $30/day — confirm with business
+const EXTRA_DAY_FEE = 49; // $49/day — updated 2026-03-20
 
 const initialBooking: BookingData = {
   service: null,

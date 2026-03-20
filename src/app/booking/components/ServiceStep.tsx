@@ -32,7 +32,7 @@ interface ServiceCategory {
 const GENERAL_SIZES: SizeOption[] = [
   { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "1 ton", rentalDays: 7 },
   { size: "20 Yard", price: 650, dimensions: "16' L × 8' W × 4' H", weightLimit: "2 tons", rentalDays: 7 },
-  { size: "30 Yard", price: 700, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
+  { size: "30 Yard", price: 750, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
 ];
 
 const services: ServiceCategory[] = [
@@ -44,9 +44,16 @@ const services: ServiceCategory[] = [
     sizes: GENERAL_SIZES,
   },
   {
-    service: "Household Junk",
+    service: "Household Clean Out",
     icon: "🏠",
-    description: "Garage cleanouts, furniture removal",
+    description: "Full house cleanouts, furniture removal, decluttering",
+    note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
+    sizes: GENERAL_SIZES,
+  },
+  {
+    service: "Garage Clean Out",
+    icon: "🚗",
+    description: "Garage cleanouts, storage cleanup, old equipment disposal",
     note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
     sizes: GENERAL_SIZES,
   },
@@ -75,25 +82,37 @@ const services: ServiceCategory[] = [
     sizes: GENERAL_SIZES,
   },
   {
-    service: "Mixed Materials",
-    icon: "🔀",
-    description: "Mixed loads of debris (NOT clean). May include combinations of materials.",
-    sizes: [
-      { size: "10 Yard", price: 750, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
-    ],
-  },
-  {
-    service: "Clean Soil / Concrete",
+    service: "Clean Soil",
     icon: "🌱",
-    description: "Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    description: "Must be 95% pure. No rocks, grass, gravel, mesh, wood, or garbage.",
+    note: "⚠️ Extra fee: $125 if prohibited items are added",
     sizes: [
       { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
     ],
   },
   {
-    service: "Brick",
+    service: "Clean Concrete",
+    icon: "🪨",
+    description: "Must be 95% pure. No rebar, no garbage.",
+    note: "⚠️ Extra fee: $125 if prohibited items are added",
+    sizes: [
+      { size: "10 Yard", price: 600, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
+  {
+    service: "Mixed Materials",
+    icon: "🔀",
+    description: "Clean soil & concrete mix. Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    note: "⚠️ Extra fee: $150 if prohibited items are added",
+    sizes: [
+      { size: "10 Yard", price: 750, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
+    ],
+  },
+  {
+    service: "Bricks",
     icon: "🧱",
-    description: "Concrete, asphalt, bricks, heavy materials",
+    description: "Bricks only. Must be 95% pure. No rocks, grass, gravel, mesh, wood, rebar, or garbage.",
+    note: "⚠️ Extra fee: $150 if prohibited items are added",
     sizes: [
       { size: "10 Yard", price: 750, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "No weight limit", rentalDays: 3 },
     ],
@@ -357,7 +376,7 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
       )}
 
       <p className="text-center text-xs text-[#bbb] mt-8 mb-10 font-[var(--font-poppins)]">
-        Extra weight charged at $150/ton (prorated) · Extra days: $30/day
+        Extra weight charged at $125/ton (prorated) · Extra days: $49/day
       </p>
 
       {/* ── Next button ── */}
