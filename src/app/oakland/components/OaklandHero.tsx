@@ -24,7 +24,7 @@ export default function OaklandHero() {
         </p>
         <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-4 flex-wrap">
           <a
-            href="tel:+15106502083"
+            href="/booking"
             className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-7 py-3 rounded-lg text-lg font-semibold bg-tp-red text-white hover:bg-tp-red-dark transition-all duration-300 font-[var(--font-poppins)]"
           >
             <FaCalendarDays /> Book Online
