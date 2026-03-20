@@ -4,7 +4,6 @@ import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
 import CityFaqsSection from "@/components/CityFaqsSection";
 import AboutCitySection from "@/components/AboutCitySection";
-import PricingTable from "@/components/PricingTable";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import DynamicReviews from "@/components/DynamicReviews";
 import WhyUsSection from "@/components/WhyUsSection";
@@ -207,10 +206,7 @@ export default function RichmondPage() {
       <RichmondHero />
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...richmondAbout} />
-      <ErrorBoundary>
-        <PricingTable cityName="Richmond" />
-      </ErrorBoundary>
-      <SizesSection />
+<SizesSection />
       <ErrorBoundary>
         <CityFaqsSection cityName="Richmond" faqs={richmondFaqs} />
       </ErrorBoundary>

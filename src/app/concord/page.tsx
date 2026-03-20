@@ -4,7 +4,6 @@ import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
 import CityFaqsSection from "@/components/CityFaqsSection";
 import AboutCitySection from "@/components/AboutCitySection";
-import PricingTable from "@/components/PricingTable";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import DynamicReviews from "@/components/DynamicReviews";
 import WhyUsSection from "@/components/WhyUsSection";
@@ -204,9 +203,6 @@ export default function ConcordPage() {
       <ConcordHero />
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...concordAbout} />
-      <ErrorBoundary>
-        <PricingTable cityName="Concord" />
-      </ErrorBoundary>
       <SizesSection />
       <ErrorBoundary>
         <CityFaqsSection cityName="Concord" faqs={concordFaqs} />

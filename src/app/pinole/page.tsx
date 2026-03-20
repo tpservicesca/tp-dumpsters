@@ -4,7 +4,6 @@ import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
 import CityFaqsSection from "@/components/CityFaqsSection";
 import AboutCitySection from "@/components/AboutCitySection";
-import PricingTable from "@/components/PricingTable";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import DynamicReviews from "@/components/DynamicReviews";
 import WhyUsSection from "@/components/WhyUsSection";
@@ -240,10 +239,7 @@ export default function PinolePage() {
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...pinoleAbout} />
-      <ErrorBoundary>
-        <PricingTable cityName="Pinole" />
-      </ErrorBoundary>
-      <SizesSection />
+<SizesSection />
       <ErrorBoundary>
         <CityFaqsSection cityName="Pinole" faqs={pinoleFaqs} />
       </ErrorBoundary>
