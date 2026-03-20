@@ -1,11 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ServiceStep from "./ServiceStep";
 import DateStep from "./DateStep";
 import AddressStep from "./AddressStep";
 import SummaryStep from "./SummaryStep";
 import ConfirmationStep from "./ConfirmationStep";
+import { trackBookingStarted, trackBookingStep, trackBookingPayment } from "@/lib/tracking";
 
 /* ───────── Types ───────── */
 export interface ServiceSelection {
@@ -78,10 +79,31 @@ export default function BookingWizard() {
     });
   };
 
-  const nextStep = () => setStep((s) => Math.min(s + 1, 5));
+  // Track booking started on mount
+  useEffect(() => {
+    trackBookingStarted();
+  }, []);
+
+  const stepNames = ["", "Service", "Dates", "Address", "Summary"];
+
+  const nextStep = () => {
+    const next = Math.min(step + 1, 5);
+    if (next >= 2 && next <= 4) {
+      trackBookingStep(next, stepNames[next]);
+    }
+    setStep(next);
+  };
   const prevStep = () => setStep((s) => Math.max(s - 1, 1));
 
   const handleSubmit = async () => {
+    // Track payment click
+    if (booking.service) {
+      trackBookingPayment(
+        booking.service.serviceType,
+        booking.service.size,
+        booking.totalPrice
+      );
+    }
     setIsSubmitting(true);
     try {
       const res = await fetch("/api/checkout", {

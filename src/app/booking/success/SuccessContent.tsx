@@ -1,12 +1,19 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import Link from "next/link";
 import { FaCircleCheck, FaPhone, FaCalendarDays, FaLocationDot, FaCreditCard } from "react-icons/fa6";
+import { trackBookingCompleted } from "@/lib/tracking";
 
 export default function SuccessContent() {
   const searchParams = useSearchParams();
   const bookingId = searchParams.get("booking_id") || "N/A";
+
+  // Track booking completed
+  useEffect(() => {
+    trackBookingCompleted(bookingId, 0);
+  }, [bookingId]);
 
   return (
     <section className="min-h-screen bg-[#f5f5f5] py-12">

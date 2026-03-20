@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FaCalendarDays } from "react-icons/fa6";
 import type { BookingData, ServiceSelection } from "./BookingWizard";
+import { trackDumpsterSelected } from "@/lib/tracking";
 
 interface Props {
   booking: BookingData;
@@ -142,6 +143,7 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
       dimensions: item.dimensions,
     };
     updateBooking({ service, extraDays: 0 });
+    trackDumpsterSelected(activeService.service, item.size, item.price);
   };
 
   return (

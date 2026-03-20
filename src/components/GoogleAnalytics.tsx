@@ -25,12 +25,51 @@ declare global {
 }
 
 export default function GoogleAnalytics() {
-  // Track conversions on any tel: link click
+  // Track conversions on link clicks (calls, CTAs, booking links)
   useEffect(() => {
+    function getPageName(): string {
+      const path = window.location.pathname;
+      if (path === "/") return "home";
+      return path.replace(/^\//, "").replace(/\//g, "_") || "home";
+    }
+
+    function getButtonLocation(el: HTMLElement): string {
+      const section = el.closest("section");
+      if (section?.id) return section.id;
+      // Check if in header, footer, hero
+      if (el.closest("header")) return "header";
+      if (el.closest("footer")) return "footer";
+      if (el.closest(".hero-bg, [id='home']")) return "hero";
+      return "page";
+    }
+
     function handleClick(e: MouseEvent) {
       const anchor = (e.target as HTMLElement).closest("a");
-      if (anchor?.href?.startsWith("tel:")) {
+      if (!anchor) return;
+
+      const page = getPageName();
+      const location = getButtonLocation(anchor);
+
+      // Phone call clicks
+      if (anchor.href?.startsWith("tel:")) {
         trackConversion();
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "call_click", {
+            page,
+            button_location: location,
+          });
+        }
+      }
+
+      // Booking/CTA link clicks
+      if (anchor.href?.includes("/booking") || anchor.getAttribute("href") === "/booking") {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "cta_click", {
+            page,
+            cta_text: anchor.textContent?.trim()?.substring(0, 50) || "Book",
+            button_location: location,
+          });
+        }
       }
     }
 
