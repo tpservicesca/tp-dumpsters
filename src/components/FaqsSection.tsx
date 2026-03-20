@@ -136,7 +136,7 @@ const rightFaqs: FaqItem[] = [
     question: "How do I book a dumpster?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        You can reserve it quickly and safely here. Just click on Book now, check availability, pay securely and you&apos;re good to go.
+        You can reserve it quickly and safely here. Just click on Book Online, check availability, pay securely and you&apos;re good to go.
       </p>
     ),
   },

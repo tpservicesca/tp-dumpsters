@@ -212,7 +212,7 @@ export default function PricingTable({ cityName }: PricingTableProps) {
                     href="tel:+15106502083"
                     className="flex items-center justify-center gap-2 w-full py-3.5 rounded-lg text-base font-semibold transition-colors duration-300 font-[var(--font-poppins)] bg-tp-red text-white hover:bg-tp-red-dark"
                   >
-                    <FaCalendarDays /> Book Now
+                    <FaCalendarDays /> Book Online
                   </a>
                 </div>
               </div>

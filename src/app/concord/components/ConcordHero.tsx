@@ -25,7 +25,7 @@ export default function ConcordHero() {
             href="tel:+15106502083"
             className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-7 py-3 rounded-lg text-lg font-semibold bg-tp-red text-white hover:bg-tp-red-dark transition-all duration-300 font-[var(--font-poppins)]"
           >
-            <FaCalendarDays /> Book Now
+            <FaCalendarDays /> Book Online
           </a>
           <a
             href="tel:+15106502083"
