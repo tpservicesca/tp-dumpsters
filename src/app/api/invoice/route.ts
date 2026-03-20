@@ -105,10 +105,11 @@ export async function POST(request: NextRequest) {
     // Create invoice item with short description (details go in invoice note)
     const itemDescription = `${size.replace(" Yard", "-yard")} dumpster for ${serviceType.toLowerCase()}`;
 
-    await stripe.invoiceItems.create({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    await (stripe.invoiceItems as any).create({
       customer: customer.id,
       description: itemDescription,
-      amount: unitPrice * 100,
+      unit_amount: unitPrice * 100,
       currency: "usd",
       quantity: qty,
     });
