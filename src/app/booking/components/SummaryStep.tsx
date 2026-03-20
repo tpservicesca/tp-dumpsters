@@ -145,6 +145,13 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
         </p>
       </div>
 
+      {/* Next steps notice */}
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
+        <p className="text-xs text-blue-800 font-[var(--font-poppins)] leading-relaxed">
+          📞 <strong>What happens next?</strong> Once your booking is confirmed, a member of our team will contact you within 24 hours to confirm delivery details, placement location, and any special requirements for your project.
+        </p>
+      </div>
+
       {/* Authorization checkbox */}
       <div className="bg-gray-50 border border-gray-200 rounded-xl p-4 mb-6">
         <label className="flex items-start gap-3 cursor-pointer">
