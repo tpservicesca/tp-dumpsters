@@ -68,11 +68,26 @@ export default function QuoteForm() {
   const [result, setResult] = useState<InvoiceResult | null>(null);
   const [error, setError] = useState("");
 
+  // Scheduling
+  const [deliveryDate, setDeliveryDate] = useState("");
+  const [deliveryWindow, setDeliveryWindow] = useState("");
+  const [pickupDate, setPickupDate] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("Zelle");
+  const [scheduling, setScheduling] = useState(false);
+  const [scheduled, setScheduled] = useState(false);
+  const [scheduleError, setScheduleError] = useState("");
+
   // Refs
   const deliveryRef = useRef<HTMLInputElement>(null);
   const billingRef = useRef<HTMLInputElement>(null);
 
   const [showPreview, setShowPreview] = useState(false);
+
+  const WINDOWS = [
+    { id: "morning", label: "🌅 Morning", time: "7:00 AM - 11:00 AM" },
+    { id: "midday", label: "☀️ Midday", time: "11:00 AM - 3:00 PM" },
+    { id: "afternoon", label: "🌆 Afternoon", time: "3:00 PM - 7:00 PM" },
+  ];
 
   // Available sizes for selected service
   const currentService = SERVICES.find((s) => s.name === serviceType);
@@ -87,6 +102,67 @@ export default function QuoteForm() {
       setSize(availableSizes[0]);
     }
   }, [serviceType, availableSizes, size]);
+
+  // Auto-calculate pickup date when delivery date changes
+  useEffect(() => {
+    if (!deliveryDate) return;
+    const longServices = ["General Debris", "Household Clean Out", "Construction Debris", "Roofing", "Green Waste"];
+    const daysToAdd = longServices.includes(serviceType) ? 7 : 3;
+    const d = new Date(deliveryDate + "T12:00:00");
+    d.setDate(d.getDate() + daysToAdd);
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, "0");
+    const dd = String(d.getDate()).padStart(2, "0");
+    setPickupDate(`${yyyy}-${mm}-${dd}`);
+  }, [deliveryDate, serviceType]);
+
+  const handleSchedule = async () => {
+    if (!deliveryDate || !deliveryWindow || !pickupDate) {
+      setScheduleError("Please fill in delivery date, window, and pickup date");
+      return;
+    }
+    setScheduling(true);
+    setScheduleError("");
+
+    try {
+      const parts = deliveryAddress.split(",").map(s => s.trim());
+      const city = parts.length >= 3 ? parts[parts.length - 2].replace(/\s*(CA|California)\s*/i, "").trim() : "";
+      const zipMatch = deliveryAddress.match(/\b(\d{5})\b/);
+      const zipCode = zipMatch ? zipMatch[1] : "";
+
+      const res = await fetch("/api/manual-booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-dashboard-auth": "Cantaritos1.",
+        },
+        body: JSON.stringify({
+          customerName,
+          customerPhone: customerPhone ? `${phoneCode} ${customerPhone}` : "",
+          customerEmail: customerEmail || "",
+          serviceType,
+          dumpsterSize: size.replace(" Yard", ""),
+          address: deliveryAddress,
+          city,
+          zipCode,
+          deliveryDate,
+          deliveryWindow,
+          pickupDate,
+          totalPrice: totalAmount,
+          paymentMethod,
+          notes: notes || "",
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Failed to schedule booking");
+      setScheduled(true);
+    } catch (err) {
+      setScheduleError(err instanceof Error ? err.message : "Unknown error");
+    } finally {
+      setScheduling(false);
+    }
+  };
 
   // Load Google Places
   useEffect(() => {
@@ -197,6 +273,13 @@ export default function QuoteForm() {
     setNotes("");
     setResult(null);
     setError("");
+    setDeliveryDate("");
+    setDeliveryWindow("");
+    setPickupDate("");
+    setPaymentMethod("Zelle");
+    setScheduling(false);
+    setScheduled(false);
+    setScheduleError("");
   };
 
   const copyToClipboard = (text: string) => {
@@ -335,6 +418,132 @@ export default function QuoteForm() {
               + Create Another Quote
             </button>
           </div>
+
+          {/* Schedule Booking Section */}
+          {scheduled ? (
+            <div className="bg-green-50 border border-green-200 rounded-2xl p-8 mt-6 text-center">
+              <span className="text-4xl">📅</span>
+              <h3 className="font-bold text-lg text-green-800 mt-2 font-[var(--font-poppins)]">Booking Scheduled!</h3>
+              <p className="text-sm text-green-600 font-[var(--font-poppins)] mt-1">
+                Delivery: {new Date(deliveryDate + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })} — {WINDOWS.find(w => w.id === deliveryWindow)?.time || deliveryWindow}
+              </p>
+              <p className="text-sm text-green-600 font-[var(--font-poppins)]">
+                Pickup: {new Date(pickupDate + "T12:00:00").toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
+              </p>
+              <p className="text-xs text-green-500 mt-2 font-[var(--font-poppins)]">Events created in Google Calendar ✅</p>
+            </div>
+          ) : (
+            <div className="bg-white rounded-2xl shadow-lg p-8 mt-6">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                  <span className="text-xl">📅</span>
+                </div>
+                <div>
+                  <h3 className="font-[var(--font-poppins)] font-bold text-lg text-[#333]">Schedule Booking</h3>
+                  <p className="text-xs text-[#999] font-[var(--font-poppins)]">Create calendar events for delivery &amp; pickup</p>
+                </div>
+              </div>
+
+              {/* Delivery Date */}
+              <div className="mb-4">
+                <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">
+                  📦 Delivery Date *
+                </label>
+                <input
+                  type="date"
+                  value={deliveryDate}
+                  onChange={(e) => setDeliveryDate(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+                />
+              </div>
+
+              {/* Delivery Window */}
+              <div className="mb-4">
+                <label className="block text-xs font-semibold text-[#555] mb-2 font-[var(--font-poppins)]">
+                  🕐 Delivery Window *
+                </label>
+                <div className="grid grid-cols-3 gap-2">
+                  {WINDOWS.map((w) => (
+                    <button
+                      key={w.id}
+                      onClick={() => setDeliveryWindow(w.id)}
+                      className={`py-3 px-2 rounded-xl border-2 text-center transition-all ${
+                        deliveryWindow === w.id
+                          ? "border-tp-red bg-red-50"
+                          : "border-gray-200 hover:border-gray-300"
+                      }`}
+                    >
+                      <span className="block text-sm font-semibold font-[var(--font-poppins)]">{w.label}</span>
+                      <span className="block text-[10px] text-[#999] font-[var(--font-poppins)]">{w.time}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Pickup Date */}
+              <div className="mb-4">
+                <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">
+                  🚛 Pickup Date
+                </label>
+                <input
+                  type="date"
+                  value={pickupDate}
+                  onChange={(e) => setPickupDate(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+                />
+                {deliveryDate && (
+                  <p className="text-[10px] text-[#bbb] mt-1 font-[var(--font-poppins)]">
+                    Auto-calculated based on service type
+                  </p>
+                )}
+              </div>
+
+              {/* Payment Method */}
+              <div className="mb-6">
+                <label className="block text-xs font-semibold text-[#555] mb-1 font-[var(--font-poppins)]">
+                  💳 Payment Method
+                </label>
+                <select
+                  value={paymentMethod}
+                  onChange={(e) => setPaymentMethod(e.target.value)}
+                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
+                >
+                  <option value="Zelle">Zelle</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Check">Check</option>
+                  <option value="Stripe Invoice">Stripe Invoice</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              {/* Schedule Error */}
+              {scheduleError && (
+                <div className="bg-red-50 border border-red-200 rounded-xl p-3 mb-4">
+                  <p className="text-xs text-red-700 font-[var(--font-poppins)]">❌ {scheduleError}</p>
+                </div>
+              )}
+
+              {/* Confirm Button */}
+              <button
+                onClick={handleSchedule}
+                disabled={scheduling || !deliveryDate || !deliveryWindow}
+                className={`w-full py-4 rounded-xl font-[var(--font-poppins)] font-bold text-base transition-all duration-200 ${
+                  scheduling || !deliveryDate || !deliveryWindow
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl"
+                }`}
+              >
+                {scheduling ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+                    Scheduling...
+                  </span>
+                ) : (
+                  "✅ Confirm & Schedule"
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     );
