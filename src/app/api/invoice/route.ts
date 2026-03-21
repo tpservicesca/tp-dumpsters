@@ -119,23 +119,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Build detailed rental terms note
-    const termsNote = [
-      `RENTAL DETAILS`,
-      `${size} Dumpster — ${serviceType}`,
-      `Included: ${days}-day rental | Weight limit: ${weight}`,
-      ``,
-      `ADDITIONAL FEES`,
-      `Extra days: $49/day | Overweight: $125/ton`,
-      `Mattresses: $60 ea | Appliances: $40 ea | Tires: $20 ea`,
-      ``,
-      `RULES`,
-      `Keep debris below fill line. No hazardous materials.`,
-      `24h cancellation notice required ($150 fee).`,
-      ``,
-      `PAYMENT OPTIONS`,
-      `Card: Pay using the link above`,
-      `Zelle: TP PAVERS SERVICE INC — (510) 253-6230`,
-    ].join("\n");
+    const termsNote = `${size} Dumpster — ${serviceType} | ${days}-day rental | Weight limit: ${weight}`;
 
     // Create invoice with detailed terms
     const invoiceParams: Record<string, unknown> = {
@@ -146,7 +130,7 @@ export async function POST(request: NextRequest) {
       custom_fields: [
         { name: "Delivery Address", value: deliveryAddress.substring(0, 40) },
       ],
-      footer: "Thanks for choosing TP Dumpsters! We provide reliable, on-time service with excellent customer support across the Bay Area.",
+      footer: "Extra days: $49/day • Overweight: $125/ton • Mattresses: $60 • Appliances: $40 • Tires: $20\nKeep debris below fill line. No hazardous materials. 24h cancellation notice ($150 fee).\nZelle: TP PAVERS SERVICE INC — (510) 253-6230\n\nThanks for choosing TP Dumpsters!",
       pending_invoice_items_behavior: "include" as const,
     };
 
