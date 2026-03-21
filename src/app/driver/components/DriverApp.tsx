@@ -49,7 +49,9 @@ export default function DriverApp() {
         // Calendar sync is best-effort
       }
 
-      const res = await fetch(`${API}?auth=${AUTH_CODE}`);
+      const res = await fetch(API, {
+        headers: { "x-dashboard-auth": AUTH_CODE },
+      });
       const data = await res.json();
       if (data.dumpsters) {
         const todayJobs: Job[] = [];
