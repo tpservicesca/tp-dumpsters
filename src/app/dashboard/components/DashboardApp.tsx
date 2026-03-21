@@ -30,12 +30,155 @@ interface Stats {
   pickupScheduled: number;
 }
 
-const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; icon: string }> = {
-  yard: { label: "In Yard", color: "#16a34a", bg: "#dcfce7", icon: "🏠" },
-  "en-route": { label: "En Route", color: "#2563eb", bg: "#dbeafe", icon: "🚛" },
-  deployed: { label: "Deployed", color: "#ea580c", bg: "#ffedd5", icon: "📍" },
-  "pickup-scheduled": { label: "Pickup Scheduled", color: "#7c3aed", bg: "#ede9fe", icon: "📅" },
+const STATUS_CONFIG: Record<string, { label: string; color: string; dotClass: string }> = {
+  yard: { label: "In Yard", color: "#22c55e", dotClass: "bg-green-500" },
+  "en-route": { label: "En Route", color: "#3b82f6", dotClass: "bg-blue-500" },
+  deployed: { label: "Deployed", color: "#f97316", dotClass: "bg-orange-500" },
+  "pickup-scheduled": { label: "Pickup", color: "#a855f7", dotClass: "bg-purple-500" },
 };
+
+// SVG Icon components
+function IconMap({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+      <line x1="8" y1="2" x2="8" y2="18" />
+      <line x1="16" y1="6" x2="16" y2="22" />
+    </svg>
+  );
+}
+
+function IconList({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" />
+      <line x1="3" y1="6" x2="3.01" y2="6" /><line x1="3" y1="12" x2="3.01" y2="12" /><line x1="3" y1="18" x2="3.01" y2="18" />
+    </svg>
+  );
+}
+
+function IconSync({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" />
+      <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+    </svg>
+  );
+}
+
+function IconPlus({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+    </svg>
+  );
+}
+
+function IconCalendar({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
+
+function IconUser({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" />
+    </svg>
+  );
+}
+
+function IconPin({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
+function IconPhone({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function IconTruck({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="1" y="3" width="15" height="13" /><polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+      <circle cx="5.5" cy="18.5" r="2.5" /><circle cx="18.5" cy="18.5" r="2.5" />
+    </svg>
+  );
+}
+
+function IconTrash({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="3 6 5 6 21 6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />
+    </svg>
+  );
+}
+
+function IconEdit({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
+}
+
+function IconChat({ className = "w-6 h-6" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+    </svg>
+  );
+}
+
+function IconChevron({ className = "w-4 h-4", direction = "down" }: { className?: string; direction?: "down" | "up" }) {
+  return (
+    <svg className={`${className} transition-transform duration-200 ${direction === "up" ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  );
+}
+
+function IconNote({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" />
+    </svg>
+  );
+}
+
+function IconGps({ className = "w-3 h-3" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="3" /><line x1="12" y1="2" x2="12" y2="6" /><line x1="12" y1="18" x2="12" y2="22" /><line x1="2" y1="12" x2="6" y2="12" /><line x1="18" y1="12" x2="22" y2="12" />
+    </svg>
+  );
+}
+
+function IconBox({ className = "w-10 h-10" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+      <polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
+    </svg>
+  );
+}
+
+function IconMore({ className = "w-5 h-5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <circle cx="12" cy="5" r="2" /><circle cx="12" cy="12" r="2" /><circle cx="12" cy="19" r="2" />
+    </svg>
+  );
+}
 
 export default function DashboardApp() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -69,7 +212,7 @@ export default function DashboardApp() {
   useEffect(() => {
     if (authenticated) {
       fetchData();
-      const interval = setInterval(fetchData, 30000); // Refresh every 30s
+      const interval = setInterval(fetchData, 30000);
       return () => clearInterval(interval);
     }
   }, [authenticated, fetchData]);
@@ -79,11 +222,10 @@ export default function DashboardApp() {
       setAuthenticated(true);
       setCodeError("");
     } else {
-      setCodeError("Código incorrecto");
+      setCodeError("Codigo incorrecto");
     }
   };
 
-  // Get current GPS position
   const getCurrentLocation = (): Promise<{ lat: number; lng: number } | null> => {
     return new Promise((resolve) => {
       if (!navigator.geolocation) {
@@ -100,7 +242,6 @@ export default function DashboardApp() {
 
   const updateDumpster = async (id: string, updates: Record<string, unknown>) => {
     try {
-      // Auto-capture GPS when marking as deployed or en-route
       if (updates.status === "deployed" || updates.status === "en-route") {
         const loc = await getCurrentLocation();
         if (loc) {
@@ -153,15 +294,19 @@ export default function DashboardApp() {
 
   const filtered = filter === "all" ? dumpsters : dumpsters.filter((d) => d.status === filter);
 
+  const today = new Date().toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric" });
+
   // ── Login Screen ──────────────────────────────────────────────────────
   if (!authenticated) {
     return (
-      <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
-        <div className="bg-gray-900 rounded-2xl p-8 w-full max-w-sm border border-gray-800 shadow-2xl">
-          <div className="text-center mb-6">
-            <div className="text-4xl mb-2">🚛</div>
-            <h1 className="text-2xl font-bold text-white">TP Dumpsters</h1>
-            <p className="text-gray-400 text-sm">Fleet Dashboard</p>
+      <div className="min-h-screen bg-black flex items-center justify-center p-4">
+        <div className="w-full max-w-sm">
+          <div className="text-center mb-8">
+            <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <span className="text-black text-2xl font-black tracking-tight">TP</span>
+            </div>
+            <h1 className="text-2xl font-bold text-white">Fleet Dashboard</h1>
+            <p className="text-neutral-500 text-sm mt-1">TP Dumpsters</p>
           </div>
           <input
             type="password"
@@ -169,14 +314,14 @@ export default function DashboardApp() {
             value={code}
             onChange={(e) => setCode(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleLogin()}
-            className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white text-center text-lg tracking-widest focus:outline-none focus:border-red-500 mb-3"
+            className="w-full bg-neutral-900 rounded-xl px-4 py-3.5 text-white text-center text-lg tracking-widest focus:outline-none focus:ring-1 focus:ring-neutral-700 mb-3 placeholder:text-neutral-600"
           />
           {codeError && <p className="text-red-400 text-sm text-center mb-3">{codeError}</p>}
           <button
             onClick={handleLogin}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-lg transition"
+            className="w-full bg-white hover:bg-neutral-200 text-black font-bold py-3.5 rounded-xl transition-colors"
           >
-            Enter Dashboard
+            Continuar
           </button>
         </div>
       </div>
@@ -185,26 +330,23 @@ export default function DashboardApp() {
 
   // ── Main Dashboard ────────────────────────────────────────────────────
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-black text-white">
       {/* Header */}
-      <header className="bg-gray-900 border-b border-gray-800 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center gap-3">
-          <span className="text-2xl">🚛</span>
-          <div>
-            <h1 className="text-lg font-bold leading-tight">TP Dumpsters</h1>
-            <p className="text-xs text-gray-400">Fleet Dashboard</p>
-          </div>
+      <header className="bg-black/80 backdrop-blur-xl border-b border-neutral-900 px-4 py-3 flex items-center justify-between sticky top-0 z-50">
+        <div>
+          <h1 className="text-lg font-bold leading-tight">Fleet Dashboard</h1>
+          <p className="text-xs text-neutral-500">{today}</p>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setView(view === "list" ? "map" : "list")}
-            className="bg-gray-800 hover:bg-gray-700 px-3 py-2 rounded-lg text-sm transition"
+            className="bg-neutral-900 hover:bg-neutral-800 px-3 py-2 rounded-xl text-sm transition-colors flex items-center gap-1.5"
           >
-            {view === "list" ? "🗺️ Map" : "📋 List"}
+            {view === "list" ? <><IconMap /> Map</> : <><IconList /> List</>}
           </button>
           <button
             onClick={async () => {
-              if (!confirm("¿Sincronizar servicios de hoy desde Google Calendar?")) return;
+              if (!confirm("Sync today's services from Google Calendar?")) return;
               try {
                 const res = await fetch("/api/calendar-sync", {
                   method: "POST",
@@ -213,59 +355,61 @@ export default function DashboardApp() {
                 });
                 const data = await res.json();
                 const msgs = data.results?.map((r: { status: string }) => r.status).join("\n") || "No events";
-                alert(`📅 Calendar Sync\n${data.events} events found\n\n${msgs}`);
+                alert(`Calendar Sync\n${data.events} events found\n\n${msgs}`);
                 await fetchData();
               } catch (err) {
                 alert("Error syncing calendar");
                 console.error(err);
               }
             }}
-            className="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg text-sm font-bold transition"
+            className="bg-neutral-900 hover:bg-neutral-800 px-3 py-2 rounded-xl text-sm transition-colors flex items-center gap-1.5"
           >
-            📅 Sync
+            <IconSync /> Sync
           </button>
           <button
             onClick={() => setShowManualBooking(true)}
-            className="bg-green-600 hover:bg-green-700 px-3 py-2 rounded-lg text-sm font-bold transition"
+            className="bg-neutral-900 hover:bg-neutral-800 px-3 py-2 rounded-xl text-sm transition-colors flex items-center gap-1.5"
           >
-            📅 New Booking
+            <IconCalendar /> Booking
           </button>
           <button
             onClick={() => setShowAddModal(true)}
-            className="bg-red-600 hover:bg-red-700 px-3 py-2 rounded-lg text-sm font-bold transition"
+            className="bg-white hover:bg-neutral-200 text-black px-3 py-2 rounded-xl text-sm font-bold transition-colors flex items-center gap-1.5"
           >
-            + Add
+            <IconPlus /> Add
           </button>
         </div>
       </header>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 p-4">
-        <StatCard label="Total" value={stats.total} icon="📦" color="#6b7280" active={filter === "all"} onClick={() => setFilter("all")} />
-        <StatCard label="In Yard" value={stats.yard} icon="🏠" color="#16a34a" active={filter === "yard"} onClick={() => setFilter("yard")} />
-        <StatCard label="En Route" value={stats.enRoute} icon="🚛" color="#2563eb" active={filter === "en-route"} onClick={() => setFilter("en-route")} />
-        <StatCard label="Deployed" value={stats.deployed} icon="📍" color="#ea580c" active={filter === "deployed"} onClick={() => setFilter("deployed")} />
-        <StatCard label="Pickup" value={stats.pickupScheduled} icon="📅" color="#7c3aed" active={filter === "pickup-scheduled"} onClick={() => setFilter("pickup-scheduled")} />
+      {/* Stats Pills */}
+      <div className="flex gap-2 px-4 py-3 overflow-x-auto no-scrollbar">
+        <StatPill label="Total" value={stats.total} color="#737373" active={filter === "all"} onClick={() => setFilter("all")} />
+        <StatPill label="Yard" value={stats.yard} color="#22c55e" active={filter === "yard"} onClick={() => setFilter("yard")} />
+        <StatPill label="En Route" value={stats.enRoute} color="#3b82f6" active={filter === "en-route"} onClick={() => setFilter("en-route")} />
+        <StatPill label="Deployed" value={stats.deployed} color="#f97316" active={filter === "deployed"} onClick={() => setFilter("deployed")} />
+        <StatPill label="Pickup" value={stats.pickupScheduled} color="#a855f7" active={filter === "pickup-scheduled"} onClick={() => setFilter("pickup-scheduled")} />
       </div>
 
       {/* Content */}
       <div className="px-4 pb-20">
         {loading && dumpsters.length === 0 ? (
-          <div className="text-center py-20 text-gray-500">Loading...</div>
+          <div className="text-center py-20 text-neutral-600">Loading...</div>
         ) : dumpsters.length === 0 ? (
           <div className="text-center py-20">
-            <div className="text-5xl mb-4">📦</div>
-            <h2 className="text-xl font-bold text-gray-300 mb-2">No dumpsters yet</h2>
-            <p className="text-gray-500 mb-6">Add your dumpster inventory to start tracking</p>
+            <div className="text-neutral-700 mb-4 flex justify-center">
+              <IconBox className="w-16 h-16" />
+            </div>
+            <h2 className="text-xl font-bold text-neutral-300 mb-2">No dumpsters yet</h2>
+            <p className="text-neutral-600 mb-6">Add your dumpster inventory to start tracking</p>
             <button
               onClick={() => setShowAddModal(true)}
-              className="bg-red-600 hover:bg-red-700 px-6 py-3 rounded-lg font-bold transition"
+              className="bg-white hover:bg-neutral-200 text-black px-6 py-3 rounded-xl font-bold transition-colors inline-flex items-center gap-2"
             >
-              + Add First Dumpster
+              <IconPlus /> Add First Dumpster
             </button>
           </div>
         ) : view === "list" ? (
-          <div className="space-y-3">
+          <div className="space-y-2">
             {filtered.map((d) => (
               <DumpsterCard
                 key={d.id}
@@ -276,7 +420,7 @@ export default function DashboardApp() {
               />
             ))}
             {filtered.length === 0 && (
-              <p className="text-center text-gray-500 py-10">No dumpsters with this status</p>
+              <p className="text-center text-neutral-600 py-10">No dumpsters with this status</p>
             )}
           </div>
         ) : (
@@ -315,36 +459,31 @@ export default function DashboardApp() {
         href="https://t.me/Tp_Services_bot"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-neutral-900 hover:bg-neutral-800 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-105 z-50"
         title="Chat with TP Assistant"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
-          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
-          <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
-        </svg>
+        <IconChat className="w-6 h-6 text-white" />
       </a>
     </div>
   );
 }
 
-// ── Stat Card ────────────────────────────────────────────────────────────
-function StatCard({ label, value, icon, color, active, onClick }: {
-  label: string; value: number; icon: string; color: string; active: boolean; onClick: () => void;
+// ── Stat Pill ─────────────────────────────────────────────────────────────
+function StatPill({ label, value, color, active, onClick }: {
+  label: string; value: number; color: string; active: boolean; onClick: () => void;
 }) {
   return (
     <button
       onClick={onClick}
-      className="rounded-xl p-4 text-left transition border-2"
-      style={{
-        background: active ? `${color}15` : "#111827",
-        borderColor: active ? color : "transparent",
-      }}
+      className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
+        active
+          ? "bg-neutral-900 ring-1 ring-neutral-700"
+          : "bg-neutral-900/50 hover:bg-neutral-900"
+      }`}
     >
-      <div className="flex items-center justify-between mb-1">
-        <span className="text-lg">{icon}</span>
-        <span className="text-2xl font-bold" style={{ color }}>{value}</span>
-      </div>
-      <p className="text-xs text-gray-400">{label}</p>
+      <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: color }} />
+      <span className="text-white font-bold">{value}</span>
+      <span className="text-neutral-500">{label}</span>
     </button>
   );
 }
@@ -357,65 +496,119 @@ function DumpsterCard({ dumpster: d, onStatusChange, onEdit, onDelete }: {
   onDelete: () => void;
 }) {
   const cfg = STATUS_CONFIG[d.status] || STATUS_CONFIG.yard;
-  const [showActions, setShowActions] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="bg-gray-900 rounded-xl border border-gray-800 overflow-hidden">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-800">
+    <div className="bg-neutral-900 rounded-2xl overflow-hidden transition-all duration-200">
+      {/* Compact Header — always visible */}
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full flex items-center justify-between px-4 py-3.5 text-left"
+      >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg flex items-center justify-center text-xl font-bold"
-            style={{ background: cfg.bg, color: cfg.color }}>
-            {d.size}
+          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center">
+            <span className="text-black text-sm font-black">{d.size}</span>
           </div>
           <div>
-            <p className="font-bold text-white text-sm">{d.id}</p>
-            <p className="text-xs text-gray-400">{d.size}-yard dumpster</p>
+            <div className="flex items-center gap-2">
+              <p className="font-bold text-white text-sm">{d.id}</p>
+              <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: cfg.color }} />
+              <span className="text-xs text-neutral-500">{cfg.label}</span>
+            </div>
+            <p className="text-xs text-neutral-600">{d.size}-yard dumpster</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="px-2 py-1 rounded-full text-xs font-bold"
-            style={{ background: cfg.bg, color: cfg.color }}>
-            {cfg.icon} {cfg.label}
-          </span>
-          <button onClick={() => setShowActions(!showActions)} className="text-gray-400 hover:text-white text-lg px-1">⋮</button>
-        </div>
-      </div>
+        <IconChevron className="w-5 h-5 text-neutral-600" direction={expanded ? "up" : "down"} />
+      </button>
 
-      {/* Details */}
-      {(d.customer || d.address) && (
-        <div className="px-4 py-2 text-sm space-y-1">
-          {d.customer && <p className="text-gray-300">👤 {d.customer} {d.phone ? `• ${d.phone}` : ""}</p>}
-          {d.address && <p className="text-gray-400">📍 {d.address}{d.city ? `, ${d.city}` : ""}</p>}
-          {d.serviceType && <p className="text-gray-400">🗑️ {d.serviceType}</p>}
-          {d.deliveryDate && <p className="text-gray-400">📦 Delivery: {d.deliveryDate}</p>}
-          {d.pickupDate && <p className="text-gray-400">🔄 Pickup: {d.pickupDate}</p>}
-          {d.lat && d.lng && <p className="text-green-400 text-xs">📡 GPS: {d.lat.toFixed(4)}, {d.lng.toFixed(4)}</p>}
-          {d.notes && <p className="text-gray-500 italic">💬 {d.notes}</p>}
-        </div>
-      )}
+      {/* Expanded Content */}
+      {expanded && (
+        <div className="px-4 pb-4 space-y-3 animate-in fade-in duration-200">
+          {/* Details */}
+          {(d.customer || d.address || d.serviceType || d.deliveryDate || d.pickupDate || d.notes) && (
+            <div className="space-y-2 text-sm">
+              {d.customer && (
+                <div className="flex items-center gap-2 text-neutral-300">
+                  <IconUser className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>{d.customer}{d.phone ? ` \u00b7 ${d.phone}` : ""}</span>
+                </div>
+              )}
+              {d.address && (
+                <div className="flex items-center gap-2 text-neutral-400">
+                  <IconPin className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>{d.address}{d.city ? `, ${d.city}` : ""}</span>
+                </div>
+              )}
+              {d.phone && !d.customer && (
+                <div className="flex items-center gap-2 text-neutral-400">
+                  <IconPhone className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>{d.phone}</span>
+                </div>
+              )}
+              {d.serviceType && (
+                <div className="flex items-center gap-2 text-neutral-400">
+                  <IconTruck className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>{d.serviceType}</span>
+                </div>
+              )}
+              {d.deliveryDate && (
+                <div className="flex items-center gap-2 text-neutral-400">
+                  <IconCalendar className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>Delivery: {d.deliveryDate}</span>
+                </div>
+              )}
+              {d.pickupDate && (
+                <div className="flex items-center gap-2 text-neutral-400">
+                  <IconSync className="w-3.5 h-3.5 text-neutral-600" />
+                  <span>Pickup: {d.pickupDate}</span>
+                </div>
+              )}
+              {d.lat && d.lng && (
+                <div className="flex items-center gap-2 text-green-500 text-xs">
+                  <IconGps className="w-3 h-3" />
+                  <span>GPS: {d.lat.toFixed(4)}, {d.lng.toFixed(4)}</span>
+                </div>
+              )}
+              {d.notes && (
+                <div className="flex items-start gap-2 text-neutral-500 italic">
+                  <IconNote className="w-3.5 h-3.5 text-neutral-600 mt-0.5" />
+                  <span>{d.notes}</span>
+                </div>
+              )}
+            </div>
+          )}
 
-      {/* Quick Status Buttons */}
-      <div className="px-4 py-2 flex gap-2 flex-wrap border-t border-gray-800">
-        {Object.entries(STATUS_CONFIG).map(([key, val]) => (
-          key !== d.status && (
+          {/* Status Change Buttons */}
+          <div className="flex gap-2 flex-wrap pt-1">
+            {Object.entries(STATUS_CONFIG).map(([key, val]) => (
+              key !== d.status && (
+                <button
+                  key={key}
+                  onClick={(e) => { e.stopPropagation(); onStatusChange(key); }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-neutral-800 hover:bg-neutral-700 transition-colors"
+                >
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: val.color }} />
+                  {val.label}
+                </button>
+              )
+            ))}
+          </div>
+
+          {/* Edit / Delete */}
+          <div className="flex gap-2 pt-1">
             <button
-              key={key}
-              onClick={() => onStatusChange(key)}
-              className="px-3 py-1.5 rounded-lg text-xs font-bold transition hover:opacity-80"
-              style={{ background: val.bg, color: val.color }}
+              onClick={(e) => { e.stopPropagation(); onEdit(); }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-neutral-800 hover:bg-neutral-700 text-neutral-400 transition-colors"
             >
-              {val.icon} {val.label}
+              <IconEdit className="w-3.5 h-3.5" /> Edit
             </button>
-          )
-        ))}
-      </div>
-
-      {/* Actions dropdown */}
-      {showActions && (
-        <div className="px-4 py-2 flex gap-2 border-t border-gray-800 bg-gray-800/50">
-          <button onClick={onEdit} className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 rounded-lg text-xs font-bold">✏️ Edit</button>
-          <button onClick={onDelete} className="px-3 py-1.5 bg-red-800 hover:bg-red-900 rounded-lg text-xs font-bold">🗑️ Delete</button>
+            <button
+              onClick={(e) => { e.stopPropagation(); onDelete(); }}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-neutral-800 hover:bg-red-900/50 text-neutral-400 hover:text-red-400 transition-colors"
+            >
+              <IconTrash className="w-3.5 h-3.5" /> Delete
+            </button>
+          </div>
         </div>
       )}
     </div>
@@ -429,18 +622,18 @@ function AddDumpsterModal({ onAdd, onClose }: { onAdd: (size: string, notes?: st
   const [qty, setQty] = useState(1);
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" onClick={onClose}>
-      <div className="bg-gray-900 rounded-2xl p-6 w-full max-w-md border border-gray-700" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-xl font-bold mb-4">Add Dumpster to Inventory</h2>
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" onClick={onClose}>
+      <div className="bg-neutral-900 rounded-2xl p-6 w-full max-w-md" onClick={(e) => e.stopPropagation()}>
+        <h2 className="text-xl font-bold mb-4">Add Dumpster</h2>
 
-        <label className="block text-sm text-gray-400 mb-1">Size</label>
+        <label className="block text-sm text-neutral-500 mb-2">Size</label>
         <div className="flex gap-2 mb-4">
           {["10", "20", "30"].map((s) => (
             <button
               key={s}
               onClick={() => setSize(s)}
-              className={`flex-1 py-3 rounded-lg font-bold text-lg transition ${
-                size === s ? "bg-red-600 text-white" : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+              className={`flex-1 py-3 rounded-xl font-bold text-lg transition-colors ${
+                size === s ? "bg-white text-black" : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
               }`}
             >
               {s} yd
@@ -448,28 +641,28 @@ function AddDumpsterModal({ onAdd, onClose }: { onAdd: (size: string, notes?: st
           ))}
         </div>
 
-        <label className="block text-sm text-gray-400 mb-1">Quantity</label>
+        <label className="block text-sm text-neutral-500 mb-2">Quantity</label>
         <div className="flex items-center gap-3 mb-4">
-          <button onClick={() => setQty(Math.max(1, qty - 1))} className="w-10 h-10 bg-gray-800 rounded-lg text-xl hover:bg-gray-700">−</button>
+          <button onClick={() => setQty(Math.max(1, qty - 1))} className="w-10 h-10 bg-neutral-800 rounded-xl text-xl hover:bg-neutral-700 transition-colors flex items-center justify-center">&minus;</button>
           <span className="text-2xl font-bold w-10 text-center">{qty}</span>
-          <button onClick={() => setQty(qty + 1)} className="w-10 h-10 bg-gray-800 rounded-lg text-xl hover:bg-gray-700">+</button>
+          <button onClick={() => setQty(qty + 1)} className="w-10 h-10 bg-neutral-800 rounded-xl text-xl hover:bg-neutral-700 transition-colors flex items-center justify-center">+</button>
         </div>
 
-        <label className="block text-sm text-gray-400 mb-1">Notes (optional)</label>
+        <label className="block text-sm text-neutral-500 mb-2">Notes (optional)</label>
         <input
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           placeholder="e.g. Blue dumpster, new"
-          className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 text-white mb-6 focus:outline-none focus:border-red-500"
+          className="w-full bg-neutral-800 rounded-xl px-4 py-2.5 text-white mb-6 focus:outline-none focus:ring-1 focus:ring-neutral-600 placeholder:text-neutral-600"
         />
 
         <div className="flex gap-3">
-          <button onClick={onClose} className="flex-1 bg-gray-800 hover:bg-gray-700 py-3 rounded-lg font-bold transition">Cancel</button>
+          <button onClick={onClose} className="flex-1 bg-neutral-800 hover:bg-neutral-700 py-3 rounded-xl font-bold transition-colors">Cancel</button>
           <button
             onClick={() => {
               for (let i = 0; i < qty; i++) onAdd(size, notes || undefined);
             }}
-            className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg font-bold transition"
+            className="flex-1 bg-white hover:bg-neutral-200 text-black py-3 rounded-xl font-bold transition-colors"
           >
             Add {qty > 1 ? `${qty} Dumpsters` : "Dumpster"}
           </button>
@@ -495,8 +688,8 @@ function EditDumpsterModal({ dumpster, onSave, onClose }: {
   const [notes, setNotes] = useState(dumpster.notes || "");
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-gray-900 rounded-2xl p-6 w-full max-w-md border border-gray-700 my-8" onClick={(e) => e.stopPropagation()}>
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 overflow-y-auto" onClick={onClose}>
+      <div className="bg-neutral-900 rounded-2xl p-6 w-full max-w-md my-8" onClick={(e) => e.stopPropagation()}>
         <h2 className="text-xl font-bold mb-4">Edit {dumpster.id}</h2>
 
         <div className="space-y-3">
@@ -511,10 +704,10 @@ function EditDumpsterModal({ dumpster, onSave, onClose }: {
         </div>
 
         <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 bg-gray-800 hover:bg-gray-700 py-3 rounded-lg font-bold transition">Cancel</button>
+          <button onClick={onClose} className="flex-1 bg-neutral-800 hover:bg-neutral-700 py-3 rounded-xl font-bold transition-colors">Cancel</button>
           <button
             onClick={() => onSave({ customer, phone, address, city, serviceType: serviceType || undefined, deliveryDate: deliveryDate || undefined, pickupDate: pickupDate || undefined, notes: notes || undefined })}
-            className="flex-1 bg-red-600 hover:bg-red-700 py-3 rounded-lg font-bold transition"
+            className="flex-1 bg-white hover:bg-neutral-200 text-black py-3 rounded-xl font-bold transition-colors"
           >
             Save Changes
           </button>
@@ -529,13 +722,13 @@ function Field({ label, value, onChange, type = "text", placeholder }: {
 }) {
   return (
     <div>
-      <label className="block text-xs text-gray-400 mb-1">{label}</label>
+      <label className="block text-xs text-neutral-500 mb-1">{label}</label>
       <input
         type={type}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder || label}
-        className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
+        className="w-full bg-neutral-800 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:ring-1 focus:ring-neutral-600 placeholder:text-neutral-600"
       />
     </div>
   );
@@ -573,7 +766,6 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
-  // Auto-calculate pickup date when delivery date or service type changes
   useEffect(() => {
     if (deliveryDate) {
       const d = new Date(deliveryDate + "T00:00:00");
@@ -602,7 +794,7 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
       });
       const data = await res.json();
       if (data.ok) {
-        alert(`✅ Booking created: ${data.bookingId}\n${data.calendarErrors?.length ? "⚠️ Calendar warnings: " + data.calendarErrors.join(", ") : "📅 Calendar events created"}`);
+        alert(`Booking created: ${data.bookingId}\n${data.calendarErrors?.length ? "Calendar warnings: " + data.calendarErrors.join(", ") : "Calendar events created"}`);
         onSuccess();
       } else {
         setError(data.error || "Failed to create booking");
@@ -615,12 +807,12 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
   };
 
   return (
-    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 overflow-y-auto" onClick={onClose}>
-      <div className="bg-gray-900 rounded-2xl p-6 w-full max-w-lg border border-gray-700 my-8 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-xl font-bold mb-4">📅 New Manual Booking</h2>
-        <p className="text-gray-400 text-sm mb-4">For Zelle, cash, or phone payments</p>
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 overflow-y-auto" onClick={onClose}>
+      <div className="bg-neutral-900 rounded-2xl p-6 w-full max-w-lg my-8 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <h2 className="text-xl font-bold mb-1">New Manual Booking</h2>
+        <p className="text-neutral-500 text-sm mb-4">For Zelle, cash, or phone payments</p>
 
-        {error && <p className="text-red-400 text-sm mb-3 bg-red-900/30 px-3 py-2 rounded-lg">{error}</p>}
+        {error && <p className="text-red-400 text-sm mb-3 bg-red-900/20 px-3 py-2 rounded-xl">{error}</p>}
 
         <div className="space-y-3">
           <Field label="Customer Name *" value={customerName} onChange={setCustomerName} />
@@ -628,11 +820,11 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
           <Field label="Email" value={email} onChange={setEmail} type="email" placeholder="Optional" />
 
           <div>
-            <label className="block text-xs text-gray-400 mb-1">Service Type *</label>
+            <label className="block text-xs text-neutral-500 mb-1">Service Type *</label>
             <select
               value={serviceType}
               onChange={(e) => setServiceType(e.target.value)}
-              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
+              className="w-full bg-neutral-800 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:ring-1 focus:ring-neutral-600"
             >
               <option value="">Select service type...</option>
               {SERVICE_TYPES.map((t) => (
@@ -642,14 +834,14 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
           </div>
 
           <div>
-            <label className="block text-xs text-gray-400 mb-1">Dumpster Size *</label>
+            <label className="block text-xs text-neutral-500 mb-1">Dumpster Size *</label>
             <div className="flex gap-2">
               {["10yd", "20yd", "30yd"].map((s) => (
                 <button
                   key={s}
                   onClick={() => setDumpsterSize(s)}
-                  className={`flex-1 py-2 rounded-lg font-bold text-sm transition ${
-                    dumpsterSize === s ? "bg-red-600 text-white" : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                  className={`flex-1 py-2.5 rounded-xl font-bold text-sm transition-colors ${
+                    dumpsterSize === s ? "bg-white text-black" : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
                   }`}
                 >
                   {s}
@@ -667,7 +859,7 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
           <Field label="Delivery Date *" value={deliveryDate} onChange={setDeliveryDate} type="date" />
 
           <div>
-            <label className="block text-xs text-gray-400 mb-1">Delivery Window *</label>
+            <label className="block text-xs text-neutral-500 mb-1">Delivery Window *</label>
             <div className="flex gap-2">
               {[
                 { key: "morning", label: "Morning", sub: "7-11 AM" },
@@ -677,12 +869,12 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
                 <button
                   key={w.key}
                   onClick={() => setDeliveryWindow(w.key)}
-                  className={`flex-1 py-2 rounded-lg text-sm transition ${
-                    deliveryWindow === w.key ? "bg-red-600 text-white" : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                  className={`flex-1 py-2.5 rounded-xl text-sm transition-colors ${
+                    deliveryWindow === w.key ? "bg-white text-black" : "bg-neutral-800 text-neutral-300 hover:bg-neutral-700"
                   }`}
                 >
                   <div className="font-bold">{w.label}</div>
-                  <div className="text-xs opacity-70">{w.sub}</div>
+                  <div className="text-xs opacity-60">{w.sub}</div>
                 </button>
               ))}
             </div>
@@ -693,11 +885,11 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
           <div className="grid grid-cols-2 gap-3">
             <Field label="Total Price ($) *" value={totalPrice} onChange={setTotalPrice} type="number" placeholder="0.00" />
             <div>
-              <label className="block text-xs text-gray-400 mb-1">Payment Method</label>
+              <label className="block text-xs text-neutral-500 mb-1">Payment Method</label>
               <select
                 value={paymentMethod}
                 onChange={(e) => setPaymentMethod(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
+                className="w-full bg-neutral-800 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:ring-1 focus:ring-neutral-600"
               >
                 {["Zelle", "Cash", "Check", "Other"].map((m) => (
                   <option key={m} value={m}>{m}</option>
@@ -710,15 +902,15 @@ function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuc
         </div>
 
         <div className="flex gap-3 mt-6">
-          <button onClick={onClose} className="flex-1 bg-gray-800 hover:bg-gray-700 py-3 rounded-lg font-bold transition">
+          <button onClick={onClose} className="flex-1 bg-neutral-800 hover:bg-neutral-700 py-3 rounded-xl font-bold transition-colors">
             Cancel
           </button>
           <button
             onClick={handleSubmit}
             disabled={submitting}
-            className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-700 py-3 rounded-lg font-bold transition"
+            className="flex-1 bg-white hover:bg-neutral-200 disabled:bg-neutral-700 disabled:text-neutral-500 text-black py-3 rounded-xl font-bold transition-colors"
           >
-            {submitting ? "Creating..." : "📅 Create Booking"}
+            {submitting ? "Creating..." : "Create Booking"}
           </button>
         </div>
       </div>
@@ -747,11 +939,18 @@ function MapView({ dumpsters, apiKey }: { dumpsters: Dumpster[]; apiKey: string 
         center: { lat: withLocation[0].lat!, lng: withLocation[0].lng! },
         zoom: 11,
         styles: [
+          { elementType: "geometry", stylers: [{ color: "#212121" }] },
+          { elementType: "labels.text.stroke", stylers: [{ color: "#212121" }] },
+          { elementType: "labels.text.fill", stylers: [{ color: "#757575" }] },
+          { featureType: "road", elementType: "geometry", stylers: [{ color: "#2c2c2c" }] },
+          { featureType: "road", elementType: "geometry.stroke", stylers: [{ color: "#212121" }] },
+          { featureType: "water", elementType: "geometry", stylers: [{ color: "#000000" }] },
           { featureType: "poi", stylers: [{ visibility: "off" }] },
           { featureType: "transit", stylers: [{ visibility: "off" }] },
         ],
         mapTypeControl: false,
         streetViewControl: false,
+        backgroundColor: "#000000",
       });
 
       withLocation.forEach((d) => {
@@ -765,19 +964,19 @@ function MapView({ dumpsters, apiKey }: { dumpsters: Dumpster[]; apiKey: string 
             scale: 14,
             fillColor: cfg.color,
             fillOpacity: 1,
-            strokeColor: "#fff",
+            strokeColor: "#000",
             strokeWeight: 3,
           },
           label: { text: d.size, color: "#fff", fontSize: "11px", fontWeight: "bold" },
         });
 
         const info = new InfoClass({
-          content: `<div style="padding:8px;font-family:sans-serif;">
+          content: `<div style="padding:8px;font-family:system-ui,sans-serif;background:#171717;color:#fff;border-radius:12px;">
             <strong>${d.id}</strong> (${d.size}yd)<br/>
-            <span style="color:${cfg.color};font-weight:bold;">${cfg.icon} ${cfg.label}</span><br/>
-            ${d.customer ? `👤 ${d.customer}<br/>` : ""}
-            ${d.address ? `📍 ${d.address}${d.city ? `, ${d.city}` : ""}<br/>` : ""}
-            ${d.serviceType ? `🗑️ ${d.serviceType}<br/>` : ""}
+            <span style="color:${cfg.color};font-weight:bold;">${cfg.label}</span><br/>
+            ${d.customer ? `${d.customer}<br/>` : ""}
+            ${d.address ? `${d.address}${d.city ? `, ${d.city}` : ""}<br/>` : ""}
+            ${d.serviceType ? `${d.serviceType}<br/>` : ""}
           </div>`,
         });
 
@@ -802,22 +1001,24 @@ function MapView({ dumpsters, apiKey }: { dumpsters: Dumpster[]; apiKey: string 
 
   if (withLocation.length === 0) {
     return (
-      <div className="rounded-xl border border-gray-800 bg-gray-900 flex items-center justify-center" style={{ height: "60vh" }}>
-        <div className="text-center">
-          <div className="text-5xl mb-4">📍</div>
-          <h3 className="text-lg font-bold text-gray-300 mb-2">GPS se activa automáticamente</h3>
-          <p className="text-gray-500 max-w-sm">Cuando marques un dumpster como <strong className="text-blue-400">&quot;En Route&quot;</strong> o <strong className="text-orange-400">&quot;Deployed&quot;</strong> desde el teléfono, se captura la ubicación GPS automáticamente</p>
+      <div className="rounded-2xl bg-neutral-900 flex items-center justify-center" style={{ height: "60vh" }}>
+        <div className="text-center px-6">
+          <div className="text-neutral-700 mb-4 flex justify-center">
+            <IconPin className="w-12 h-12" />
+          </div>
+          <h3 className="text-lg font-bold text-neutral-300 mb-2">GPS activates automatically</h3>
+          <p className="text-neutral-600 max-w-sm">When you mark a dumpster as <strong className="text-blue-400">&quot;En Route&quot;</strong> or <strong className="text-orange-400">&quot;Deployed&quot;</strong> from your phone, GPS location is captured automatically</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="rounded-xl overflow-hidden border border-gray-800 relative" style={{ height: "60vh" }}>
+    <div className="rounded-2xl overflow-hidden relative" style={{ height: "60vh" }}>
       <div ref={mapRef} className="w-full h-full" />
       {!mapReady && (
-        <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
-          <p className="text-gray-400">Loading map...</p>
+        <div className="absolute inset-0 bg-neutral-900 flex items-center justify-center rounded-2xl">
+          <p className="text-neutral-600">Loading map...</p>
         </div>
       )}
     </div>
