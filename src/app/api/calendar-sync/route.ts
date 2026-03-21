@@ -1,17 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as crypto from "crypto";
-import * as fs from "fs";
-import * as path from "path";
 import * as mysql from "mysql2/promise";
+import { getCalendarAccessToken } from "@/lib/calendar";
 
 const AUTH_CODE = "Cantaritos1.";
 const CALENDAR_ID = "tppaver@gmail.com";
-
-// Service account key path on server
-const SA_KEY_PATHS = [
-  "/home/u781187371/google-calendar-sa.json",
-  path.join(process.cwd(), "google-calendar-sa.json"),
-];
 
 // Type codes from calendar event format: "Name SizeTypeAction"
 const TYPE_CODES: Record<string, string> = {
@@ -59,48 +51,7 @@ function parseEventSummary(summary: string): {
   };
 }
 
-async function getAccessToken(): Promise<string | null> {
-  let keyData: string | null = null;
-
-  for (const p of SA_KEY_PATHS) {
-    try {
-      keyData = fs.readFileSync(p, "utf8");
-      break;
-    } catch {
-      continue;
-    }
-  }
-
-  if (!keyData) return null;
-
-  const key = JSON.parse(keyData);
-  const header = Buffer.from(JSON.stringify({ alg: "RS256", typ: "JWT" })).toString("base64url");
-  const now = Math.floor(Date.now() / 1000);
-  const claim = Buffer.from(
-    JSON.stringify({
-      iss: key.client_email,
-      scope: "https://www.googleapis.com/auth/calendar.readonly",
-      aud: "https://oauth2.googleapis.com/token",
-      exp: now + 3600,
-      iat: now,
-    })
-  ).toString("base64url");
-
-  const signature = crypto
-    .sign("RSA-SHA256", Buffer.from(header + "." + claim), key.private_key)
-    .toString("base64url");
-
-  const jwt = header + "." + claim + "." + signature;
-
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: "grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=" + jwt,
-  });
-
-  const data = await res.json();
-  return data.access_token || null;
-}
+// Access token now provided by shared @/lib/calendar module
 
 async function getCalendarEvents(token: string, dateStr?: string): Promise<CalendarEvent[]> {
   const targetDate = dateStr ? new Date(dateStr + "T00:00:00-07:00") : new Date();
@@ -276,7 +227,7 @@ export async function GET(req: NextRequest) {
 
   const date = req.nextUrl.searchParams.get("date") || undefined;
 
-  const token = await getAccessToken();
+  const token = await getCalendarAccessToken();
   if (!token) {
     return NextResponse.json({ error: "Failed to get calendar access token" }, { status: 500 });
   }
@@ -300,7 +251,7 @@ export async function POST(req: NextRequest) {
   const body = await req.json();
   const date = body.date || undefined;
 
-  const token = await getAccessToken();
+  const token = await getCalendarAccessToken();
   if (!token) {
     return NextResponse.json({ error: "Failed to get calendar access token" }, { status: 500 });
   }
