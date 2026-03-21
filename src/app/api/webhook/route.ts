@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
 import * as mysql from "mysql2/promise";
+import * as fs from "fs";
+import * as crypto from "crypto";
 
 // Type codes mapping (service name → short code for calendar summary)
 const TYPE_CODES: Record<string, string> = {
@@ -23,14 +25,53 @@ function getDbConfig() {
   };
 }
 
+function getWebhookSecret(): string | null {
+  try {
+    const keys = JSON.parse(fs.readFileSync("/home/u781187371/stripe-keys.json", "utf8"));
+    return keys.webhook_secret || null;
+  } catch {
+    return null;
+  }
+}
+
+function verifyStripeSignature(payload: string, sigHeader: string, secret: string): boolean {
+  const parts = sigHeader.split(",").reduce((acc, part) => {
+    const [key, val] = part.split("=");
+    acc[key.trim()] = val;
+    return acc;
+  }, {} as Record<string, string>);
+
+  const timestamp = parts["t"];
+  const signature = parts["v1"];
+  if (!timestamp || !signature) return false;
+
+  // Reject if timestamp is older than 5 minutes
+  const age = Math.floor(Date.now() / 1000) - parseInt(timestamp, 10);
+  if (age > 300) return false;
+
+  const signedPayload = `${timestamp}.${payload}`;
+  const expected = crypto.createHmac("sha256", secret).update(signedPayload).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
+}
+
 export async function POST(req: NextRequest) {
   try {
-    // TODO: Add Stripe webhook signature verification once webhook secret is configured.
-    // const sig = req.headers.get("stripe-signature");
-    // const webhookSecret = JSON.parse(fs.readFileSync("/home/u781187371/stripe-keys.json", "utf8")).webhookSecret;
-    // const event = stripe.webhooks.constructEvent(rawBody, sig, webhookSecret);
+    // Verify Stripe webhook signature
+    const rawBody = await req.text();
+    const sigHeader = req.headers.get("stripe-signature") || "";
+    const webhookSecret = getWebhookSecret();
 
-    const event = await req.json();
+    if (webhookSecret) {
+      if (!verifyStripeSignature(rawBody, sigHeader, webhookSecret)) {
+        console.error("❌ Webhook: Invalid Stripe signature");
+        return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
+      }
+      console.log("✅ Webhook: Stripe signature verified");
+    } else {
+      console.warn("⚠️ Webhook: No webhook secret configured, skipping verification");
+    }
+
+    const event = JSON.parse(rawBody);
 
     // Only handle checkout.session.completed
     if (event.type !== "checkout.session.completed") {
