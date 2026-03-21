@@ -3,6 +3,9 @@ import Link from "next/link";
 import { FaCalendarDays, FaPhone, FaMapLocationDot } from "react-icons/fa6";
 import Header from "@/components/Header";
 import SizesSection from "@/components/SizesSection";
+import CityFaqsSection from "@/components/CityFaqsSection";
+import DynamicGallery from "@/components/DynamicGallery";
+import ErrorBoundary from "@/components/ErrorBoundary";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import CountyMapWrapper from "./components/CountyMapWrapper";
@@ -83,47 +86,100 @@ const CITIES = [
   { name: "Castro Valley", slug: "castro-valley", tagline: "Alameda County" },
 ];
 
-// ── FAQs ────────────────────────────────────────────────────────────────────
+// ── FAQs (using CityFaqsSection format) ─────────────────────────────────────
 const countyFaqs = [
   {
-    q: "What cities in Contra Costa County do you serve?",
-    a: "We serve all 26+ cities and communities across Contra Costa County including Concord, Walnut Creek, Richmond, Antioch, Martinez, Pittsburg, Brentwood, San Ramon, Danville, Pleasant Hill, Pinole, Hercules, Lafayette, El Cerrito, Oakley, and many more. If you're in Contra Costa County, we deliver.",
+    question: "What cities in Contra Costa County do you serve?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        We serve all <strong>26+ cities and communities</strong> across Contra Costa County including Concord, Walnut Creek, Richmond, Antioch, Martinez, Pittsburg, Brentwood, San Ramon, Danville, Pleasant Hill, Pinole, Hercules, Lafayette, El Cerrito, Oakley, and many more. If you&apos;re in Contra Costa County, we deliver.
+      </p>
+    ),
   },
   {
-    q: "How much does a dumpster rental cost in Contra Costa County?",
-    a: "Pricing starts at $600 for a 10-yard dumpster (7-day rental, 1 ton included), $650 for a 20-yard (2 tons), and $700 for a 30-yard (3 tons). No hidden fees, no surprise charges. Additional tonnage is $90/ton.",
+    question: "How much does a dumpster rental cost in Contra Costa County?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        Pricing starts at <strong>$600</strong> for a 10-yard dumpster (7-day rental, 1 ton included), <strong>$650</strong> for a 20-yard (2 tons), and <strong>$750</strong> for a 30-yard (3 tons). No hidden fees, no surprise charges. Book online and get an additional <strong>5% discount</strong>.
+      </p>
+    ),
   },
   {
-    q: "Do you offer same-day delivery in Contra Costa County?",
-    a: "Yes! We offer same-day delivery to most Contra Costa County cities when you call before noon. Our central location in Pinole allows us to reach cities from Richmond to Brentwood quickly and efficiently.",
+    question: "Do you offer same-day delivery in Contra Costa County?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        Yes! We offer <strong>same-day delivery</strong> to most Contra Costa County cities when you call before noon. Our central location in Pinole allows us to reach cities from Richmond to Brentwood quickly and efficiently.
+      </p>
+    ),
   },
   {
-    q: "What sizes of dumpsters are available?",
-    a: "We offer three sizes: 10-yard (ideal for small cleanouts, concrete, soil), 20-yard (perfect for remodels and medium projects), and 30-yard (best for large renovations, construction, and estate cleanouts).",
+    question: "What sizes of dumpsters are available?",
+    answer: (
+      <>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">We offer three sizes:</p>
+        <ul className="list-disc pl-5 mb-2.5">
+          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>10-yard</strong> (12&apos;L × 8&apos;W × 2.5&apos;H) — ideal for small cleanouts, concrete, and soil</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>20-yard</strong> (16&apos;L × 8&apos;W × 4&apos;H) — perfect for remodels and medium projects</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>30-yard</strong> (16&apos;L × 8&apos;W × 6&apos;H) — large renovations and construction</li>
+        </ul>
+      </>
+    ),
   },
   {
-    q: "Do I need a permit for a dumpster in Contra Costa County?",
-    a: "If the dumpster is placed on your private property (driveway, yard), no permit is needed. For street placement, permit requirements vary by city — Concord, Walnut Creek, and Richmond each have their own rules. We'll guide you through the process for your specific city.",
+    question: "Do I need a permit for a dumpster in Contra Costa County?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        If the dumpster is placed on your <strong>private property</strong> (driveway, yard), no permit is needed. For street placement, permit requirements vary by city — Concord, Walnut Creek, and Richmond each have their own rules. We&apos;ll guide you through the process for your specific city.
+      </p>
+    ),
   },
   {
-    q: "How long can I keep the dumpster?",
-    a: "Standard rental is 7 days, included in the base price. Need more time? Extensions are available at $15/day. Just let us know and we'll keep the dumpster as long as your project needs.",
+    question: "How long can I keep the dumpster?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        Standard rental is <strong>7 days</strong> for general debris (or 3 days for heavy materials like soil/concrete), included in the base price. Need more time? Extensions are available at <strong>$49/day</strong>. Just let us know and we&apos;ll keep the dumpster as long as your project needs.
+      </p>
+    ),
   },
   {
-    q: "What can I put in the dumpster?",
-    a: "Most construction and household debris is accepted: wood, drywall, concrete, roofing, furniture, appliances, yard waste, and general junk. Hazardous materials, paint, tires, batteries, and electronics are not accepted. Ask us if you're unsure!",
+    question: "What can I put in the dumpster?",
+    answer: (
+      <>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Most construction and household debris is accepted:</p>
+        <ul className="list-disc pl-5 mb-2.5">
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Wood, drywall, concrete, roofing materials</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Furniture, appliances, yard waste, general junk</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Clean soil, clean concrete, mixed materials</li>
+        </ul>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+          <strong>Not accepted:</strong> Hazardous materials, paint, tires, batteries, and electronics.
+        </p>
+      </>
+    ),
   },
   {
-    q: "Do you offer bilingual support?",
-    a: "¡Sí! We provide full bilingual support in English and Spanish. Our team communicates clearly in both languages so every customer feels comfortable throughout the rental process.",
+    question: "Do you offer bilingual support?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        ¡Sí! We provide full <strong>bilingual support in English and Spanish</strong>. Our team communicates clearly in both languages so every customer feels comfortable throughout the rental process.
+      </p>
+    ),
   },
   {
-    q: "Can I book a dumpster online?",
-    a: "Absolutely! Book online at tpdumpsters.com/booking and receive an instant 5% discount. You can also call us at (510) 650-2083 for personalized service.",
+    question: "Can I book a dumpster online?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        Absolutely! Book online at <a href="/booking" className="text-tp-red hover:underline font-semibold">tpdumpsters.com/booking</a> and receive an instant <strong>5% discount</strong>. You can also call us at <a href="tel:+15106502083" className="text-tp-red hover:underline font-semibold">(510) 650-2083</a> for personalized service.
+      </p>
+    ),
   },
   {
-    q: "What's the difference between your dumpster sizes?",
-    a: "The 10-yard holds about 3 pickup truck loads — great for a bathroom remodel or small cleanout. The 20-yard holds about 6 truck loads — ideal for kitchen remodels or roofing. The 30-yard holds about 9 truck loads — perfect for whole-home renovations or new construction.",
+    question: "What areas outside Contra Costa County do you serve?",
+    answer: (
+      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
+        In addition to all of Contra Costa County, we also serve <strong>Alameda County</strong> (Oakland, Berkeley, Fremont, Hayward), <strong>Solano County</strong> (Vallejo, Benicia), <strong>Marin County</strong> (San Rafael, Novato), <strong>San Francisco</strong>, and <strong>San Jose</strong>. We cover the entire Bay Area!
+      </p>
+    ),
   },
 ];
 
@@ -252,26 +308,20 @@ export default function ContraCostaCountyPage() {
         </div>
       </section>
 
+      {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
 
-      {/* ═══ INTERACTIVE MAP ═══ */}
-      <section className="py-16 bg-[#0d1117]">
-        <div className="w-[90%] max-w-[1100px] mx-auto">
-          <h2 className="font-[var(--font-oswald)] text-[28px] md:text-[36px] font-bold text-white text-center uppercase mb-3 tracking-wide">
-            Our Service Area
-          </h2>
-          <p className="font-[var(--font-poppins)] text-white/70 text-center mb-10 max-w-2xl mx-auto">
-            Click any marker to learn more about dumpster rental in that city. We deliver to every corner of Contra Costa County.
-          </p>
-          <CountyMapWrapper />
-        </div>
-      </section>
+      {/* ═══ 1. DUMPSTER SIZES ═══ */}
+      <SizesSection />
 
-      {/* ═══ CITY GRID ═══ */}
+      {/* ═══ 2. CITIES WE SERVE ═══ */}
       <section className="py-16 bg-[#f8f8f8]">
         <div className="w-[90%] max-w-[1200px] mx-auto">
-          <h2 className="font-[var(--font-oswald)] text-[28px] md:text-[36px] font-bold text-[#1a1a1a] text-center uppercase mb-3 tracking-wide">
-            Cities We Serve in Contra Costa County
+          <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
+            CONTRA COSTA COUNTY
+          </h4>
+          <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-3 text-center">
+            Cities We Serve
           </h2>
           <p className="font-[var(--font-poppins)] text-[#666] text-center mb-10 max-w-2xl mx-auto">
             Select a city below to view local pricing, delivery info, and availability for your area.
@@ -298,59 +348,73 @@ export default function ContraCostaCountyPage() {
         </div>
       </section>
 
-      {/* ═══ PRICING OVERVIEW ═══ */}
-      <SizesSection />
+      {/* ═══ 3. GALLERY ═══ */}
+      <DynamicGallery />
 
-      {/* ═══ FAQs ═══ */}
-      <section className="py-16 bg-white">
-        <div className="w-[90%] max-w-[900px] mx-auto">
-          <h2 className="font-[var(--font-oswald)] text-[28px] md:text-[36px] font-bold text-[#1a1a1a] text-center uppercase mb-3 tracking-wide">
-            Contra Costa County Dumpster Rental FAQs
+      {/* ═══ 4. FAQs (using CityFaqsSection component) ═══ */}
+      <ErrorBoundary>
+        <CityFaqsSection cityName="Contra Costa County" faqs={countyFaqs} />
+      </ErrorBoundary>
+
+      {/* ═══ 5. INTERACTIVE MAP ═══ */}
+      <section className="py-16 bg-[#0d1117]">
+        <div className="w-[90%] max-w-[1100px] mx-auto">
+          <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
+            OUR SERVICE AREA
+          </h4>
+          <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-white text-center mb-3">
+            Interactive Map — Contra Costa County
           </h2>
-          <p className="font-[var(--font-poppins)] text-[#666] text-center mb-10">
-            Common questions about renting a dumpster in Contra Costa County
+          <p className="font-[var(--font-poppins)] text-white/70 text-center mb-10 max-w-2xl mx-auto">
+            Click any marker to learn more about dumpster rental in that city. We deliver to every corner of Contra Costa County.
           </p>
-          <div className="space-y-4">
-            {countyFaqs.map((faq, i) => (
-              <details key={i} className="group bg-[#f8f8f8] rounded-xl border border-gray-200 overflow-hidden">
-                <summary className="cursor-pointer flex items-center justify-between p-5 font-[var(--font-poppins)] font-semibold text-[15px] text-[#1a1a1a] hover:text-tp-red transition-colors list-none">
-                  {faq.q}
-                  <svg className="w-5 h-5 text-tp-red transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <div className="px-5 pb-5">
-                  <p className="text-sm text-[#666] leading-[1.7] font-[var(--font-poppins)]">{faq.a}</p>
-                </div>
-              </details>
-            ))}
-          </div>
+          <CountyMapWrapper />
         </div>
       </section>
 
-      {/* ═══ SEO CONTENT ═══ */}
-      <section className="py-16 bg-[#f8f8f8]">
-        <div className="w-[85%] max-w-[900px] mx-auto">
-          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
-            Your Trusted Dumpster Rental Partner in Contra Costa County
-          </h2>
-          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
-            <p>
-              Contra Costa County is one of the most dynamic and diverse counties in the San Francisco Bay Area, stretching from the waterfront communities of Richmond and El Cerrito in the west to the rapidly growing cities of Brentwood and Discovery Bay in the east. With a population of over one million residents, the county sees constant residential construction, home renovation, and commercial development — all of which generate waste that needs efficient, reliable removal.
-            </p>
-            <p>
-              TP Dumpsters is proud to serve every city and community in Contra Costa County with affordable roll-off dumpster rentals. Whether you&apos;re a homeowner in Walnut Creek remodeling a kitchen, a contractor managing a multi-unit development in Concord, or a property manager clearing out units in Antioch, we have the right size dumpster for your project. Our fleet includes 10-yard, 20-yard, and 30-yard containers — designed to handle everything from small garage cleanouts to large-scale construction debris.
-            </p>
-            <p>
-              Based in Pinole, we&apos;re centrally located to reach communities across the county quickly. Our same-day delivery service ensures your project stays on schedule, and our transparent pricing means no surprise fees. From the historic county seat of Martinez to the Lamorinda communities of Lafayette, Orinda, and Moraga, from the Tri-Valley cities of San Ramon and Danville to the Delta communities of Oakley and Bethel Island — one call to TP Dumpsters covers it all.
-            </p>
-            <p>
-              We understand that navigating dumpster permits can be confusing, especially when each city in Contra Costa County has its own regulations. That&apos;s why our bilingual team (English and Spanish) is ready to help guide you through the process, answer your questions, and ensure your rental experience is smooth from start to finish. Whether you&apos;re cleaning up after a storm, demolishing a deck, or tackling a full home renovation, TP Dumpsters delivers reliability, affordability, and outstanding customer service throughout Contra Costa County.
-            </p>
-            <p className="text-center font-semibold text-[#1a1a1a] mt-6">
-              Ready to get started? <a href="/booking" className="text-tp-red hover:underline">Book online for 5% off</a> or call{" "}
-              <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> today.
-            </p>
+      {/* ═══ 6. SEO CONTENT (styled) ═══ */}
+      <section className="py-20 bg-white">
+        <div className="w-[90%] max-w-[1000px] mx-auto">
+          <div className="bg-[#f8f8f8] rounded-2xl p-8 md:p-12 border border-gray-100">
+            <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
+              ABOUT US
+            </h4>
+            <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-8 text-center">
+              Your Trusted Dumpster Rental Partner in Contra Costa County
+            </h2>
+            <div className="space-y-5 text-[#555] text-[15px] leading-[1.85] font-[var(--font-poppins)]">
+              <p>
+                Contra Costa County is one of the most dynamic and diverse counties in the San Francisco Bay Area, stretching from the waterfront communities of Richmond and El Cerrito in the west to the rapidly growing cities of Brentwood and Discovery Bay in the east. With a population of over one million residents, the county sees constant residential construction, home renovation, and commercial development — all of which generate waste that needs efficient, reliable removal.
+              </p>
+              <p>
+                TP Dumpsters is proud to serve every city and community in Contra Costa County with affordable roll-off dumpster rentals. Whether you&apos;re a homeowner in Walnut Creek remodeling a kitchen, a contractor managing a multi-unit development in Concord, or a property manager clearing out units in Antioch, we have the right size dumpster for your project. Our fleet includes 10-yard, 20-yard, and 30-yard containers — designed to handle everything from small garage cleanouts to large-scale construction debris.
+              </p>
+              <p>
+                Based in Pinole, we&apos;re centrally located to reach communities across the county quickly. Our same-day delivery service ensures your project stays on schedule, and our transparent pricing means no surprise fees. From the historic county seat of Martinez to the Lamorinda communities of Lafayette, Orinda, and Moraga, from the Tri-Valley cities of San Ramon and Danville to the Delta communities of Oakley and Bethel Island — one call to TP Dumpsters covers it all.
+              </p>
+              <p>
+                We understand that navigating dumpster permits can be confusing, especially when each city in Contra Costa County has its own regulations. That&apos;s why our bilingual team (English and Spanish) is ready to help guide you through the process, answer your questions, and ensure your rental experience is smooth from start to finish. Whether you&apos;re cleaning up after a storm, demolishing a deck, or tackling a full home renovation, TP Dumpsters delivers reliability, affordability, and outstanding customer service throughout Contra Costa County.
+              </p>
+            </div>
+            <div className="mt-8 text-center">
+              <p className="font-[var(--font-poppins)] text-[#333] font-semibold text-lg mb-4">
+                Ready to get started?
+              </p>
+              <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <a
+                  href="/booking"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-lg font-semibold bg-tp-red text-white hover:bg-tp-red-dark transition-all duration-300 font-[var(--font-poppins)]"
+                >
+                  <FaCalendarDays /> Book Online — 5% Off
+                </a>
+                <a
+                  href="tel:+15106502083"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-lg font-semibold bg-white text-tp-red border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
+                >
+                  <FaPhone /> (510) 650-2083
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
