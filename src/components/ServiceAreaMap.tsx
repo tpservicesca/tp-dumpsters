@@ -67,6 +67,32 @@ const cities: CityInfo[] = [
     description: 'County seat. Downtown, Alhambra Valley, waterfront & North Contra Costa.', tag: '40/mo' },
   { name: 'Pittsburg', lat: 38.0280, lng: -121.8847, slug: '/pittsburg',
     description: 'East County growth. Downtown, Old Town, Bay Point & waterfront area.', tag: '40/mo' },
+  // ── Batch 5 ──
+  { name: 'Castro Valley', lat: 37.6941, lng: -122.0864, slug: '/castro-valley',
+    description: 'East Bay hills. Cull Canyon, Five Canyons, Proctor & all Castro Valley.', tag: '40/mo' },
+  { name: 'Hercules', lat: 37.9958, lng: -122.2886, slug: '/hercules',
+    description: 'West County waterfront. Refugio Valley, Victoria by the Bay & Rodeo.', tag: '40/mo' },
+  { name: 'El Cerrito', lat: 37.9161, lng: -122.3106, slug: '/el-cerrito',
+    description: 'Hillside community. Mira Vista, Sunset View, Kensington & Albany.', tag: '40/mo' },
+  { name: 'Danville', lat: 37.8216, lng: -121.9999, slug: '/danville',
+    description: 'Premium Diablo foothills. Blackhawk, Alamo, Sycamore Valley & Tassajara.', tag: '30/mo' },
+  { name: 'Benicia', lat: 38.0494, lng: -122.1586, slug: '/benicia',
+    description: 'Historic waterfront city. Downtown, Southampton & Carquinez Strait.', tag: '40/mo' },
+  // ── Batch 6 ──
+  { name: 'Oakley', lat: 37.9974, lng: -121.7125, slug: '/oakley',
+    description: 'East County growth. Cypress Grove, Emerson Ranch & Delta waterfront.', tag: '40/mo' },
+  { name: 'San Pablo', lat: 37.9622, lng: -122.3456, slug: '/san-pablo',
+    description: 'Central West County. Rollingwood, El Portal & West Contra Costa.', tag: '30/mo' },
+  { name: 'Orinda', lat: 37.8771, lng: -122.1797, slug: '/orinda',
+    description: 'Exclusive Lamorinda. Sleepy Hollow, Country Club & hillside estates.', tag: '30/mo' },
+  { name: 'Moraga', lat: 37.8349, lng: -122.1297, slug: '/moraga',
+    description: 'Quiet Lamorinda town. Campolindo, Sanders Ranch & Rheem Valley.', tag: '20/mo' },
+  { name: 'Bay Point', lat: 38.0288, lng: -121.9614, slug: '/bay-point',
+    description: 'Affordable East County. Shore Acres, Bella Vista & Port Chicago.', tag: '20/mo' },
+  { name: 'American Canyon', lat: 38.1749, lng: -122.2583, slug: '/american-canyon',
+    description: 'Gateway to Napa. Napa Junction, Canyon Estates & Watson Ranch.', tag: '20/mo' },
+  { name: 'El Sobrante', lat: 37.9772, lng: -122.2953, slug: '/el-sobrante',
+    description: 'Hidden West County gem. Appian Way, Sobrante Ridge & Carriage Hills.', tag: '20/mo' },
 ];
 
 const activeCities = cities.filter((c) => c.slug !== '#');
