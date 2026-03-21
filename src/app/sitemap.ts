@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 // All city pages - add new cities here and they auto-appear in sitemap
-const cities = ["oakland", "pinole", "richmond", "concord", "berkeley", "hayward", "fremont", "walnut-creek"];
+const cities = ["oakland", "pinole", "richmond", "concord", "berkeley", "hayward", "fremont", "walnut-creek", "alameda", "antioch", "san-leandro", "vallejo", "livermore", "lafayette", "pleasanton", "san-ramon", "dublin", "brentwood"];
 const otherPages = ["booking", "contractors"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
