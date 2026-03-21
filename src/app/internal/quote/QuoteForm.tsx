@@ -83,6 +83,15 @@ export default function QuoteForm() {
 
   const [showPreview, setShowPreview] = useState(false);
 
+  // Customer search autocomplete
+  const [searchResults, setSearchResults] = useState<Array<{
+    id: string; name: string; phone: string; email: string;
+    address: string; city: string; zipCode: string;
+    lastService: string; lastSize: string;
+  }>>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchTimeout, setSearchTimeout] = useState<NodeJS.Timeout | null>(null);
+
   const WINDOWS = [
     { id: "morning", label: "🌅 Morning", time: "7:00 AM - 11:00 AM" },
     { id: "midday", label: "☀️ Midday", time: "11:00 AM - 3:00 PM" },
@@ -207,6 +216,24 @@ export default function QuoteForm() {
       });
     }
   }, []);
+
+  const searchCustomers = async (query: string) => {
+    if (query.length < 2) {
+      setSearchResults([]);
+      setShowSuggestions(false);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/customers/search?q=${encodeURIComponent(query)}`, {
+        headers: { "x-dashboard-auth": "Cantaritos1." },
+      });
+      const data = await res.json();
+      setSearchResults(data.customers || []);
+      setShowSuggestions(data.customers?.length > 0);
+    } catch {
+      setSearchResults([]);
+    }
+  };
 
   // Re-init billing autocomplete when shown
   useEffect(() => {
@@ -569,13 +596,69 @@ export default function QuoteForm() {
           {/* Customer info */}
           <h3 className="font-[var(--font-poppins)] font-semibold text-sm text-[#333] mb-3">👤 Customer</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-            <input
-              type="text"
-              placeholder="Customer name *"
-              value={customerName}
-              onChange={(e) => setCustomerName(e.target.value)}
-              className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
-            />
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Customer name *"
+                value={customerName}
+                onChange={(e) => {
+                  setCustomerName(e.target.value);
+                  if (searchTimeout) clearTimeout(searchTimeout);
+                  const t = setTimeout(() => searchCustomers(e.target.value), 300);
+                  setSearchTimeout(t);
+                }}
+                onFocus={() => { if (searchResults.length > 0) setShowSuggestions(true); }}
+                onBlur={() => { setTimeout(() => setShowSuggestions(false), 200); }}
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+              />
+              {showSuggestions && searchResults.length > 0 && (
+                <div className="absolute top-full left-0 right-0 mt-1 bg-white border-2 border-tp-red rounded-xl shadow-2xl z-50 max-h-[300px] overflow-y-auto">
+                  {searchResults.map((customer, i) => (
+                    <button
+                      key={`${customer.id}-${i}`}
+                      type="button"
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => {
+                        setCustomerName(customer.name);
+                        if (customer.phone) {
+                          const digits = customer.phone.replace(/\D/g, "");
+                          if (digits.startsWith("52")) {
+                            setPhoneCode("+52");
+                            setCustomerPhone(digits.slice(2));
+                          } else if (digits.startsWith("1")) {
+                            setPhoneCode("+1");
+                            setCustomerPhone(digits.slice(1));
+                          } else {
+                            setCustomerPhone(digits.slice(-10));
+                          }
+                        }
+                        if (customer.email) setCustomerEmail(customer.email);
+                        if (customer.address) setDeliveryAddress(customer.address);
+                        setShowSuggestions(false);
+                        setSearchResults([]);
+                      }}
+                      className="w-full text-left px-4 py-3 hover:bg-red-50 transition-colors border-b border-gray-100 last:border-b-0"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 bg-tp-red/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-tp-red text-sm font-bold">{customer.name.charAt(0).toUpperCase()}</span>
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-[var(--font-poppins)] font-semibold text-sm text-[#333] truncate">{customer.name}</p>
+                          <div className="flex items-center gap-2 text-[10px] text-[#999] font-[var(--font-poppins)]">
+                            {customer.phone && <span>📱 {customer.phone}</span>}
+                            {customer.lastService && <span>• 🗑️ {customer.lastService}</span>}
+                          </div>
+                          {customer.address && (
+                            <p className="text-[10px] text-[#bbb] font-[var(--font-poppins)] truncate">📍 {customer.address}</p>
+                          )}
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <div className="flex gap-1">
               <select
                 value={phoneCode}
