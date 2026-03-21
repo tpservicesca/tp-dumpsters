@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const AUTH_CODE = "Cantaritos1.";
 const GOOGLE_MAPS_KEY = "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
@@ -82,8 +82,32 @@ export default function DashboardApp() {
     }
   };
 
+  // Get current GPS position
+  const getCurrentLocation = (): Promise<{ lat: number; lng: number } | null> => {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) {
+        resolve(null);
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+        () => resolve(null),
+        { enableHighAccuracy: true, timeout: 10000 }
+      );
+    });
+  };
+
   const updateDumpster = async (id: string, updates: Record<string, unknown>) => {
     try {
+      // Auto-capture GPS when marking as deployed or en-route
+      if (updates.status === "deployed" || updates.status === "en-route") {
+        const loc = await getCurrentLocation();
+        if (loc) {
+          updates.lat = loc.lat;
+          updates.lng = loc.lng;
+        }
+      }
+
       await fetch("/api/dashboard", {
         method: "POST",
         headers: { "Content-Type": "application/json", "x-dashboard-auth": AUTH_CODE },
@@ -312,6 +336,7 @@ function DumpsterCard({ dumpster: d, onStatusChange, onEdit, onDelete }: {
           {d.serviceType && <p className="text-gray-400">🗑️ {d.serviceType}</p>}
           {d.deliveryDate && <p className="text-gray-400">📦 Delivery: {d.deliveryDate}</p>}
           {d.pickupDate && <p className="text-gray-400">🔄 Pickup: {d.pickupDate}</p>}
+          {d.lat && d.lng && <p className="text-green-400 text-xs">📡 GPS: {d.lat.toFixed(4)}, {d.lng.toFixed(4)}</p>}
           {d.notes && <p className="text-gray-500 italic">💬 {d.notes}</p>}
         </div>
       )}
@@ -464,25 +489,96 @@ function Field({ label, value, onChange, type = "text", placeholder }: {
 
 // ── Map View ─────────────────────────────────────────────────────────────
 function MapView({ dumpsters, apiKey }: { dumpsters: Dumpster[]; apiKey: string }) {
-  const deployed = dumpsters.filter((d) => d.lat && d.lng);
+  const withLocation = dumpsters.filter((d) => d.lat && d.lng);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [mapReady, setMapReady] = useState(false);
+
+  useEffect(() => {
+    if (withLocation.length === 0) return;
+
+    const initMap = () => {
+      if (!mapRef.current || !(window as unknown as Record<string, unknown>).google) return;
+      const g = (window as unknown as Record<string, unknown>).google as Record<string, unknown>;
+      const maps = g.maps as Record<string, unknown>;
+      const MapClass = maps.Map as new (el: HTMLElement, opts: Record<string, unknown>) => unknown;
+      const MarkerClass = maps.Marker as new (opts: Record<string, unknown>) => unknown;
+      const InfoClass = maps.InfoWindow as new (opts: Record<string, unknown>) => { open: (map: unknown, marker: unknown) => void };
+
+      const map = new MapClass(mapRef.current!, {
+        center: { lat: withLocation[0].lat!, lng: withLocation[0].lng! },
+        zoom: 11,
+        styles: [
+          { featureType: "poi", stylers: [{ visibility: "off" }] },
+          { featureType: "transit", stylers: [{ visibility: "off" }] },
+        ],
+        mapTypeControl: false,
+        streetViewControl: false,
+      });
+
+      withLocation.forEach((d) => {
+        const cfg = STATUS_CONFIG[d.status] || STATUS_CONFIG.yard;
+        const marker = new MarkerClass({
+          position: { lat: d.lat!, lng: d.lng! },
+          map,
+          title: `${d.id} - ${d.size}yd`,
+          icon: {
+            path: (maps as Record<string, unknown>).SymbolPath ? ((maps as Record<string, Record<string, unknown>>).SymbolPath.CIRCLE as unknown) : 0,
+            scale: 14,
+            fillColor: cfg.color,
+            fillOpacity: 1,
+            strokeColor: "#fff",
+            strokeWeight: 3,
+          },
+          label: { text: d.size, color: "#fff", fontSize: "11px", fontWeight: "bold" },
+        });
+
+        const info = new InfoClass({
+          content: `<div style="padding:8px;font-family:sans-serif;">
+            <strong>${d.id}</strong> (${d.size}yd)<br/>
+            <span style="color:${cfg.color};font-weight:bold;">${cfg.icon} ${cfg.label}</span><br/>
+            ${d.customer ? `👤 ${d.customer}<br/>` : ""}
+            ${d.address ? `📍 ${d.address}${d.city ? `, ${d.city}` : ""}<br/>` : ""}
+            ${d.serviceType ? `🗑️ ${d.serviceType}<br/>` : ""}
+          </div>`,
+        });
+
+        (marker as unknown as Record<string, (event: string, fn: () => void) => void>).addListener("click", () => {
+          info.open(map, marker);
+        });
+      });
+
+      setMapReady(true);
+    };
+
+    if ((window as unknown as Record<string, unknown>).google) {
+      initMap();
+    } else {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+      script.async = true;
+      script.onload = initMap;
+      document.head.appendChild(script);
+    }
+  }, [withLocation, apiKey]);
+
+  if (withLocation.length === 0) {
+    return (
+      <div className="rounded-xl border border-gray-800 bg-gray-900 flex items-center justify-center" style={{ height: "60vh" }}>
+        <div className="text-center">
+          <div className="text-5xl mb-4">📍</div>
+          <h3 className="text-lg font-bold text-gray-300 mb-2">GPS se activa automáticamente</h3>
+          <p className="text-gray-500 max-w-sm">Cuando marques un dumpster como <strong className="text-blue-400">&quot;En Route&quot;</strong> o <strong className="text-orange-400">&quot;Deployed&quot;</strong> desde el teléfono, se captura la ubicación GPS automáticamente</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="rounded-xl overflow-hidden border border-gray-800" style={{ height: "60vh" }}>
-      {deployed.length > 0 ? (
-        <iframe
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          loading="lazy"
-          src={`https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=37.85,-122.05&zoom=10`}
-        />
-      ) : (
-        <div className="h-full flex items-center justify-center bg-gray-900">
-          <div className="text-center">
-            <div className="text-4xl mb-3">🗺️</div>
-            <p className="text-gray-400">No dumpsters with GPS location yet</p>
-            <p className="text-gray-500 text-sm mt-1">Edit a dumpster and add coordinates to see it on the map</p>
-          </div>
+    <div className="rounded-xl overflow-hidden border border-gray-800 relative" style={{ height: "60vh" }}>
+      <div ref={mapRef} className="w-full h-full" />
+      {!mapReady && (
+        <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
+          <p className="text-gray-400">Loading map...</p>
         </div>
       )}
     </div>
