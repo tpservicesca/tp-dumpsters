@@ -46,6 +46,7 @@ export default function DashboardApp() {
   const [loading, setLoading] = useState(false);
   const [view, setView] = useState<"list" | "map">("list");
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showManualBooking, setShowManualBooking] = useState(false);
   const [editDumpster, setEditDumpster] = useState<Dumpster | null>(null);
   const [filter, setFilter] = useState<string>("all");
 
@@ -224,6 +225,12 @@ export default function DashboardApp() {
             📅 Sync
           </button>
           <button
+            onClick={() => setShowManualBooking(true)}
+            className="bg-green-600 hover:bg-green-700 px-3 py-2 rounded-lg text-sm font-bold transition"
+          >
+            📅 New Booking
+          </button>
+          <button
             onClick={() => setShowAddModal(true)}
             className="bg-red-600 hover:bg-red-700 px-3 py-2 rounded-lg text-sm font-bold transition"
           >
@@ -291,6 +298,31 @@ export default function DashboardApp() {
           onClose={() => setEditDumpster(null)}
         />
       )}
+
+      {/* Manual Booking Modal */}
+      {showManualBooking && (
+        <ManualBookingModal
+          onClose={() => setShowManualBooking(false)}
+          onSuccess={() => {
+            setShowManualBooking(false);
+            fetchData();
+          }}
+        />
+      )}
+
+      {/* Chat with AI Assistant */}
+      <a
+        href="https://t.me/Tp_Services_bot"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 z-50"
+        title="Chat with TP Assistant"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/>
+          <path d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
+        </svg>
+      </a>
     </div>
   );
 }
@@ -505,6 +537,191 @@ function Field({ label, value, onChange, type = "text", placeholder }: {
         placeholder={placeholder || label}
         className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
       />
+    </div>
+  );
+}
+
+// ── Manual Booking Modal ─────────────────────────────────────────────────
+const SERVICE_TYPES = [
+  "General Debris",
+  "Household Clean Out",
+  "Construction Debris",
+  "Roofing",
+  "Green Waste",
+  "Clean Soil",
+  "Clean Concrete",
+  "Mixed Materials",
+];
+
+const HEAVY_MATERIALS = ["Construction Debris", "Roofing", "Clean Soil", "Clean Concrete", "Mixed Materials"];
+
+function ManualBookingModal({ onClose, onSuccess }: { onClose: () => void; onSuccess: () => void }) {
+  const [customerName, setCustomerName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [serviceType, setServiceType] = useState("");
+  const [dumpsterSize, setDumpsterSize] = useState("20yd");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [zipCode, setZipCode] = useState("");
+  const [deliveryDate, setDeliveryDate] = useState("");
+  const [deliveryWindow, setDeliveryWindow] = useState("morning");
+  const [pickupDate, setPickupDate] = useState("");
+  const [totalPrice, setTotalPrice] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("Zelle");
+  const [notes, setNotes] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  // Auto-calculate pickup date when delivery date or service type changes
+  useEffect(() => {
+    if (deliveryDate) {
+      const d = new Date(deliveryDate + "T00:00:00");
+      const days = HEAVY_MATERIALS.includes(serviceType) ? 3 : 7;
+      d.setDate(d.getDate() + days);
+      setPickupDate(d.toISOString().split("T")[0]);
+    }
+  }, [deliveryDate, serviceType]);
+
+  const handleSubmit = async () => {
+    setError("");
+    if (!customerName || !phone || !serviceType || !dumpsterSize || !address || !city || !zipCode || !deliveryDate || !pickupDate || !totalPrice) {
+      setError("Please fill in all required fields");
+      return;
+    }
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/manual-booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-dashboard-auth": AUTH_CODE },
+        body: JSON.stringify({
+          customerName, phone, email, serviceType, dumpsterSize, address, city, zipCode,
+          deliveryDate, deliveryWindow, pickupDate, totalPrice: parseFloat(totalPrice),
+          paymentMethod, notes,
+        }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        alert(`✅ Booking created: ${data.bookingId}\n${data.calendarErrors?.length ? "⚠️ Calendar warnings: " + data.calendarErrors.join(", ") : "📅 Calendar events created"}`);
+        onSuccess();
+      } else {
+        setError(data.error || "Failed to create booking");
+      }
+    } catch (err) {
+      setError(String(err));
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4 overflow-y-auto" onClick={onClose}>
+      <div className="bg-gray-900 rounded-2xl p-6 w-full max-w-lg border border-gray-700 my-8 max-h-[90vh] overflow-y-auto" onClick={(e) => e.stopPropagation()}>
+        <h2 className="text-xl font-bold mb-4">📅 New Manual Booking</h2>
+        <p className="text-gray-400 text-sm mb-4">For Zelle, cash, or phone payments</p>
+
+        {error && <p className="text-red-400 text-sm mb-3 bg-red-900/30 px-3 py-2 rounded-lg">{error}</p>}
+
+        <div className="space-y-3">
+          <Field label="Customer Name *" value={customerName} onChange={setCustomerName} />
+          <Field label="Phone *" value={phone} onChange={setPhone} type="tel" />
+          <Field label="Email" value={email} onChange={setEmail} type="email" placeholder="Optional" />
+
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">Service Type *</label>
+            <select
+              value={serviceType}
+              onChange={(e) => setServiceType(e.target.value)}
+              className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
+            >
+              <option value="">Select service type...</option>
+              {SERVICE_TYPES.map((t) => (
+                <option key={t} value={t}>{t}</option>
+              ))}
+            </select>
+          </div>
+
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">Dumpster Size *</label>
+            <div className="flex gap-2">
+              {["10yd", "20yd", "30yd"].map((s) => (
+                <button
+                  key={s}
+                  onClick={() => setDumpsterSize(s)}
+                  className={`flex-1 py-2 rounded-lg font-bold text-sm transition ${
+                    dumpsterSize === s ? "bg-red-600 text-white" : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                  }`}
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Field label="Address *" value={address} onChange={setAddress} />
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="City *" value={city} onChange={setCity} />
+            <Field label="ZIP Code *" value={zipCode} onChange={setZipCode} />
+          </div>
+
+          <Field label="Delivery Date *" value={deliveryDate} onChange={setDeliveryDate} type="date" />
+
+          <div>
+            <label className="block text-xs text-gray-400 mb-1">Delivery Window *</label>
+            <div className="flex gap-2">
+              {[
+                { key: "morning", label: "Morning", sub: "7-11 AM" },
+                { key: "midday", label: "Midday", sub: "11AM-3PM" },
+                { key: "afternoon", label: "Afternoon", sub: "3-7 PM" },
+              ].map((w) => (
+                <button
+                  key={w.key}
+                  onClick={() => setDeliveryWindow(w.key)}
+                  className={`flex-1 py-2 rounded-lg text-sm transition ${
+                    deliveryWindow === w.key ? "bg-red-600 text-white" : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                  }`}
+                >
+                  <div className="font-bold">{w.label}</div>
+                  <div className="text-xs opacity-70">{w.sub}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <Field label="Pickup Date *" value={pickupDate} onChange={setPickupDate} type="date" />
+
+          <div className="grid grid-cols-2 gap-3">
+            <Field label="Total Price ($) *" value={totalPrice} onChange={setTotalPrice} type="number" placeholder="0.00" />
+            <div>
+              <label className="block text-xs text-gray-400 mb-1">Payment Method</label>
+              <select
+                value={paymentMethod}
+                onChange={(e) => setPaymentMethod(e.target.value)}
+                className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-red-500"
+              >
+                {["Zelle", "Cash", "Check", "Other"].map((m) => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <Field label="Notes" value={notes} onChange={setNotes} placeholder="Optional notes" />
+        </div>
+
+        <div className="flex gap-3 mt-6">
+          <button onClick={onClose} className="flex-1 bg-gray-800 hover:bg-gray-700 py-3 rounded-lg font-bold transition">
+            Cancel
+          </button>
+          <button
+            onClick={handleSubmit}
+            disabled={submitting}
+            className="flex-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-700 py-3 rounded-lg font-bold transition"
+          >
+            {submitting ? "Creating..." : "📅 Create Booking"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
