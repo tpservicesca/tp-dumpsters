@@ -120,24 +120,21 @@ export async function POST(request: NextRequest) {
 
     // Build detailed rental terms note
     const termsNote = [
-      `General Rental Terms:`,
+      `RENTAL DETAILS`,
+      `${size} Dumpster — ${serviceType}`,
+      `Included: ${days}-day rental | Weight limit: ${weight}`,
       ``,
-      `${size} dumpster for ${serviceType.toLowerCase()}`,
-      `Rental includes ${days} days — extra days: $49/day`,
-      `Weight limit: ${weight}`,
-      `Overweight fee: $125 per extra ton (prorated)`,
+      `ADDITIONAL FEES`,
+      `Extra days: $49/day | Overweight: $125/ton`,
+      `Mattresses: $60 ea | Appliances: $40 ea | Tires: $20 ea`,
       ``,
-      `Special disposal items (extra charge):`,
-      `• Mattresses: $60 each`,
-      `• Appliances (fridge, washer, etc.): $40 each`,
-      `• Tires: $20 each (no rims)`,
+      `RULES`,
+      `Keep debris below fill line. No hazardous materials.`,
+      `24h cancellation notice required ($150 fee).`,
       ``,
-      `Do not exceed the marked fill line`,
-      `No hazardous or prohibited materials`,
-      `24h notice required — $150 cancellation fee`,
-      ``,
-      `Card payment: use the "pay online" link above`,
-      `Zelle: TP PAVERS SERVICE INC - 510 253 62 30`,
+      `PAYMENT OPTIONS`,
+      `Card: Pay using the link above`,
+      `Zelle: TP PAVERS SERVICE INC — (510) 253-6230`,
     ].join("\n");
 
     // Create invoice with detailed terms
