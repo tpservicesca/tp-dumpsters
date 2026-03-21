@@ -56,6 +56,17 @@ const cities: CityInfo[] = [
     description: 'Fastest-growing Tri-Valley city. Dublin Ranch, Fallon, Emerald Glen & more.', tag: '50/mo' },
   { name: 'Brentwood', lat: 37.9317, lng: -121.6961, slug: '/brentwood',
     description: 'East County boom town. Deer Ridge, Summerset, Shadow Lakes & Oakley.', tag: '50/mo' },
+  // ── Batch 4 ──
+  { name: 'Union City', lat: 37.5934, lng: -122.0439, slug: '/union-city',
+    description: 'Serving Union City, Alvarado, Decoto & the southern East Bay corridor.', tag: '50/mo' },
+  { name: 'Newark', lat: 37.5316, lng: -122.0402, slug: '/newark',
+    description: 'Old Town, NewPark, Lakeshore & all Newark neighborhoods near Fremont.', tag: '50/mo' },
+  { name: 'Pleasant Hill', lat: 37.9481, lng: -122.0608, slug: '/pleasant-hill',
+    description: 'Central Contra Costa. Gregory Gardens, Poets Corner & Contra Costa Centre.', tag: '40/mo' },
+  { name: 'Martinez', lat: 38.0194, lng: -122.1341, slug: '/martinez',
+    description: 'County seat. Downtown, Alhambra Valley, waterfront & North Contra Costa.', tag: '40/mo' },
+  { name: 'Pittsburg', lat: 38.0280, lng: -121.8847, slug: '/pittsburg',
+    description: 'East County growth. Downtown, Old Town, Bay Point & waterfront area.', tag: '40/mo' },
 ];
 
 const activeCities = cities.filter((c) => c.slug !== '#');
