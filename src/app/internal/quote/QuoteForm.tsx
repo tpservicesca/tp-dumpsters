@@ -395,10 +395,38 @@ export default function QuoteForm() {
               <p className="text-white/40 text-xs mt-1">Invoice {result.number}</p>
             </div>
 
-            {/* Payment link */}
+            {/* PDF Invoice - PRIMARY (send to customer) */}
             <div className="mb-4">
               <label className="block text-xs font-semibold text-[#555] mb-1 text-left font-[var(--font-poppins)]">
-                🔗 Payment Link (send to customer)
+                📄 PDF Invoice — Send this to the customer
+              </label>
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  readOnly
+                  value={result.pdf}
+                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-xs font-[var(--font-poppins)] bg-gray-50"
+                />
+                <button
+                  onClick={() => copyToClipboard(result.pdf)}
+                  className="px-4 py-2 bg-tp-red text-white rounded-lg text-xs font-semibold hover:bg-tp-red-dark transition-colors"
+                >
+                  Copy
+                </button>
+                <a
+                  href={result.pdf}
+                  target="_blank"
+                  className="px-4 py-2 bg-[#1a1a1a] text-white rounded-lg text-xs font-semibold hover:bg-[#333] transition-colors"
+                >
+                  Open
+                </a>
+              </div>
+            </div>
+
+            {/* Online Payment link - secondary */}
+            <div className="mb-6">
+              <label className="block text-xs font-semibold text-[#555] mb-1 text-left font-[var(--font-poppins)]">
+                🔗 Online Payment Page (alternate)
               </label>
               <div className="flex gap-2">
                 <input
@@ -409,32 +437,10 @@ export default function QuoteForm() {
                 />
                 <button
                   onClick={() => copyToClipboard(result.url)}
-                  className="px-4 py-2 bg-tp-red text-white rounded-lg text-xs font-semibold hover:bg-tp-red-dark transition-colors"
+                  className="px-4 py-2 bg-gray-200 text-[#333] rounded-lg text-xs font-semibold hover:bg-gray-300 transition-colors"
                 >
                   Copy
                 </button>
-              </div>
-            </div>
-
-            {/* PDF link */}
-            <div className="mb-6">
-              <label className="block text-xs font-semibold text-[#555] mb-1 text-left font-[var(--font-poppins)]">
-                📄 PDF Invoice
-              </label>
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  readOnly
-                  value={result.pdf}
-                  className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-xs font-[var(--font-poppins)] bg-gray-50"
-                />
-                <a
-                  href={result.pdf}
-                  target="_blank"
-                  className="px-4 py-2 bg-[#1a1a1a] text-white rounded-lg text-xs font-semibold hover:bg-[#333] transition-colors"
-                >
-                  Open
-                </a>
               </div>
             </div>
 

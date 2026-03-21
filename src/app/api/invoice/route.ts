@@ -175,17 +175,16 @@ export async function POST(request: NextRequest) {
 
         const totalAmount = ((finalized.amount_due || 0) / 100).toFixed(2);
         const smsBody = [
-          `Hi ${customerName}! 👋`,
+          `Hi ${customerName}!`,
           ``,
-          `Your invoice from TP Dumpsters is ready:`,
-          `🗑️ ${qty > 1 ? `${qty}x ` : ""}${size} ${serviceType}`,
-          `💰 Total: $${totalAmount}`,
+          `Your invoice from TP Dumpsters:`,
+          `${qty > 1 ? `${qty}x ` : ""}${size} ${serviceType} — $${totalAmount}`,
           ``,
-          `Pay online here:`,
-          `${finalized.hosted_invoice_url}`,
+          `View & pay your invoice:`,
+          `${finalized.invoice_pdf}`,
           ``,
-          `📞 This is an automated message. For questions or customer support, call us at (510) 650-2083.`,
-          `Thank you for choosing TP Dumpsters!`,
+          `Questions? (510) 650-2083`,
+          `— TP Dumpsters`,
         ].join("\n");
 
         const params = new URLSearchParams();
