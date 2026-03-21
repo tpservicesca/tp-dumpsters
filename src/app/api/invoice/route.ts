@@ -144,8 +144,48 @@ export async function POST(request: NextRequest) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const invoice = await stripe.invoices.create(invoiceParams as any);
 
-    // Finalize to get payment URL
+    // Finalize to get PDF
     const finalized = await stripe.invoices.finalizeInvoice(invoice.id);
+
+    // Create a clean Checkout Session for payment (separate from invoice)
+    let checkoutUrl = "";
+    try {
+      const checkoutSession = await stripe.checkout.sessions.create({
+        payment_method_types: ["card"],
+        mode: "payment",
+        customer: customer.id,
+        payment_intent_data: {
+          setup_future_usage: "off_session",
+          statement_descriptor: "TP DUMPSTERS",
+        },
+        line_items: [
+          {
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: `Dumpster Rental - ${serviceType} ${size}`,
+                description: termsNote,
+                images: ["https://tpdumpsters.com/images/hero/red-dumpster-construction.png"],
+              },
+              unit_amount: unitPrice * 100,
+            },
+            quantity: qty,
+          },
+        ],
+        metadata: {
+          invoice_id: finalized.id,
+          customer_name: customerName,
+          service_type: serviceType,
+          dumpster_size: size,
+          source: "quote_generator",
+        },
+        success_url: "https://tpdumpsters.com/booking/success?source=invoice",
+        cancel_url: "https://tpdumpsters.com",
+      });
+      checkoutUrl = checkoutSession.url || "";
+    } catch (checkoutErr) {
+      console.error("Checkout session error:", checkoutErr);
+    }
 
     // Auto-send to customer if they have a real email
     let sentEmail = false;
@@ -174,14 +214,15 @@ export async function POST(request: NextRequest) {
         if (!toNumber.startsWith("+")) toNumber = "+" + toNumber;
 
         const totalAmount = ((finalized.amount_due || 0) / 100).toFixed(2);
+        const payLink = checkoutUrl || finalized.hosted_invoice_url;
         const smsBody = [
           `Hi ${customerName}!`,
           ``,
           `Your invoice from TP Dumpsters:`,
           `${qty > 1 ? `${qty}x ` : ""}${size} ${serviceType} — $${totalAmount}`,
           ``,
-          `View & pay your invoice:`,
-          `${finalized.invoice_pdf}`,
+          `Pay securely online:`,
+          `${payLink}`,
           ``,
           `Questions? (510) 650-2083`,
           `— TP Dumpsters`,
@@ -220,6 +261,7 @@ export async function POST(request: NextRequest) {
       amount: (finalized.amount_due || 0) / 100,
       url: finalized.hosted_invoice_url,
       pdf: finalized.invoice_pdf,
+      checkoutUrl,
       customerName,
       customerEmail: customerEmail || null,
       customerPhone: customerPhone || null,
