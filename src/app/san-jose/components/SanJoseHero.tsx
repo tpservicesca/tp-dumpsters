@@ -1,6 +1,6 @@
 import { FaCalendarDays, FaPhone } from "react-icons/fa6";
 
-export default function BerkeleyHero() {
+export default function SanJoseHero() {
   return (
     <section id="home" className="hero-bg relative min-h-screen flex flex-col justify-center items-center pt-[15vh] pb-[6vh] text-center">
       {/* Overlay */}
@@ -10,17 +10,17 @@ export default function BerkeleyHero() {
       <div className="relative z-[2] px-5 pb-10">
         <div className="mb-6">
           <h3 className="inline-block bg-tp-gold-dark text-white px-6 py-2 text-[13px] md:text-base font-bold rounded-[3px] font-[var(--font-poppins)]">
-            Dumpster Rentals in Berkeley, California
+            Dumpster Rentals in San Jose, California
           </h3>
         </div>
         <h1 className="font-[var(--font-oswald)] text-[28px] sm:text-[3rem] lg:text-[5rem] font-extrabold text-white uppercase leading-[1.1] mb-4 tracking-wide">
-          BERKELEY DUMPSTER RENTAL
+          SAN JOSE DUMPSTER RENTAL
         </h1>
         <h2 className="font-[var(--font-poppins)] text-base sm:text-[1.6rem] lg:text-[2rem] font-semibold text-white italic mb-2">
-          Serving all Berkeley neighborhoods
+          Serving all San Jose neighborhoods
         </h2>
         <p className="font-[var(--font-poppins)] text-sm sm:text-lg text-white/90 mb-8 max-w-3xl mx-auto">
-          Downtown Berkeley • North Berkeley • South Berkeley • West Berkeley • Elmwood • Claremont • Berkeley Hills • UC Berkeley Area
+          Downtown San Jose • Willow Glen • Almaden Valley • Rose Garden • Japantown • Berryessa • Evergreen • Cambrian Park
         </p>
         <div className="flex flex-col items-center sm:flex-row sm:justify-center gap-4 flex-wrap">
           <a
@@ -47,7 +47,7 @@ export default function BerkeleyHero() {
           </div>
           <div>
             <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">Same-Day Service</h4>
-            <p className="text-white/85 text-[13px] leading-relaxed">Fast delivery across all Berkeley ZIP codes</p>
+            <p className="text-white/85 text-[13px] leading-relaxed">Fast delivery across all San Jose ZIP codes</p>
           </div>
         </div>
         {/* Feature 2 */}
@@ -66,8 +66,8 @@ export default function BerkeleyHero() {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"><circle cx="24" cy="24" r="24" fill="#fbeaea"/><path d="M24 10 L28 18 L37 19 L30.5 25 L32 34 L24 29.5 L16 34 L17.5 25 L11 19 L20 18 Z" fill="#E02B20"/></svg>
           </div>
           <div>
-            <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">Berkeley Experts</h4>
-            <p className="text-white/85 text-[13px] leading-relaxed">We know Berkeley&apos;s neighborhoods &amp; regulations</p>
+            <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">San Jose Experts</h4>
+            <p className="text-white/85 text-[13px] leading-relaxed">We know San Jose&apos;s neighborhoods &amp; regulations</p>
           </div>
         </div>
       </div>

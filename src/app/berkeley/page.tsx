@@ -19,19 +19,10 @@ const berkeleyFaqs = [
     question: "Do I need a permit to place a dumpster on the street in Berkeley?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes — if you&apos;re placing a dumpster on a public street or sidewalk in Berkeley, you&apos;ll need a
-        temporary obstruction permit from the City of Berkeley Public Works. Placing it on your own private
-        driveway or property typically requires no permit. We can help walk you through the process.
-      </p>
-    ),
-  },
-  {
-    question: "Can you fit a dumpster on Berkeley's narrow streets?",
-    answer: (
-      <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Absolutely. We deliver to <strong>tight Berkeley streets daily</strong> — including the hills of
-        North Berkeley, narrow lanes in Elmwood, and compact driveways near campus. Our drivers are skilled
-        at precise placement, and our 10-yard dumpster is ideal for homes with limited space.
+        Yes. Berkeley has specific green regulations and permit requirements for placing dumpsters
+        on public streets. You&apos;ll need a temporary encroachment permit from the City of Berkeley.
+        If it&apos;s on your private driveway or property, no permit is usually needed. We can help
+        guide you through Berkeley&apos;s permitting process.
       </p>
     ),
   },
@@ -39,40 +30,53 @@ const berkeleyFaqs = [
     question: "How fast can I get a dumpster delivered in Berkeley?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        We offer <strong>same-day delivery</strong> throughout Berkeley when you call before noon. Downtown
-        Berkeley, Rockridge, Claremont, and the Elmwood district are all within our fastest delivery zones.
-        Call early for guaranteed same-day service.
+        In most Berkeley neighborhoods, we offer <strong>same-day delivery</strong> if you call before noon.
+        Areas like Downtown Berkeley, North Berkeley, and the UC Berkeley area are within our fastest delivery zone.
       </p>
     ),
   },
   {
-    question: "What size dumpster do I need for a Berkeley home remodel?",
+    question: "What size dumpster do I need for a home project in Berkeley?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        For a typical kitchen or bathroom remodel in Berkeley, a <strong>20-yard dumpster</strong> is the most
-        popular choice. For smaller projects like a garage cleanout or concrete work, the 10-yard is perfect.
-        Full home renovations or estate cleanouts usually call for the 30-yard.
+        For a typical kitchen or bathroom remodel in Berkeley, a <strong>20-yard dumpster</strong> is usually
+        the best fit. For whole-home renovations or historic home preservation projects, go with the 30-yard.
+        For small cleanouts, yard debris, or concrete/soil removal, the 10-yard works great.
       </p>
     ),
   },
   {
-    question: "Do you recycle construction waste from Berkeley projects?",
+    question: "Can you deliver to Berkeley Hills and narrow streets?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes! We share Berkeley&apos;s commitment to sustainability. We sort and divert recyclable materials —
-        including wood, metal, concrete, and cardboard — away from the landfill whenever possible. Ask us about
-        our recycling-focused disposal for your project.
+        Yes! We&apos;re experienced with Berkeley&apos;s challenging terrain — from narrow winding roads
+        in the Berkeley Hills to tight residential streets near UC Berkeley. Our drivers know how to
+        navigate steep grades and limited access areas. Just let us know your address and we&apos;ll
+        confirm access.
       </p>
     ),
   },
   {
-    question: "How much does a dumpster rental cost in Berkeley?",
+    question: "What are the most common dumpster rental uses in Berkeley?",
+    answer: (
+      <>
+        <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Berkeley customers commonly rent dumpsters for:</p>
+        <ul className="list-disc pl-5 mb-2.5">
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Historic home renovations and preservation projects</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Kitchen and bathroom remodels in older craftsman homes</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">UC Berkeley area commercial and residential projects</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Estate cleanouts and garage cleanups</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Landscaping and eco-friendly yard debris removal</li>
+        </ul>
+      </>
+    ),
+  },
+  {
+    question: "Do you serve all Berkeley ZIP codes?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Our Berkeley dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
-        (7-day rental, 1 ton included). 20-yard starts at $649 and 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for
-        an exact quote based on your project.
+        Yes! We serve every Berkeley ZIP code including 94702, 94703, 94704, 94705, 94706, 94707,
+        94708, 94709, 94710, and 94720. No matter where you are in Berkeley, we can deliver.
       </p>
     ),
   },
@@ -81,30 +85,30 @@ const berkeleyFaqs = [
 const berkeleyAbout = {
   cityName: "Berkeley",
   intro:
-    "Berkeley is a vibrant city known for its world-class university, historic Craftsman homes, and a community deeply committed to sustainability. From remodeling century-old bungalows in Elmwood to new construction near the waterfront, Berkeley homeowners and contractors need a dumpster service that understands the city's unique character. TP Dumpsters delivers reliable, eco-conscious waste removal across every Berkeley neighborhood — from the flats to the hills.",
+    "Berkeley is a vibrant college town known for its eco-conscious community, historic homes, and the iconic UC Berkeley campus. From craftsman home renovations in Elmwood to commercial projects near the Gourmet Ghetto and hillside remodels in the Berkeley Hills, there&apos;s always a project that needs a reliable dumpster. TP Dumpsters serves Berkeley neighborhoods and understands the unique challenges of working in this city — from narrow hillside streets to strict recycling and green waste regulations.",
   highlights: [
-    "Experienced navigating Berkeley's narrow, hilly streets",
-    "Eco-friendly disposal practices that match Berkeley's green values",
-    "Same-day delivery to all Berkeley neighborhoods including Rockridge & Claremont",
-    "Trusted by Berkeley contractors, remodelers, and homeowners",
+    "We navigate Berkeley's narrow hillside streets and tight residential areas with ease",
+    "Familiar with Berkeley's green regulations and recycling requirements",
+    "Fast delivery to all Berkeley neighborhoods — Downtown to the Hills",
+    "Trusted by Berkeley contractors, property managers, and homeowners",
     "Bilingual team (English & Spanish) for clear communication",
   ],
   commonProjects: [
-    "Historic home renovations and Craftsman bungalow remodels in Elmwood & North Berkeley",
-    "Kitchen and bathroom remodels in Rockridge and Claremont",
-    "UC Berkeley area student housing cleanouts and property turnovers",
-    "Landscaping and yard debris removal in the Berkeley Hills",
-    "Concrete and foundation work in South Berkeley and West Berkeley",
-    "Estate cleanouts and downsizing projects across Albany and Kensington",
+    "Historic home renovations and preservation projects in Elmwood & Claremont",
+    "Kitchen and bathroom remodels in North Berkeley & the Gourmet Ghetto",
+    "UC Berkeley area commercial and residential construction projects",
+    "Estate cleanouts in South Berkeley & Thousand Oaks",
+    "Landscaping and yard debris removal in Berkeley Hills",
+    "Roofing projects across Berkeley's older housing stock",
   ],
   closingText:
-    "Whether you're a contractor renovating a historic home or a homeowner clearing out the garage, TP Dumpsters makes waste removal in Berkeley simple and sustainable. We offer transparent pricing, same-day delivery, and the local expertise you need. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Berkeley easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
-  title: "Dumpster Rental in Berkeley, CA | Same-Day Delivery - TP Dumpsters",
+  title: "Dumpster Rental in Berkeley, CA | Same-Day Service - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Berkeley, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown Berkeley, Rockridge, Elmwood & all neighborhoods. Eco-friendly disposal. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Berkeley, CA. Serving Downtown, North Berkeley, UC Berkeley Area, Berkeley Hills & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental Berkeley CA",
     "Berkeley dumpster rental",
@@ -113,25 +117,28 @@ export const metadata: Metadata = {
     "Berkeley waste removal",
     "dumpster rental 94702",
     "dumpster rental 94704",
-    "dumpster rental Rockridge",
+    "dumpster rental Downtown Berkeley",
+    "North Berkeley dumpster",
+    "UC Berkeley dumpster rental",
+    "Berkeley Hills dumpster",
     "Elmwood dumpster rental",
-    "North Berkeley dumpster rental",
-    "Albany dumpster rental",
-    "Kensington dumpster rental",
-    "cheap dumpster Berkeley CA",
-    "junk removal Berkeley",
   ],
   openGraph: {
     title: "Dumpster Rental in Berkeley, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Berkeley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, reliable dumpster rentals in Berkeley. 10, 20 & 30 yard dumpsters. Same-day delivery available.",
     url: "https://tpdumpsters.com/berkeley",
     siteName: "TP Dumpsters",
     locale: "en_US",
     type: "website",
   },
-  robots: { index: true, follow: true },
-  alternates: { canonical: "https://tpdumpsters.com/berkeley" },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://tpdumpsters.com/berkeley",
+  },
 };
 
 const jsonLd = {
@@ -139,7 +146,7 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "TP Dumpsters - Berkeley",
   description:
-    "Affordable, reliable dumpster rentals in Berkeley, CA. Same-day delivery to all Berkeley neighborhoods and surrounding areas.",
+    "Fast, reliable dumpster rentals in Berkeley, CA. Serving all Berkeley neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/berkeley",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
@@ -152,15 +159,23 @@ const jsonLd = {
     addressCountry: "US",
   },
   areaServed: [
-    { "@type": "City", name: "Berkeley" },
-    { "@type": "City", name: "Albany" },
-    { "@type": "City", name: "Kensington" },
-    { "@type": "City", name: "El Cerrito" },
+    {
+      "@type": "City",
+      name: "Berkeley",
+      "@id": "https://en.wikipedia.org/wiki/Berkeley,_California",
+    },
   ],
   priceRange: "$$",
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
-    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    dayOfWeek: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
     opens: "07:00",
     closes: "18:00",
   },
@@ -170,21 +185,30 @@ const jsonLd = {
     itemListElement: [
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "10 Yard Dumpster Rental", description: "Compact dumpster for tight spaces, soil, concrete, and small cleanups. 7-day rental, 1 ton included." },
-        price: "599",
-        priceCurrency: "USD",
+        itemOffered: {
+          "@type": "Service",
+          name: "10 Yard Dumpster Rental",
+          description:
+            "Compact dumpster ideal for tight spaces and heavy debris like soil, concrete, and bricks.",
+        },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "20 Yard Dumpster Rental", description: "Versatile mid-size dumpster for remodels, roofing, and medium cleanouts. 7-day rental, 2 tons included." },
-        price: "649",
-        priceCurrency: "USD",
+        itemOffered: {
+          "@type": "Service",
+          name: "20 Yard Dumpster Rental",
+          description:
+            "Versatile dumpster for kitchen/bathroom remodels, roofing projects, and yard cleanups.",
+        },
       },
       {
         "@type": "Offer",
-        itemOffered: { "@type": "Service", name: "30 Yard Dumpster Rental", description: "Large dumpster for full renovations, construction debris, and estate cleanouts. 7-day rental, 3 tons included." },
-        price: "749",
-        priceCurrency: "USD",
+        itemOffered: {
+          "@type": "Service",
+          name: "30 Yard Dumpster Rental",
+          description:
+            "Extra capacity dumpster for whole-home cleanouts, large renovations, and construction debris.",
+        },
       },
     ],
   },
@@ -193,9 +217,13 @@ const jsonLd = {
 export default function BerkeleyPage() {
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
       <BerkeleyHero />
+      {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...berkeleyAbout} />
       <SizesSection />

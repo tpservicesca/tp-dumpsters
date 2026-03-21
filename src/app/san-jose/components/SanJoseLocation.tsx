@@ -3,38 +3,41 @@
 import { FaCalendarDays } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 
-export default function BerkeleyLocation() {
-  const berkeleyZipCodes = [
-    "94702", "94703", "94704", "94705", "94706",
-    "94707", "94708", "94709", "94710", "94720"
+export default function SanJoseLocation() {
+  const sanJoseZipCodes = [
+    "95110", "95111", "95112", "95113", "95116", "95117",
+    "95118", "95119", "95120", "95121", "95122", "95123",
+    "95124", "95125", "95126", "95127", "95128", "95129",
+    "95130", "95131", "95132", "95133", "95134", "95135",
+    "95136", "95138", "95139", "95148"
   ];
 
   return (
     <section id="rent" className="location-bg py-20 pb-15">
       <div className="w-[80%] max-w-[1080px] mx-auto relative">
         <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
-          BERKELEY, CALIFORNIA
+          SAN JOSE, CALIFORNIA
         </h4>
         <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-white mb-6 text-center">
-          Serving All Berkeley Neighborhoods
+          Serving All San Jose Neighborhoods
         </h2>
 
         {/* Neighborhoods Grid */}
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-10">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
             {[
-              "Downtown Berkeley",
-              "North Berkeley",
-              "South Berkeley",
-              "West Berkeley",
-              "Elmwood",
-              "Claremont",
-              "Thousand Oaks",
-              "UC Berkeley Area",
-              "Gourmet Ghetto",
-              "Westbrae",
-              "Berkeley Hills",
-              "Lorin District"
+              "Downtown San Jose",
+              "Willow Glen",
+              "Almaden Valley",
+              "Rose Garden",
+              "Japantown",
+              "Berryessa",
+              "Evergreen",
+              "Cambrian Park",
+              "Silver Creek",
+              "Santana Row Area",
+              "West San Jose",
+              "South San Jose"
             ].map((neighborhood) => (
               <div key={neighborhood} className="flex items-center gap-2">
                 <FaMapMarkerAlt className="text-tp-red flex-shrink-0" />
@@ -48,10 +51,10 @@ export default function BerkeleyLocation() {
           {/* ZIP Codes */}
           <div className="border-t border-white/20 pt-6">
             <h3 className="text-white font-[var(--font-poppins)] text-lg font-semibold mb-3 text-center">
-              Berkeley ZIP Codes We Serve
+              San Jose ZIP Codes We Serve
             </h3>
             <div className="flex flex-wrap justify-center gap-2">
-              {berkeleyZipCodes.map((zip) => (
+              {sanJoseZipCodes.map((zip) => (
                 <span
                   key={zip}
                   className="bg-tp-red/80 text-white px-3 py-1 rounded-md text-sm font-[var(--font-poppins)] font-medium"
@@ -63,24 +66,24 @@ export default function BerkeleyLocation() {
           </div>
         </div>
 
-        {/* Why Choose Us for Berkeley */}
+        {/* Why Choose Us for San Jose */}
         <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-10">
           <h3 className="text-white font-[var(--font-poppins)] text-xl font-bold mb-6 text-center">
-            Why Berkeley Chooses TP Dumpsters
+            Why San Jose Chooses TP Dumpsters
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="flex gap-4">
               <div className="text-tp-red text-2xl flex-shrink-0">✓</div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Local Knowledge</h4>
-                <p className="text-white/80 text-sm">We understand Berkeley&apos;s green regulations, recycling requirements, and hillside access challenges.</p>
+                <p className="text-white/80 text-sm">We understand San Jose&apos;s permit requirements and suburban neighborhood layouts.</p>
               </div>
             </div>
             <div className="flex gap-4">
               <div className="text-tp-red text-2xl flex-shrink-0">✓</div>
               <div>
                 <h4 className="text-white font-semibold mb-1">Fast Response</h4>
-                <p className="text-white/80 text-sm">Same-day delivery available across most Berkeley ZIP codes.</p>
+                <p className="text-white/80 text-sm">Same-day delivery available across most San Jose ZIP codes.</p>
               </div>
             </div>
             <div className="flex gap-4">
@@ -104,7 +107,7 @@ export default function BerkeleyLocation() {
           FAST AND EASY
         </h4>
         <h2 className="font-[var(--font-poppins)] text-[22px] md:text-[28px] font-bold text-white mb-6 text-center">
-          Ready to rent your dumpster in Berkeley?
+          Ready to rent your dumpster in San Jose?
         </h2>
         <a
           href="tel:+15106502083"
