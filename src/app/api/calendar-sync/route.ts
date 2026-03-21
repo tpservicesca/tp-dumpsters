@@ -163,6 +163,21 @@ async function autoAssignDumpsters(events: CalendarEvent[]) {
 
     for (const event of events) {
       if (event.action === "delivery") {
+        // Check if this event is already assigned (prevent duplicates)
+        const [existing] = await conn.execute(
+          "SELECT id FROM dumpsters WHERE customer = ? AND size = ? AND status IN ('en-route', 'deployed') AND delivery_date = ? LIMIT 1",
+          [event.customerName, event.size, new Date(event.date).toISOString().split("T")[0]]
+        );
+        if ((existing as Array<{ id: string }>).length > 0) {
+          results.push({
+            event: event.summary,
+            dumpsterId: (existing as Array<{ id: string }>)[0].id,
+            action: "already-assigned",
+            status: `ℹ️ Already assigned: ${(existing as Array<{ id: string }>)[0].id} → ${event.customerName}`,
+          });
+          continue;
+        }
+
         // Find an available dumpster of the right size in yard
         const [rows] = await conn.execute(
           "SELECT id FROM dumpsters WHERE size = ? AND status = 'yard' LIMIT 1",

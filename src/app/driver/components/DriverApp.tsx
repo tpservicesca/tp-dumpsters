@@ -52,27 +52,22 @@ export default function DriverApp() {
       const res = await fetch(`${API}?auth=${AUTH_CODE}`);
       const data = await res.json();
       if (data.dumpsters) {
-        const today = new Date().toISOString().split("T")[0];
         const todayJobs: Job[] = [];
 
         data.dumpsters.forEach((d: Dumpster) => {
-          // Deliveries: en-route dumpsters or yard dumpsters with today's delivery date
+          // ALL en-route dumpsters = deliveries (regardless of date)
           if (d.status === "en-route") {
             todayJobs.push({ dumpster: d, type: "delivery" });
-          } else if (d.status === "yard" && d.delivery_date === today) {
-            todayJobs.push({ dumpster: d, type: "delivery" });
           }
-          // Pickups: deployed with today's pickup date or pickup-scheduled
+          // ALL pickup-scheduled dumpsters = pickups (regardless of date)
           if (d.status === "pickup-scheduled") {
-            todayJobs.push({ dumpster: d, type: "pickup" });
-          } else if (d.status === "deployed" && d.pickup_date === today) {
             todayJobs.push({ dumpster: d, type: "pickup" });
           }
         });
 
-        // Sort: en-route first, then by time
+        // Sort: en-route first, then pickup-scheduled
         todayJobs.sort((a, b) => {
-          const priority: Record<string, number> = { "en-route": 0, "pickup-scheduled": 1, yard: 2, deployed: 3 };
+          const priority: Record<string, number> = { "en-route": 0, "pickup-scheduled": 1 };
           return (priority[a.dumpster.status] || 9) - (priority[b.dumpster.status] || 9);
         });
 
