@@ -14,10 +14,10 @@ export default function SanJoseHero() {
           </h3>
         </div>
         <h1 className="font-[var(--font-oswald)] text-[28px] sm:text-[3rem] lg:text-[5rem] font-extrabold text-white uppercase leading-[1.1] mb-4 tracking-wide">
-          SAN JOSE DUMPSTER RENTAL
+          DUMPSTER RENTAL SAN JOSE
         </h1>
         <h2 className="font-[var(--font-poppins)] text-base sm:text-[1.6rem] lg:text-[2rem] font-semibold text-white italic mb-2">
-          Serving all San Jose neighborhoods
+          Residential &amp; commercial dumpster rental in San Jose, CA &mdash; prices starting at $600
         </h2>
         <p className="font-[var(--font-poppins)] text-sm sm:text-lg text-white/90 mb-8 max-w-3xl mx-auto">
           Downtown San Jose • Willow Glen • Almaden Valley • Rose Garden • Japantown • Berryessa • Evergreen • Cambrian Park

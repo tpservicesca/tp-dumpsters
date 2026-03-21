@@ -109,14 +109,18 @@ const sanJoseAbout = {
 };
 
 export const metadata: Metadata = {
-  title: "Dumpster Rental in San Jose, CA | Same-Day Service - TP Dumpsters",
+  title: "Dumpster Rental in San Jose, CA | Starting at $600 - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Jose, CA. Serving Downtown, Willow Glen, Almaden Valley, Evergreen & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Dumpster rental San Jose — fast, reliable dumpster rental in San Jose, CA. Residential & commercial dumpster rental San Jose CA. Construction dumpster rentals San Jose. San Jose dumpster rental prices starting at $600. Same-day delivery. Call (510) 650-2083",
   keywords: [
-    "dumpster rental San Jose CA",
-    "San Jose dumpster rental",
+    "dumpster rental san jose",
+    "dumpster rental san jose ca",
+    "san jose dumpster rental",
+    "commercial dumpster rental san jose ca",
+    "construction dumpster rentals san jose",
+    "residential dumpster rental san jose ca",
+    "san jose dumpster rental prices",
     "roll-off dumpster San Jose",
-    "construction dumpster San Jose",
     "San Jose waste removal",
     "dumpster rental 95110",
     "dumpster rental 95125",
@@ -127,13 +131,21 @@ export const metadata: Metadata = {
     "Silicon Valley dumpster rental",
   ],
   openGraph: {
-    title: "Dumpster Rental in San Jose, CA - TP Dumpsters",
+    title: "Dumpster Rental in San Jose, CA | Starting at $600 - TP Dumpsters",
     description:
-      "Fast, reliable dumpster rentals in San Jose. 10, 20 & 30 yard dumpsters. Same-day delivery available.",
+      "Dumpster rental San Jose CA — 10, 20 & 30 yard roll-off dumpsters. Residential & commercial dumpster rental San Jose. San Jose dumpster rental prices starting at $600.",
     url: "https://tpdumpsters.com/san-jose",
     siteName: "TP Dumpsters",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/logo/TP.png",
+        width: 800,
+        height: 600,
+        alt: "Dumpster rental in San Jose CA - TP Dumpsters roll-off containers",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -149,11 +161,15 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "TP Dumpsters - San Jose",
   description:
-    "Fast, reliable dumpster rentals in San Jose, CA. Serving all San Jose neighborhoods with same-day delivery.",
+    "Dumpster rental San Jose, CA. Residential and commercial dumpster rental serving all San Jose neighborhoods with same-day delivery. Construction dumpster rentals San Jose.",
   url: "https://tpdumpsters.com/san-jose",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
-  image: "/images/logo/TP.png",
+  image: {
+    "@type": "ImageObject",
+    url: "/images/logo/TP.png",
+    caption: "Dumpster rental in San Jose CA - TP Dumpsters roll-off containers for residential and commercial projects",
+  },
   logo: "/images/logo/TP.png",
   address: {
     "@type": "PostalAddress",

@@ -108,12 +108,15 @@ const sanFranciscoAbout = {
 };
 
 export const metadata: Metadata = {
-  title: "Dumpster Rental in San Francisco, CA | Same-Day Service - TP Dumpsters",
+  title: "Dumpster Rental in San Francisco, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Francisco, CA. Serving Mission District, SoMa, Sunset, Richmond & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Dumpster rental San Francisco — fast, reliable roll-off dumpster rentals in San Francisco, CA. Serving Mission District, SoMa, Sunset, Richmond & all ZIP codes. Same-day delivery. Cheap dumpster rental San Francisco Bay Area. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
-    "dumpster rental San Francisco CA",
-    "San Francisco dumpster rental",
+    "dumpster rental san francisco",
+    "san francisco dumpster rental",
+    "dumpster rental san francisco ca",
+    "cheap dumpster rental san francisco",
+    "dumpster rental san francisco bay area",
     "roll-off dumpster San Francisco",
     "construction dumpster San Francisco",
     "San Francisco waste removal",
@@ -128,11 +131,19 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in San Francisco, CA - TP Dumpsters",
     description:
-      "Fast, reliable dumpster rentals in San Francisco. 10, 20 & 30 yard dumpsters. Same-day delivery available.",
+      "Dumpster rental San Francisco — 10, 20 & 30 yard roll-off dumpsters. Same-day delivery across San Francisco, CA. Cheap dumpster rental San Francisco Bay Area.",
     url: "https://tpdumpsters.com/san-francisco",
     siteName: "TP Dumpsters",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/logo/TP.png",
+        width: 800,
+        height: 600,
+        alt: "Dumpster rental in San Francisco CA - TP Dumpsters roll-off containers",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -148,11 +159,15 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "TP Dumpsters - San Francisco",
   description:
-    "Fast, reliable dumpster rentals in San Francisco, CA. Serving all San Francisco neighborhoods with same-day delivery.",
+    "Dumpster rental San Francisco, CA. Fast, reliable roll-off dumpster rentals serving all San Francisco neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-francisco",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
-  image: "/images/logo/TP.png",
+  image: {
+    "@type": "ImageObject",
+    url: "/images/logo/TP.png",
+    caption: "Dumpster rental in San Francisco CA - TP Dumpsters roll-off containers",
+  },
   logo: "/images/logo/TP.png",
   address: {
     "@type": "PostalAddress",

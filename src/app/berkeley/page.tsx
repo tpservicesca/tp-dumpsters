@@ -106,15 +106,18 @@ const berkeleyAbout = {
 };
 
 export const metadata: Metadata = {
-  title: "Dumpster Rental in Berkeley, CA | Same-Day Service - TP Dumpsters",
+  title: "Dumpster Rental in Berkeley, CA | East Bay Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Berkeley, CA. Serving Downtown, North Berkeley, UC Berkeley Area, Berkeley Hills & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Dumpster rental Berkeley CA — fast, reliable roll-off dumpster rental in Berkeley and the East Bay. Serving Downtown, North Berkeley, UC Berkeley Area, Berkeley Hills & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
-    "dumpster rental Berkeley CA",
+    "dumpster rental berkeley ca",
+    "dumpster rental east bay",
+    "roll off dumpster rental berkeley ca",
     "Berkeley dumpster rental",
     "roll-off dumpster Berkeley",
     "construction dumpster Berkeley",
     "Berkeley waste removal",
+    "East Bay dumpster rental",
     "dumpster rental 94702",
     "dumpster rental 94704",
     "dumpster rental Downtown Berkeley",
@@ -124,13 +127,21 @@ export const metadata: Metadata = {
     "Elmwood dumpster rental",
   ],
   openGraph: {
-    title: "Dumpster Rental in Berkeley, CA - TP Dumpsters",
+    title: "Dumpster Rental in Berkeley, CA | East Bay Service - TP Dumpsters",
     description:
-      "Fast, reliable dumpster rentals in Berkeley. 10, 20 & 30 yard dumpsters. Same-day delivery available.",
+      "Dumpster rental Berkeley CA — 10, 20 & 30 yard roll-off dumpster rentals. East Bay dumpster rental with same-day delivery.",
     url: "https://tpdumpsters.com/berkeley",
     siteName: "TP Dumpsters",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/logo/TP.png",
+        width: 800,
+        height: 600,
+        alt: "Dumpster rental in Berkeley CA - TP Dumpsters roll-off containers for East Bay projects",
+      },
+    ],
   },
   robots: {
     index: true,
@@ -146,11 +157,15 @@ const jsonLd = {
   "@type": "LocalBusiness",
   name: "TP Dumpsters - Berkeley",
   description:
-    "Fast, reliable dumpster rentals in Berkeley, CA. Serving all Berkeley neighborhoods with same-day delivery.",
+    "Dumpster rental Berkeley, CA. Roll-off dumpster rental serving all Berkeley and East Bay neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/berkeley",
   telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
-  image: "/images/logo/TP.png",
+  image: {
+    "@type": "ImageObject",
+    url: "/images/logo/TP.png",
+    caption: "Dumpster rental in Berkeley CA - TP Dumpsters roll-off containers for East Bay projects",
+  },
   logo: "/images/logo/TP.png",
   address: {
     "@type": "PostalAddress",

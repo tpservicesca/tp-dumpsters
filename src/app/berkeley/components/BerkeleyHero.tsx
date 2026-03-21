@@ -14,10 +14,10 @@ export default function BerkeleyHero() {
           </h3>
         </div>
         <h1 className="font-[var(--font-oswald)] text-[28px] sm:text-[3rem] lg:text-[5rem] font-extrabold text-white uppercase leading-[1.1] mb-4 tracking-wide">
-          BERKELEY DUMPSTER RENTAL
+          DUMPSTER RENTAL BERKELEY CA
         </h1>
         <h2 className="font-[var(--font-poppins)] text-base sm:text-[1.6rem] lg:text-[2rem] font-semibold text-white italic mb-2">
-          Serving all Berkeley neighborhoods
+          East Bay dumpster rental &mdash; serving all Berkeley neighborhoods
         </h2>
         <p className="font-[var(--font-poppins)] text-sm sm:text-lg text-white/90 mb-8 max-w-3xl mx-auto">
           Downtown Berkeley • North Berkeley • South Berkeley • West Berkeley • Elmwood • Claremont • Berkeley Hills • UC Berkeley Area
