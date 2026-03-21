@@ -5,15 +5,46 @@ import { useState, useRef, useEffect, useCallback } from "react";
 const GOOGLE_MAPS_KEY = "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
 const ACCESS_CODE = "Cantaritos1.";
 
-const SERVICES = [
-  { name: "General Debris", sizes: ["10 Yard", "20 Yard", "30 Yard"] },
-  { name: "Household Clean Out", sizes: ["10 Yard", "20 Yard", "30 Yard"] },
-  { name: "Construction Debris", sizes: ["10 Yard", "20 Yard", "30 Yard"] },
-  { name: "Roofing", sizes: ["10 Yard", "20 Yard", "30 Yard"] },
-  { name: "Green Waste", sizes: ["10 Yard", "20 Yard", "30 Yard"] },
-  { name: "Clean Soil", sizes: ["10 Yard"] },
-  { name: "Clean Concrete", sizes: ["10 Yard"] },
-  { name: "Mixed Materials", sizes: ["10 Yard"] },
+interface SizeInfo { price: number; dims: string; weight: string; days: number }
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ServiceSizes = { [key: string]: SizeInfo };
+interface ServiceDef { name: string; sizes: ServiceSizes }
+
+const SERVICES: ServiceDef[] = [
+  { name: "General Debris", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "30 Yard": { price: 749, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+  }},
+  { name: "Household Clean Out", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "30 Yard": { price: 749, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+  }},
+  { name: "Construction Debris", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "30 Yard": { price: 749, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+  }},
+  { name: "Roofing", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "30 Yard": { price: 749, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+  }},
+  { name: "Green Waste", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "30 Yard": { price: 749, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+  }},
+  { name: "Clean Soil", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
+  }},
+  { name: "Clean Concrete", sizes: {
+    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
+  }},
+  { name: "Mixed Materials", sizes: {
+    "10 Yard": { price: 749, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
+  }},
 ];
 
 interface InvoiceResult {
@@ -46,7 +77,7 @@ export default function QuoteForm() {
   const [billingAddress, setBillingAddress] = useState("");
   const [showBilling, setShowBilling] = useState(false);
   const [serviceType, setServiceType] = useState(SERVICES[0].name);
-  const [size, setSize] = useState(SERVICES[0].sizes[0]);
+  const [size, setSize] = useState(Object.keys(SERVICES[0].sizes)[0]);
   const [quantity, setQuantity] = useState(1);
   const [customPrice, setCustomPrice] = useState("");
   const [useCustomPrice, setUseCustomPrice] = useState(false);
@@ -61,9 +92,14 @@ export default function QuoteForm() {
   const deliveryRef = useRef<HTMLInputElement>(null);
   const billingRef = useRef<HTMLInputElement>(null);
 
+  const [showPreview, setShowPreview] = useState(false);
+
   // Available sizes for selected service
   const currentService = SERVICES.find((s) => s.name === serviceType);
-  const availableSizes = currentService?.sizes || [];
+  const availableSizes = currentService ? Object.keys(currentService.sizes) : [];
+  const currentSizeInfo: SizeInfo | null = currentService ? currentService.sizes[size] || null : null;
+  const unitPrice = useCustomPrice && customPrice ? Number(customPrice) : (currentSizeInfo?.price || 0);
+  const totalAmount = unitPrice * quantity;
 
   // Reset size when service changes
   useEffect(() => {
@@ -174,7 +210,7 @@ export default function QuoteForm() {
     setBillingAddress("");
     setShowBilling(false);
     setServiceType(SERVICES[0].name);
-    setSize(SERVICES[0].sizes[0]);
+    setSize(Object.keys(SERVICES[0].sizes)[0]);
     setQuantity(1);
     setCustomPrice("");
     setUseCustomPrice(false);
@@ -506,25 +542,129 @@ export default function QuoteForm() {
             </div>
           )}
 
-          {/* Submit */}
-          <button
-            onClick={handleSubmit}
-            disabled={loading || !customerName.trim() || !deliveryAddress.trim()}
-            className={`w-full py-4 rounded-xl font-[var(--font-poppins)] font-bold text-base transition-all duration-200 ${
-              loading || !customerName.trim() || !deliveryAddress.trim()
-                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                : "bg-tp-red text-white hover:bg-tp-red-dark shadow-lg hover:shadow-xl"
-            }`}
-          >
-            {loading ? (
-              <span className="flex items-center justify-center gap-2">
-                <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
-                Creating Invoice...
-              </span>
-            ) : (
-              "⚡ Create Stripe Invoice"
-            )}
-          </button>
+          {/* Preview */}
+          {showPreview && currentSizeInfo && (
+            <div className="bg-[#1a1a1a] rounded-xl p-5 mb-6 text-white">
+              <h3 className="font-[var(--font-poppins)] font-semibold text-xs uppercase tracking-wider text-white/50 mb-3">
+                📋 Invoice Preview
+              </h3>
+              <div className="space-y-2 text-sm font-[var(--font-poppins)]">
+                <div className="flex justify-between">
+                  <span className="text-white/70">Customer</span>
+                  <span className="font-semibold">{customerName}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/70">Delivery</span>
+                  <span className="text-xs text-right max-w-[60%]">{deliveryAddress}</span>
+                </div>
+                {showBilling && billingAddress && (
+                  <div className="flex justify-between">
+                    <span className="text-white/70">Billing</span>
+                    <span className="text-xs text-right max-w-[60%]">{billingAddress}</span>
+                  </div>
+                )}
+                <div className="border-t border-white/10 my-2" />
+                <div className="flex justify-between">
+                  <span className="text-white/70">Service</span>
+                  <span>{serviceType}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/70">Size</span>
+                  <span>{size}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/70">Dimensions</span>
+                  <span>{currentSizeInfo.dims}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/70">Weight limit</span>
+                  <span>{currentSizeInfo.weight}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-white/70">Rental period</span>
+                  <span>{currentSizeInfo.days} days</span>
+                </div>
+                {quantity > 1 && (
+                  <div className="flex justify-between">
+                    <span className="text-white/70">Quantity</span>
+                    <span>{quantity} units</span>
+                  </div>
+                )}
+                <div className="border-t border-white/10 my-2" />
+                <div className="flex justify-between">
+                  <span className="text-white/70">Unit price</span>
+                  <span>${unitPrice.toFixed(2)}{useCustomPrice ? " (custom)" : ""}</span>
+                </div>
+                {quantity > 1 && (
+                  <div className="flex justify-between text-white/50 text-xs">
+                    <span>${unitPrice.toFixed(2)} × {quantity}</span>
+                    <span></span>
+                  </div>
+                )}
+                <div className="flex justify-between items-baseline pt-2 border-t border-white/20">
+                  <span className="font-bold text-lg">Total</span>
+                  <span className="font-[var(--font-oswald)] text-2xl font-bold text-tp-red">
+                    ${totalAmount.toFixed(2)}
+                  </span>
+                </div>
+              </div>
+              {customerEmail && (
+                <p className="text-[10px] text-green-400 mt-3">📧 Will be sent to: {customerEmail}</p>
+              )}
+              {customerPhone && (
+                <p className="text-[10px] text-green-400 mt-1">📱 SMS to: {phoneCode} {customerPhone}</p>
+              )}
+            </div>
+          )}
+
+          {/* Buttons */}
+          {!showPreview ? (
+            <button
+              onClick={() => {
+                if (!customerName.trim() || !deliveryAddress.trim()) {
+                  setError("Customer name and delivery address are required");
+                  return;
+                }
+                setError("");
+                setShowPreview(true);
+              }}
+              disabled={!customerName.trim() || !deliveryAddress.trim()}
+              className={`w-full py-4 rounded-xl font-[var(--font-poppins)] font-bold text-base transition-all duration-200 ${
+                !customerName.trim() || !deliveryAddress.trim()
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-[#1a1a1a] text-white hover:bg-[#333] shadow-lg hover:shadow-xl"
+              }`}
+            >
+              👁️ Preview Invoice
+            </button>
+          ) : (
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowPreview(false)}
+                className="flex-1 py-4 rounded-xl font-[var(--font-poppins)] font-semibold text-sm bg-gray-100 text-[#666] hover:bg-gray-200 transition-colors"
+              >
+                ← Edit
+              </button>
+              <button
+                onClick={() => { setShowPreview(false); handleSubmit(); }}
+                disabled={loading}
+                className={`flex-[2] py-4 rounded-xl font-[var(--font-poppins)] font-bold text-base transition-all duration-200 ${
+                  loading
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-tp-red text-white hover:bg-tp-red-dark shadow-lg hover:shadow-xl"
+                }`}
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <span className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+                    Creating...
+                  </span>
+                ) : (
+                  "⚡ Confirm & Create Invoice"
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -198,7 +198,7 @@ export async function POST(request: NextRequest) {
           `Pay online here:`,
           `${finalized.hosted_invoice_url}`,
           ``,
-          `Questions? Call us: (510) 650-2083`,
+          `📞 This is an automated message. For questions or customer support, call us at (510) 650-2083.`,
           `Thank you for choosing TP Dumpsters!`,
         ].join("\n");
 
