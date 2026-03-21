@@ -314,9 +314,9 @@ export default function ContraCostaCountyPage() {
       {/* ═══ 1. DUMPSTER SIZES ═══ */}
       <SizesSection />
 
-      {/* ═══ 2. CITIES WE SERVE ═══ */}
-      <section className="py-16 bg-[#f8f8f8]">
-        <div className="w-[90%] max-w-[1200px] mx-auto">
+      {/* ═══ 2. CITIES WE SERVE (hidden on mobile) ═══ */}
+      <section className="hidden md:block py-16 bg-[#f8f8f8]">
+        <div className="w-[80%] max-w-[1080px] mx-auto">
           <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
             CONTRA COSTA COUNTY
           </h4>
@@ -326,7 +326,7 @@ export default function ContraCostaCountyPage() {
           <p className="font-[var(--font-poppins)] text-[#666] text-center mb-10 max-w-2xl mx-auto">
             Select a city below to view local pricing, delivery info, and availability for your area.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {CITIES.map((city) => (
               <Link
                 key={city.slug}
