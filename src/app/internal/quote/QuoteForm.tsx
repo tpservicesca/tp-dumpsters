@@ -37,6 +37,7 @@ export default function QuoteForm() {
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const [phoneCode, setPhoneCode] = useState("+1");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [billingAddress, setBillingAddress] = useState("");
   const [showBilling, setShowBilling] = useState(false);
@@ -140,7 +141,7 @@ export default function QuoteForm() {
         body: JSON.stringify({
           customerName: customerName.trim(),
           customerEmail: customerEmail.trim() || undefined,
-          customerPhone: customerPhone.trim() || undefined,
+          customerPhone: customerPhone.trim() ? `${phoneCode} ${customerPhone.trim()}` : undefined,
           deliveryAddress: deliveryAddress.trim(),
           billingAddress: showBilling ? billingAddress.trim() : undefined,
           serviceType,
@@ -318,13 +319,29 @@ export default function QuoteForm() {
               onChange={(e) => setCustomerName(e.target.value)}
               className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
             />
-            <input
-              type="tel"
-              placeholder="Phone (optional)"
-              value={customerPhone}
-              onChange={(e) => setCustomerPhone(e.target.value)}
-              className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
-            />
+            <div className="flex gap-1">
+              <select
+                value={phoneCode}
+                onChange={(e) => setPhoneCode(e.target.value)}
+                className="w-20 px-2 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
+              >
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+52">🇲🇽 +52</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+34">🇪🇸 +34</option>
+              </select>
+              <input
+                type="tel"
+                placeholder="10 digits"
+                value={customerPhone}
+                onChange={(e) => {
+                  const digits = e.target.value.replace(/\D/g, "").slice(0, 10);
+                  setCustomerPhone(digits);
+                }}
+                maxLength={10}
+                className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+              />
+            </div>
             <input
               type="email"
               placeholder="Email (optional)"
