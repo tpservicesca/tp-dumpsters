@@ -27,7 +27,9 @@ interface InvoiceResult {
   serviceType: string;
   size: string;
   quantity: number;
-  sent: boolean;
+  customerPhone: string | null;
+  sentEmail: boolean;
+  sentSms: boolean;
 }
 
 export default function QuoteForm() {
@@ -230,19 +232,34 @@ export default function QuoteForm() {
             <p className="text-sm text-[#888] font-[var(--font-poppins)] mb-3">
               {result.serviceType} — {result.size} {result.quantity > 1 ? `x${result.quantity}` : ""}
             </p>
-            {result.sent ? (
-              <div className="bg-green-50 border border-green-200 rounded-lg px-4 py-2 mb-6">
-                <p className="text-xs text-green-700 font-[var(--font-poppins)]">
-                  📧 Invoice sent automatically to <strong>{result.customerEmail}</strong>
-                </p>
-              </div>
-            ) : (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-2 mb-6">
-                <p className="text-xs text-amber-700 font-[var(--font-poppins)]">
-                  ⚠️ No email provided — send the payment link manually
-                </p>
-              </div>
-            )}
+            <div className="space-y-2 mb-6">
+              {result.sentEmail ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg px-4 py-2">
+                  <p className="text-xs text-green-700 font-[var(--font-poppins)]">
+                    📧 Invoice sent to <strong>{result.customerEmail}</strong>
+                  </p>
+                </div>
+              ) : (
+                <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-2">
+                  <p className="text-xs text-amber-700 font-[var(--font-poppins)]">
+                    📧 No email — send payment link manually
+                  </p>
+                </div>
+              )}
+              {result.sentSms ? (
+                <div className="bg-green-50 border border-green-200 rounded-lg px-4 py-2">
+                  <p className="text-xs text-green-700 font-[var(--font-poppins)]">
+                    📱 SMS sent to <strong>{result.customerPhone}</strong>
+                  </p>
+                </div>
+              ) : result.customerPhone ? (
+                <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-2">
+                  <p className="text-xs text-amber-700 font-[var(--font-poppins)]">
+                    📱 SMS failed — send payment link manually
+                  </p>
+                </div>
+              ) : null}
+            </div>
 
             <div className="bg-[#1a1a1a] rounded-xl p-5 mb-6">
               <p className="text-white/60 text-xs font-[var(--font-poppins)]">{result.customerName}</p>
