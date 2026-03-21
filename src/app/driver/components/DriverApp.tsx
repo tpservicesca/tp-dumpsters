@@ -37,12 +37,46 @@ export default function DriverApp() {
   const [gpsStatus, setGpsStatus] = useState<string>("");
   const [lastRefresh, setLastRefresh] = useState<Date>(new Date());
   const [refreshing, setRefreshing] = useState(false);
+  const [completedToday, setCompletedToday] = useState(0);
 
   // Photo capture state
   const [photoData, setPhotoData] = useState<string | null>(null);
   const [showCamera, setShowCamera] = useState<{ job: Job } | null>(null);
   const [photoCaptured, setPhotoCaptured] = useState<Set<string>>(new Set());
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // PWA install prompt
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [showInstallBanner, setShowInstallBanner] = useState(false);
+
+  // Register service worker
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
+    }
+  }, []);
+
+  // Listen for PWA install prompt
+  useEffect(() => {
+    const handler = (e: Event) => {
+      e.preventDefault();
+      setInstallPrompt(e);
+      setShowInstallBanner(true);
+    };
+    window.addEventListener("beforeinstallprompt", handler);
+    return () => window.removeEventListener("beforeinstallprompt", handler);
+  }, []);
+
+  const handleInstall = async () => {
+    if (!installPrompt) return;
+    installPrompt.prompt();
+    const result = await installPrompt.userChoice;
+    if (result.outcome === "accepted") {
+      setShowInstallBanner(false);
+    }
+    setInstallPrompt(null);
+  };
 
   const fetchData = useCallback(async () => {
     try {
@@ -69,6 +103,16 @@ export default function DriverApp() {
         });
 
         setJobs(todayJobs);
+
+        // Count completed today (deployed + yard status with today's date)
+        const today = new Date().toISOString().slice(0, 10);
+        const completed = data.dumpsters.filter((d: Dumpster) => {
+          if (d.status === "deployed" && d.delivery_date) {
+            return d.delivery_date.startsWith(today);
+          }
+          return false;
+        }).length;
+        setCompletedToday(completed);
       }
       setLastRefresh(new Date());
     } catch (err) {
@@ -342,6 +386,30 @@ export default function DriverApp() {
         </div>
       )}
 
+      {/* Install Banner */}
+      {showInstallBanner && (
+        <div className="bg-gradient-to-r from-green-700 to-green-600 p-3 flex items-center justify-between sticky top-0 z-[55]">
+          <div className="flex items-center gap-2">
+            <span className="text-xl">📲</span>
+            <span className="font-semibold text-sm">Instalar TP Driver en tu teléfono</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleInstall}
+              className="bg-white text-green-700 px-4 py-2 rounded-lg font-bold text-sm active:bg-gray-100"
+            >
+              Instalar
+            </button>
+            <button
+              onClick={() => setShowInstallBanner(false)}
+              className="text-white/70 text-xl px-2"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="bg-gradient-to-r from-red-700 to-red-600 p-4 sticky top-0 z-50 shadow-lg">
         <div className="flex items-center justify-between">
@@ -373,6 +441,11 @@ export default function DriverApp() {
             <span className="bg-orange-600/50 px-3 py-1 rounded-full text-sm">
               🏗️ {pickupCount} {pickupCount === 1 ? "recolección" : "recolecciones"}
             </span>
+            {completedToday > 0 && (
+              <span className="bg-green-600/50 px-3 py-1 rounded-full text-sm">
+                ✅ {completedToday} {completedToday === 1 ? "completado" : "completados"}
+              </span>
+            )}
           </div>
         )}
 
@@ -494,6 +567,28 @@ export default function DriverApp() {
                   {d.notes && (
                     <div className="bg-yellow-900/30 border border-yellow-700/50 rounded-xl p-3 text-yellow-200">
                       💬 {d.notes}
+                    </div>
+                  )}
+
+                  {/* Navigation Buttons */}
+                  {d.address && (
+                    <div className="flex gap-2">
+                      <a
+                        href={`https://maps.google.com/?q=${encodeURIComponent(d.address + (d.city ? ", " + d.city : ""))}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-blue-400 py-3 rounded-xl text-lg font-semibold active:bg-gray-700"
+                      >
+                        🗺️ Ver Mapa
+                      </a>
+                      <a
+                        href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(d.address + (d.city ? ", " + d.city : ""))}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center gap-2 bg-blue-700 text-white py-3 rounded-xl text-lg font-semibold active:bg-blue-800"
+                      >
+                        🧭 Navegar
+                      </a>
                     </div>
                   )}
                 </div>
