@@ -161,7 +161,18 @@ export async function POST(request: NextRequest) {
     // Finalize to get payment URL
     const finalized = await stripe.invoices.finalizeInvoice(invoice.id);
 
-    console.log(`📄 INVOICE: ${finalized.id} | ${customerName} | ${serviceType} ${size} x${qty} | $${(finalized.amount_due || 0) / 100}`);
+    // Auto-send to customer if they have a real email
+    let sent = false;
+    if (customerEmail && customerEmail !== "dumpster@tpservicesca.com") {
+      try {
+        await stripe.invoices.sendInvoice(finalized.id);
+        sent = true;
+      } catch (sendErr) {
+        console.error("Failed to send invoice:", sendErr);
+      }
+    }
+
+    console.log(`📄 INVOICE: ${finalized.id} | ${customerName} | ${serviceType} ${size} x${qty} | $${(finalized.amount_due || 0) / 100} | Sent: ${sent}`);
 
     return NextResponse.json({
       id: finalized.id,
@@ -171,9 +182,11 @@ export async function POST(request: NextRequest) {
       url: finalized.hosted_invoice_url,
       pdf: finalized.invoice_pdf,
       customerName,
+      customerEmail: customerEmail || null,
       serviceType,
       size,
       quantity: qty,
+      sent,
     });
   } catch (err) {
     console.error("Invoice error:", err);

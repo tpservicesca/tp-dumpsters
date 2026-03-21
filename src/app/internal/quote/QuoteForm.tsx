@@ -23,9 +23,11 @@ interface InvoiceResult {
   url: string;
   pdf: string;
   customerName: string;
+  customerEmail: string | null;
   serviceType: string;
   size: string;
   quantity: number;
+  sent: boolean;
 }
 
 export default function QuoteForm() {
@@ -225,9 +227,22 @@ export default function QuoteForm() {
               <span className="text-3xl">✅</span>
             </div>
             <h2 className="font-[var(--font-oswald)] text-2xl font-bold mb-1">Invoice Created!</h2>
-            <p className="text-sm text-[#888] font-[var(--font-poppins)] mb-6">
+            <p className="text-sm text-[#888] font-[var(--font-poppins)] mb-3">
               {result.serviceType} — {result.size} {result.quantity > 1 ? `x${result.quantity}` : ""}
             </p>
+            {result.sent ? (
+              <div className="bg-green-50 border border-green-200 rounded-lg px-4 py-2 mb-6">
+                <p className="text-xs text-green-700 font-[var(--font-poppins)]">
+                  📧 Invoice sent automatically to <strong>{result.customerEmail}</strong>
+                </p>
+              </div>
+            ) : (
+              <div className="bg-amber-50 border border-amber-200 rounded-lg px-4 py-2 mb-6">
+                <p className="text-xs text-amber-700 font-[var(--font-poppins)]">
+                  ⚠️ No email provided — send the payment link manually
+                </p>
+              </div>
+            )}
 
             <div className="bg-[#1a1a1a] rounded-xl p-5 mb-6">
               <p className="text-white/60 text-xs font-[var(--font-poppins)]">{result.customerName}</p>
@@ -342,13 +357,18 @@ export default function QuoteForm() {
                 className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
               />
             </div>
-            <input
-              type="email"
-              placeholder="Email (optional)"
-              value={customerEmail}
-              onChange={(e) => setCustomerEmail(e.target.value)}
-              className="sm:col-span-2 px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
-            />
+            <div className="sm:col-span-2">
+              <input
+                type="email"
+                placeholder="Email — invoice will be sent automatically"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+              />
+              <p className="text-[10px] text-green-600 mt-1 font-[var(--font-poppins)]">
+                📧 If provided, the invoice is sent to the customer automatically
+              </p>
+            </div>
           </div>
 
           {/* Delivery address */}
