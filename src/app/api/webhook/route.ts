@@ -97,6 +97,15 @@ export async function POST(req: NextRequest) {
     const address = meta.address;
     const city = meta.city;
     const zipCode = meta.zip_code;
+    const deliveryWindow = meta.delivery_window || "";
+
+    // Map delivery windows to start/end times
+    const WINDOWS: Record<string, { start: string; end: string; label: string }> = {
+      morning: { start: "07:00:00", end: "11:00:00", label: "Morning (7AM-11AM)" },
+      midday: { start: "11:00:00", end: "15:00:00", label: "Midday (11AM-3PM)" },
+      afternoon: { start: "15:00:00", end: "19:00:00", label: "Afternoon (3PM-7PM)" },
+    };
+    const windowInfo = WINDOWS[deliveryWindow];
     const totalPaid = session.amount_total
       ? `$${(session.amount_total / 100).toFixed(2)}`
       : "N/A";
@@ -113,12 +122,13 @@ export async function POST(req: NextRequest) {
     const eventDescription = [
       `Booking ID: ${bookingId}`,
       `Service: ${serviceType} - ${dumpsterSize} Yard`,
+      windowInfo ? `Delivery Window: ${windowInfo.label}` : null,
       `Phone: ${customerPhone}`,
       `Email: ${customerEmail}`,
       `Total: ${totalPaid}`,
       `Address: ${fullAddress}`,
       `Booked online via tpdumpsters.com`,
-    ].join("\n");
+    ].filter(Boolean).join("\n");
 
     // 1. Update booking status in MySQL
     let dbUpdated = false;
@@ -135,7 +145,7 @@ export async function POST(req: NextRequest) {
       console.error("❌ DB update error:", dbErr);
     }
 
-    // 2. Create delivery calendar event
+    // 2. Create delivery calendar event (timed if window selected, otherwise all-day)
     const deliverySummary = `${customerName} ${dumpsterSize}${typeCode}delivery`;
     const deliveryResult = await createCalendarEvent({
       summary: deliverySummary,
@@ -143,6 +153,7 @@ export async function POST(req: NextRequest) {
       description: eventDescription,
       location: fullAddress,
       colorId: "10", // green for delivery
+      ...(windowInfo ? { startTime: windowInfo.start, endTime: windowInfo.end } : {}),
     });
 
     // 3. Create pickup calendar event

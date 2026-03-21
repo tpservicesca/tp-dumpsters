@@ -3,6 +3,17 @@
 import { useMemo } from "react";
 import type { BookingData } from "./BookingWizard";
 
+const DELIVERY_WINDOWS = [
+  { id: "morning", emoji: "🌅", label: "Morning", time: "7:00 AM - 11:00 AM" },
+  { id: "midday", emoji: "☀️", label: "Midday", time: "11:00 AM - 3:00 PM" },
+  { id: "afternoon", emoji: "🌆", label: "Afternoon", time: "3:00 PM - 7:00 PM" },
+] as const;
+
+function getWindowLabel(windowId: string): string {
+  const w = DELIVERY_WINDOWS.find((w) => w.id === windowId);
+  return w ? `${w.label} (${w.time})` : "";
+}
+
 interface Props {
   booking: BookingData;
   updateBooking: (updates: Partial<BookingData>) => void;
@@ -48,13 +59,14 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
     ? addDays(booking.deliveryDate, baseDays)
     : "";
 
-  // When delivery date changes, auto-set pickup to minimum
+  // When delivery date changes, auto-set pickup to minimum and reset window
   const handleDeliveryChange = (date: string) => {
     const autoPickup = addDays(date, baseDays);
     const totalDays = baseDays;
     const extra = Math.max(0, totalDays - baseDays);
     updateBooking({
       deliveryDate: date,
+      deliveryWindow: "",
       pickupDate: autoPickup,
       extraDays: extra,
     });
@@ -74,7 +86,7 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
     ? daysBetween(booking.deliveryDate, booking.pickupDate)
     : 0;
 
-  const canProceed = booking.deliveryDate && booking.pickupDate && totalDays >= baseDays;
+  const canProceed = booking.deliveryDate && booking.deliveryWindow && booking.pickupDate && totalDays >= baseDays;
 
   return (
     <div>
@@ -110,6 +122,11 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
           {booking.deliveryDate && (
             <p className="text-xs text-[#888] mt-1.5">
               {formatDate(booking.deliveryDate)}
+              {booking.deliveryWindow && (
+                <span className="text-tp-red font-semibold ml-1">
+                  — {getWindowLabel(booking.deliveryWindow)}
+                </span>
+              )}
             </p>
           )}
         </div>
@@ -144,6 +161,40 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
           )}
         </div>
       </div>
+
+      {/* Delivery window selector */}
+      {booking.deliveryDate && (
+        <div className="mb-8">
+          <label className="block text-sm font-semibold text-[#333] mb-3 font-[var(--font-poppins)]">
+            🕐 Choose a delivery time window
+          </label>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {DELIVERY_WINDOWS.map((w) => {
+              const isSelected = booking.deliveryWindow === w.id;
+              return (
+                <button
+                  key={w.id}
+                  type="button"
+                  onClick={() => updateBooking({ deliveryWindow: w.id })}
+                  className={`flex flex-col items-center justify-center px-4 py-4 rounded-xl border-2 transition-all duration-200 font-[var(--font-poppins)] cursor-pointer ${
+                    isSelected
+                      ? "border-tp-red bg-red-50 shadow-md"
+                      : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50"
+                  }`}
+                >
+                  <span className="text-2xl mb-1">{w.emoji}</span>
+                  <span className={`font-semibold text-sm ${isSelected ? "text-tp-red" : "text-[#333]"}`}>
+                    {w.label}
+                  </span>
+                  <span className={`text-xs mt-0.5 ${isSelected ? "text-tp-red/70" : "text-[#888]"}`}>
+                    {w.time}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Pricing breakdown */}
       {booking.deliveryDate && booking.pickupDate && (

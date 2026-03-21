@@ -82,9 +82,17 @@ export async function POST(request: Request) {
     });
 
     // Build line item description
+    // Map delivery window to label
+    const windowLabels: Record<string, string> = {
+      morning: "Morning (7AM-11AM)",
+      midday: "Midday (11AM-3PM)",
+      afternoon: "Afternoon (3PM-7PM)",
+    };
+    const windowLabel = windowLabels[booking.deliveryWindow] || "";
+
     const description = [
       `${booking.service.serviceType} - ${booking.service.size} Dumpster`,
-      `Delivery: ${booking.deliveryDate}`,
+      `Delivery: ${booking.deliveryDate}${windowLabel ? ` — ${windowLabel}` : ""}`,
       `Pickup: ${booking.pickupDate}`,
       `${booking.address}, ${booking.city}, ${booking.zipCode}`,
       booking.extraDays > 0 ? `+${booking.extraDays} extra day(s) @ $49/day` : null,
@@ -129,6 +137,7 @@ export async function POST(request: Request) {
         city: booking.city,
         zip_code: booking.zipCode,
         authorized_charges: String(booking.authorizedCharges || false),
+        delivery_window: booking.deliveryWindow || "",
       },
       success_url: `${origin}/booking/success?session_id={CHECKOUT_SESSION_ID}&booking_id=${bookingId}`,
       cancel_url: `${origin}/booking?cancelled=true`,

@@ -59,7 +59,9 @@ export async function getCalendarAccessToken(): Promise<string | null> {
 }
 
 /**
- * Creates a Google Calendar all-day event.
+ * Creates a Google Calendar event.
+ * Supports both all-day events and timed events.
+ * If startTime/endTime are provided, creates a timed event in Pacific time.
  * Color IDs: "10" = green (delivery), "11" = red (pickup)
  */
 export async function createCalendarEvent(params: {
@@ -68,6 +70,8 @@ export async function createCalendarEvent(params: {
   description: string;
   location: string;
   colorId?: string;
+  startTime?: string; // "07:00:00" — if provided, creates timed event
+  endTime?: string;   // "11:00:00"
 }): Promise<{ success: boolean; eventId?: string; error?: string }> {
   try {
     const token = await getCalendarAccessToken();
@@ -75,17 +79,36 @@ export async function createCalendarEvent(params: {
       return { success: false, error: "Failed to get calendar access token" };
     }
 
-    // End date is next day for all-day events
-    const startDate = new Date(params.date + "T00:00:00Z");
-    const endDate = new Date(startDate);
-    endDate.setDate(endDate.getDate() + 1);
+    // Build start/end based on whether it's a timed or all-day event
+    let startEnd: Record<string, unknown>;
+    if (params.startTime && params.endTime) {
+      // Timed event in Pacific time zone
+      startEnd = {
+        start: {
+          dateTime: `${params.date}T${params.startTime}`,
+          timeZone: "America/Los_Angeles",
+        },
+        end: {
+          dateTime: `${params.date}T${params.endTime}`,
+          timeZone: "America/Los_Angeles",
+        },
+      };
+    } else {
+      // All-day event
+      const startDate = new Date(params.date + "T00:00:00Z");
+      const endDate = new Date(startDate);
+      endDate.setDate(endDate.getDate() + 1);
+      startEnd = {
+        start: { date: params.date },
+        end: { date: endDate.toISOString().split("T")[0] },
+      };
+    }
 
     const eventBody = {
       summary: params.summary,
       description: params.description,
       location: params.location,
-      start: { date: params.date },
-      end: { date: endDate.toISOString().split("T")[0] },
+      ...startEnd,
       colorId: params.colorId || "10",
       reminders: {
         useDefault: false,

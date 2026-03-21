@@ -22,6 +22,12 @@ function formatDate(dateStr: string): string {
   });
 }
 
+const WINDOW_LABELS: Record<string, string> = {
+  morning: "Morning (7:00 AM - 11:00 AM)",
+  midday: "Midday (11:00 AM - 3:00 PM)",
+  afternoon: "Afternoon (3:00 PM - 7:00 PM)",
+};
+
 export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }: Props) {
   const [authorizedCharges, setAuthorizedCharges] = useState(false);
   const baseDays = booking.service?.baseDays || 7;
@@ -59,7 +65,12 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
         </h3>
         <div className="grid grid-cols-2 gap-2 text-sm font-[var(--font-poppins)]">
           <span className="text-[#888]">Delivery:</span>
-          <span className="font-semibold">{formatDate(booking.deliveryDate)}</span>
+          <span className="font-semibold">
+            {formatDate(booking.deliveryDate)}
+            {booking.deliveryWindow && (
+              <span className="text-tp-red ml-1">— {WINDOW_LABELS[booking.deliveryWindow] || booking.deliveryWindow}</span>
+            )}
+          </span>
           <span className="text-[#888]">Pickup:</span>
           <span className="font-semibold">{formatDate(booking.pickupDate)}</span>
           <span className="text-[#888]">Included days:</span>

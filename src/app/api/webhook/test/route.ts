@@ -30,14 +30,18 @@ export async function GET(req: NextRequest) {
 
   console.log(`🧪 Test calendar events: delivery=${deliveryDate}, pickup=${pickupDate}`);
 
+  // Delivery: timed event (Morning 7AM-11AM)
   const deliveryResult = await createCalendarEvent({
     summary: "TestBooking 20GDdelivery",
     date: deliveryDate,
     description: testDescription,
     location: "123 Test St, Oakland, CA 94601",
     colorId: "10",
+    startTime: "07:00:00",
+    endTime: "11:00:00",
   });
 
+  // Pickup: all-day event (no time window)
   const pickupResult = await createCalendarEvent({
     summary: "TestBooking 20GDpickup",
     date: pickupDate,

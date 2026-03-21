@@ -21,6 +21,7 @@ export interface ServiceSelection {
 export interface BookingData {
   service: ServiceSelection | null;
   deliveryDate: string;
+  deliveryWindow: string; // "morning" | "midday" | "afternoon"
   pickupDate: string;
   extraDays: number;
   extraDayFee: number;
@@ -45,6 +46,7 @@ const ONLINE_DISCOUNT = 0.05; // 5% discount for online booking
 const initialBooking: BookingData = {
   service: null,
   deliveryDate: "",
+  deliveryWindow: "",
   pickupDate: "",
   extraDays: 0,
   extraDayFee: EXTRA_DAY_FEE,
