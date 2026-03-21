@@ -220,6 +220,25 @@ export default function AntiochPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <AntiochLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Antioch, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Antioch is one of East Contra Costa County&apos;s fastest-growing cities, with neighborhoods like Deer Valley, Lone Tree, and the Rivertown historic district seeing constant home improvement and new construction. Whether you&apos;re clearing out a property near the Antioch Marina, remodeling a home in Country Hills, or managing debris from a backyard renovation in Sand Creek, a dumpster rental keeps your project moving forward.
+            </p>
+            <p>
+              With ongoing residential development and the BART extension bringing new investment to Antioch, renovation and construction projects are on the rise. TP Dumpsters offers affordable 10, 20, and 30 yard roll-off containers perfect for roofing jobs, garage cleanouts, landscaping overhauls, and full home demolitions throughout the Antioch area.
+            </p>
+            <p>
+              Book your Antioch dumpster rental online and save 5% instantly, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for same-day delivery. Transparent pricing and bilingual support — that&apos;s the TP Dumpsters promise.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

@@ -4,6 +4,7 @@ import SuccessContent from "./SuccessContent";
 export const metadata = {
   title: "Booking Confirmed | TP Dumpsters",
   description: "Your dumpster rental booking has been confirmed and paid.",
+  robots: { index: false, follow: false },
 };
 
 export default function SuccessPage() {

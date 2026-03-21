@@ -221,6 +221,25 @@ export default function SanLeandroPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <SanLeandroLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in San Leandro, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              San Leandro is a vibrant East Bay city with established neighborhoods like Estudillo Estates, Washington Manor, and Bay-O-Vista where homeowners are constantly updating and improving their properties. Whether you&apos;re tearing out old flooring in a Broadmoor bungalow, clearing yard waste near Marina Park, or managing debris from a commercial renovation on East 14th Street, a dumpster rental makes the job effortless.
+            </p>
+            <p>
+              San Leandro&apos;s proximity to Oakland and its own downtown revitalization efforts keep renovation activity high year-round. From kitchen and bathroom remodels to full estate cleanouts, TP Dumpsters delivers 10, 20, and 30 yard roll-off containers with same-day service, straightforward pricing, and no hidden fees — everything you need to keep your project on track.
+            </p>
+            <p>
+              Ready to start? Book your San Leandro dumpster online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free estimate. English and Spanish support available.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

@@ -221,6 +221,25 @@ export default function AlamedaPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <AlamedaLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Alameda, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Alameda&apos;s charming island community is full of historic Victorian homes, Craftsman bungalows, and mid-century properties that homeowners love to restore and update. Whether you&apos;re renovating a classic home on the Gold Coast, clearing out an estate in the East End, or managing demolition debris from a project at Alameda Point, a dumpster rental makes waste removal simple.
+            </p>
+            <p>
+              The island&apos;s ongoing development at Alameda Point and Site A, along with steady residential remodeling throughout neighborhoods like Fernside and Bay Farm Island, creates consistent demand for reliable roll-off dumpster service. TP Dumpsters delivers 10, 20, and 30 yard containers right to your Alameda address with same-day availability and no hidden fees.
+            </p>
+            <p>
+              Ready to tackle your Alameda project? Book online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free quote. We proudly serve all of Alameda with fast delivery and bilingual customer support.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

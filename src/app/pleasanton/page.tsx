@@ -220,6 +220,25 @@ export default function PleasantonPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <PleasantonLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Pleasanton, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Pleasanton is one of the Tri-Valley&apos;s most sought-after communities, with beautiful neighborhoods like Ruby Hill, Vintage Hills, and Birdland where homeowners regularly invest in property upgrades. Whether you&apos;re remodeling a home near Pleasanton Ridge, clearing out an estate in Del Prado, or managing construction waste from a project along Main Street, a roll-off dumpster keeps your worksite clean and efficient.
+            </p>
+            <p>
+              Pleasanton&apos;s high property values and active real estate market drive a steady stream of home renovations, landscaping projects, and commercial build-outs. TP Dumpsters provides 10, 20, and 30 yard containers with all-inclusive pricing — delivery, pickup, and disposal included — making it easy for both DIY homeowners and licensed contractors to manage their waste responsibly.
+            </p>
+            <p>
+              Book your Pleasanton dumpster online today and save 5%, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for same-day service. Transparent pricing, bilingual support, and reliable delivery across Pleasanton.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

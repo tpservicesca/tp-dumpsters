@@ -218,6 +218,25 @@ export default function DublinPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <DublinLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Dublin, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Dublin is one of the Tri-Valley&apos;s fastest-growing cities, with neighborhoods like Dublin Ranch, Positano, and Fallon Gateway seeing constant new construction and home improvement projects. Whether you&apos;re remodeling a home near Emerald Glen Park, clearing out a garage in Dublin Village, or handling construction waste from a commercial build near the BART station, a dumpster rental keeps your site organized and compliant.
+            </p>
+            <p>
+              Dublin&apos;s rapid growth and new developments like Boulevard and Dublin Crossing mean contractors and homeowners need efficient, reliable waste hauling. TP Dumpsters offers 10, 20, and 30 yard containers with transparent all-inclusive pricing, same-day delivery, and flexible rental periods — ideal for projects of any size from weekend cleanups to multi-week construction jobs.
+            </p>
+            <p>
+              Book your Dublin dumpster online today and save 5%, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for personalized service. Same-day delivery and bilingual support available throughout Dublin.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

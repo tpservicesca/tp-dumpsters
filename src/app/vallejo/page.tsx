@@ -222,6 +222,25 @@ export default function VallejoPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <VallejoLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Vallejo, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Vallejo is a waterfront city with rich history and neighborhoods like Glen Cove, Hiddenbrooke, and South Vallejo that are experiencing renewed investment and renovation activity. Whether you&apos;re gutting a fixer-upper on Mare Island, cleaning up after a storm in Country Club Crest, or handling demolition waste from a commercial remodel on Sonoma Boulevard, a dumpster rental streamlines the process.
+            </p>
+            <p>
+              With Vallejo&apos;s affordable housing market attracting new buyers and investors, home renovation projects are more common than ever. From flooring removal to full property cleanouts, TP Dumpsters delivers 10, 20, and 30 yard roll-off containers to any Vallejo address with same-day service and all-inclusive pricing — no surprise fees at pickup.
+            </p>
+            <p>
+              Start your Vallejo project with confidence. Book your dumpster online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> today. Bilingual service available in English and Spanish.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

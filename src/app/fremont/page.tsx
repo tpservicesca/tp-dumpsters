@@ -215,6 +215,25 @@ export default function FremontPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <FremontLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Fremont, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Fremont is one of the Bay Area&apos;s largest cities, with diverse neighborhoods like Niles, Warm Springs, Irvington, and Mission San Jose where homeowners and contractors regularly take on renovation and cleanup projects. Whether you&apos;re remodeling a home near Lake Elizabeth, clearing construction debris in Ardenwood, or cleaning out a commercial space along Auto Mall Parkway, a dumpster rental keeps your worksite organized.
+            </p>
+            <p>
+              With Fremont&apos;s booming tech corridor and new residential developments in Warm Springs, there&apos;s always a need for efficient waste hauling. TP Dumpsters offers 10, 20, and 30 yard roll-off containers ideal for everything from small garage cleanouts to major demolition projects. Our containers are delivered on your schedule with transparent, all-inclusive pricing.
+            </p>
+            <p>
+              Book your Fremont dumpster rental online today and get an instant 5% discount, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> to speak with our team. We offer same-day delivery and bilingual support throughout Fremont.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

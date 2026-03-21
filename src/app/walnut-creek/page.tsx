@@ -207,6 +207,25 @@ export default function WalnutCreekPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <WalnutCreekLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Walnut Creek, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Walnut Creek is one of Contra Costa County&apos;s most desirable communities, with upscale neighborhoods like Rossmoor, Northgate, and Saranap where homeowners invest regularly in renovations and property upgrades. Whether you&apos;re remodeling a kitchen in Parkmead, clearing landscaping waste near Shell Ridge, or managing construction debris from a downtown condo renovation, a roll-off dumpster keeps your project running smoothly.
+            </p>
+            <p>
+              The city&apos;s active real estate market and continuous property improvements drive demand for efficient waste removal solutions. From bathroom tear-outs to whole-home cleanouts, TP Dumpsters provides 10, 20, and 30 yard containers with transparent pricing that includes delivery, pickup, and up to 7 days of rental — perfect for both weekend warriors and professional contractors.
+            </p>
+            <p>
+              Get started on your Walnut Creek project today. Book online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for same-day delivery. We offer bilingual support and no surprise charges.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

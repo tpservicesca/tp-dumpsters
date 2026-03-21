@@ -220,6 +220,25 @@ export default function LivermorePage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <LivermoreLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Livermore, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Livermore is a thriving Tri-Valley city known for its wine country charm and growing neighborhoods like Springtown, Sunset East, and the expanding North Livermore area. Whether you&apos;re renovating a ranch-style home near downtown, clearing construction debris from a vineyard property, or cleaning out a commercial space along First Street, a dumpster rental simplifies waste management.
+            </p>
+            <p>
+              With Livermore&apos;s downtown revitalization and new housing developments in areas like Cayetano Creek and Isabel, contractors and homeowners consistently need reliable waste hauling services. TP Dumpsters delivers 10, 20, and 30 yard containers to your Livermore location with same-day availability, transparent pricing, and no hidden fees for disposal or delivery.
+            </p>
+            <p>
+              Get your Livermore project started right — book online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free quote. We serve all of Livermore with fast delivery and bilingual customer support.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

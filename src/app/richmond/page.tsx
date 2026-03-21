@@ -216,6 +216,25 @@ export default function RichmondPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <RichmondLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Richmond, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Richmond is a city of transformation, with neighborhoods like Point Richmond, the Iron Triangle, and Hilltop undergoing continuous renovation and development. Whether you&apos;re clearing out a property near Marina Bay, renovating a historic home in Atchison Village, or managing debris from a commercial project along Macdonald Avenue, a reliable dumpster rental makes the job easier and more efficient.
+            </p>
+            <p>
+              From backyard cleanups in El Cerrito Hills to large-scale construction waste removal near Richmond Annex, homeowners and contractors throughout the area rely on convenient roll-off dumpster service. TP Dumpsters offers 10, 20, and 30 yard containers with transparent pricing, same-day delivery, and bilingual support to serve Richmond&apos;s diverse community.
+            </p>
+            <p>
+              Ready to get started on your Richmond project? Book online for an instant 5% discount or call us at <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free quote. We&apos;re proud to serve the Richmond community with affordable, hassle-free dumpster rentals.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

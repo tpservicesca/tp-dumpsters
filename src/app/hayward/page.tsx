@@ -207,6 +207,25 @@ export default function HaywardPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <HaywardLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Hayward, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Hayward sits at the heart of the East Bay, with thriving neighborhoods like Hayward Hills, Southgate, and Tennyson that are constantly being updated and improved. Whether you&apos;re renovating a mid-century home near Cal State East Bay, clearing out a rental property on Mission Boulevard, or hauling away debris from a landscaping project in Fairview, a roll-off dumpster simplifies waste removal.
+            </p>
+            <p>
+              Hayward&apos;s growing downtown revitalization and new housing developments create steady demand for reliable waste management. From roofing tear-offs to estate cleanouts, TP Dumpsters delivers 10, 20, and 30 yard containers directly to your Hayward location with same-day availability and straightforward pricing that includes delivery, pickup, and disposal.
+            </p>
+            <p>
+              Start your Hayward project the right way — book your dumpster online and save 5%, or call us at <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free estimate. Bilingual support available in English and Spanish.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>

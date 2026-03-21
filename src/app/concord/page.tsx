@@ -213,6 +213,25 @@ export default function ConcordPage() {
       <DynamicGallery />
       <ServiceAreaMap />
       <ConcordLocation />
+      {/* SEO Content Section */}
+      <section className="py-16 bg-white">
+        <div className="w-[85%] max-w-[900px] mx-auto">
+          <h2 className="font-[var(--font-poppins)] text-[24px] md:text-[30px] font-bold text-[#1a1a1a] mb-6 text-center">
+            Why Rent a Dumpster in Concord, California?
+          </h2>
+          <div className="space-y-4 text-[#555] text-base leading-[1.8] font-[var(--font-poppins)]">
+            <p>
+              Concord is one of the largest cities in Contra Costa County, with established neighborhoods like Dana Estates, Sun Terrace, and Meadow Homes seeing constant home improvement activity. Whether you&apos;re tackling a kitchen remodel near Todos Santos Plaza, clearing out a garage in Ellis Lake, or managing construction waste from a project along Willow Pass Road, a dumpster rental keeps your site clean and your project on schedule.
+            </p>
+            <p>
+              The former Concord Naval Weapons Station redevelopment and ongoing residential growth mean more construction and renovation projects across the city. TP Dumpsters provides affordable 10, 20, and 30 yard roll-off containers perfect for everything from small residential cleanouts to large commercial demolitions throughout Concord and surrounding areas.
+            </p>
+            <p>
+              Get your Concord dumpster delivered as soon as today. Book online for an instant 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for personalized service in English or Spanish. Transparent pricing, no hidden fees — that&apos;s the TP Dumpsters difference.
+            </p>
+          </div>
+        </div>
+      </section>
       <FloatingButtons />
       <Footer />
     </>
