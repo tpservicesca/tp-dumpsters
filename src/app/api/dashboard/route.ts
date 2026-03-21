@@ -145,6 +145,27 @@ export async function POST(req: NextRequest) {
     }
 
     if (action === "update") {
+      // If returning to yard, clear all assignment data
+      if (body.status === "yard") {
+        await db.execute(
+          `UPDATE dumpsters SET 
+            status = 'yard', 
+            customer = NULL, 
+            address = NULL, 
+            city = NULL, 
+            phone = NULL, 
+            service_type = NULL, 
+            delivery_date = NULL, 
+            pickup_date = NULL, 
+            lat = NULL, 
+            lng = NULL,
+            notes = NULL
+          WHERE id = ?`,
+          [body.id]
+        );
+        return NextResponse.json({ ok: true, cleared: true });
+      }
+
       const sets: string[] = [];
       const vals: (string | number | null)[] = [];
 
