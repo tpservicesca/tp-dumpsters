@@ -115,17 +115,15 @@ export default function DriverApp() {
   const startPhotoCapture = (job: Job) => {
     setShowCamera({ job });
     setPhotoData(null);
-    // Trigger the file input (camera)
-    setTimeout(() => {
-      fileInputRef.current?.click();
-    }, 100);
+    // Must click synchronously within user gesture for mobile browsers
+    fileInputRef.current?.click();
   };
 
   const handlePhotoCapture = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) {
-      // User cancelled camera - reset
-      setShowCamera(null);
+      // User cancelled camera - show option to proceed without photo
+      // Don't reset showCamera, let them see the "proceed without photo" option
       return;
     }
 
@@ -150,9 +148,7 @@ export default function DriverApp() {
 
   const retakePhoto = () => {
     setPhotoData(null);
-    setTimeout(() => {
-      fileInputRef.current?.click();
-    }, 100);
+    fileInputRef.current?.click();
   };
 
   const cancelPhoto = () => {
@@ -301,10 +297,18 @@ export default function DriverApp() {
       />
 
       {/* Photo preview modal */}
-      {showCamera && photoData && (
+      {showCamera && (
         <div className="fixed inset-0 bg-black z-[60] flex flex-col">
           <div className="flex-1 flex items-center justify-center p-4">
-            <img src={photoData} alt="Preview" className="max-w-full max-h-[60vh] rounded-xl" />
+            {photoData ? (
+              <img src={photoData} alt="Preview" className="max-w-full max-h-[60vh] rounded-xl" />
+            ) : (
+              <div className="text-center">
+                <div className="text-6xl mb-4">📸</div>
+                <p className="text-gray-400 text-lg mb-2">Toma una foto del dumpster</p>
+                <p className="text-gray-500 text-sm">O procede sin foto</p>
+              </div>
+            )}
           </div>
           <div className="p-4 space-y-3 pb-8">
             <button
@@ -313,12 +317,21 @@ export default function DriverApp() {
             >
               ✅ Confirmar {showCamera.job.type === "delivery" ? "Entrega" : "Recolección"}
             </button>
-            <button
-              onClick={retakePhoto}
-              className="w-full py-4 bg-gray-800 text-gray-300 text-lg rounded-xl active:bg-gray-700"
-            >
-              📸 Tomar otra foto
-            </button>
+            {photoData ? (
+              <button
+                onClick={retakePhoto}
+                className="w-full py-4 bg-gray-800 text-gray-300 text-lg rounded-xl active:bg-gray-700"
+              >
+                📸 Tomar otra foto
+              </button>
+            ) : (
+              <button
+                onClick={() => fileInputRef.current?.click()}
+                className="w-full py-4 bg-blue-600 text-white text-lg font-bold rounded-xl active:bg-blue-700"
+              >
+                📸 Abrir cámara
+              </button>
+            )}
             <button
               onClick={cancelPhoto}
               className="w-full py-4 bg-red-900 text-red-300 text-lg rounded-xl active:bg-red-800"
