@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
+import { sendSMS } from "@/lib/twilio";
 import * as mysql from "mysql2/promise";
 import * as fs from "fs";
 import * as crypto from "crypto";
@@ -170,6 +171,38 @@ export async function POST(req: NextRequest) {
       `📅 Calendar events: delivery=${deliveryResult.success ? deliveryResult.eventId : "FAILED"}, pickup=${pickupResult.success ? pickupResult.eventId : "FAILED"}`
     );
 
+    // Send booking confirmation SMS (non-blocking — failures don't affect response)
+    let smsSent = false;
+    if (customerPhone) {
+      try {
+        const windowLabels: Record<string, string> = {
+          morning: "7:00 AM - 11:00 AM",
+          midday: "11:00 AM - 3:00 PM",
+          afternoon: "3:00 PM - 7:00 PM",
+        };
+        const deliveryWindowMeta = meta.delivery_window || "";
+        const windowLabel = windowLabels[deliveryWindowMeta] || "7:00 AM - 5:00 PM";
+
+        const formattedDate = new Date(deliveryDate + "T12:00:00").toLocaleDateString("en-US", {
+          weekday: "short", month: "short", day: "numeric",
+        });
+
+        const smsBody = `Hi ${customerName.split(" ")[0]}! Your dumpster rental is confirmed ✅\n\n` +
+          `📋 Booking: ${bookingId}\n` +
+          `🗑️ ${serviceType} - ${dumpsterSize} Yard\n` +
+          `📦 Delivery: ${formattedDate} (${windowLabel})\n` +
+          `📍 ${fullAddress}\n\n` +
+          `Questions? Call (510) 650-2083\n` +
+          `— TP Dumpsters`;
+
+        const smsResult = await sendSMS(customerPhone, smsBody);
+        smsSent = smsResult.success;
+        console.log(`📱 Confirmation SMS: ${smsResult.success ? "sent" : "failed"}`);
+      } catch (smsErr) {
+        console.error("📱 SMS error (non-blocking):", smsErr);
+      }
+    }
+
     return NextResponse.json({
       received: true,
       bookingId,
@@ -178,6 +211,7 @@ export async function POST(req: NextRequest) {
         delivery: deliveryResult,
         pickup: pickupResult,
       },
+      smsSent,
     });
   } catch (error) {
     console.error("❌ Webhook error:", error);

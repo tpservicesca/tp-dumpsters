@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
+import { sendSMS } from "@/lib/twilio";
 import * as mysql from "mysql2/promise";
 
 const AUTH_CODE = "Cantaritos1.";
@@ -149,11 +150,43 @@ export async function POST(req: NextRequest) {
 
     console.log(`📅 Calendar events created for ${bookingId}: delivery=${deliveryResult.eventId}, pickup=${pickupResult.eventId}`);
 
+    // Send booking confirmation SMS (non-blocking)
+    let smsSent = false;
+    if (phone) {
+      try {
+        const windowLabels: Record<string, string> = {
+          morning: "7:00 AM - 11:00 AM",
+          midday: "11:00 AM - 3:00 PM",
+          afternoon: "3:00 PM - 7:00 PM",
+        };
+        const windowLabel = windowLabels[deliveryWindow] || "7:00 AM - 5:00 PM";
+
+        const formattedDate = new Date(deliveryDate + "T12:00:00").toLocaleDateString("en-US", {
+          weekday: "short", month: "short", day: "numeric",
+        });
+
+        const smsBody = `Hi ${customerName.split(" ")[0]}! Your dumpster rental is confirmed ✅\n\n` +
+          `📋 Booking: ${bookingId}\n` +
+          `🗑️ ${serviceType} - ${dumpsterSize} Yard\n` +
+          `📦 Delivery: ${formattedDate} (${windowLabel})\n` +
+          `📍 ${fullAddress}\n\n` +
+          `Questions? Call (510) 650-2083\n` +
+          `— TP Dumpsters`;
+
+        const smsResult = await sendSMS(phone, smsBody);
+        smsSent = smsResult.success;
+        console.log(`📱 Confirmation SMS: ${smsResult.success ? "sent" : "failed"}`);
+      } catch (smsErr) {
+        console.error("📱 SMS error (non-blocking):", smsErr);
+      }
+    }
+
     return NextResponse.json({
       ok: true,
       bookingId,
       deliveryEventId: deliveryResult.eventId || null,
       pickupEventId: pickupResult.eventId || null,
+      smsSent,
       calendarErrors: [
         !deliveryResult.success ? `Delivery: ${deliveryResult.error}` : null,
         !pickupResult.success ? `Pickup: ${pickupResult.error}` : null,
