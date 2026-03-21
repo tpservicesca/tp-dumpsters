@@ -38,6 +38,17 @@ export default function DriverApp() {
 
   const fetchData = useCallback(async () => {
     try {
+      // First sync calendar to make sure dumpsters are assigned
+      try {
+        await fetch("/api/calendar-sync", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "x-dashboard-auth": AUTH_CODE },
+          body: JSON.stringify({}),
+        });
+      } catch {
+        // Calendar sync is best-effort
+      }
+
       const res = await fetch(`${API}?auth=${AUTH_CODE}`);
       const data = await res.json();
       if (data.dumpsters) {

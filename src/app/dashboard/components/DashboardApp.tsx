@@ -202,6 +202,28 @@ export default function DashboardApp() {
             {view === "list" ? "🗺️ Map" : "📋 List"}
           </button>
           <button
+            onClick={async () => {
+              if (!confirm("¿Sincronizar servicios de hoy desde Google Calendar?")) return;
+              try {
+                const res = await fetch("/api/calendar-sync", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json", "x-dashboard-auth": AUTH_CODE },
+                  body: JSON.stringify({}),
+                });
+                const data = await res.json();
+                const msgs = data.results?.map((r: { status: string }) => r.status).join("\n") || "No events";
+                alert(`📅 Calendar Sync\n${data.events} events found\n\n${msgs}`);
+                await fetchData();
+              } catch (err) {
+                alert("Error syncing calendar");
+                console.error(err);
+              }
+            }}
+            className="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-lg text-sm font-bold transition"
+          >
+            📅 Sync
+          </button>
+          <button
             onClick={() => setShowAddModal(true)}
             className="bg-red-600 hover:bg-red-700 px-3 py-2 rounded-lg text-sm font-bold transition"
           >
