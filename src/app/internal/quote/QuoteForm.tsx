@@ -148,8 +148,8 @@ export default function QuoteForm() {
         },
         body: JSON.stringify({
           customerName,
-          customerPhone: customerPhone ? `${phoneCode} ${customerPhone}` : "",
-          customerEmail: customerEmail || "",
+          phone: customerPhone ? `${phoneCode} ${customerPhone}` : "",
+          email: customerEmail || "",
           serviceType,
           dumpsterSize: size.replace(" Yard", ""),
           address: deliveryAddress,
