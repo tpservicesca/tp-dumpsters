@@ -1,5 +1,5 @@
-const CACHE_NAME = "tp-driver-v1";
-const OFFLINE_URLS = ["/driver"];
+const CACHE_NAME = "tp-app-v2";
+const OFFLINE_URLS = ["/driver", "/dashboard", "/booking", "/internal/quote", "/internal/customers"];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -18,15 +18,23 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  // Network-first strategy for API calls
-  if (event.request.url.includes("/api/")) {
+  const url = new URL(event.request.url);
+
+  // Network-first for API calls
+  if (url.pathname.startsWith("/api/")) {
     event.respondWith(
       fetch(event.request).catch(() => caches.match(event.request))
     );
     return;
   }
-  // Cache-first for driver page assets
-  if (event.request.url.includes("/driver")) {
+
+  // Network-first + cache for app pages (driver, dashboard, booking, internal)
+  if (
+    url.pathname.startsWith("/driver") ||
+    url.pathname.startsWith("/dashboard") ||
+    url.pathname.startsWith("/booking") ||
+    url.pathname.startsWith("/internal")
+  ) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
@@ -38,5 +46,26 @@ self.addEventListener("fetch", (event) => {
     );
     return;
   }
+
+  // Cache-first for static assets (images, fonts, CSS, JS)
+  if (
+    url.pathname.startsWith("/images/") ||
+    url.pathname.startsWith("/icons/") ||
+    url.pathname.match(/\.(js|css|woff2?|ttf|png|jpg|jpeg|svg|webp)$/)
+  ) {
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) return cached;
+        return fetch(event.request).then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+          return response;
+        });
+      })
+    );
+    return;
+  }
+
+  // Default: network only
   event.respondWith(fetch(event.request));
 });
