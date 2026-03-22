@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import InstallPrompt from "@/components/InstallPrompt";
 
 const AUTH_CODE = "Cantaritos1.";
 const GOOGLE_MAPS_KEY = "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
@@ -470,6 +471,8 @@ export default function DashboardApp() {
       >
         <IconChat className="w-6 h-6 text-white" />
       </a>
+
+      <InstallPrompt appName="TP Dumpsters Manager" />
     </div>
   );
 }
