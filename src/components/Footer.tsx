@@ -3,8 +3,8 @@ export default function Footer() {
     <footer className="bg-tp-red py-10 text-center">
       <div className="w-[80%] max-w-[1080px] mx-auto">
         <p className="text-[#ddd] text-sm leading-[1.8] font-[var(--font-poppins)]">
-          <a href="mailto:dumpster@tpservicesca.com" className="text-[#ddd] hover:text-white transition-colors duration-200">
-            dumpster@tpservicesca.com
+          <a href="mailto:contact@tpdumpsters.com" className="text-[#ddd] hover:text-white transition-colors duration-200">
+            contact@tpdumpsters.com
           </a>
         </p>
         <p className="text-[#ddd] text-sm leading-[1.8] font-[var(--font-poppins)]">

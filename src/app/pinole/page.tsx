@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import SizesSection from "@/components/SizesSection";
+import DumpsterPhotosGrid from "@/components/DumpsterPhotosGrid";
 import FaqsSection from "@/components/FaqsSection";
 import CityFaqsSection from "@/components/CityFaqsSection";
 import AboutCitySection from "@/components/AboutCitySection";
@@ -240,6 +241,7 @@ export default function PinolePage() {
       <div className="h-[60px] bg-tp-red w-full" />
       <AboutCitySection {...pinoleAbout} />
 <SizesSection />
+<DumpsterPhotosGrid />
       <ErrorBoundary>
         <CityFaqsSection cityName="Pinole" faqs={pinoleFaqs} />
       </ErrorBoundary>
