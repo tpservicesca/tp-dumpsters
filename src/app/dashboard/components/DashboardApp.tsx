@@ -210,6 +210,13 @@ export default function DashboardApp() {
     }
   }, []);
 
+  // Register service worker for PWA
+  useEffect(() => {
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
+    }
+  }, []);
+
   useEffect(() => {
     if (authenticated) {
       fetchData();

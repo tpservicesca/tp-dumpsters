@@ -1,19 +1,21 @@
+import type { Metadata, Viewport } from "next";
+
+export const metadata: Metadata = {
+  manifest: "/manifest-booking.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "TP Dumpsters",
+  },
+  icons: {
+    apple: "/images/logo/TP.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#dc2626",
+};
+
 export default function BookingLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      <link rel="manifest" href="/manifest-booking.json" />
-      <meta name="theme-color" content="#dc2626" />
-      <link rel="apple-touch-icon" href="/images/logo/TP.png" />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.register('/sw.js').catch(() => {});
-            }
-          `,
-        }}
-      />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }
