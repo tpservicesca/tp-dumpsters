@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
-import PricingTable from "@/components/PricingTable";
+// PricingTable removed — replaced by SizesSection everywhere
 import ErrorBoundary from "@/components/ErrorBoundary";
 import SizesSection from "@/components/SizesSection";
 import FaqsSection from "@/components/FaqsSection";
@@ -117,10 +117,7 @@ export default function Home() {
       <HeroSection />
       {/* Red Divider */}
       <div className="h-[60px] bg-tp-red w-full" />
-      {/* PricingTable hidden — re-enable when ready */}
-      {/* <ErrorBoundary>
-        <PricingTable cityName="the Bay Area" />
-      </ErrorBoundary> */}
+
       <SizesSection />
       <FaqsSection />
       <DynamicReviews />

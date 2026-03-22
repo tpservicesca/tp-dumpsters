@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
-import PricingTable from "@/components/PricingTable";
+import SizesSection from "@/components/SizesSection";
+import DumpsterPhotosGrid from "@/components/DumpsterPhotosGrid";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import DynamicReviews from "@/components/DynamicReviews";
 import FloatingButtons from "@/components/FloatingButtons";
@@ -249,9 +250,13 @@ export default function ContractorsPage() {
       <div className="h-[60px] bg-tp-red w-full" />
       <WhyContractors />
       <ContractorServices />
-      <ErrorBoundary>
-        <PricingTable cityName="Contractors" />
-      </ErrorBoundary>
+      <SizesSection />
+      <DumpsterPhotosGrid photos={[
+        { src: "/images/dumpsters/construction-site.jpg", alt: "Contractor dumpster on job site" },
+        { src: "/images/gallery/demolition-03.jpg", alt: "Construction dumpster rental" },
+        { src: "/images/gallery/jobsite-05.jpg", alt: "Contractor waste disposal" },
+        { src: "/images/dumpsters/worker-action.jpg", alt: "Dumpster rental for contractors" },
+      ]} />
       <ErrorBoundary>
         <CityFaqsSection cityName="Contractors" faqs={contractorFaqs} />
       </ErrorBoundary>
