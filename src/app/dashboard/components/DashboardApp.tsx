@@ -366,6 +366,12 @@ export default function DashboardApp() {
           >
             <IconSync /> Sync
           </button>
+          <a
+            href="/internal/customers"
+            className="bg-neutral-900 hover:bg-neutral-800 px-3 py-2 rounded-xl text-sm transition-colors flex items-center gap-1.5"
+          >
+            <IconUser /> Customers
+          </a>
           <button
             onClick={() => setShowManualBooking(true)}
             className="bg-neutral-900 hover:bg-neutral-800 px-3 py-2 rounded-xl text-sm transition-colors flex items-center gap-1.5"
