@@ -50,7 +50,7 @@ const jsonLd = {
   "@type": "Service",
   name: "Roofing Dumpster Rental",
   description:
-    "Rent a roofing dumpster for roof tear-offs, shingle disposal, roof replacements, and roofing repairs. Available in 10, 20, and 30 yard sizes across the San Francisco Bay Area. Includes $60 roofing surcharge for heavier materials.",
+    "Rent a roofing dumpster for roof tear-offs, shingle disposal, roof replacements, and roofing repairs. Available in 10, 20, and 30 yard sizes across the San Francisco Bay Area.  for heavier materials.",
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
@@ -79,23 +79,23 @@ const jsonLd = {
     {
       "@type": "Offer",
       name: "10 Yard Roofing Dumpster",
-      price: "660",
+      price: "599",
       priceCurrency: "USD",
-      description: "10 yard roofing dumpster — 1 ton included, 7-day rental, 12ft L × 8ft W × 2.5ft H. Includes $60 roofing surcharge.",
+      description: "10 yard roofing dumpster — 1 ton included, 7-day rental, 12ft L × 8ft W × 2.5ft H. ",
     },
     {
       "@type": "Offer",
       name: "20 Yard Roofing Dumpster",
-      price: "710",
+      price: "649",
       priceCurrency: "USD",
-      description: "20 yard roofing dumpster — 2 tons included, 7-day rental, 16ft L × 8ft W × 4ft H. Includes $60 roofing surcharge.",
+      description: "20 yard roofing dumpster — 2 tons included, 7-day rental, 16ft L × 8ft W × 4ft H. ",
     },
     {
       "@type": "Offer",
       name: "30 Yard Roofing Dumpster",
-      price: "810",
+      price: "749",
       priceCurrency: "USD",
-      description: "30 yard roofing dumpster — 3 tons included, 7-day rental, 16ft L × 8ft W × 6ft H. Includes $60 roofing surcharge.",
+      description: "30 yard roofing dumpster — 3 tons included, 7-day rental, 16ft L × 8ft W × 6ft H. ",
     },
   ],
 };
@@ -110,7 +110,7 @@ const faqSchema = {
       name: "Why do roofing dumpsters cost more?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Roofing materials like asphalt shingles, tiles, and flashing are significantly heavier than general debris. They also cost more to process at landfills due to their density and composition. The $60 roofing surcharge covers these additional disposal costs.",
+        text: "Roofing materials like asphalt shingles, tiles, and flashing are significantly heavier than general debris. They also cost more to process at landfills due to their density and composition",
       },
     },
     {
@@ -193,7 +193,7 @@ const dumpsterSizes = [
   {
     name: "10 Yard",
     basePrice: "$599",
-    roofingPrice: "$660",
+    roofingPrice: "$599",
     dimensionsClean: "12&apos;L × 8&apos;W × 2.5&apos;H",
     weight: "1 ton included",
     rental: "7-day rental",
@@ -204,7 +204,7 @@ const dumpsterSizes = [
   {
     name: "20 Yard",
     basePrice: "$649",
-    roofingPrice: "$710",
+    roofingPrice: "$649",
     dimensionsClean: "16&apos;L × 8&apos;W × 4&apos;H",
     weight: "2 tons included",
     rental: "7-day rental",
@@ -215,7 +215,7 @@ const dumpsterSizes = [
   {
     name: "30 Yard",
     basePrice: "$749",
-    roofingPrice: "$810",
+    roofingPrice: "$749",
     dimensionsClean: "16&apos;L × 8&apos;W × 6&apos;H",
     weight: "3 tons included",
     rental: "7-day rental",
@@ -247,7 +247,7 @@ const serviceCounties = [
 ];
 
 const extraFees = [
-  { item: "Roofing surcharge", fee: "Included ($60)" },
+  
   { item: "Extra rental days", fee: "$49/day" },
   { item: "Overweight charges", fee: "$125/ton (prorated)" },
   { item: "Mattresses", fee: "$60 each" },
@@ -263,7 +263,7 @@ const faqsLeft = [
     question: "Why do roofing dumpsters cost more?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Roofing materials like asphalt shingles, tiles, and flashing are significantly heavier than general debris. They also cost more to process at landfills due to their density and composition. The <strong>$60 roofing surcharge</strong> covers these additional disposal costs. Even though you&apos;re renting the same dumpster, the weight and processing requirements make roofing loads more expensive to handle.
+        Roofing dumpsters are priced the same as general debris dumpsters. Whether you&apos;re tearing off an old roof or replacing shingles, our straightforward pricing covers delivery, pickup, disposal, and a 7-day rental period — all included with no hidden fees.
       </p>
     ),
   },
@@ -372,7 +372,7 @@ export default function RoofingPage() {
         <div className="relative z-[2] px-5 pb-10 max-w-4xl mx-auto">
           <div className="mb-6">
             <span className="inline-block bg-tp-gold-dark text-white px-6 py-2 text-[13px] md:text-base font-bold rounded-[3px] font-[var(--font-poppins)]">
-              Roofing Specialists — $60 Surcharge Included
+              Roofing Specialists — Same Great Pricing
             </span>
           </div>
           <h1 className="font-[var(--font-oswald)] text-[28px] sm:text-[3rem] lg:text-[4.5rem] font-extrabold text-white uppercase leading-[1.1] mb-4 tracking-wide">
@@ -411,7 +411,7 @@ export default function RoofingPage() {
             Roofing Dumpster Sizes &amp; Prices
           </h2>
           <p className="text-[15px] text-[#666] leading-[1.7] mb-10 max-w-3xl">
-            All roofing dumpster prices include a <strong>$60 roofing surcharge</strong> due to the heavier weight and higher landfill processing costs of roofing materials. Delivery, pickup, disposal, and a 7-day rental are included. No hidden fees.
+            All roofing dumpster prices include delivery, pickup, disposal, and a 7-day rental period. No hidden fees — what you see is what you pay.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
@@ -431,10 +431,6 @@ export default function RoofingPage() {
                   </h3>
                   <p className="font-[var(--font-oswald)] text-[42px] font-bold text-tp-red mt-4">
                     {size.roofingPrice}
-                  </p>
-                  <p className="text-sm text-[#999] mt-1">
-                    <span className="line-through">{size.basePrice}</span>{" "}
-                    <span className="text-[#666]">— Includes $60 roofing surcharge</span>
                   </p>
                 </div>
                 <div className="px-6 py-4 flex items-center justify-center min-h-[160px]">
@@ -466,7 +462,7 @@ export default function RoofingPage() {
                     </li>
                     <li className="flex items-center gap-2 text-sm text-[#555]">
                       <FaCircleCheck className="text-green-600 flex-shrink-0" />
-                      $60 roofing surcharge included
+                      Same price as general debris
                     </li>
                   </ul>
                   <p className="text-sm text-[#888] mt-3 italic">Best for: {size.bestFor}</p>
@@ -503,7 +499,7 @@ export default function RoofingPage() {
                 A <strong>roofing dumpster</strong> is the same roll-off container used for general or construction debris, but it&apos;s priced differently because roofing materials are significantly heavier and more expensive to process at landfills. Asphalt shingles, concrete tiles, metal flashing, and tar paper all add up quickly in weight — often exceeding what general debris loads weigh.
               </p>
               <p className="text-[15px] text-[#555] leading-[1.8] mb-4">
-                The <strong>$60 roofing surcharge</strong> is applied to every roofing dumpster rental to account for these higher disposal costs. This surcharge is already included in our listed prices, so what you see is what you pay — no surprises at pickup.
+                Our roofing dumpster pricing is straightforward — the same rates as general debris. What you see is what you pay, no surprises at pickup.
               </p>
             </div>
             <div>
@@ -759,7 +755,7 @@ export default function RoofingPage() {
             Extra Fees &amp; Policies
           </h2>
           <p className="text-[15px] text-[#666] leading-[1.7] mb-10 max-w-3xl">
-            We believe in transparent, upfront pricing. The <strong>$60 roofing surcharge is already included</strong> in all roofing dumpster prices listed above. Here are the additional fees and policies you should know about:
+            We believe in transparent, upfront pricing. Here are the additional fees and policies you should know about:
           </p>
 
           <div className="max-w-2xl">
