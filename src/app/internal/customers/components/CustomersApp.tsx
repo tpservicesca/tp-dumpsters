@@ -337,16 +337,39 @@ export default function CustomersApp() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
                       <h3 className="font-semibold text-white truncate">{customer.name}</h3>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setEditCustomer(customer);
-                          setEditForm({ name: customer.name, phone: customer.phone, email: customer.email });
-                        }}
-                        className="p-2 hover:bg-neutral-800 rounded-xl transition-colors flex-shrink-0"
-                      >
-                        <IconEdit className="w-4 h-4 text-neutral-400" />
-                      </button>
+                      <div className="flex items-center gap-1 flex-shrink-0">
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setEditCustomer(customer);
+                            setEditForm({ name: customer.name, phone: customer.phone, email: customer.email });
+                          }}
+                          className="p-2 hover:bg-neutral-800 rounded-xl transition-colors"
+                        >
+                          <IconEdit className="w-4 h-4 text-neutral-400" />
+                        </button>
+                        <button
+                          onClick={async (e) => {
+                            e.stopPropagation();
+                            if (!confirm(`¿Eliminar a ${customer.name} y todas sus reservaciones?`)) return;
+                            try {
+                              await fetch("/api/customers", {
+                                method: "DELETE",
+                                headers: { "Content-Type": "application/json", "x-dashboard-auth": "Cantaritos1." },
+                                body: JSON.stringify({ id: customer.id }),
+                              });
+                              fetchCustomers();
+                            } catch (err) {
+                              console.error("Delete error:", err);
+                            }
+                          }}
+                          className="p-2 hover:bg-red-900/50 rounded-xl transition-colors"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-neutral-500 hover:text-red-400">
+                            <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6" />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
 
                     {customer.phone && (

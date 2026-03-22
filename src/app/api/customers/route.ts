@@ -88,3 +88,29 @@ export async function PUT(req: NextRequest) {
     return NextResponse.json({ error: "Database error" }, { status: 500 });
   }
 }
+
+// DELETE: remove customer and their bookings
+export async function DELETE(req: NextRequest) {
+  if (!checkAuth(req)) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  try {
+    const body = await req.json();
+    const { id } = body;
+
+    if (!id) {
+      return NextResponse.json({ error: "Missing customer id" }, { status: 400 });
+    }
+
+    const db = getPool();
+    // Delete bookings first (foreign key)
+    await db.execute(`DELETE FROM bookings WHERE customer_id = ?`, [id]);
+    await db.execute(`DELETE FROM customers WHERE id = ?`, [id]);
+
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Customers DELETE error:", err);
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
+}
