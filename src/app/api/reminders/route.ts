@@ -7,6 +7,8 @@ const AUTH_CODE = "Cantaritos1.";
 // Notify numbers — team members who receive daily reminders
 const NOTIFY_NUMBERS = [
   "+527717948624",  // Cristofer
+  "+15102536230",   // Driver
+  "+522225238131",  // Asai
 ];
 
 // GET /api/reminders?auth=Cantaritos1. — sends WhatsApp with tomorrow's calendar events
@@ -135,11 +137,10 @@ export async function GET(req: NextRequest) {
     mensajeES += `Total: ${deliveries.length} entregas, ${pickups.length} recolecciones\n`;
     mensajeES += `— TP Dumpsters 🚛`;
 
-    // Send to all notify numbers
+    // Send to all notify numbers (English version)
     const results: any[] = [];
     for (const phone of NOTIFY_NUMBERS) {
-      // Send Spanish version
-      const result = await sendWhatsApp(phone, mensajeES);
+      const result = await sendWhatsApp(phone, message);
       results.push({ phone, ...result });
     }
 
