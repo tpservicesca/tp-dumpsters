@@ -479,7 +479,12 @@ export default function RoofingPage() {
 
           {/* Dumpster Photos Grid */}
           <div className="mt-12">
-            <DumpsterPhotosGrid />
+            <DumpsterPhotosGrid photos={[
+              { src: "/images/gallery/demolition-03.jpg", alt: "Roofing tear-off dumpster" },
+              { src: "/images/dumpsters/construction-site.jpg", alt: "Roofing debris disposal" },
+              { src: "/images/dumpsters/worker-action.jpg", alt: "Roofing dumpster rental" },
+              { src: "/images/gallery/jobsite-05.jpg", alt: "Roofing waste at landfill" },
+            ]} />
           </div>
         </div>
       </section>

@@ -497,7 +497,12 @@ export default function ConstructionDebrisPage() {
 
           {/* Dumpster Photos Grid */}
           <div className="mt-16">
-            <DumpsterPhotosGrid />
+            <DumpsterPhotosGrid photos={[
+              { src: "/images/dumpsters/construction-site.jpg", alt: "Construction debris dumpster on job site" },
+              { src: "/images/gallery/demolition-03.jpg", alt: "Renovation debris dumpster" },
+              { src: "/images/gallery/jobsite-05.jpg", alt: "Construction waste disposal" },
+              { src: "/images/dumpsters/worker-action.jpg", alt: "Construction dumpster rental" },
+            ]} />
           </div>
         </div>
       </section>

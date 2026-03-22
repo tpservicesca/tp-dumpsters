@@ -494,7 +494,12 @@ export default function HouseholdCleanoutPage() {
 
           {/* Dumpster Photos Grid */}
           <div className="mt-12">
-            <DumpsterPhotosGrid />
+            <DumpsterPhotosGrid photos={[
+              { src: "/images/gallery/residential-02.jpg", alt: "Household cleanout dumpster at home" },
+              { src: "/images/gallery/delivery-01.jpg", alt: "Dumpster delivery for home cleanout" },
+              { src: "/images/gallery/residential-04.jpg", alt: "Residential dumpster delivery" },
+              { src: "/images/dumpsters/delivery-suburban.jpg", alt: "Suburban home cleanout dumpster" },
+            ]} />
           </div>
         </div>
       </section>
