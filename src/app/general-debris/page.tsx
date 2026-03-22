@@ -453,7 +453,7 @@ export default function GeneralDebrisPage() {
                   <h3 className="font-[var(--font-poppins)] text-[28px] font-bold text-[#333]">
                     {size.name}
                   </h3>
-                  <p className="font-[var(--font-oswald)] text-[42px] font-bold text-tp-red mt-1">
+                  <p className="font-[var(--font-oswald)] text-[42px] font-bold text-tp-red mt-4">
                     {size.price}
                   </p>
                 </div>

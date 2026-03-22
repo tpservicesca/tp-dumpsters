@@ -37,6 +37,14 @@ export default function BookingPage() {
           <div className="mt-4 inline-block bg-green-500/90 text-white px-5 py-2 rounded-full font-[var(--font-poppins)] text-sm font-bold">
             💰 Save 5% when you book online!
           </div>
+          <div className="mt-3">
+            <a
+              href="tel:+15106502083"
+              className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-[var(--font-poppins)] transition-colors"
+            >
+              Or call us now: <span className="font-semibold underline">(510) 650-2083</span>
+            </a>
+          </div>
         </div>
       </section>
 
