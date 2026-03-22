@@ -19,11 +19,12 @@ export async function GET(req: NextRequest) {
     const db = getPool();
     const [rows] = await db.execute(`
       SELECT c.id, c.name, c.phone, c.email, c.created_at,
+        c.stripe_id, c.total_revenue, c.total_services,
         b.id as booking_db_id, b.booking_id, b.service_type, b.dumpster_size,
         b.total_price, b.delivery_date, b.pickup_date, b.status, b.address, b.city
       FROM customers c
       LEFT JOIN bookings b ON c.id = b.customer_id
-      ORDER BY c.created_at DESC
+      ORDER BY c.total_revenue DESC, c.created_at DESC
     `);
 
     // Group bookings by customer
@@ -36,6 +37,9 @@ export async function GET(req: NextRequest) {
           phone: row.phone || "",
           email: row.email || "",
           created_at: row.created_at,
+          stripe_id: row.stripe_id || "",
+          total_revenue: Number(row.total_revenue) || 0,
+          total_services: Number(row.total_services) || 0,
           bookings: [],
         });
       }

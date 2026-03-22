@@ -23,6 +23,9 @@ interface Customer {
   phone: string;
   email: string;
   created_at: string;
+  stripe_id: string;
+  total_revenue: number;
+  total_services: number;
   bookings: Booking[];
 }
 
@@ -226,8 +229,9 @@ export default function CustomersApp() {
     const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
     return {
       total: customers.length,
-      withBookings: customers.filter((c) => c.bookings.length > 0).length,
+      withBookings: customers.filter((c) => c.bookings.length > 0 || c.total_services > 0).length,
       thisWeek: customers.filter((c) => new Date(c.created_at) >= weekAgo).length,
+      totalRevenue: customers.reduce((sum, c) => sum + (c.total_revenue || 0), 0),
     };
   }, [customers]);
 
@@ -279,14 +283,18 @@ export default function CustomersApp() {
       </header>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-3 px-4 py-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 px-4 py-4">
         <div className="bg-neutral-900 rounded-2xl p-4 text-center">
           <p className="text-2xl font-bold">{stats.total}</p>
           <p className="text-xs text-neutral-400 mt-1">Total</p>
         </div>
         <div className="bg-neutral-900 rounded-2xl p-4 text-center">
           <p className="text-2xl font-bold">{stats.withBookings}</p>
-          <p className="text-xs text-neutral-400 mt-1">With Bookings</p>
+          <p className="text-xs text-neutral-400 mt-1">With Services</p>
+        </div>
+        <div className="bg-neutral-900 rounded-2xl p-4 text-center">
+          <p className="text-2xl font-bold text-green-400">${stats.totalRevenue >= 1000 ? `${(stats.totalRevenue / 1000).toFixed(1)}k` : stats.totalRevenue.toFixed(0)}</p>
+          <p className="text-xs text-neutral-400 mt-1">Revenue</p>
         </div>
         <div className="bg-neutral-900 rounded-2xl p-4 text-center">
           <p className="text-2xl font-bold">{stats.thisWeek}</p>
@@ -394,6 +402,24 @@ export default function CustomersApp() {
                       <IconCalendar className="w-3.5 h-3.5 text-neutral-500 flex-shrink-0" />
                       <span className="text-sm text-neutral-500">Member since {formatDate(customer.created_at)}</span>
                     </div>
+
+                    {/* Revenue & Services from Stripe */}
+                    {(customer.total_revenue > 0 || customer.total_services > 0) && (
+                      <div className="flex items-center gap-4 mt-2">
+                        {customer.total_revenue > 0 && (
+                          <span className="inline-flex items-center gap-1.5 bg-green-900/30 text-green-400 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                            ${customer.total_revenue.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                          </span>
+                        )}
+                        {customer.total_services > 0 && (
+                          <span className="inline-flex items-center gap-1.5 bg-blue-900/30 text-blue-400 px-2.5 py-1 rounded-lg text-xs font-semibold">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                            {customer.total_services} service{customer.total_services > 1 ? "s" : ""}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -408,7 +434,7 @@ export default function CustomersApp() {
                     <IconChevron className="w-4 h-4" direction={expandedId === customer.id ? "up" : "down"} />
                   </button>
                 )}
-                {customer.bookings.length === 0 && (
+                {customer.bookings.length === 0 && customer.total_services === 0 && (
                   <p className="text-xs text-neutral-600 mt-3 ml-14">No bookings</p>
                 )}
               </div>
