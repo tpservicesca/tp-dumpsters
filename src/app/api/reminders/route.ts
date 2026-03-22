@@ -1,19 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import * as mysql from "mysql2/promise";
-import { sendSMS } from "@/lib/twilio";
+import { sendWhatsApp } from "@/lib/twilio";
+import { getCalendarEvents } from "@/lib/calendar";
 
 const AUTH_CODE = "Cantaritos1.";
 
-function getDbConfig() {
-  return {
-    host: "127.0.0.1",
-    user: "u781187371_cristoferdeita",
-    password: "Locomen50.",
-    database: "u781187371_DumspterBookin",
-  };
-}
+// Notify numbers — team members who receive daily reminders
+const NOTIFY_NUMBERS = [
+  "+527717948624",  // Cristofer
+];
 
-// GET /api/reminders?auth=Cantaritos1. — sends reminders for tomorrow's deliveries and pickups
+// GET /api/reminders?auth=Cantaritos1. — sends WhatsApp with tomorrow's calendar events
 export async function GET(req: NextRequest) {
   const auth = req.nextUrl.searchParams.get("auth");
   if (auth !== AUTH_CODE) {
@@ -21,74 +17,139 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const conn = await mysql.createConnection(getDbConfig());
-
-    // Get tomorrow's date in YYYY-MM-DD format
-    const tomorrow = new Date();
+    // Get tomorrow's date range in Pacific Time
+    const now = new Date();
+    const pacific = new Date(now.toLocaleString("en-US", { timeZone: "America/Los_Angeles" }));
+    const tomorrow = new Date(pacific);
     tomorrow.setDate(tomorrow.getDate() + 1);
     const tomorrowStr = tomorrow.toISOString().split("T")[0];
 
-    // Find confirmed bookings with delivery tomorrow
-    const [deliveries] = await conn.execute(
-      `SELECT b.booking_id, b.delivery_date, b.dumpster_size, b.service_type, b.address, b.city,
-              c.name, c.phone
-       FROM bookings b
-       JOIN customers c ON b.customer_id = c.id
-       WHERE b.delivery_date = ? AND b.status = 'confirmed' AND c.phone IS NOT NULL`,
-      [tomorrowStr]
-    );
+    // Start and end of tomorrow in Pacific Time
+    const timeMin = `${tomorrowStr}T00:00:00-07:00`;
+    const timeMax = `${tomorrowStr}T23:59:59-07:00`;
 
-    // Find confirmed bookings with pickup tomorrow
-    const [pickups] = await conn.execute(
-      `SELECT b.booking_id, b.pickup_date, b.dumpster_size, b.service_type, b.address, b.city,
-              c.name, c.phone
-       FROM bookings b
-       JOIN customers c ON b.customer_id = c.id
-       WHERE b.pickup_date = ? AND b.status = 'confirmed' AND c.phone IS NOT NULL`,
-      [tomorrowStr]
-    );
+    // Fetch calendar events
+    const events = await getCalendarEvents(timeMin, timeMax);
 
-    await conn.end();
-
-    const results: Array<{ type: string; customer: string; phone: string; success: boolean }> = [];
-
-    // Send delivery reminders
-    for (const d of deliveries as any[]) {
-      const formattedDate = new Date(tomorrowStr + "T12:00:00").toLocaleDateString("en-US", {
-        weekday: "long", month: "long", day: "numeric",
+    if (!events || events.length === 0) {
+      return NextResponse.json({
+        date: tomorrowStr,
+        message: "No services scheduled for tomorrow",
+        eventCount: 0,
       });
-
-      const body = `📦 Reminder: Your ${d.dumpster_size} yard dumpster arrives tomorrow, ${formattedDate}.\n\n` +
-        `Please make sure the driveway/placement area is clear and accessible.\n\n` +
-        `📍 ${d.address}${d.city ? `, ${d.city}` : ""}\n\n` +
-        `Questions? Call (510) 650-2083\n` +
-        `— TP Dumpsters`;
-
-      const result = await sendSMS(d.phone, body);
-      results.push({ type: "delivery", customer: d.name, phone: d.phone, success: result.success });
     }
 
-    // Send pickup reminders
-    for (const p of pickups as any[]) {
-      const formattedDate = new Date(tomorrowStr + "T12:00:00").toLocaleDateString("en-US", {
-        weekday: "long", month: "long", day: "numeric",
-      });
+    // Separate deliveries and pickups
+    const deliveries: any[] = [];
+    const pickups: any[] = [];
 
-      const body = `🔄 Reminder: Your dumpster pickup is scheduled for tomorrow, ${formattedDate}.\n\n` +
-        `Please make sure the dumpster is accessible for our truck.\n\n` +
-        `📍 ${p.address}${p.city ? `, ${p.city}` : ""}\n\n` +
-        `Need to extend? Call (510) 650-2083\n` +
-        `— TP Dumpsters`;
+    for (const event of events) {
+      const summary = event.summary || "";
+      const location = event.location || "";
+      const start = event.start?.dateTime || event.start?.date || "";
 
-      const result = await sendSMS(p.phone, body);
-      results.push({ type: "pickup", customer: p.name, phone: p.phone, success: result.success });
+      if (summary.toLowerCase().includes("delivery")) {
+        deliveries.push({ summary, location, start });
+      } else if (summary.toLowerCase().includes("pickup")) {
+        pickups.push({ summary, location, start });
+      } else {
+        // Default to delivery if unclear
+        deliveries.push({ summary, location, start });
+      }
+    }
+
+    // Format the WhatsApp message
+    const dateFormatted = new Date(tomorrowStr + "T12:00:00").toLocaleDateString("en-US", {
+      weekday: "long", month: "long", day: "numeric", year: "numeric",
+    });
+
+    let message = `🚛 *TP Dumpsters — Tomorrow's Services*\n`;
+    message += `📅 ${dateFormatted}\n\n`;
+
+    if (deliveries.length > 0) {
+      message += `📦 *DELIVERIES (${deliveries.length}):*\n`;
+      for (const d of deliveries) {
+        const time = d.start ? new Date(d.start).toLocaleTimeString("en-US", {
+          hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles",
+        }) : "TBD";
+        message += `  • ${d.summary}\n`;
+        if (d.location) {
+          message += `    📍 ${d.location}\n`;
+          // Add Google Maps link
+          const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(d.location)}`;
+          message += `    🗺️ ${mapsUrl}\n`;
+        }
+        message += `    ⏰ ${time}\n\n`;
+      }
+    }
+
+    if (pickups.length > 0) {
+      message += `🔄 *PICKUPS (${pickups.length}):*\n`;
+      for (const p of pickups) {
+        message += `  • ${p.summary}\n`;
+        if (p.location) {
+          message += `    📍 ${p.location}\n`;
+          const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(p.location)}`;
+          message += `    🗺️ ${mapsUrl}\n`;
+        }
+        message += `\n`;
+      }
+    }
+
+    message += `Total: ${deliveries.length} deliveries, ${pickups.length} pickups\n`;
+    message += `— TP Dumpsters 🚛`;
+
+    // Also send Spanish version
+    let mensajeES = `🚛 *TP Dumpsters — Servicios del día*\n`;
+    mensajeES += `📅 ${dateFormatted}\n\n`;
+
+    if (deliveries.length > 0) {
+      mensajeES += `📦 *ENTREGAS (${deliveries.length}):*\n`;
+      for (const d of deliveries) {
+        const time = d.start ? new Date(d.start).toLocaleTimeString("en-US", {
+          hour: "numeric", minute: "2-digit", timeZone: "America/Los_Angeles",
+        }) : "Por definir";
+        mensajeES += `  • ${d.summary}\n`;
+        if (d.location) {
+          mensajeES += `    📍 ${d.location}\n`;
+          const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(d.location)}`;
+          mensajeES += `    🗺️ ${mapsUrl}\n`;
+        }
+        mensajeES += `    ⏰ ${time}\n\n`;
+      }
+    }
+
+    if (pickups.length > 0) {
+      mensajeES += `🔄 *RECOLECCIONES (${pickups.length}):*\n`;
+      for (const p of pickups) {
+        mensajeES += `  • ${p.summary}\n`;
+        if (p.location) {
+          mensajeES += `    📍 ${p.location}\n`;
+          const mapsUrl = `https://maps.google.com/?q=${encodeURIComponent(p.location)}`;
+          mensajeES += `    🗺️ ${mapsUrl}\n`;
+        }
+        mensajeES += `\n`;
+      }
+    }
+
+    mensajeES += `Total: ${deliveries.length} entregas, ${pickups.length} recolecciones\n`;
+    mensajeES += `— TP Dumpsters 🚛`;
+
+    // Send to all notify numbers
+    const results: any[] = [];
+    for (const phone of NOTIFY_NUMBERS) {
+      // Send Spanish version
+      const result = await sendWhatsApp(phone, mensajeES);
+      results.push({ phone, ...result });
     }
 
     return NextResponse.json({
       date: tomorrowStr,
-      deliveryReminders: (deliveries as any[]).length,
-      pickupReminders: (pickups as any[]).length,
+      deliveries: deliveries.length,
+      pickups: pickups.length,
+      totalEvents: events.length,
       results,
+      message: mensajeES,
     });
   } catch (err) {
     console.error("Reminder error:", err);

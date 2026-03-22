@@ -79,3 +79,52 @@ export async function sendSMS(to: string, body: string): Promise<{ success: bool
     return { success: false, error: String(err) };
   }
 }
+
+const WHATSAPP_SANDBOX = "whatsapp:+14155238886";
+
+export async function sendWhatsApp(to: string, body: string): Promise<{ success: boolean; sid?: string; error?: string }> {
+  try {
+    const config = getTwilioConfig();
+    if (!config) {
+      return { success: false, error: "Twilio not configured" };
+    }
+
+    // Normalize phone number for WhatsApp
+    let phone = to.replace(/\D/g, "");
+    if (phone.length === 10) phone = "1" + phone;
+    if (!phone.startsWith("+")) phone = "+" + phone;
+    const whatsappTo = `whatsapp:${phone}`;
+
+    const auth = Buffer.from(`${config.accountSid}:${config.authToken}`).toString("base64");
+    const postData = new URLSearchParams({
+      To: whatsappTo,
+      From: WHATSAPP_SANDBOX,
+      Body: body,
+    }).toString();
+
+    const response = await fetch(
+      `https://api.twilio.com/2010-04-01/Accounts/${config.accountSid}/Messages.json`,
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Basic ${auth}`,
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: postData,
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log(`📱 WhatsApp sent to ${phone}: ${data.sid}`);
+      return { success: true, sid: data.sid };
+    } else {
+      console.error(`❌ WhatsApp failed to ${phone}:`, data.message || data);
+      return { success: false, error: data.message || "WhatsApp send failed" };
+    }
+  } catch (err) {
+    console.error("❌ WhatsApp error:", err);
+    return { success: false, error: String(err) };
+  }
+}

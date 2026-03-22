@@ -141,3 +141,43 @@ export async function createCalendarEvent(params: {
     return { success: false, error: String(err) };
   }
 }
+
+/**
+ * Fetches calendar events between timeMin and timeMax.
+ * Returns array of Google Calendar event objects.
+ */
+export async function getCalendarEvents(timeMin: string, timeMax: string): Promise<any[]> {
+  try {
+    const token = await getCalendarAccessToken();
+    if (!token) {
+      console.error("Failed to get calendar access token");
+      return [];
+    }
+
+    const params = new URLSearchParams({
+      timeMin,
+      timeMax,
+      singleEvents: "true",
+      orderBy: "startTime",
+    });
+
+    const res = await fetch(
+      `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events?${params}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error("Calendar events fetch error:", data);
+      return [];
+    }
+
+    return data.items || [];
+  } catch (err) {
+    console.error("Calendar events error:", err);
+    return [];
+  }
+}
