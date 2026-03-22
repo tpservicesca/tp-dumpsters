@@ -86,7 +86,7 @@ const jsonLd = {
     {
       "@type": "Offer",
       name: "10 Yard General Debris Dumpster",
-      price: "649",
+      price: "599",
       priceCurrency: "USD",
       description: "10 yard dumpster — 1 ton included, 7-day rental, 12ft L × 8ft W × 2.5ft H",
     },
@@ -141,7 +141,7 @@ const faqSchema = {
       name: "How much does a general debris dumpster cost?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "10-yard: $649 (1 ton, 7 days). 20-yard: $649 (2 tons, 7 days). 30-yard: $749 (3 tons, 7 days). All prices include delivery, pickup, and disposal.",
+        text: "10-yard: $599 (1 ton, 7 days). 20-yard: $649 (2 tons, 7 days). 30-yard: $749 (3 tons, 7 days). All prices include delivery, pickup, and disposal.",
       },
     },
     {
@@ -199,7 +199,7 @@ const faqSchema = {
 const dumpsterSizes = [
   {
     name: "10 Yard",
-    price: "$649",
+    price: "$599",
     dimensionsClean: "12'L × 8'W × 2.5'H",
     weight: "1 ton included",
     rental: "7-day rental",
@@ -296,7 +296,7 @@ const faqsLeft = [
       <>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">Our general debris dumpster pricing is straightforward:</p>
         <ul className="list-disc pl-5 mb-2.5">
-          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>10-yard:</strong> $649 — includes 1 ton and 7-day rental</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>10-yard:</strong> $599 — includes 1 ton and 7-day rental</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>20-yard:</strong> $649 — includes 2 tons and 7-day rental</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>30-yard:</strong> $749 — includes 3 tons and 7-day rental</li>
         </ul>
@@ -390,7 +390,7 @@ export default function GeneralDebrisPage() {
 
       {/* ────── HERO SECTION ────── */}
       <section className="relative min-h-[70vh] flex flex-col justify-center items-center pt-[15vh] pb-[6vh] text-center">
-        <div className="absolute inset-0 bg-[url('/images/hero.webp')] bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[url('/images/dumpsters/construction-site.jpg')] bg-cover bg-center" />
         <div className="absolute inset-0 bg-black/55 z-[1]" />
 
         <div className="relative z-[2] px-5 pb-10 max-w-4xl mx-auto">
@@ -418,6 +418,83 @@ export default function GeneralDebrisPage() {
             >
               <FaPhone /> (510) 650-2083
             </a>
+          </div>
+          <div className="mt-10">
+            <Image src="/images/dumpsters/dumpsters-side-by-side.jpg" alt="General Debris Dumpsters" width={600} height={400} className="rounded-xl shadow-2xl" />
+          </div>
+        </div>
+      </section>
+
+      {/* ────── DUMPSTER SIZES ────── */}
+      <section className="py-20 bg-[#f9f9f9]">
+        <div className="w-[92%] sm:w-[80%] max-w-[1080px] mx-auto">
+          <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2">
+            SIZES &amp; PRICING
+          </h4>
+          <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-4">
+            General Debris Dumpster Sizes
+          </h2>
+          <p className="text-[15px] text-[#666] leading-[1.7] mb-10 max-w-3xl">
+            Choose the right size for your project. All prices include delivery, pickup, disposal, and a 7-day rental period. No hidden fees.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
+            {dumpsterSizes.map((size) => (
+              <div
+                key={size.name}
+                className={`bg-white border-2 ${size.popular ? "border-tp-red" : "border-[#e0e0e0]"} rounded-xl overflow-hidden flex flex-col transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.1)] relative`}
+              >
+                {size.popular && (
+                  <div className="bg-tp-red text-white text-center py-2 text-sm font-bold font-[var(--font-poppins)] uppercase tracking-wider">
+                    Most Popular
+                  </div>
+                )}
+                <div className="px-6 pt-6 pb-2 text-center">
+                  <h3 className="font-[var(--font-poppins)] text-[28px] font-bold text-[#333]">
+                    {size.name}
+                  </h3>
+                  <p className="font-[var(--font-oswald)] text-[42px] font-bold text-tp-red mt-1">
+                    {size.price}
+                  </p>
+                </div>
+                <div className="px-6 py-4 flex items-center justify-center min-h-[160px]">
+                  <Image
+                    src={size.image}
+                    alt={`${size.name} General Debris Dumpster Rental - TP Dumpsters`}
+                    width={300}
+                    height={160}
+                    className="max-h-[140px] object-contain"
+                  />
+                </div>
+                <div className="px-6 py-4 flex-1">
+                  <ul className="space-y-2">
+                    <li className="flex items-center gap-2 text-sm text-[#555]">
+                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
+                      Dimensions: {size.dimensionsClean}
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-[#555]">
+                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
+                      {size.weight}
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-[#555]">
+                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
+                      {size.rental}
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-[#555]">
+                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
+                      Delivery + pickup + disposal included
+                    </li>
+                  </ul>
+                  <p className="text-sm text-[#888] mt-3 italic">Best for: {size.bestFor}</p>
+                </div>
+                <Link
+                  href="/booking"
+                  className="flex items-center justify-center gap-2 w-[calc(100%-48px)] mx-6 mb-6 mt-3 py-3.5 px-5 bg-tp-red text-white rounded-lg text-base font-semibold transition-colors duration-300 hover:bg-tp-red-dark font-[var(--font-poppins)] text-center"
+                >
+                  <FaCalendarDays /> Book Now
+                </Link>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -447,6 +524,7 @@ export default function GeneralDebrisPage() {
               <p className="text-[15px] text-[#555] leading-[1.8] mb-4">
                 We offer <strong>10, 20, and 30-yard dumpsters</strong> for general debris, with same-day delivery available throughout the Bay Area. Every rental includes a 7-day rental period, delivery, pickup, and disposal — all included in one transparent price with no hidden fees.
               </p>
+              <Image src="/images/dumpsters/delivery-suburban.jpg" alt="Dumpster rental delivery" width={500} height={300} className="rounded-xl mt-4 w-full object-cover" />
             </div>
           </div>
         </div>
@@ -582,6 +660,13 @@ export default function GeneralDebrisPage() {
               </ul>
             </div>
           </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-10">
+            <Image src="/images/dumpsters/delivery-residential.jpg" alt="Dumpster delivery" width={300} height={200} className="rounded-lg object-cover w-full h-40" />
+            <Image src="/images/dumpsters/construction-site.jpg" alt="Construction debris" width={300} height={200} className="rounded-lg object-cover w-full h-40" />
+            <Image src="/images/dumpsters/yard-waste-driveway.jpg" alt="Yard waste dumpster" width={300} height={200} className="rounded-lg object-cover w-full h-40" />
+            <Image src="/images/dumpsters/dumpster-dirt-sunny.jpg" alt="General debris dumpster" width={300} height={200} className="rounded-lg object-cover w-full h-40" />
+          </div>
         </div>
       </section>
 
@@ -647,80 +732,6 @@ export default function GeneralDebrisPage() {
                 Not sure if your item is accepted? Call us at <strong>(510) 650-2083</strong> and we&apos;ll help you figure it out. We&apos;re happy to answer any questions about what can go in your dumpster.
               </p>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ────── DUMPSTER SIZES ────── */}
-      <section className="py-20 bg-[#f9f9f9]">
-        <div className="w-[92%] sm:w-[80%] max-w-[1080px] mx-auto">
-          <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2">
-            SIZES &amp; PRICING
-          </h4>
-          <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-4">
-            General Debris Dumpster Sizes
-          </h2>
-          <p className="text-[15px] text-[#666] leading-[1.7] mb-10 max-w-3xl">
-            Choose the right size for your project. All prices include delivery, pickup, disposal, and a 7-day rental period. No hidden fees.
-          </p>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
-            {dumpsterSizes.map((size) => (
-              <div
-                key={size.name}
-                className={`bg-white border-2 ${size.popular ? "border-tp-red" : "border-[#e0e0e0]"} rounded-xl overflow-hidden flex flex-col transition-shadow duration-300 hover:shadow-[0_4px_20px_rgba(0,0,0,0.1)] relative`}
-              >
-                {size.popular && (
-                  <div className="bg-tp-red text-white text-center py-2 text-sm font-bold font-[var(--font-poppins)] uppercase tracking-wider">
-                    Most Popular
-                  </div>
-                )}
-                <div className="px-6 pt-6 pb-2 text-center">
-                  <h3 className="font-[var(--font-poppins)] text-[28px] font-bold text-[#333]">
-                    {size.name}
-                  </h3>
-                  <p className="font-[var(--font-oswald)] text-[42px] font-bold text-tp-red mt-1">
-                    {size.price}
-                  </p>
-                </div>
-                <div className="px-6 py-4 flex items-center justify-center min-h-[160px]">
-                  <Image
-                    src={size.image}
-                    alt={`${size.name} General Debris Dumpster Rental - TP Dumpsters`}
-                    width={300}
-                    height={160}
-                    className="max-h-[140px] object-contain"
-                  />
-                </div>
-                <div className="px-6 py-4 flex-1">
-                  <ul className="space-y-2">
-                    <li className="flex items-center gap-2 text-sm text-[#555]">
-                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
-                      Dimensions: {size.dimensionsClean}
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-[#555]">
-                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
-                      {size.weight}
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-[#555]">
-                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
-                      {size.rental}
-                    </li>
-                    <li className="flex items-center gap-2 text-sm text-[#555]">
-                      <FaCircleCheck className="text-green-600 flex-shrink-0" />
-                      Delivery + pickup + disposal included
-                    </li>
-                  </ul>
-                  <p className="text-sm text-[#888] mt-3 italic">Best for: {size.bestFor}</p>
-                </div>
-                <Link
-                  href="/booking"
-                  className="flex items-center justify-center gap-2 w-[calc(100%-48px)] mx-6 mb-6 mt-3 py-3.5 px-5 bg-tp-red text-white rounded-lg text-base font-semibold transition-colors duration-300 hover:bg-tp-red-dark font-[var(--font-poppins)] text-center"
-                >
-                  <FaCalendarDays /> Book Now
-                </Link>
-              </div>
-            ))}
           </div>
         </div>
       </section>
