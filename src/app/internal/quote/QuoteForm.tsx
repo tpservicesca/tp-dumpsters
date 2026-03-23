@@ -27,6 +27,37 @@ const SERVICES: ServiceDef[] = [
   }},
 ];
 
+interface ServiceLine {
+  id: string;
+  serviceType: string;
+  size: string;
+  quantity: number;
+  useCustomPrice: boolean;
+  customPrice: string;
+}
+
+function createServiceLine(): ServiceLine {
+  return {
+    id: crypto.randomUUID(),
+    serviceType: SERVICES[0].name,
+    size: Object.keys(SERVICES[0].sizes)[0],
+    quantity: 1,
+    useCustomPrice: false,
+    customPrice: "",
+  };
+}
+
+function getLinePrice(line: ServiceLine): number {
+  if (line.useCustomPrice && line.customPrice) return Number(line.customPrice);
+  const svc = SERVICES.find((s) => s.name === line.serviceType);
+  return svc?.sizes[line.size]?.price || 0;
+}
+
+function getLineSizeInfo(line: ServiceLine): SizeInfo | null {
+  const svc = SERVICES.find((s) => s.name === line.serviceType);
+  return svc?.sizes[line.size] || null;
+}
+
 interface InvoiceResult {
   id: string;
   number: string;
@@ -42,6 +73,7 @@ interface InvoiceResult {
   customerPhone: string | null;
   sentEmail: boolean;
   sentSms: boolean;
+  items?: Array<{ serviceType: string; size: string; quantity: number; unitPrice: number }>;
 }
 
 export default function QuoteForm() {
@@ -57,11 +89,7 @@ export default function QuoteForm() {
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [billingAddress, setBillingAddress] = useState("");
   const [showBilling, setShowBilling] = useState(false);
-  const [serviceType, setServiceType] = useState(SERVICES[0].name);
-  const [size, setSize] = useState(Object.keys(SERVICES[0].sizes)[0]);
-  const [quantity, setQuantity] = useState(1);
-  const [customPrice, setCustomPrice] = useState("");
-  const [useCustomPrice, setUseCustomPrice] = useState(false);
+  const [serviceLines, setServiceLines] = useState<ServiceLine[]>([createServiceLine()]);
   const [notes, setNotes] = useState("");
 
   // Result
@@ -99,32 +127,52 @@ export default function QuoteForm() {
     { id: "afternoon", label: "🌆 Afternoon", time: "3:00 PM - 7:00 PM" },
   ];
 
-  // Available sizes for selected service
-  const currentService = SERVICES.find((s) => s.name === serviceType);
-  const availableSizes = currentService ? Object.keys(currentService.sizes) : [];
-  const currentSizeInfo: SizeInfo | null = currentService ? currentService.sizes[size] || null : null;
-  const unitPrice = useCustomPrice && customPrice ? Number(customPrice) : (currentSizeInfo?.price || 0);
-  const totalAmount = unitPrice * quantity;
+  // Total across all service lines
+  const totalAmount = serviceLines.reduce((sum, line) => sum + getLinePrice(line) * line.quantity, 0);
+  const totalUnits = serviceLines.reduce((sum, line) => sum + line.quantity, 0);
 
-  // Reset size when service changes
-  useEffect(() => {
-    if (!availableSizes.includes(size)) {
-      setSize(availableSizes[0]);
-    }
-  }, [serviceType, availableSizes, size]);
+  // Helper to update a specific service line
+  const updateLine = (id: string, updates: Partial<ServiceLine>) => {
+    setServiceLines((prev) =>
+      prev.map((line) => {
+        if (line.id !== id) return line;
+        const updated = { ...line, ...updates };
+        // Reset size if it's no longer available for the new service type
+        if (updates.serviceType) {
+          const svc = SERVICES.find((s) => s.name === updates.serviceType);
+          const availSizes = svc ? Object.keys(svc.sizes) : [];
+          if (!availSizes.includes(updated.size)) {
+            updated.size = availSizes[0] || "";
+          }
+        }
+        return updated;
+      })
+    );
+  };
 
-  // Auto-calculate pickup date when delivery date changes
+  const removeLine = (id: string) => {
+    setServiceLines((prev) => prev.length > 1 ? prev.filter((l) => l.id !== id) : prev);
+  };
+
+  const addLine = () => {
+    setServiceLines((prev) => [...prev, createServiceLine()]);
+  };
+
+  // Auto-calculate pickup date based on longest rental period across all lines
   useEffect(() => {
     if (!deliveryDate) return;
     const longServices = ["General Debris", "Household Clean Out", "Construction Debris", "Roofing", "Green Waste"];
-    const daysToAdd = longServices.includes(serviceType) ? 7 : 3;
+    const maxDays = serviceLines.reduce((max, line) => {
+      const days = longServices.includes(line.serviceType) ? 7 : 3;
+      return Math.max(max, days);
+    }, 3);
     const d = new Date(deliveryDate + "T12:00:00");
-    d.setDate(d.getDate() + daysToAdd);
+    d.setDate(d.getDate() + maxDays);
     const yyyy = d.getFullYear();
     const mm = String(d.getMonth() + 1).padStart(2, "0");
     const dd = String(d.getDate()).padStart(2, "0");
     setPickupDate(`${yyyy}-${mm}-${dd}`);
-  }, [deliveryDate, serviceType]);
+  }, [deliveryDate, serviceLines]);
 
   const handleSchedule = async () => {
     if (!deliveryDate || !deliveryWindow || !pickupDate) {
@@ -150,8 +198,8 @@ export default function QuoteForm() {
           customerName,
           phone: customerPhone ? `${phoneCode} ${customerPhone}` : "",
           email: customerEmail || "",
-          serviceType,
-          dumpsterSize: size.replace(" Yard", ""),
+          serviceType: serviceLines[0].serviceType,
+          dumpsterSize: serviceLines[0].size.replace(" Yard", ""),
           address: deliveryAddress,
           city,
           zipCode,
@@ -259,6 +307,13 @@ export default function QuoteForm() {
     setResult(null);
 
     try {
+      const items = serviceLines.map((line) => ({
+        serviceType: line.serviceType,
+        size: line.size,
+        quantity: line.quantity,
+        customPrice: line.useCustomPrice ? Number(line.customPrice) : undefined,
+      }));
+
       const res = await fetch("/api/invoice", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -268,10 +323,11 @@ export default function QuoteForm() {
           customerPhone: customerPhone.trim() ? `${phoneCode} ${customerPhone.trim()}` : undefined,
           deliveryAddress: deliveryAddress.trim(),
           billingAddress: showBilling ? billingAddress.trim() : undefined,
-          serviceType,
-          size,
-          quantity,
-          customPrice: useCustomPrice ? Number(customPrice) : undefined,
+          items,
+          // Legacy fields for backward compat
+          serviceType: serviceLines[0].serviceType,
+          size: serviceLines[0].size,
+          quantity: totalUnits,
           notes: notes.trim() || undefined,
         }),
       });
@@ -293,11 +349,7 @@ export default function QuoteForm() {
     setDeliveryAddress("");
     setBillingAddress("");
     setShowBilling(false);
-    setServiceType(SERVICES[0].name);
-    setSize(Object.keys(SERVICES[0].sizes)[0]);
-    setQuantity(1);
-    setCustomPrice("");
-    setUseCustomPrice(false);
+    setServiceLines([createServiceLine()]);
     setNotes("");
     setResult(null);
     setError("");
@@ -356,9 +408,15 @@ export default function QuoteForm() {
               <span className="text-3xl">✅</span>
             </div>
             <h2 className="font-[var(--font-oswald)] text-2xl font-bold mb-1">Invoice Created!</h2>
-            <p className="text-sm text-[#888] font-[var(--font-poppins)] mb-3">
-              {result.serviceType} — {result.size} {result.quantity > 1 ? `x${result.quantity}` : ""}
-            </p>
+            <div className="text-sm text-[#888] font-[var(--font-poppins)] mb-3">
+              {result.items && result.items.length > 1 ? (
+                result.items.map((item, i) => (
+                  <p key={i}>{item.quantity}× {item.serviceType} {item.size} — ${(item.unitPrice * item.quantity).toFixed(2)}</p>
+                ))
+              ) : (
+                <p>{result.serviceType} — {result.size} {result.quantity > 1 ? `x${result.quantity}` : ""}</p>
+              )}
+            </div>
             <div className="space-y-2 mb-6">
               {result.sentEmail ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg px-4 py-2">
@@ -747,65 +805,107 @@ export default function QuoteForm() {
             </div>
           )}
 
-          {/* Service & Size */}
-          <h3 className="font-[var(--font-poppins)] font-semibold text-sm text-[#333] mb-3">🗑️ Service</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-            <select
-              value={serviceType}
-              onChange={(e) => setServiceType(e.target.value)}
-              className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
-            >
-              {SERVICES.map((s) => (
-                <option key={s.name} value={s.name}>{s.name}</option>
-              ))}
-            </select>
-            <select
-              value={size}
-              onChange={(e) => setSize(e.target.value)}
-              className="px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
-            >
-              {availableSizes.map((s) => (
-                <option key={s} value={s}>{s}</option>
-              ))}
-            </select>
-            <div className="flex items-center gap-2">
-              <label className="text-xs text-[#666] font-[var(--font-poppins)] whitespace-nowrap">Qty:</label>
-              <input
-                type="number"
-                min={1}
-                max={10}
-                value={quantity}
-                onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
-              />
-            </div>
+          {/* Service Lines */}
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-[var(--font-poppins)] font-semibold text-sm text-[#333]">🗑️ Services</h3>
+            <span className="text-xs text-[#999] font-[var(--font-poppins)]">{totalUnits} unit{totalUnits !== 1 ? "s" : ""} — ${totalAmount.toFixed(2)}</span>
           </div>
 
-          {/* Custom price toggle */}
-          <div className="mb-6">
-            <label className="flex items-center gap-2 cursor-pointer mb-2">
-              <input
-                type="checkbox"
-                checked={useCustomPrice}
-                onChange={(e) => setUseCustomPrice(e.target.checked)}
-                className="w-4 h-4 accent-tp-red"
-              />
-              <span className="text-xs text-[#666] font-[var(--font-poppins)]">Custom price (override default)</span>
-            </label>
-            {useCustomPrice && (
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-bold text-[#333]">$</span>
-                <input
-                  type="number"
-                  placeholder="650"
-                  value={customPrice}
-                  onChange={(e) => setCustomPrice(e.target.value)}
-                  className="w-32 px-4 py-3 border-2 border-gray-200 rounded-xl text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
-                />
-                <span className="text-xs text-[#999]">per unit</span>
+          {serviceLines.map((line, idx) => {
+            const lineSvc = SERVICES.find((s) => s.name === line.serviceType);
+            const lineSizes = lineSvc ? Object.keys(lineSvc.sizes) : [];
+            const lineUnitPrice = getLinePrice(line);
+            const lineTotal = lineUnitPrice * line.quantity;
+
+            return (
+              <div key={line.id} className="relative bg-gray-50 rounded-xl p-4 mb-3 border border-gray-200">
+                {/* Line header */}
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-semibold text-[#999] font-[var(--font-poppins)] uppercase tracking-wider">
+                    Service {idx + 1}
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-bold text-[#333] font-[var(--font-poppins)]">${lineTotal.toFixed(2)}</span>
+                    {serviceLines.length > 1 && (
+                      <button
+                        onClick={() => removeLine(line.id)}
+                        className="w-6 h-6 flex items-center justify-center rounded-full bg-red-100 text-red-500 hover:bg-red-200 transition-colors text-xs"
+                        title="Remove"
+                      >
+                        ✕
+                      </button>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                  <select
+                    value={line.serviceType}
+                    onChange={(e) => updateLine(line.id, { serviceType: e.target.value })}
+                    className="px-3 py-2.5 border-2 border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
+                  >
+                    {SERVICES.map((s) => (
+                      <option key={s.name} value={s.name}>{s.name}</option>
+                    ))}
+                  </select>
+                  <select
+                    value={line.size}
+                    onChange={(e) => updateLine(line.id, { size: e.target.value })}
+                    className="px-3 py-2.5 border-2 border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
+                  >
+                    {lineSizes.map((s) => (
+                      <option key={s} value={s}>{s}</option>
+                    ))}
+                  </select>
+                  <div className="flex items-center gap-2">
+                    <label className="text-xs text-[#666] font-[var(--font-poppins)] whitespace-nowrap">Qty:</label>
+                    <input
+                      type="number"
+                      min={1}
+                      max={20}
+                      value={line.quantity}
+                      onChange={(e) => updateLine(line.id, { quantity: Math.max(1, Number(e.target.value)) })}
+                      className="w-full px-3 py-2.5 border-2 border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+                    />
+                  </div>
+                </div>
+
+                {/* Custom price toggle per line */}
+                <div className="mt-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={line.useCustomPrice}
+                      onChange={(e) => updateLine(line.id, { useCustomPrice: e.target.checked })}
+                      className="w-3.5 h-3.5 accent-tp-red"
+                    />
+                    <span className="text-[10px] text-[#999] font-[var(--font-poppins)]">Custom price</span>
+                  </label>
+                  {line.useCustomPrice && (
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-sm font-bold text-[#333]">$</span>
+                      <input
+                        type="number"
+                        placeholder="650"
+                        value={line.customPrice}
+                        onChange={(e) => updateLine(line.id, { customPrice: e.target.value })}
+                        className="w-28 px-3 py-2 border-2 border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none"
+                      />
+                      <span className="text-[10px] text-[#999]">per unit</span>
+                    </div>
+                  )}
+                </div>
               </div>
-            )}
-          </div>
+            );
+          })}
+
+          {/* Add Service button */}
+          <button
+            onClick={addLine}
+            className="w-full py-3 rounded-xl border-2 border-dashed border-gray-300 text-sm font-semibold text-[#999] font-[var(--font-poppins)] hover:border-tp-red hover:text-tp-red transition-colors mb-6"
+          >
+            + Add Another Service
+          </button>
 
           {/* Notes */}
           <textarea
@@ -824,7 +924,7 @@ export default function QuoteForm() {
           )}
 
           {/* Preview */}
-          {showPreview && currentSizeInfo && (
+          {showPreview && (
             <div className="bg-[#1a1a1a] rounded-xl p-5 mb-6 text-white">
               <h3 className="font-[var(--font-poppins)] font-semibold text-xs uppercase tracking-wider text-white/50 mb-3">
                 📋 Invoice Preview
@@ -845,45 +945,33 @@ export default function QuoteForm() {
                   </div>
                 )}
                 <div className="border-t border-white/10 my-2" />
-                <div className="flex justify-between">
-                  <span className="text-white/70">Service</span>
-                  <span>{serviceType}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/70">Size</span>
-                  <span>{size}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/70">Dimensions</span>
-                  <span>{currentSizeInfo.dims}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/70">Weight limit</span>
-                  <span>{currentSizeInfo.weight}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-white/70">Rental period</span>
-                  <span>{currentSizeInfo.days} days</span>
-                </div>
-                {quantity > 1 && (
-                  <div className="flex justify-between">
-                    <span className="text-white/70">Quantity</span>
-                    <span>{quantity} units</span>
-                  </div>
-                )}
-                <div className="border-t border-white/10 my-2" />
-                <div className="flex justify-between">
-                  <span className="text-white/70">Unit price</span>
-                  <span>${unitPrice.toFixed(2)}{useCustomPrice ? " (custom)" : ""}</span>
-                </div>
-                {quantity > 1 && (
-                  <div className="flex justify-between text-white/50 text-xs">
-                    <span>${unitPrice.toFixed(2)} × {quantity}</span>
-                    <span></span>
-                  </div>
-                )}
+
+                {/* Service lines */}
+                {serviceLines.map((line, idx) => {
+                  const info = getLineSizeInfo(line);
+                  const lp = getLinePrice(line);
+                  return (
+                    <div key={line.id} className={idx > 0 ? "pt-2 border-t border-white/10" : ""}>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">{serviceLines.length > 1 ? `Service ${idx + 1}` : "Service"}</span>
+                        <span>{line.serviceType}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-white/70">Size</span>
+                        <span>{line.size}{info ? ` (${info.dims})` : ""}</span>
+                      </div>
+                      {info && (
+                        <div className="flex justify-between text-xs text-white/50">
+                          <span>Weight: {info.weight} · {info.days} days</span>
+                          <span>{line.quantity > 1 ? `${line.quantity}× ` : ""}${lp}{line.useCustomPrice ? " (custom)" : ""} = ${(lp * line.quantity).toFixed(2)}</span>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+
                 <div className="flex justify-between items-baseline pt-2 border-t border-white/20">
-                  <span className="font-bold text-lg">Total</span>
+                  <span className="font-bold text-lg">Total ({totalUnits} unit{totalUnits !== 1 ? "s" : ""})</span>
                   <span className="font-[var(--font-oswald)] text-2xl font-bold text-tp-red">
                     ${totalAmount.toFixed(2)}
                   </span>

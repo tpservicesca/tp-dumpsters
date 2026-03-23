@@ -42,22 +42,55 @@ const SERVICES: Record<string, Record<string, { price: number; dims: string; wei
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { customerName, customerEmail, customerPhone, deliveryAddress, billingAddress, serviceType, size, quantity, notes, customPrice } = body;
+    const { customerName, customerEmail, customerPhone, deliveryAddress, billingAddress, notes } = body;
 
-    if (!customerName || !deliveryAddress || !serviceType || !size) {
+    if (!customerName || !deliveryAddress) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    const sizeInfo = SERVICES[serviceType]?.[size];
-    if (!sizeInfo && !customPrice) {
-      return NextResponse.json({ error: `Unknown service/size: ${serviceType} / ${size}` }, { status: 400 });
+    // Support multi-item invoices: items[] array OR legacy single fields
+    interface InvoiceItem {
+      serviceType: string;
+      size: string;
+      quantity: number;
+      customPrice?: number;
+      unitPrice: number;
+      dims: string;
+      weight: string;
+      days: number;
     }
 
-    const unitPrice = customPrice || sizeInfo!.price;
-    const qty = quantity || 1;
-    const dims = sizeInfo?.dims || "";
-    const weight = sizeInfo?.weight || "";
-    const days = sizeInfo?.days || 7;
+    const rawItems: Array<{ serviceType: string; size: string; quantity: number; customPrice?: number }> =
+      body.items && Array.isArray(body.items) && body.items.length > 0
+        ? body.items
+        : [{ serviceType: body.serviceType, size: body.size, quantity: body.quantity || 1, customPrice: body.customPrice }];
+
+    const items: InvoiceItem[] = rawItems.map((item) => {
+      const sizeInfo = SERVICES[item.serviceType]?.[item.size];
+      if (!sizeInfo && !item.customPrice) {
+        throw new Error(`Unknown service/size: ${item.serviceType} / ${item.size}`);
+      }
+      return {
+        serviceType: item.serviceType,
+        size: item.size,
+        quantity: item.quantity || 1,
+        customPrice: item.customPrice,
+        unitPrice: item.customPrice || sizeInfo!.price,
+        dims: sizeInfo?.dims || "",
+        weight: sizeInfo?.weight || "",
+        days: sizeInfo?.days || 7,
+      };
+    });
+
+    // Legacy compat values (use first item)
+    const serviceType = items[0].serviceType;
+    const size = items[0].size;
+    const unitPrice = items[0].unitPrice;
+    const qty = items.reduce((sum, i) => sum + i.quantity, 0);
+    const dims = items[0].dims;
+    const weight = items[0].weight;
+    const days = Math.max(...items.map((i) => i.days));
+    const grandTotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
 
     const stripe = getStripe();
 
@@ -102,24 +135,27 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    // Create invoice item with short description (details go in invoice note)
-    const itemDescription = `${size.replace(" Yard", "-yard")} dumpster for ${serviceType.toLowerCase()}`;
-
-    // For multiple quantities, create one line item per unit (Stripe API compatibility)
-    for (let i = 0; i < qty; i++) {
-      const desc = qty > 1
-        ? `${itemDescription} (${i + 1} of ${qty})`
-        : itemDescription;
-      await stripe.invoiceItems.create({
-        customer: customer.id,
-        description: desc,
-        amount: unitPrice * 100,
-        currency: "usd",
-      });
+    // Create invoice items for each service line
+    for (const item of items) {
+      const itemDesc = `${item.size.replace(" Yard", "-yard")} dumpster for ${item.serviceType.toLowerCase()}`;
+      for (let i = 0; i < item.quantity; i++) {
+        const desc = item.quantity > 1
+          ? `${itemDesc} (${i + 1} of ${item.quantity})`
+          : itemDesc;
+        await stripe.invoiceItems.create({
+          customer: customer.id,
+          description: desc,
+          amount: item.unitPrice * 100,
+          currency: "usd",
+        });
+      }
     }
 
     // Build detailed rental terms note
-    const termsNote = `${size} Dumpster — ${serviceType} | ${days}-day rental | Weight limit: ${weight}`;
+    const termsLines = items.map((item) =>
+      `${item.size} Dumpster — ${item.serviceType} | ${item.days}-day rental | Weight limit: ${item.weight}`
+    );
+    const termsNote = termsLines.join(" | ");
 
     // Create invoice with detailed terms
     const invoiceParams: Record<string, unknown> = {
@@ -158,20 +194,18 @@ export async function POST(request: NextRequest) {
           setup_future_usage: "off_session",
           statement_descriptor: "TP DUMPSTERS",
         },
-        line_items: [
-          {
-            price_data: {
-              currency: "usd",
-              product_data: {
-                name: `Dumpster Rental - ${serviceType} ${size}`,
-                description: termsNote,
-                images: ["https://tpdumpsters.com/images/hero/red-dumpster-construction.png"],
-              },
-              unit_amount: unitPrice * 100,
+        line_items: items.map((item) => ({
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: `Dumpster Rental - ${item.serviceType} ${item.size}`,
+              description: `${item.size} — ${item.serviceType} | ${item.days}-day rental | Weight: ${item.weight}`,
+              images: ["https://tpdumpsters.com/images/hero/red-dumpster-construction.png"],
             },
-            quantity: qty,
+            unit_amount: item.unitPrice * 100,
           },
-        ],
+          quantity: item.quantity,
+        })),
         metadata: {
           invoice_id: finalized.id,
           customer_name: customerName,
@@ -215,11 +249,15 @@ export async function POST(request: NextRequest) {
 
         const totalAmount = ((finalized.amount_due || 0) / 100).toFixed(2);
         const payLink = checkoutUrl || finalized.hosted_invoice_url;
+        const itemLines = items.length > 1
+          ? items.map((item) => `${item.quantity}× ${item.size} ${item.serviceType}`).join("\n")
+          : `${qty > 1 ? `${qty}x ` : ""}${size} ${serviceType}`;
         const smsBody = [
           `Hi ${customerName}!`,
           ``,
           `Your invoice from TP Dumpsters:`,
-          `${qty > 1 ? `${qty}x ` : ""}${size} ${serviceType} — $${totalAmount}`,
+          itemLines,
+          `Total: $${totalAmount}`,
           ``,
           `Pay securely online:`,
           `${payLink}`,
@@ -270,6 +308,7 @@ export async function POST(request: NextRequest) {
       quantity: qty,
       sentEmail,
       sentSms,
+      items: items.map((i) => ({ serviceType: i.serviceType, size: i.size, quantity: i.quantity, unitPrice: i.unitPrice })),
     });
   } catch (err) {
     console.error("Invoice error:", err);
