@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import RichmondHero from "./components/RichmondHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import RichmondLocation from "./components/RichmondLocation";
 
 const richmondFaqs = [
@@ -216,7 +216,7 @@ export default function RichmondPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <RichmondLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

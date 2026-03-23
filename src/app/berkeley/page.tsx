@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import BerkeleyHero from "./components/BerkeleyHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import BerkeleyLocation from "./components/BerkeleyLocation";
 
 const berkeleyFaqs = [
@@ -251,7 +251,7 @@ export default function BerkeleyPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <BerkeleyLocation />
       <FloatingButtons />
       <Footer />

@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import VallejoHero from "./components/VallejoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import VallejoLocation from "./components/VallejoLocation";
 
 const vallejoFaqs = [
@@ -222,7 +222,7 @@ export default function VallejoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <VallejoLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

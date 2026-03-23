@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanAnselmoHero from "./components/SanAnselmoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanAnselmoLocation from "./components/SanAnselmoLocation";
 
 const sanAnselmoFaqs = [
@@ -247,7 +247,7 @@ export default function SanAnselmoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
 
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

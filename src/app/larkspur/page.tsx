@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import LarkspurHero from "./components/LarkspurHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import LarkspurLocation from "./components/LarkspurLocation";
 
 const larkspurFaqs = [
@@ -245,7 +245,7 @@ export default function LarkspurPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
 
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

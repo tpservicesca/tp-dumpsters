@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PittsburgHero from "./components/PittsburgHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PittsburgLocation from "./components/PittsburgLocation";
 
 const pittsburgFaqs = [
@@ -212,7 +212,7 @@ export default function PittsburgPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PittsburgLocation />
       <FloatingButtons />
       <Footer />

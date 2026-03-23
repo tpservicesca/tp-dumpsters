@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import MountainViewHero from "./components/MountainViewHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import MountainViewLocation from "./components/MountainViewLocation";
 
 const mountainViewFaqs = [
@@ -211,7 +211,7 @@ export default function MountainViewPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <MountainViewLocation />
       <FloatingButtons />
       <Footer />

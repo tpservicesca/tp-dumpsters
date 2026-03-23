@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import MillValleyHero from "./components/MillValleyHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import MillValleyLocation from "./components/MillValleyLocation";
 
 const millValleyFaqs = [
@@ -238,7 +238,7 @@ export default function MillValleyPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
 
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanJoseHero from "./components/SanJoseHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanJoseLocation from "./components/SanJoseLocation";
 
 const sanJoseFaqs = [
@@ -255,7 +255,7 @@ export default function SanJosePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanJoseLocation />
       <FloatingButtons />
       <Footer />

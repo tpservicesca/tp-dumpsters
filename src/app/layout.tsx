@@ -6,25 +6,29 @@ import "./globals.css";
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const oswald = Oswald({
   variable: "--font-oswald",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 const redHatDisplay = Red_Hat_Display({
   variable: "--font-red-hat",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700"],
+  display: "swap",
 });
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {

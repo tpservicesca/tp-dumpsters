@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import CastroValleyHero from "./components/CastroValleyHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import CastroValleyLocation from "./components/CastroValleyLocation";
 
 const castroValleyFaqs = [
@@ -203,7 +203,7 @@ export default function CastroValleyPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <CastroValleyLocation />
       <FloatingButtons />
       <Footer />

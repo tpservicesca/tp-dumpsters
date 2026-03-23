@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import TiburonHero from "./components/TiburonHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import TiburonLocation from "./components/TiburonLocation";
 
 const tiburonFaqs = [
@@ -237,7 +237,7 @@ export default function TiburonPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
 
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

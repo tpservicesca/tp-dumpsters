@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanPabloHero from "./components/SanPabloHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanPabloLocation from "./components/SanPabloLocation";
 
 const sanPabloFaqs = [
@@ -217,7 +217,7 @@ export default function SanPabloPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanPabloLocation />
       <FloatingButtons />
       <Footer />

@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import NovatoHero from "./components/NovatoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import NovatoLocation from "./components/NovatoLocation";
 
 const novatoFaqs = [
@@ -236,7 +236,7 @@ export default function NovatoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
 
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

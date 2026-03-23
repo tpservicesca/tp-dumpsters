@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import DiscoveryBayHero from "./components/DiscoveryBayHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import DiscoveryBayLocation from "./components/DiscoveryBayLocation";
 
 const discoveryBayFaqs = [
@@ -229,7 +229,7 @@ export default function DiscoveryBayPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <DiscoveryBayLocation />
 
       {/* SEO Content Section */}

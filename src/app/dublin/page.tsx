@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import DublinHero from "./components/DublinHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import DublinLocation from "./components/DublinLocation";
 
 const dublinFaqs = [
@@ -218,7 +218,7 @@ export default function DublinPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <DublinLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

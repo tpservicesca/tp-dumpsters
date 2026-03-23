@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import AlamedaHero from "./components/AlamedaHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import AlamedaLocation from "./components/AlamedaLocation";
 
 const alamedaFaqs = [
@@ -221,7 +221,7 @@ export default function AlamedaPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <AlamedaLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

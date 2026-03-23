@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanLeandroHero from "./components/SanLeandroHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanLeandroLocation from "./components/SanLeandroLocation";
 
 const sanLeandroFaqs = [
@@ -221,7 +221,7 @@ export default function SanLeandroPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanLeandroLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

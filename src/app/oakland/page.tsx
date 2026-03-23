@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import OaklandHero from "./components/OaklandHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import OaklandLocation from "./components/OaklandLocation";
 
 const oaklandFaqs = [
@@ -235,7 +235,7 @@ export default function OaklandPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <OaklandLocation />
       <FloatingButtons />
       <Footer />

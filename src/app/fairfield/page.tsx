@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import FairfieldHero from "./components/FairfieldHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import FairfieldLocation from "./components/FairfieldLocation";
 
 const fairfieldFaqs = [
@@ -237,7 +237,7 @@ export default function FairfieldPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <FairfieldLocation />
       <FloatingButtons />
       <Footer />

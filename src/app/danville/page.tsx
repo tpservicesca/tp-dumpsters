@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import DanvilleHero from "./components/DanvilleHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import DanvilleLocation from "./components/DanvilleLocation";
 
 const danvilleFaqs = [
@@ -203,7 +203,7 @@ export default function DanvillePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <DanvilleLocation />
       <FloatingButtons />
       <Footer />

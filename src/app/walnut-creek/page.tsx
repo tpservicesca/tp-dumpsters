@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import WalnutCreekHero from "./components/WalnutCreekHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import WalnutCreekLocation from "./components/WalnutCreekLocation";
 
 const walnutCreekFaqs = [
@@ -207,7 +207,7 @@ export default function WalnutCreekPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <WalnutCreekLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

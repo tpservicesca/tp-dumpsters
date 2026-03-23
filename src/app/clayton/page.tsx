@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import ClaytonHero from "./components/ClaytonHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import ClaytonLocation from "./components/ClaytonLocation";
 
 const claytonFaqs = [
@@ -230,7 +230,7 @@ export default function ClaytonPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <ClaytonLocation />
 
       {/* SEO Content Section */}

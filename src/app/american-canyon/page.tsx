@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import AmericanCanyonHero from "./components/AmericanCanyonHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import AmericanCanyonLocation from "./components/AmericanCanyonLocation";
 
 const americanCanyonFaqs = [
@@ -219,7 +219,7 @@ export default function AmericanCanyonPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <AmericanCanyonLocation />
       <FloatingButtons />
       <Footer />

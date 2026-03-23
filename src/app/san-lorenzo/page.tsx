@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanLorenzoHero from "./components/SanLorenzoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanLorenzoLocation from "./components/SanLorenzoLocation";
 
 const sanLorenzoFaqs = [
@@ -225,7 +225,7 @@ export default function SanLorenzoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanLorenzoLocation />
       <FloatingButtons />
       <Footer />

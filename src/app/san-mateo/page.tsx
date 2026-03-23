@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanMateoHero from "./components/SanMateoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanMateoLocation from "./components/SanMateoLocation";
 
 const sanMateoFaqs = [
@@ -167,7 +167,7 @@ export default function SanMateoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanMateoLocation />
       <FloatingButtons />
       <Footer />

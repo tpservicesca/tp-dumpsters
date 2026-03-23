@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import UnionCityHero from "./components/UnionCityHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import UnionCityLocation from "./components/UnionCityLocation";
 
 const unionCityFaqs = [
@@ -212,7 +212,7 @@ export default function UnionCityPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <UnionCityLocation />
       <FloatingButtons />
       <Footer />

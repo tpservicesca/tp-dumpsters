@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import RedwoodCityHero from "./components/RedwoodCityHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import RedwoodCityLocation from "./components/RedwoodCityLocation";
 
 const redwoodCityFaqs = [
@@ -168,7 +168,7 @@ export default function RedwoodCityPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <RedwoodCityLocation />
       <FloatingButtons />
       <Footer />

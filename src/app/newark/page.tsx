@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import NewarkHero from "./components/NewarkHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import NewarkLocation from "./components/NewarkLocation";
 
 const newarkFaqs = [
@@ -212,7 +212,7 @@ export default function NewarkPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <NewarkLocation />
       <FloatingButtons />
       <Footer />

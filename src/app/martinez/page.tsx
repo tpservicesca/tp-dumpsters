@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import MartinezHero from "./components/MartinezHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import MartinezLocation from "./components/MartinezLocation";
 
 const martinezFaqs = [
@@ -212,7 +212,7 @@ export default function MartinezPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <MartinezLocation />
       <FloatingButtons />
       <Footer />

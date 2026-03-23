@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PinoleHero from "./components/PinoleHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PinoleLocation from "./components/PinoleLocation";
 
 const pinoleFaqs = [
@@ -249,7 +249,7 @@ export default function PinolePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PinoleLocation />
       <FloatingButtons />
       <Footer />

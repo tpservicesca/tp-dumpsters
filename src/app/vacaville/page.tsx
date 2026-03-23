@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import VacavilleHero from "./components/VacavilleHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import VacavilleLocation from "./components/VacavilleLocation";
 
 const vacavilleFaqs = [
@@ -230,7 +230,7 @@ export default function VacavillePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <VacavilleLocation />
       <FloatingButtons />
       <Footer />

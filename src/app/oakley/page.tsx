@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import OakleyHero from "./components/OakleyHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import OakleyLocation from "./components/OakleyLocation";
 
 const oakleyFaqs = [
@@ -219,7 +219,7 @@ export default function OakleyPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <OakleyLocation />
       <FloatingButtons />
       <Footer />

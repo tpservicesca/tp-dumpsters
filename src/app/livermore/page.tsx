@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import LivermoreHero from "./components/LivermoreHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import LivermoreLocation from "./components/LivermoreLocation";
 
 const livermoreFaqs = [
@@ -220,7 +220,7 @@ export default function LivermorePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <LivermoreLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

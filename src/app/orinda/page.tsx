@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import OrindaHero from "./components/OrindaHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import OrindaLocation from "./components/OrindaLocation";
 
 const orindaFaqs = [
@@ -218,7 +218,7 @@ export default function OrindaPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <OrindaLocation />
       <FloatingButtons />
       <Footer />

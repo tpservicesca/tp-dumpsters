@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import RodeoHero from "./components/RodeoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import RodeoLocation from "./components/RodeoLocation";
 
 const rodeoFaqs = [
@@ -228,7 +228,7 @@ export default function RodeoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <RodeoLocation />
 
       {/* SEO Content Section */}

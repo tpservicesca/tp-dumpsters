@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import FremontHero from "./components/FremontHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import FremontLocation from "./components/FremontLocation";
 
 const fremontFaqs = [
@@ -215,7 +215,7 @@ export default function FremontPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <FremontLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

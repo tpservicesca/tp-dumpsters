@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SuisunCityHero from "./components/SuisunCityHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SuisunCityLocation from "./components/SuisunCityLocation";
 
 const suisunCityFaqs = [
@@ -232,7 +232,7 @@ export default function SuisunCityPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SuisunCityLocation />
       <FloatingButtons />
       <Footer />

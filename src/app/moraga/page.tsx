@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import MoragaHero from "./components/MoragaHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import MoragaLocation from "./components/MoragaLocation";
 
 const moragaFaqs = [
@@ -219,7 +219,7 @@ export default function MoragaPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <MoragaLocation />
       <FloatingButtons />
       <Footer />

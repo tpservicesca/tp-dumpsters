@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import DalyCityHero from "./components/DalyCityHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import DalyCityLocation from "./components/DalyCityLocation";
 
 const dalyCityFaqs = [
@@ -226,7 +226,7 @@ export default function DalyCityPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <DalyCityLocation />
       <FloatingButtons />
       <Footer />

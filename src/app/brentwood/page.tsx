@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import BrentwoodHero from "./components/BrentwoodHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import BrentwoodLocation from "./components/BrentwoodLocation";
 
 const brentwoodFaqs = [
@@ -220,7 +220,7 @@ export default function BrentwoodPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <BrentwoodLocation />
       <FloatingButtons />
       <Footer />

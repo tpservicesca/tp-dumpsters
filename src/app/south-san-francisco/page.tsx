@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SouthSFHero from "./components/SouthSFHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SouthSFLocation from "./components/SouthSFLocation";
 
 const southSFFaqs = [
@@ -167,7 +167,7 @@ export default function SouthSanFranciscoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SouthSFLocation />
       <FloatingButtons />
       <Footer />

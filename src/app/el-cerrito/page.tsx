@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import ElCerritoHero from "./components/ElCerritoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import ElCerritoLocation from "./components/ElCerritoLocation";
 
 const elCerritoFaqs = [
@@ -202,7 +202,7 @@ export default function ElCerritoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <ElCerritoLocation />
       <FloatingButtons />
       <Footer />

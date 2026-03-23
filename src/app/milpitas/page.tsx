@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import MilpitasHero from "./components/MilpitasHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import MilpitasLocation from "./components/MilpitasLocation";
 
 const milpitasFaqs = [
@@ -210,7 +210,7 @@ export default function MilpitasPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <MilpitasLocation />
       <FloatingButtons />
       <Footer />

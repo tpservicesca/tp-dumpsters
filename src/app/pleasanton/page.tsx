@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PleasantonHero from "./components/PleasantonHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PleasantonLocation from "./components/PleasantonLocation";
 
 const pleasantonFaqs = [
@@ -220,7 +220,7 @@ export default function PleasantonPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PleasantonLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

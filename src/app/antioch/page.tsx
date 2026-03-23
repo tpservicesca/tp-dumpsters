@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import AntiochHero from "./components/AntiochHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import AntiochLocation from "./components/AntiochLocation";
 
 const antiochFaqs = [
@@ -220,7 +220,7 @@ export default function AntiochPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <AntiochLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

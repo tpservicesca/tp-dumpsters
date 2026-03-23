@@ -8,7 +8,7 @@ import DynamicReviews from "@/components/DynamicReviews";
 import WhyUsSection from "@/components/WhyUsSection";
 import DynamicGallery from "@/components/DynamicGallery";
 import LocationSection from "@/components/LocationSection";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 
@@ -123,7 +123,7 @@ export default function Home() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       {/* LocationSection removed — using ServiceAreaMap instead */}
       <FloatingButtons />
       <Footer />

@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import BayPointHero from "./components/BayPointHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import BayPointLocation from "./components/BayPointLocation";
 
 const bayPointFaqs = [
@@ -215,7 +215,7 @@ export default function BayPointPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <BayPointLocation />
       <FloatingButtons />
       <Footer />

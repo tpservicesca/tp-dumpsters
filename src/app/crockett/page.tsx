@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import CrockettHero from "./components/CrockettHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import CrockettLocation from "./components/CrockettLocation";
 
 const crockettFaqs = [
@@ -228,7 +228,7 @@ export default function CrockettPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <CrockettLocation />
 
       {/* SEO Content Section */}

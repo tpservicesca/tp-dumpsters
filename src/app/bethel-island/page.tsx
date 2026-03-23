@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import BethelIslandHero from "./components/BethelIslandHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import BethelIslandLocation from "./components/BethelIslandLocation";
 
 const bethelIslandFaqs = [
@@ -230,7 +230,7 @@ export default function BethelIslandPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <BethelIslandLocation />
 
       {/* SEO Content Section */}

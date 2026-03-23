@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PiedmontHero from "./components/PiedmontHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PiedmontLocation from "./components/PiedmontLocation";
 
 const piedmontFaqs = [
@@ -226,7 +226,7 @@ export default function PiedmontPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PiedmontLocation />
       <FloatingButtons />
       <Footer />

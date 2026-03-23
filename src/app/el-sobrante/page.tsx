@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import ElSobranteHero from "./components/ElSobranteHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import ElSobranteLocation from "./components/ElSobranteLocation";
 
 const elSobranteFaqs = [
@@ -217,7 +217,7 @@ export default function ElSobrantePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <ElSobranteLocation />
       <FloatingButtons />
       <Footer />

@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import HerculesHero from "./components/HerculesHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import HerculesLocation from "./components/HerculesLocation";
 
 const herculesFaqs = [
@@ -212,7 +212,7 @@ export default function HerculesPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <HerculesLocation />
       <FloatingButtons />
       <Footer />

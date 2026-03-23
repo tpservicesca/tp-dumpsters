@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PaloAltoHero from "./components/PaloAltoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PaloAltoLocation from "./components/PaloAltoLocation";
 
 const paloAltoFaqs = [
@@ -212,7 +212,7 @@ export default function PaloAltoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PaloAltoLocation />
       <FloatingButtons />
       <Footer />

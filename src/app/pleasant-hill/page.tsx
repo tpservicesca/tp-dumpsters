@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PleasantHillHero from "./components/PleasantHillHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PleasantHillLocation from "./components/PleasantHillLocation";
 
 const pleasantHillFaqs = [
@@ -212,7 +212,7 @@ export default function PleasantHillPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PleasantHillLocation />
       <FloatingButtons />
       <Footer />

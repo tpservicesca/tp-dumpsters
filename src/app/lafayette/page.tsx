@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import LafayetteHero from "./components/LafayetteHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import LafayetteLocation from "./components/LafayetteLocation";
 
 const lafayetteFaqs = [
@@ -215,7 +215,7 @@ export default function LafayettePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <LafayetteLocation />
       <FloatingButtons />
       <Footer />

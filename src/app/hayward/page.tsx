@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import HaywardHero from "./components/HaywardHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import HaywardLocation from "./components/HaywardLocation";
 
 const haywardFaqs = [
@@ -207,7 +207,7 @@ export default function HaywardPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <HaywardLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

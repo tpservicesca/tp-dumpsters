@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanFranciscoHero from "./components/SanFranciscoHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanFranciscoLocation from "./components/SanFranciscoLocation";
 
 const sanFranciscoFaqs = [
@@ -253,7 +253,7 @@ export default function SanFranciscoPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanFranciscoLocation />
       <FloatingButtons />
       <Footer />

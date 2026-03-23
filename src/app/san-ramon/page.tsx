@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SanRamonHero from "./components/SanRamonHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SanRamonLocation from "./components/SanRamonLocation";
 
 const sanRamonFaqs = [
@@ -215,7 +215,7 @@ export default function SanRamonPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SanRamonLocation />
       <FloatingButtons />
       <Footer />

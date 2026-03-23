@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SantaClaraHero from "./components/SantaClaraHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SantaClaraLocation from "./components/SantaClaraLocation";
 
 const santaClaraFaqs = [
@@ -210,7 +210,7 @@ export default function SantaClaraPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SantaClaraLocation />
       <FloatingButtons />
       <Footer />

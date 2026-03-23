@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import SunnyvaleHero from "./components/SunnyvaleHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import SunnyvaleLocation from "./components/SunnyvaleLocation";
 
 const sunnyvaleFaqs = [
@@ -234,7 +234,7 @@ export default function SunnyvalePage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <SunnyvaleLocation />
       <FloatingButtons />
       <Footer />

@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import PacificaHero from "./components/PacificaHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import PacificaLocation from "./components/PacificaLocation";
 
 const pacificaFaqs = [
@@ -167,7 +167,7 @@ export default function PacificaPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <PacificaLocation />
       <FloatingButtons />
       <Footer />

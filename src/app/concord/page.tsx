@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import ConcordHero from "./components/ConcordHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import ConcordLocation from "./components/ConcordLocation";
 
 const concordFaqs = [
@@ -213,7 +213,7 @@ export default function ConcordPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <ConcordLocation />
       {/* SEO Content Section */}
       <section className="py-16 bg-white">

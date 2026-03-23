@@ -12,7 +12,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import FloatingButtons from "@/components/FloatingButtons";
 import Footer from "@/components/Footer";
 import BeniciaHero from "./components/BeniciaHero";
-import ServiceAreaMap from "@/components/ServiceAreaMap";
+import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import BeniciaLocation from "./components/BeniciaLocation";
 
 const beniciaFaqs = [
@@ -202,7 +202,7 @@ export default function BeniciaPage() {
       <DynamicReviews />
       <WhyUsSection />
       <DynamicGallery />
-      <ServiceAreaMap />
+      <DynamicServiceAreaMap />
       <BeniciaLocation />
       <FloatingButtons />
       <Footer />
