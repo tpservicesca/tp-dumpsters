@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { blogPosts } from "@/data/blog-posts";
 
 // All city pages - add new cities here and they auto-appear in sitemap
 const cities = ["oakland", "pinole", "richmond", "concord", "berkeley", "hayward", "fremont", "walnut-creek", "alameda", "antioch", "san-leandro", "vallejo", "livermore", "lafayette", "pleasanton", "san-ramon", "dublin", "brentwood", "union-city", "newark", "pleasant-hill", "martinez", "pittsburg", "castro-valley", "hercules", "el-cerrito", "danville", "benicia", "oakley", "san-pablo", "orinda", "moraga", "bay-point", "american-canyon", "el-sobrante", "san-francisco", "san-jose", "san-rafael", "novato", "mill-valley", "sausalito", "tiburon", "corte-madera", "larkspur", "san-anselmo", "fairfax", "clayton", "rodeo", "crockett", "discovery-bay", "bethel-island", "contra-costa-county", "marin-county", "fairfield", "san-lorenzo", "emeryville", "piedmont", "alameda-county", "vacaville", "suisun-city", "dixon", "solano-county", "daly-city", "redwood-city", "san-mateo", "south-san-francisco", "pacifica", "san-mateo-county", "sunnyvale", "santa-clara", "mountain-view", "milpitas", "palo-alto", "santa-clara-county"];
@@ -31,5 +32,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...otherPageEntries, ...cityPages];
+  const blogIndex: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+  ];
+
+  const blogEntries: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: post.date,
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...otherPageEntries, ...blogIndex, ...blogEntries, ...cityPages];
 }
