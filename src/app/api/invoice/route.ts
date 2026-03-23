@@ -42,7 +42,7 @@ const SERVICES: Record<string, Record<string, { price: number; dims: string; wei
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { customerName, customerEmail, customerPhone, deliveryAddress, billingAddress, notes } = body;
+    const { customerName, customerEmail, customerPhone, deliveryAddress, billingAddress, notes, extras } = body;
 
     if (!customerName || !deliveryAddress) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -90,7 +90,17 @@ export async function POST(request: NextRequest) {
     const dims = items[0].dims;
     const weight = items[0].weight;
     const days = Math.max(...items.map((i) => i.days));
-    const grandTotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0);
+    // Parse extras
+    interface ExtraCharge { name: string; price: number; quantity: number }
+    const extraCharges: ExtraCharge[] = (extras && Array.isArray(extras))
+      ? extras.filter((e: ExtraCharge) => e.name && e.price > 0).map((e: ExtraCharge) => ({
+          name: e.name,
+          price: Number(e.price),
+          quantity: e.quantity || 1,
+        }))
+      : [];
+    const extrasTotal = extraCharges.reduce((sum, e) => sum + e.price * e.quantity, 0);
+    const grandTotal = items.reduce((sum, i) => sum + i.unitPrice * i.quantity, 0) + extrasTotal;
 
     const stripe = getStripe();
 
@@ -151,6 +161,21 @@ export async function POST(request: NextRequest) {
       }
     }
 
+    // Create invoice items for extras
+    for (const extra of extraCharges) {
+      for (let i = 0; i < extra.quantity; i++) {
+        const desc = extra.quantity > 1
+          ? `${extra.name} (${i + 1} of ${extra.quantity})`
+          : extra.name;
+        await stripe.invoiceItems.create({
+          customer: customer.id,
+          description: desc,
+          amount: extra.price * 100,
+          currency: "usd",
+        });
+      }
+    }
+
     // Build detailed rental terms note
     const termsLines = items.map((item) =>
       `${item.size} Dumpster — ${item.serviceType} | ${item.days}-day rental | Weight limit: ${item.weight}`
@@ -194,18 +219,31 @@ export async function POST(request: NextRequest) {
           setup_future_usage: "off_session",
           statement_descriptor: "TP DUMPSTERS",
         },
-        line_items: items.map((item) => ({
-          price_data: {
-            currency: "usd",
-            product_data: {
-              name: `Dumpster Rental - ${item.serviceType} ${item.size}`,
-              description: `${item.size} — ${item.serviceType} | ${item.days}-day rental | Weight: ${item.weight}`,
-              images: ["https://tpdumpsters.com/images/hero/red-dumpster-construction.png"],
+        line_items: [
+          ...items.map((item) => ({
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: `Dumpster Rental - ${item.serviceType} ${item.size}`,
+                description: `${item.size} — ${item.serviceType} | ${item.days}-day rental | Weight: ${item.weight}`,
+                images: ["https://tpdumpsters.com/images/hero/red-dumpster-construction.png"],
+              },
+              unit_amount: item.unitPrice * 100,
             },
-            unit_amount: item.unitPrice * 100,
-          },
-          quantity: item.quantity,
-        })),
+            quantity: item.quantity,
+          })),
+          ...extraCharges.map((extra) => ({
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: extra.name,
+                description: `Additional charge: ${extra.name}`,
+              },
+              unit_amount: extra.price * 100,
+            },
+            quantity: extra.quantity,
+          })),
+        ],
         metadata: {
           invoice_id: finalized.id,
           customer_name: customerName,
@@ -252,11 +290,14 @@ export async function POST(request: NextRequest) {
         const itemLines = items.length > 1
           ? items.map((item) => `${item.quantity}× ${item.size} ${item.serviceType}`).join("\n")
           : `${qty > 1 ? `${qty}x ` : ""}${size} ${serviceType}`;
+        const extraLines = extraCharges.length > 0
+          ? "\n" + extraCharges.map((e) => `+ ${e.quantity > 1 ? `${e.quantity}× ` : ""}${e.name} ($${e.price})`).join("\n")
+          : "";
         const smsBody = [
           `Hi ${customerName}!`,
           ``,
           `Your invoice from TP Dumpsters:`,
-          itemLines,
+          itemLines + extraLines,
           `Total: $${totalAmount}`,
           ``,
           `Pay securely online:`,

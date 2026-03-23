@@ -58,6 +58,27 @@ function getLineSizeInfo(line: ServiceLine): SizeInfo | null {
   return svc?.sizes[line.size] || null;
 }
 
+/* ── Extras (appliances, mattresses, tires, custom fees) ── */
+interface ExtraItem {
+  id: string;
+  name: string;
+  price: string;
+  quantity: number;
+}
+
+const COMMON_EXTRAS = [
+  { name: "Refrigerator", price: 40 },
+  { name: "Mattress", price: 60 },
+  { name: "Appliance", price: 40 },
+  { name: "Tire", price: 20 },
+  { name: "Overweight (per ton)", price: 125 },
+  { name: "Extra Day", price: 49 },
+];
+
+function createExtra(): ExtraItem {
+  return { id: crypto.randomUUID(), name: "", price: "", quantity: 1 };
+}
+
 interface InvoiceResult {
   id: string;
   number: string;
@@ -90,6 +111,7 @@ export default function QuoteForm() {
   const [billingAddress, setBillingAddress] = useState("");
   const [showBilling, setShowBilling] = useState(false);
   const [serviceLines, setServiceLines] = useState<ServiceLine[]>([createServiceLine()]);
+  const [extras, setExtras] = useState<ExtraItem[]>([]);
   const [notes, setNotes] = useState("");
 
   // Result
@@ -127,8 +149,10 @@ export default function QuoteForm() {
     { id: "afternoon", label: "🌆 Afternoon", time: "3:00 PM - 7:00 PM" },
   ];
 
-  // Total across all service lines
-  const totalAmount = serviceLines.reduce((sum, line) => sum + getLinePrice(line) * line.quantity, 0);
+  // Total across all service lines + extras
+  const servicesTotal = serviceLines.reduce((sum, line) => sum + getLinePrice(line) * line.quantity, 0);
+  const extrasTotal = extras.reduce((sum, ex) => sum + (Number(ex.price) || 0) * ex.quantity, 0);
+  const totalAmount = servicesTotal + extrasTotal;
   const totalUnits = serviceLines.reduce((sum, line) => sum + line.quantity, 0);
 
   // Helper to update a specific service line
@@ -156,6 +180,19 @@ export default function QuoteForm() {
 
   const addLine = () => {
     setServiceLines((prev) => [...prev, createServiceLine()]);
+  };
+
+  // Extras helpers
+  const addExtra = (preset?: { name: string; price: number }) => {
+    const ex = createExtra();
+    if (preset) { ex.name = preset.name; ex.price = String(preset.price); }
+    setExtras((prev) => [...prev, ex]);
+  };
+  const updateExtra = (id: string, updates: Partial<ExtraItem>) => {
+    setExtras((prev) => prev.map((ex) => (ex.id === id ? { ...ex, ...updates } : ex)));
+  };
+  const removeExtra = (id: string) => {
+    setExtras((prev) => prev.filter((ex) => ex.id !== id));
   };
 
   // Auto-calculate pickup date based on longest rental period across all lines
@@ -314,6 +351,10 @@ export default function QuoteForm() {
         customPrice: line.useCustomPrice ? Number(line.customPrice) : undefined,
       }));
 
+      const extraItems = extras
+        .filter((ex) => ex.name.trim() && Number(ex.price) > 0)
+        .map((ex) => ({ name: ex.name.trim(), price: Number(ex.price), quantity: ex.quantity }));
+
       const res = await fetch("/api/invoice", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -324,6 +365,7 @@ export default function QuoteForm() {
           deliveryAddress: deliveryAddress.trim(),
           billingAddress: showBilling ? billingAddress.trim() : undefined,
           items,
+          extras: extraItems.length > 0 ? extraItems : undefined,
           // Legacy fields for backward compat
           serviceType: serviceLines[0].serviceType,
           size: serviceLines[0].size,
@@ -350,6 +392,7 @@ export default function QuoteForm() {
     setBillingAddress("");
     setShowBilling(false);
     setServiceLines([createServiceLine()]);
+    setExtras([]);
     setNotes("");
     setResult(null);
     setError("");
@@ -907,6 +950,78 @@ export default function QuoteForm() {
             + Add Another Service
           </button>
 
+          {/* ── Extras Section ── */}
+          <div className="flex items-center justify-between mb-3">
+            <h3 className="font-[var(--font-poppins)] font-semibold text-sm text-[#333]">📦 Extras</h3>
+            {extrasTotal > 0 && (
+              <span className="text-xs text-[#999] font-[var(--font-poppins)]">+${extrasTotal.toFixed(2)}</span>
+            )}
+          </div>
+
+          {/* Quick-add common extras */}
+          <div className="flex flex-wrap gap-2 mb-3">
+            {COMMON_EXTRAS.map((ce) => (
+              <button
+                key={ce.name}
+                onClick={() => addExtra(ce)}
+                className="px-3 py-1.5 rounded-lg bg-gray-100 text-xs font-[var(--font-poppins)] text-[#555] hover:bg-tp-red hover:text-white transition-colors"
+              >
+                + {ce.name} <span className="text-[10px] opacity-70">${ce.price}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Extra items list */}
+          {extras.map((ex) => (
+            <div key={ex.id} className="flex items-center gap-2 mb-2 bg-amber-50 rounded-lg p-3 border border-amber-200">
+              <input
+                type="text"
+                placeholder="Item name"
+                value={ex.name}
+                onChange={(e) => updateExtra(ex.id, { name: e.target.value })}
+                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white min-w-0"
+              />
+              <div className="flex items-center gap-1">
+                <span className="text-sm font-bold text-[#333]">$</span>
+                <input
+                  type="number"
+                  placeholder="40"
+                  value={ex.price}
+                  onChange={(e) => updateExtra(ex.id, { price: e.target.value })}
+                  className="w-20 px-2 py-2 border border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white"
+                />
+              </div>
+              <div className="flex items-center gap-1">
+                <label className="text-[10px] text-[#999]">×</label>
+                <input
+                  type="number"
+                  min={1}
+                  max={20}
+                  value={ex.quantity}
+                  onChange={(e) => updateExtra(ex.id, { quantity: Math.max(1, Number(e.target.value)) })}
+                  className="w-14 px-2 py-2 border border-gray-200 rounded-lg text-sm font-[var(--font-poppins)] focus:border-tp-red focus:outline-none bg-white text-center"
+                />
+              </div>
+              <span className="text-xs font-bold text-[#333] font-[var(--font-poppins)] w-16 text-right">
+                ${((Number(ex.price) || 0) * ex.quantity).toFixed(0)}
+              </span>
+              <button
+                onClick={() => removeExtra(ex.id)}
+                className="w-6 h-6 flex items-center justify-center rounded-full bg-red-100 text-red-500 hover:bg-red-200 transition-colors text-xs flex-shrink-0"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+
+          {/* Custom extra button */}
+          <button
+            onClick={() => addExtra()}
+            className="w-full py-2 rounded-lg border border-dashed border-amber-300 text-xs font-semibold text-amber-600 font-[var(--font-poppins)] hover:border-amber-500 hover:text-amber-700 transition-colors mb-6"
+          >
+            + Custom Extra
+          </button>
+
           {/* Notes */}
           <textarea
             placeholder="Notes (optional) — delivery instructions, project details..."
@@ -970,8 +1085,22 @@ export default function QuoteForm() {
                   );
                 })}
 
+                {/* Extras in preview */}
+                {extras.filter((ex) => ex.name && Number(ex.price) > 0).length > 0 && (
+                  <>
+                    <div className="border-t border-white/10 my-2" />
+                    <p className="text-[10px] text-amber-400 font-semibold uppercase tracking-wider">Extras</p>
+                    {extras.filter((ex) => ex.name && Number(ex.price) > 0).map((ex) => (
+                      <div key={ex.id} className="flex justify-between text-xs">
+                        <span className="text-white/70">{ex.quantity > 1 ? `${ex.quantity}× ` : ""}{ex.name}</span>
+                        <span>${((Number(ex.price) || 0) * ex.quantity).toFixed(2)}</span>
+                      </div>
+                    ))}
+                  </>
+                )}
+
                 <div className="flex justify-between items-baseline pt-2 border-t border-white/20">
-                  <span className="font-bold text-lg">Total ({totalUnits} unit{totalUnits !== 1 ? "s" : ""})</span>
+                  <span className="font-bold text-lg">Total</span>
                   <span className="font-[var(--font-oswald)] text-2xl font-bold text-tp-red">
                     ${totalAmount.toFixed(2)}
                   </span>
