@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next";
 export const metadata: Metadata = {
   title: "TP Driver",
   description: "TP Dumpsters Driver App — Deliveries & Pickups",
+  robots: { index: false, follow: false },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",

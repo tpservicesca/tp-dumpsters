@@ -1,19 +1,21 @@
 import type { MetadataRoute } from "next";
 
+const disallowedPaths = [
+  "/dashboard",
+  "/driver",
+  "/internal",
+  "/booking/success",
+  "/thank-you",
+  "/quote",
+];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
         userAgent: "*",
         allow: "/",
-        disallow: [
-          "/dashboard",
-          "/driver",
-          "/internal",
-          "/booking/success",
-          "/thank-you",
-          "/quote",
-        ],
+        disallow: disallowedPaths,
       },
       {
         userAgent: [
@@ -32,6 +34,7 @@ export default function robots(): MetadataRoute.Robots {
           "YouBot",
         ],
         allow: "/",
+        disallow: disallowedPaths,
       },
     ],
     sitemap: "https://tpdumpsters.com/sitemap.xml",
