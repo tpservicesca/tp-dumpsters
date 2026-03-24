@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import QuickBook from "./QuickBook";
 
 const AUTH_CODE = "Cantaritos1.";
 const API = "/api/dashboard";
@@ -52,6 +53,8 @@ export default function DriverApp() {
 
   // Expanded job
   const [expandedJob, setExpandedJob] = useState<string | null>(null);
+  // Quick Book modal
+  const [showQuickBook, setShowQuickBook] = useState(false);
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
@@ -265,6 +268,14 @@ export default function DriverApp() {
   // ══════════ MAIN VIEW ══════════
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* Quick Book Modal */}
+      {showQuickBook && (
+        <QuickBook
+          onClose={() => setShowQuickBook(false)}
+          onSuccess={() => fetchData()}
+        />
+      )}
+
       {/* Hidden camera input */}
       <input ref={fileInputRef} type="file" accept="image/*" capture="environment" className="hidden" onChange={handlePhotoCapture} />
 
@@ -353,6 +364,16 @@ export default function DriverApp() {
                 {new Date().toLocaleDateString("es-MX", { weekday: "long", day: "numeric", month: "long" })}
               </p>
             </div>
+            <div className="flex items-center gap-2">
+            <button
+              onClick={() => setShowQuickBook(true)}
+              className="h-10 px-4 rounded-full bg-red-500 flex items-center justify-center gap-1.5 active:bg-red-600 transition-colors"
+            >
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="text-white">
+                <line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+              <span className="text-white text-xs font-bold">Agendar</span>
+            </button>
             <button
               onClick={fetchData}
               disabled={refreshing}
@@ -363,6 +384,7 @@ export default function DriverApp() {
                 <path d="M20.49 9A9 9 0 005.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 013.51 15" />
               </svg>
             </button>
+            </div>
           </div>
 
           {/* Stats bar */}
