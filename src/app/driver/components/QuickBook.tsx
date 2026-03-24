@@ -87,53 +87,69 @@ export default function QuickBook({ onClose, onSuccess }: QuickBookProps) {
   const addressInputRef = useRef<HTMLInputElement>(null);
   const autocompleteRef = useRef<any>(null);
 
-  // Load Google Places
+  // Load Google Places script (only if not already loaded)
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (document.getElementById("qb-google-places")) return;
+    // If already loaded, skip
+    if ((window as any).google?.maps?.places) return;
+    // If script tag already exists (from another component), skip
+    if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) return;
 
     const script = document.createElement("script");
-    script.id = "qb-google-places";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&libraries=places&callback=initQuickBookPlaces`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&libraries=places`;
     script.async = true;
     script.defer = true;
-
-    (window as any).initQuickBookPlaces = () => {};
     document.head.appendChild(script);
   }, []);
 
-  // Init autocomplete when on step 2
+  // Init autocomplete when on step 2 — poll for google to be ready
   useEffect(() => {
-    if (step !== 2 || !addressInputRef.current || !window.google) return;
+    if (step !== 2 || !addressInputRef.current) return;
+    if (autocompleteRef.current) return; // already initialized
 
-    const ac = new window.google.maps.places.Autocomplete(
-      addressInputRef.current,
-      {
-        types: ["address"],
-        componentRestrictions: { country: "us" },
-        fields: ["address_components", "formatted_address"],
-        bounds: new window.google.maps.LatLngBounds(
-          { lat: 37.2, lng: -122.6 },
-          { lat: 38.3, lng: -121.5 }
-        ),
-        strictBounds: true,
-      }
-    );
+    const initAC = () => {
+      if (!(window as any).google?.maps?.places || !addressInputRef.current) return false;
 
-    ac.addListener("place_changed", () => {
-      const place = ac.getPlace();
-      if (place?.address_components) {
-        const components = place.address_components;
-        const getComp = (type: string) =>
-          components.find((c: any) => c.types.includes(type))?.long_name || "";
-        
-        setAddress(place.formatted_address || "");
-        setCity(getComp("locality") || getComp("sublocality_level_1"));
-        setZip(getComp("postal_code"));
-      }
-    });
+      const ac = new (window as any).google.maps.places.Autocomplete(
+        addressInputRef.current,
+        {
+          types: ["address"],
+          componentRestrictions: { country: "us" },
+          fields: ["address_components", "formatted_address"],
+          bounds: new (window as any).google.maps.LatLngBounds(
+            { lat: 37.2, lng: -122.6 },
+            { lat: 38.3, lng: -121.5 }
+          ),
+          strictBounds: true,
+        }
+      );
 
-    autocompleteRef.current = ac;
+      ac.addListener("place_changed", () => {
+        const place = ac.getPlace();
+        if (place?.address_components) {
+          const components = place.address_components;
+          const getComp = (type: string) =>
+            components.find((c: any) => c.types.includes(type))?.long_name || "";
+          
+          setAddress(place.formatted_address || "");
+          setCity(getComp("locality") || getComp("sublocality_level_1"));
+          setZip(getComp("postal_code"));
+        }
+      });
+
+      autocompleteRef.current = ac;
+      return true;
+    };
+
+    // Try immediately, then poll every 300ms for up to 5s
+    if (!initAC()) {
+      let attempts = 0;
+      const interval = setInterval(() => {
+        attempts++;
+        if (initAC() || attempts > 16) clearInterval(interval);
+      }, 300);
+      return () => clearInterval(interval);
+    }
   }, [step]);
 
   const getDeliveryDate = () => {
