@@ -79,3 +79,12 @@ html {
 .mobile-menu-btn.active span:nth-child(3) {
   transform: rotate(-45deg) translate(6px, -6px);
 }
+
+/* App bottom nav padding */
+.pb-nav {
+  padding-bottom: 5rem;
+}
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+

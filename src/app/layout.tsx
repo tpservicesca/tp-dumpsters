@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Oswald, Red_Hat_Display, Open_Sans } from "next/font/google";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import AppBottomNav from "@/components/AppBottomNav";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -102,6 +103,7 @@ export default function RootLayout({
       >
         <GoogleAnalytics />
         {children}
+        <AppBottomNav />
       </body>
     </html>
   );
