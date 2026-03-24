@@ -10,6 +10,7 @@ const navItems = [
   { label: "REVIEWS", href: "#reviews" },
   { label: "CLIENTS", href: "#clients" },
   { label: "CITYS", href: "#rent" },
+  { label: "BLOG", href: "/blog" },
 ];
 
 export default function Header() {
