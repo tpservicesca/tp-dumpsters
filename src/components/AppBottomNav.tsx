@@ -9,11 +9,18 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
+function IconHome({ active }: { active: boolean }) {
+  return (
+    <svg className={`w-6 h-6 ${active ? 'text-red-500' : 'text-gray-400'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  );
+}
+
 function IconDashboard({ active }: { active: boolean }) {
   return (
     <svg className={`w-6 h-6 ${active ? 'text-red-500' : 'text-gray-400'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" />
-      <rect x="14" y="14" width="7" height="7" /><rect x="3" y="14" width="7" height="7" />
+      <line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" />
     </svg>
   );
 }
@@ -57,6 +64,11 @@ function IconUsers({ active }: { active: boolean }) {
 
 const navItems: NavItem[] = [
   {
+    href: '/hub',
+    label: 'Hub',
+    icon: <IconHome active={false} />,
+  },
+  {
     href: '/dashboard',
     label: 'Dashboard',
     icon: <IconDashboard active={false} />,
@@ -85,6 +97,7 @@ const navItems: NavItem[] = [
 
 function NavIcon({ href, active }: { href: string; active: boolean }) {
   switch (href) {
+    case '/hub': return <IconHome active={active} />;
     case '/dashboard': return <IconDashboard active={active} />;
     case '/driver': return <IconTruck active={active} />;
     case '/booking': return <IconCalendar active={active} />;
@@ -98,7 +111,7 @@ export default function AppBottomNav() {
   const pathname = usePathname();
 
   // Only show on internal/app pages
-  const showNav = ['/dashboard', '/driver', '/booking', '/internal'].some(
+  const showNav = ['/hub', '/dashboard', '/driver', '/booking', '/internal'].some(
     (p) => pathname.startsWith(p)
   );
 
