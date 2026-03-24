@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const GOOGLE_MAPS_KEY = "AIzaSyBI6Vup5IKvfvlyvdhV_9nipF5FXaVnZ04";
 const AUTH_CODE = "Cantaritos1.";
@@ -40,11 +40,45 @@ export default function QuickBook({ onClose, onSuccess }: QuickBookProps) {
   const [customDate, setCustomDate] = useState("");
   const [notes, setNotes] = useState("");
 
+  // Customer autocomplete
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchTimeout = useRef<NodeJS.Timeout | null>(null);
+
   // UI state
   const [step, setStep] = useState(1); // 1=info, 2=address, 3=confirm
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  // Customer search
+  const searchCustomers = useCallback(async (query: string) => {
+    if (query.length < 2) { setSuggestions([]); return; }
+    try {
+      const res = await fetch(`/api/customers/search?q=${encodeURIComponent(query)}`, {
+        headers: { "x-dashboard-auth": AUTH_CODE },
+      });
+      const data = await res.json();
+      setSuggestions(data.customers || []);
+      setShowSuggestions(true);
+    } catch { setSuggestions([]); }
+  }, []);
+
+  const handleNameChange = (val: string) => {
+    setCustomerName(val);
+    if (searchTimeout.current) clearTimeout(searchTimeout.current);
+    searchTimeout.current = setTimeout(() => searchCustomers(val), 300);
+  };
+
+  const selectCustomer = (c: any) => {
+    setCustomerName(c.name);
+    setPhone(c.phone || "");
+    if (c.address) setAddress(c.address);
+    if (c.city) setCity(c.city);
+    if (c.zipCode) setZip(c.zipCode);
+    setShowSuggestions(false);
+    setSuggestions([]);
+  };
 
   // Google Places
   const addressInputRef = useRef<HTMLInputElement>(null);
@@ -204,17 +238,36 @@ export default function QuickBook({ onClose, onSuccess }: QuickBookProps) {
           {/* ── STEP 1: Customer + Service ── */}
           {step === 1 && (
             <>
-              {/* Customer Name */}
-              <div>
+              {/* Customer Name with autocomplete */}
+              <div className="relative">
                 <label className="text-sm text-gray-400 mb-1.5 block">Nombre del cliente</label>
                 <input
                   type="text"
                   value={customerName}
-                  onChange={(e) => setCustomerName(e.target.value)}
-                  placeholder="Juan García"
+                  onChange={(e) => handleNameChange(e.target.value)}
+                  onFocus={() => { if (suggestions.length) setShowSuggestions(true); }}
+                  placeholder="Escribe para buscar cliente..."
                   className="w-full bg-gray-800 text-white text-lg rounded-xl px-4 py-3.5 border border-gray-700 focus:border-red-500 focus:outline-none"
                   autoFocus
                 />
+                {showSuggestions && suggestions.length > 0 && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-gray-600 rounded-xl overflow-hidden z-50 max-h-48 overflow-y-auto shadow-xl">
+                    {suggestions.map((c, i) => (
+                      <button
+                        key={i}
+                        onClick={() => selectCustomer(c)}
+                        className="w-full text-left px-4 py-3 hover:bg-gray-700 active:bg-gray-600 border-b border-gray-700 last:border-0 transition-colors"
+                      >
+                        <p className="text-white font-medium">{c.name}</p>
+                        <p className="text-gray-400 text-xs">
+                          {c.phone && `📞 ${c.phone}`}
+                          {c.city && ` · 📍 ${c.city}`}
+                          {c.lastSize && ` · 🗑️ ${c.lastSize}`}
+                        </p>
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Phone (optional) */}
