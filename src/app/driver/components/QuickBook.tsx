@@ -45,6 +45,9 @@ export default function QuickBook({ onClose, onSuccess }: QuickBookProps) {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const searchTimeout = useRef<NodeJS.Timeout | null>(null);
 
+  // Availability
+  const [availability, setAvailability] = useState<{ available: number; total: number; warning: string | null } | null>(null);
+
   // UI state
   const [step, setStep] = useState(1); // 1=info, 2=address, 3=confirm
   const [submitting, setSubmitting] = useState(false);
@@ -428,9 +431,18 @@ export default function QuickBook({ onClose, onSuccess }: QuickBookProps) {
                   ← Atrás
                 </button>
                 <button
-                  onClick={() => {
+                  onClick={async () => {
                     if (!address.trim()) { setError("Dirección requerida"); return; }
                     setError("");
+                    // Check availability
+                    try {
+                      const dateStr = getDeliveryDate();
+                      const res = await fetch(`/api/availability?size=${size}&date=${dateStr}`, {
+                        headers: { "x-dashboard-auth": AUTH_CODE },
+                      });
+                      const data = await res.json();
+                      setAvailability(data);
+                    } catch { setAvailability(null); }
                     setStep(3);
                   }}
                   className="flex-1 bg-red-500 text-white font-bold text-lg py-4 rounded-xl hover:bg-red-600 transition-all"
@@ -444,6 +456,32 @@ export default function QuickBook({ onClose, onSuccess }: QuickBookProps) {
           {/* ── STEP 3: Confirm ── */}
           {step === 3 && (
             <>
+              {/* Availability warning */}
+              {availability && availability.warning === "none_available" && (
+                <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 flex items-start gap-3">
+                  <span className="text-2xl">⚠️</span>
+                  <div>
+                    <p className="text-red-400 font-bold">No hay {size}-yard disponibles</p>
+                    <p className="text-red-300 text-sm">Todos los {size}-yard están desplegados. Puedes continuar pero no habrá dumpster asignado.</p>
+                  </div>
+                </div>
+              )}
+              {availability && availability.warning === "low_stock" && (
+                <div className="bg-yellow-500/20 border border-yellow-500/50 rounded-xl p-4 flex items-start gap-3">
+                  <span className="text-2xl">⚡</span>
+                  <div>
+                    <p className="text-yellow-400 font-bold">Solo {availability.available} de {availability.total} disponibles</p>
+                    <p className="text-yellow-300 text-sm">Quedan pocos {size}-yard. Confirma rápido.</p>
+                  </div>
+                </div>
+              )}
+              {availability && !availability.warning && availability.available > 0 && (
+                <div className="bg-green-500/20 border border-green-500/50 rounded-xl p-3 flex items-center gap-2">
+                  <span className="text-lg">✅</span>
+                  <p className="text-green-400 text-sm font-medium">{availability.available} de {availability.total} {size}-yard disponibles</p>
+                </div>
+              )}
+
               <div className="bg-gray-800 rounded-2xl p-5 space-y-3">
                 <div className="flex justify-between">
                   <span className="text-gray-400">Cliente</span>
