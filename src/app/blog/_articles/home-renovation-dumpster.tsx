@@ -124,7 +124,7 @@ export default function HomeRenovationDumpster() {
         </div>
       </div>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>Timing Your Dumpster Rental</h2>
 

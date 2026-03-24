@@ -113,7 +113,7 @@ export default function DumpsterRentalCost() {
         quoted price so there are no surprises at the end.
       </p>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>Hidden Fees to Watch Out For</h2>
 

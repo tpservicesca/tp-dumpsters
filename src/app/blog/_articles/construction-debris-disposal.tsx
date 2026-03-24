@@ -112,7 +112,7 @@ export default function ConstructionDebrisDisposal() {
         </p>
       </div>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>How to Sort Construction Debris</h2>
 

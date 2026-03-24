@@ -141,7 +141,7 @@ export default function WhatSizeDumpster() {
         the extra capacity can save you from needing a second haul.
       </p>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>30-Yard Dumpster: Maximum Capacity</h2>
 

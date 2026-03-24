@@ -128,7 +128,7 @@ export default function WhatCanGoInDumpster() {
         <li><strong>Air conditioning units</strong> — ⚠️ Same as refrigerators — refrigerant must be removed first</li>
       </ul>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>What CANNOT Go in a Dumpster</h2>
 

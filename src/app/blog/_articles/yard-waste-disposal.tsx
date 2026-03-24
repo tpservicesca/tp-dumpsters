@@ -139,7 +139,7 @@ export default function YardWasteDisposal() {
         <li><strong>Advantages:</strong> Dropped off at your property, fill at your own pace, we handle the hauling and disposal</li>
       </ul>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>When You Need a Dumpster for Yard Waste</h2>
 

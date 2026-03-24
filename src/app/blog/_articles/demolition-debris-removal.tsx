@@ -102,7 +102,7 @@ export default function DemolitionDebrisRemoval() {
         other Contra Costa County cities have their own permitting processes.
       </p>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>What Goes in a Demolition Dumpster</h2>
 

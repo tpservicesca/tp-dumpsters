@@ -124,7 +124,7 @@ export default function HowToRentADumpster() {
         <li>Any access restrictions (narrow streets, low-hanging wires, gates)</li>
       </ul>
 
-      <InlineCTA variant="secondary" />
+      {/* CTA handled by page wrapper */}
 
       <h2>Step 4: Prepare the Placement Area</h2>
 
