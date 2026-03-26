@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in San Mateo County, CA | TP Dumpsters",
     description:
-      "Serving 5+ cities across San Mateo County. Same-day delivery, transparent pricing, bilingual support. Book online or call (510) 650-2083.",
+      "Serving 13+ cities across San Mateo County. Same-day delivery, transparent pricing, bilingual support. Book online or call (510) 650-2083.",
     url: "https://tpdumpsters.com/san-mateo-county",
     siteName: "TP Dumpsters",
     type: "website",
@@ -63,6 +63,14 @@ const CITIES = [
   { name: "San Mateo", slug: "san-mateo", tagline: "Central Peninsula" },
   { name: "South San Francisco", slug: "south-san-francisco", tagline: "The Industrial City" },
   { name: "Pacifica", slug: "pacifica", tagline: "Coastal Living" },
+  { name: "Burlingame", slug: "burlingame", tagline: "City of Trees" },
+  { name: "San Bruno", slug: "san-bruno", tagline: "Near SFO Airport" },
+  { name: "Menlo Park", slug: "menlo-park", tagline: "Tech Capital" },
+  { name: "Foster City", slug: "foster-city", tagline: "Island City" },
+  { name: "Belmont", slug: "belmont", tagline: "Hills & Views" },
+  { name: "San Carlos", slug: "san-carlos", tagline: "City of Good Living" },
+  { name: "Half Moon Bay", slug: "half-moon-bay", tagline: "Coastal Charm" },
+  { name: "Millbrae", slug: "millbrae", tagline: "Transit Hub" },
 ];
 
 // ── FAQs (using CityFaqsSection format) ─────────────────────────────────────
@@ -227,7 +235,7 @@ export default function SanMateoCountyPage() {
         <div className="relative z-[2] px-5 pb-10">
           <div className="mb-6">
             <h3 className="inline-block bg-tp-gold-dark text-white px-6 py-2 text-[13px] md:text-base font-bold rounded-[3px] font-[var(--font-poppins)]">
-              Serving 5+ Cities Across San Mateo County
+              Serving 13+ Cities Across San Mateo County
             </h3>
           </div>
           <h1 className="font-[var(--font-oswald)] text-[26px] sm:text-[3rem] lg:text-[4.5rem] font-extrabold text-white uppercase leading-[1.1] mb-4 tracking-wide">
@@ -262,7 +270,7 @@ export default function SanMateoCountyPage() {
               <FaMapLocationDot className="text-tp-red text-xl" />
             </div>
             <div>
-              <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">5+ Cities Served</h4>
+              <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">13+ Cities Served</h4>
               <p className="text-white/85 text-[13px] leading-relaxed">Full San Mateo County coverage</p>
             </div>
           </div>

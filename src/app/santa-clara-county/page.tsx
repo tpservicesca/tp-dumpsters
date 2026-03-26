@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Santa Clara County, CA | TP Dumpsters",
     description:
-      "Serving 6+ cities across Santa Clara County. Same-day delivery, transparent pricing, bilingual support. Book online or call (510) 650-2083.",
+      "Serving 12+ cities across Santa Clara County. Same-day delivery, transparent pricing, bilingual support. Book online or call (510) 650-2083.",
     url: "https://tpdumpsters.com/santa-clara-county",
     siteName: "TP Dumpsters",
     type: "website",
@@ -65,6 +65,12 @@ const CITIES = [
   { name: "Mountain View", slug: "mountain-view", tagline: "Tech Hub" },
   { name: "Milpitas", slug: "milpitas", tagline: "Gateway City" },
   { name: "Palo Alto", slug: "palo-alto", tagline: "Stanford University" },
+  { name: "Cupertino", slug: "cupertino", tagline: "Home of Apple" },
+  { name: "Campbell", slug: "campbell", tagline: "Orchard City" },
+  { name: "Los Gatos", slug: "los-gatos", tagline: "Gem of the Foothills" },
+  { name: "Saratoga", slug: "saratoga", tagline: "Wine Country Living" },
+  { name: "Morgan Hill", slug: "morgan-hill", tagline: "South Valley Gateway" },
+  { name: "Gilroy", slug: "gilroy", tagline: "Garlic Capital" },
 ];
 
 // ── FAQs (using CityFaqsSection format) ─────────────────────────────────────
@@ -229,7 +235,7 @@ export default function SantaClaraCountyPage() {
         <div className="relative z-[2] px-5 pb-10">
           <div className="mb-6">
             <h3 className="inline-block bg-tp-gold-dark text-white px-6 py-2 text-[13px] md:text-base font-bold rounded-[3px] font-[var(--font-poppins)]">
-              Serving 6+ Cities Across Santa Clara County
+              Serving 12+ Cities Across Santa Clara County
             </h3>
           </div>
           <h1 className="font-[var(--font-oswald)] text-[26px] sm:text-[3rem] lg:text-[4.5rem] font-extrabold text-white uppercase leading-[1.1] mb-4 tracking-wide">
@@ -264,7 +270,7 @@ export default function SantaClaraCountyPage() {
               <FaMapLocationDot className="text-tp-red text-xl" />
             </div>
             <div>
-              <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">6+ Cities Served</h4>
+              <h4 className="text-white font-[var(--font-poppins)] text-base font-bold mb-1">12+ Cities Served</h4>
               <p className="text-white/85 text-[13px] leading-relaxed">Full Santa Clara County coverage</p>
             </div>
           </div>
