@@ -10,6 +10,7 @@ import DynamicGallery from "@/components/DynamicGallery";
 import LocationSection from "@/components/LocationSection";
 import DynamicServiceAreaMap from '@/components/DynamicServiceAreaMap';
 import FloatingButtons from "@/components/FloatingButtons";
+import ChatWidget from "@/components/ChatWidget";
 import Footer from "@/components/Footer";
 
 const jsonLd = {
@@ -126,6 +127,7 @@ export default function Home() {
       <DynamicServiceAreaMap />
       {/* LocationSection removed — using ServiceAreaMap instead */}
       <FloatingButtons />
+      <ChatWidget />
       <Footer />
     </>
   );
