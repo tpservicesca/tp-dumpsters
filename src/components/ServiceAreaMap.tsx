@@ -93,6 +93,9 @@ const cities: CityInfo[] = [
     description: 'Gateway to Napa. Napa Junction, Canyon Estates & Watson Ranch.', tag: '20/mo' },
   { name: 'El Sobrante', lat: 37.9772, lng: -122.2953, slug: '/el-sobrante',
     description: 'Hidden West County gem. Appian Way, Sobrante Ridge & Carriage Hills.', tag: '20/mo' },
+  // ── San Francisco ──
+  { name: 'San Francisco', lat: 37.7749, lng: -122.4194, slug: '/san-francisco',
+    description: 'The City by the Bay. SoMa, Mission, Sunset, Richmond & all SF neighborhoods.', tag: 'Major City' },
 ];
 
 const activeCities = cities.filter((c) => c.slug !== '#');
