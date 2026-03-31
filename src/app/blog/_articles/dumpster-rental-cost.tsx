@@ -212,7 +212,7 @@ export default function DumpsterRentalCost() {
 
       <p>
         Ready to find out exactly what your project will cost? <Link href="/booking">Book online</Link> for an instant
-        quote, or call us at <a href="tel:+15106502083"><strong>(510) 650-2083</strong></a> to talk with our team. We
+        quote, or call us at <a href="tel:+15106500080"><strong>(510) 650-0080</strong></a> to talk with our team. We
         serve the entire Bay Area including <Link href="/oakland">Oakland</Link>,{' '}
         <Link href="/concord">Concord</Link>, <Link href="/richmond">Richmond</Link>,{' '}
         <Link href="/hayward">Hayward</Link>, <Link href="/san-leandro">San Leandro</Link>,{' '}
@@ -229,10 +229,10 @@ export default function DumpsterRentalCost() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-6 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
             >
-              <FiPhone className="w-5 h-5" /> (510) 650-2083
+              <FiPhone className="w-5 h-5" /> (510) 650-0080
             </a>
             <Link
               href="/booking"

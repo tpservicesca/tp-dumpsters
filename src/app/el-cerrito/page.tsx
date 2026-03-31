@@ -60,7 +60,7 @@ const elCerritoFaqs = [
     question: "How much does a dumpster rental cost in El Cerrito?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        El Cerrito dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your El Cerrito project.
+        El Cerrito dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your El Cerrito project.
       </p>
     ),
   },
@@ -86,13 +86,13 @@ const elCerritoAbout = {
     "Roofing tear-offs and siding replacement on older homes near Kensington",
   ],
   closingText:
-    "Whether you're renovating a mid-century gem in El Cerrito Hills or clearing out a property near Mira Vista, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows the Inner East Bay. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a mid-century gem in El Cerrito Hills or clearing out a property near Mira Vista, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows the Inner East Bay. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in El Cerrito, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in El Cerrito, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to El Cerrito, Kensington & Albany. Call (510) 650-2083",
+    "Affordable dumpster rentals in El Cerrito, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to El Cerrito, Kensington & Albany. Call (510) 650-0080",
   keywords: [
     "dumpster rental El Cerrito CA",
     "El Cerrito dumpster rental",
@@ -112,7 +112,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in El Cerrito, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in El Cerrito. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in El Cerrito. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/el-cerrito",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in El Cerrito, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in El Cerrito. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in El Cerrito. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/el-cerrito" },
@@ -135,7 +135,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in El Cerrito, CA. Same-day delivery to all El Cerrito neighborhoods, Kensington, and Albany.",
   url: "https://tpdumpsters.com/el-cerrito",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
       `• Don't overfill — keep debris below the rim\n` +
       `• No hazardous materials\n` +
       `• Pickup is scheduled automatically\n\n` +
-      `Questions? Call (510) 650-2083\n` +
+      `Questions? Call (510) 650-0080\n` +
       `— TP Dumpsters`;
   } else if (action === "picked-up") {
     body = `Your dumpster has been picked up! ✅\n\n` +

@@ -187,7 +187,7 @@ export default function SummaryStep({ booking, onBack, onSubmit, isSubmitting }:
         </button>
         <div className="flex flex-col sm:flex-row gap-3">
           <a
-            href="tel:+15106502083"
+            href="tel:+15106500080"
             className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-sm border-2 border-tp-red text-tp-red hover:bg-tp-red hover:text-white transition-colors"
           >
             <FaPhone /> Call to book

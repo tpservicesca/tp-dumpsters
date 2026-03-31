@@ -93,13 +93,13 @@ const campbellAbout = {
     "Roofing projects on Campbell's mid-century homes",
   ],
   closingText:
-    "Whether you're renovating a home in Hacienda or managing a commercial project near Pruneyard, TP Dumpsters makes waste removal in Campbell seamless. We offer transparent pricing, same-day delivery, and local expertise. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a home in Hacienda or managing a commercial project near Pruneyard, TP Dumpsters makes waste removal in Campbell seamless. We offer transparent pricing, same-day delivery, and local expertise. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Campbell, CA | Santa Clara County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Campbell, CA. Serving Downtown Campbell, Hacienda, Ainsley Park, Pruneyard & all neighborhoods. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Campbell, CA. Serving Downtown Campbell, Hacienda, Ainsley Park, Pruneyard & all neighborhoods. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental Campbell CA",
     "Campbell dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Campbell",
   description: "Fast, reliable dumpster rentals in Campbell, CA. Serving all Campbell neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/campbell",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

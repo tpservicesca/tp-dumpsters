@@ -28,7 +28,7 @@ export default function AntiochHero() {
             <FaCalendarDays /> Book Online
           </a>
           <a
-            href="tel:+15106502083"
+            href="tel:+15106500080"
             className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-7 py-3 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
           >
             <FaPhone /> Get a Quote

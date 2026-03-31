@@ -103,13 +103,13 @@ const pinoleAbout = {
     "Decluttering and moving cleanouts in Tara Hills",
   ],
   closingText:
-    "Pinole homeowners and contractors trust TP Dumpsters for straightforward pricing, fast delivery, and friendly bilingual service. Whether you're clearing out a garage, remodeling your kitchen, or managing a construction site, we have the right dumpster for your project. Call us at (510) 650-2083 for a free quote today.",
+    "Pinole homeowners and contractors trust TP Dumpsters for straightforward pricing, fast delivery, and friendly bilingual service. Whether you're clearing out a garage, remodeling your kitchen, or managing a construction site, we have the right dumpster for your project. Call us at (510) 650-0080 for a free quote today.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Pinole, CA | Same-Day Service - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Pinole, CA. Serving Old Town, Pinole Valley, Tara Hills, Hercules & surrounding areas. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Affordable dumpster rentals in Pinole, CA. Serving Old Town, Pinole Valley, Tara Hills, Hercules & surrounding areas. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental Pinole CA",
     "Pinole dumpster rental",
@@ -149,7 +149,7 @@ const jsonLd = {
   description:
     "Affordable dumpster rentals in Pinole, CA. Serving Pinole and surrounding West Contra Costa communities with same-day delivery.",
   url: "https://tpdumpsters.com/pinole",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

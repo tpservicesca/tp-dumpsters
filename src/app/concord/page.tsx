@@ -22,7 +22,7 @@ const concordFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Dumpster rental in Concord starts at <strong>$600 for a 10-yard</strong> (7-day rental, 1 ton
         included), $650 for a 20-yard (2 tons), and $700 for a 30-yard (3 tons). We offer transparent
-        pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for an exact quote.
+        pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for an exact quote.
       </p>
     ),
   },
@@ -104,13 +104,13 @@ const concordAbout = {
     "Commercial tenant improvement and office renovation waste",
   ],
   closingText:
-    "From small garage cleanouts to large construction projects, TP Dumpsters is Concord's trusted choice for waste removal. We deliver on time, price transparently, and make the whole process hassle-free. Call us at (510) 650-2083 for a free quote today.",
+    "From small garage cleanouts to large construction projects, TP Dumpsters is Concord's trusted choice for waste removal. We deliver on time, price transparently, and make the whole process hassle-free. Call us at (510) 650-0080 for a free quote today.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Concord, CA | Same-Day Service - TP Dumpsters",
   description:
-    "Reliable dumpster rentals in Concord, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown, Todos Santos, Sun Terrace & all neighborhoods. Bilingual support. Call (510) 650-2083",
+    "Reliable dumpster rentals in Concord, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown, Todos Santos, Sun Terrace & all neighborhoods. Bilingual support. Call (510) 650-0080",
   keywords: [
     "dumpster rental Concord CA",
     "Concord dumpster rental",
@@ -130,7 +130,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Concord, CA - TP Dumpsters",
     description:
-      "Fast, reliable dumpster rentals in Concord. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, reliable dumpster rentals in Concord. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/concord",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -147,7 +147,7 @@ const jsonLd = {
   description:
     "Reliable, affordable dumpster rentals in Concord, CA. Same-day delivery to all Concord neighborhoods and Central Contra Costa County.",
   url: "https://tpdumpsters.com/concord",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -229,7 +229,7 @@ export default function ConcordPage() {
               The former Concord Naval Weapons Station redevelopment and ongoing residential growth mean more construction and renovation projects across the city. TP Dumpsters provides affordable 10, 20, and 30 yard roll-off containers perfect for everything from small residential cleanouts to large commercial demolitions throughout Concord and surrounding areas.
             </p>
             <p>
-              Get your Concord dumpster delivered as soon as today. Book online for an instant 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for personalized service in English or Spanish. Transparent pricing, no hidden fees — that&apos;s the TP Dumpsters difference.
+              Get your Concord dumpster delivered as soon as today. Book online for an instant 5% discount or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for personalized service in English or Spanish. Transparent pricing, no hidden fees — that&apos;s the TP Dumpsters difference.
             </p>
           </div>
         </div>

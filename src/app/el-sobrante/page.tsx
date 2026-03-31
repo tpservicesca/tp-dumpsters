@@ -75,7 +75,7 @@ const elSobranteFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         El Sobrante dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact
+        No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact
         quote for your El Sobrante project.
       </p>
     ),
@@ -102,13 +102,13 @@ const elSobranteAbout = {
     "Property cleanouts and land clearing on Appian Way & San Pablo Dam",
   ],
   closingText:
-    "Whether you're renovating a hillside home in Sobrante Ridge or cleaning out a property near Briones Park, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows West County. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a hillside home in Sobrante Ridge or cleaning out a property near Briones Park, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows West County. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in El Sobrante, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in El Sobrante, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to El Sobrante & West County. Call (510) 650-2083",
+    "Affordable dumpster rentals in El Sobrante, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to El Sobrante & West County. Call (510) 650-0080",
   keywords: [
     "dumpster rental El Sobrante CA",
     "El Sobrante dumpster rental",
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in El Sobrante, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in El Sobrante. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in El Sobrante. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/el-sobrante",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in El Sobrante, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in El Sobrante. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in El Sobrante. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/el-sobrante" },
@@ -150,7 +150,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in El Sobrante, CA. Same-day delivery to all El Sobrante neighborhoods and West Contra Costa County.",
   url: "https://tpdumpsters.com/el-sobrante",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

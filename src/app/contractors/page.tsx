@@ -19,7 +19,7 @@ const contractorFaqs = [
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Yes! We offer competitive pricing for contractors who rent regularly. Call us at{" "}
-        <strong>(510) 650-2083</strong> to discuss volume pricing and set up a contractor account
+        <strong>(510) 650-0080</strong> to discuss volume pricing and set up a contractor account
         with priority scheduling and streamlined billing.
       </p>
     ),
@@ -126,7 +126,7 @@ export const metadata: Metadata = {
   title:
     "Contractor Dumpster Rental | Construction Dumpsters - TP Dumpsters Bay Area",
   description:
-    "Reliable dumpster rentals for contractors in the Bay Area. Same-day delivery, flexible scheduling, all debris types. 10, 20 & 30 yard roll-off dumpsters for construction, roofing, demolition & remodeling. Call (510) 650-2083.",
+    "Reliable dumpster rentals for contractors in the Bay Area. Same-day delivery, flexible scheduling, all debris types. 10, 20 & 30 yard roll-off dumpsters for construction, roofing, demolition & remodeling. Call (510) 650-0080.",
   keywords: [
     "contractor dumpster rental",
     "construction dumpster rental",
@@ -168,7 +168,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-2083",
+    telephone: "+1-510-650-0080",
     email: "dumpster@tpservicesca.com",
     url: "https://tpdumpsters.com",
     address: {

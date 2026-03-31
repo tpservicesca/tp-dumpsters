@@ -93,13 +93,13 @@ const belmontAbout = {
     "Roofing projects across Belmont's diverse housing stock",
   ],
   closingText:
-    "Whether you're renovating a hillside home in Belmont or clearing out a garage in Carlmont, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the hillside expertise Belmont properties require. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a hillside home in Belmont or clearing out a garage in Carlmont, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the hillside expertise Belmont properties require. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Belmont, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Belmont, CA. Serving Belmont Hills, Carlmont, Sterling Downs, Cipriani & all neighborhoods. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Belmont, CA. Serving Belmont Hills, Carlmont, Sterling Downs, Cipriani & all neighborhoods. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental Belmont CA",
     "Belmont dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Belmont",
   description: "Fast, reliable dumpster rentals in Belmont, CA. Serving all Belmont neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/belmont",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

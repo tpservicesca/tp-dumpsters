@@ -72,7 +72,7 @@ const walnutCreekFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Our Walnut Creek dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). 20-yard starts at $649 and 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for
         an exact quote based on your project.
       </p>
     ),
@@ -99,13 +99,13 @@ const walnutCreekAbout = {
     "Garage conversions and ADU construction in Northgate",
   ],
   closingText:
-    "Whether you're remodeling your dream home or managing a large construction project, TP Dumpsters makes waste removal in Walnut Creek simple and professional. We offer transparent pricing, same-day delivery, and the respectful service you expect. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're remodeling your dream home or managing a large construction project, TP Dumpsters makes waste removal in Walnut Creek simple and professional. We offer transparent pricing, same-day delivery, and the respectful service you expect. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Walnut Creek, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Walnut Creek, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown, Rossmoor, Alamo, Lafayette & all Lamorinda. HOA-friendly service. Call (510) 650-2083",
+    "Affordable dumpster rentals in Walnut Creek, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown, Rossmoor, Alamo, Lafayette & all Lamorinda. HOA-friendly service. Call (510) 650-0080",
   keywords: [
     "dumpster rental Walnut Creek CA",
     "Walnut Creek dumpster",
@@ -124,7 +124,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Walnut Creek, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Walnut Creek. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Walnut Creek. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/walnut-creek",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -141,7 +141,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Walnut Creek, CA. Same-day delivery to all Walnut Creek neighborhoods and Lamorinda.",
   url: "https://tpdumpsters.com/walnut-creek",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -223,7 +223,7 @@ export default function WalnutCreekPage() {
               The city&apos;s active real estate market and continuous property improvements drive demand for efficient waste removal solutions. From bathroom tear-outs to whole-home cleanouts, TP Dumpsters provides 10, 20, and 30 yard containers with transparent pricing that includes delivery, pickup, and up to 7 days of rental — perfect for both weekend warriors and professional contractors.
             </p>
             <p>
-              Get started on your Walnut Creek project today. Book online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for same-day delivery. We offer bilingual support and no surprise charges.
+              Get started on your Walnut Creek project today. Book online for a 5% discount or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for same-day delivery. We offer bilingual support and no surprise charges.
             </p>
           </div>
         </div>

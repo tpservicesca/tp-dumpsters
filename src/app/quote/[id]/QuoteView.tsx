@@ -103,7 +103,7 @@ export default function QuoteView({ quoteId }: { quoteId: string }) {
           </div>
           <div className="text-right text-[11px] text-white/60 leading-relaxed">
             <p>3201 Ramona St, Pinole, CA 94564</p>
-            <p>(510) 650-2083 &nbsp;|&nbsp; dumpster@tpservicesca.com</p>
+            <p>(510) 650-0080 &nbsp;|&nbsp; dumpster@tpservicesca.com</p>
             <p>tpdumpsters.com</p>
           </div>
         </div>
@@ -289,10 +289,10 @@ export default function QuoteView({ quoteId }: { quoteId: string }) {
           <FaPrint /> Print / Save as PDF
         </button>
         <a
-          href="tel:+15106502083"
+          href="tel:+15106500080"
           className="flex-1 inline-flex items-center justify-center gap-2 bg-white border-2 border-[#1a1a1a] text-[#1a1a1a] px-6 py-3 rounded-xl font-semibold text-sm hover:bg-gray-50 transition-colors font-[var(--font-poppins)]"
         >
-          <FaPhone /> Call (510) 650-2083
+          <FaPhone /> Call (510) 650-0080
         </a>
         <a
           href="mailto:dumpster@tpservicesca.com"

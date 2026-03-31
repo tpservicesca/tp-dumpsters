@@ -23,7 +23,7 @@ const pleasantonFaqs = [
         Our Pleasanton dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at <strong>$649</strong> and the 30-yard
         at <strong>$749</strong>. We offer transparent, flat-rate pricing with no hidden fees. Call{" "}
-        <strong>(510) 650-2083</strong> or email dumpster@tpservicesca.com for your exact quote.
+        <strong>(510) 650-0080</strong> or email dumpster@tpservicesca.com for your exact quote.
       </p>
     ),
   },
@@ -110,13 +110,13 @@ const pleasantonAbout = {
     "Garage and storage cleanouts for families throughout the Tri-Valley",
   ],
   closingText:
-    "Whether you're renovating a luxury home in Ruby Hill or cleaning out your garage in Birdland, TP Dumpsters provides Pleasanton with clean, reliable, and affordable dumpster service. Transparent pricing, premium placement, and Tri-Valley expertise — call us at (510) 650-2083 for your free quote.",
+    "Whether you're renovating a luxury home in Ruby Hill or cleaning out your garage in Birdland, TP Dumpsters provides Pleasanton with clean, reliable, and affordable dumpster service. Transparent pricing, premium placement, and Tri-Valley expertise — call us at (510) 650-0080 for your free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Pleasanton, CA | Tri-Valley Service - TP Dumpsters",
   description:
-    "Premium dumpster rentals in Pleasanton, CA. 10, 20 & 30 yard roll-off dumpsters. Construction & remodel specialists. Same-day delivery to Ruby Hill, Birdland & all neighborhoods. Call (510) 650-2083",
+    "Premium dumpster rentals in Pleasanton, CA. 10, 20 & 30 yard roll-off dumpsters. Construction & remodel specialists. Same-day delivery to Ruby Hill, Birdland & all neighborhoods. Call (510) 650-0080",
   keywords: [
     "dumpster rental Pleasanton CA",
     "Pleasanton dumpster rental",
@@ -136,7 +136,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Pleasanton, CA - TP Dumpsters",
     description:
-      "Premium dumpster rentals in Pleasanton. 10, 20 & 30 yard dumpsters. Tri-Valley specialists. Call (510) 650-2083",
+      "Premium dumpster rentals in Pleasanton. 10, 20 & 30 yard dumpsters. Tri-Valley specialists. Call (510) 650-0080",
     url: "https://tpdumpsters.com/pleasanton",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -153,7 +153,7 @@ const jsonLd = {
   description:
     "Premium dumpster rentals in Pleasanton, CA. Serving all Tri-Valley neighborhoods with same-day delivery and transparent pricing.",
   url: "https://tpdumpsters.com/pleasanton",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -236,7 +236,7 @@ export default function PleasantonPage() {
               Pleasanton&apos;s high property values and active real estate market drive a steady stream of home renovations, landscaping projects, and commercial build-outs. TP Dumpsters provides 10, 20, and 30 yard containers with all-inclusive pricing — delivery, pickup, and disposal included — making it easy for both DIY homeowners and licensed contractors to manage their waste responsibly.
             </p>
             <p>
-              Book your Pleasanton dumpster online today and save 5%, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for same-day service. Transparent pricing, bilingual support, and reliable delivery across Pleasanton.
+              Book your Pleasanton dumpster online today and save 5%, or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for same-day service. Transparent pricing, bilingual support, and reliable delivery across Pleasanton.
             </p>
           </div>
         </div>

@@ -60,7 +60,7 @@ const castroValleyFaqs = [
     question: "How much does a dumpster rental cost in Castro Valley?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Castro Valley dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your Castro Valley project.
+        Castro Valley dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your Castro Valley project.
       </p>
     ),
   },
@@ -86,13 +86,13 @@ const castroValleyAbout = {
     "Home renovation debris from older homes in Fairview & San Lorenzo border",
   ],
   closingText:
-    "Whether you're renovating a canyon home in Five Canyons or clearing out a property in Downtown Castro Valley, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows the East Bay Hills. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a canyon home in Five Canyons or clearing out a property in Downtown Castro Valley, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows the East Bay Hills. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Castro Valley, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Castro Valley, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Castro Valley & East Bay Hills. Call (510) 650-2083",
+    "Affordable dumpster rentals in Castro Valley, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Castro Valley & East Bay Hills. Call (510) 650-0080",
   keywords: [
     "dumpster rental Castro Valley CA",
     "Castro Valley dumpster rental",
@@ -113,7 +113,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Castro Valley, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Castro Valley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Castro Valley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/castro-valley",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -123,7 +123,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Castro Valley, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Castro Valley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Castro Valley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/castro-valley" },
@@ -136,7 +136,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Castro Valley, CA. Same-day delivery to all Castro Valley neighborhoods and the East Bay Hills.",
   url: "https://tpdumpsters.com/castro-valley",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

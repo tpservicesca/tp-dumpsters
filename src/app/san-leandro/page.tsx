@@ -83,7 +83,7 @@ const sanLeandroFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         San Leandro dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        Straightforward pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for a
+        Straightforward pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for a
         precise quote based on your project needs.
       </p>
     ),
@@ -110,13 +110,13 @@ const sanLeandroAbout = {
     "Concrete and driveway demolition for property upgrades across San Leandro",
   ],
   closingText:
-    "Whether you're remodeling a home in Estudillo Estates or clearing out a property in Washington Manor, TP Dumpsters delivers fast, affordable service anywhere in San Leandro. Transparent pricing, same-day availability, and local know-how. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're remodeling a home in Estudillo Estates or clearing out a property in Washington Manor, TP Dumpsters delivers fast, affordable service anywhere in San Leandro. Transparent pricing, same-day availability, and local know-how. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Leandro, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in San Leandro, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to all San Leandro neighborhoods. Bilingual support. Call (510) 650-2083",
+    "Affordable dumpster rentals in San Leandro, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to all San Leandro neighborhoods. Bilingual support. Call (510) 650-0080",
   keywords: [
     "dumpster rental San Leandro CA",
     "San Leandro dumpster rental",
@@ -136,7 +136,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in San Leandro, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in San Leandro. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in San Leandro. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/san-leandro",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -153,7 +153,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in San Leandro, CA. Same-day delivery to all San Leandro neighborhoods and surrounding East Bay cities.",
   url: "https://tpdumpsters.com/san-leandro",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -237,7 +237,7 @@ export default function SanLeandroPage() {
               San Leandro&apos;s proximity to Oakland and its own downtown revitalization efforts keep renovation activity high year-round. From kitchen and bathroom remodels to full estate cleanouts, TP Dumpsters delivers 10, 20, and 30 yard roll-off containers with same-day service, straightforward pricing, and no hidden fees — everything you need to keep your project on track.
             </p>
             <p>
-              Ready to start? Book your San Leandro dumpster online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free estimate. English and Spanish support available.
+              Ready to start? Book your San Leandro dumpster online for a 5% discount or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for a free estimate. English and Spanish support available.
             </p>
           </div>
         </div>

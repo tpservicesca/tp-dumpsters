@@ -62,7 +62,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-2083",
+    telephone: "+1-510-650-0080",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -150,7 +150,7 @@ const faqSchema = {
       name: "Can contractors get recurring dumpster service?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes! We work with contractors throughout the Bay Area and offer recurring dumpster service for ongoing projects. Whether you need weekly swaps or multiple dumpsters on the same job site, call us at (510) 650-2083 to set up a contractor account with priority scheduling.",
+        text: "Yes! We work with contractors throughout the Bay Area and offer recurring dumpster service for ongoing projects. Whether you need weekly swaps or multiple dumpsters on the same job site, call us at (510) 650-0080 to set up a contractor account with priority scheduling.",
       },
     },
     {
@@ -311,7 +311,7 @@ const faqsLeft = [
     question: "Can contractors get recurring dumpster service?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes! We work with contractors throughout the Bay Area and offer recurring dumpster service for ongoing projects. Whether you need weekly swaps or multiple dumpsters on the same job site, call us at <strong>(510) 650-2083</strong> to set up a contractor account with priority scheduling and streamlined billing.
+        Yes! We work with contractors throughout the Bay Area and offer recurring dumpster service for ongoing projects. Whether you need weekly swaps or multiple dumpsters on the same job site, call us at <strong>(510) 650-0080</strong> to set up a contractor account with priority scheduling and streamlined billing.
       </p>
     ),
   },
@@ -362,7 +362,7 @@ const faqsRight = [
     question: "What permits do I need for a construction dumpster?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        If the dumpster is placed on your private property (driveway, yard, etc.), no permit is typically needed. If it must be placed on a public street or sidewalk, most Bay Area cities require a temporary encroachment or right-of-way permit. We can advise you on local requirements when you book — just call <strong>(510) 650-2083</strong>.
+        If the dumpster is placed on your private property (driveway, yard, etc.), no permit is typically needed. If it must be placed on a public street or sidewalk, most Bay Area cities require a temporary encroachment or right-of-way permit. We can advise you on local requirements when you book — just call <strong>(510) 650-0080</strong>.
       </p>
     ),
   },
@@ -411,10 +411,10 @@ export default function ConstructionDebrisPage() {
               <FaCalendarDays /> Get a Quote
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
           <div className="mt-10">
@@ -777,7 +777,7 @@ export default function ConstructionDebrisPage() {
                 </p>
               </div>
               <p className="text-sm text-[#666] leading-[1.7] mt-5">
-                Not sure if your material is accepted? Call us at <strong>(510) 650-2083</strong> and we&apos;ll help you figure it out.
+                Not sure if your material is accepted? Call us at <strong>(510) 650-0080</strong> and we&apos;ll help you figure it out.
               </p>
             </div>
           </div>
@@ -837,7 +837,7 @@ export default function ConstructionDebrisPage() {
                 step: "2",
                 icon: <FaCalendarDays />,
                 title: "Schedule Delivery",
-                desc: "Book online or call (510) 650-2083. Same-day delivery available for most Bay Area locations.",
+                desc: "Book online or call (510) 650-0080. Same-day delivery available for most Bay Area locations.",
               },
               {
                 step: "3",
@@ -929,7 +929,7 @@ export default function ConstructionDebrisPage() {
           </div>
 
           <p className="text-center text-sm text-[#888] mt-8 font-[var(--font-poppins)]">
-            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-2083</strong> to confirm delivery availability.
+            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-0080</strong> to confirm delivery availability.
           </p>
         </div>
       </section>
@@ -969,10 +969,10 @@ export default function ConstructionDebrisPage() {
               <FaCalendarDays /> Book Online Now
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-white hover:bg-white hover:text-tp-red transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
         </div>

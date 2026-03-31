@@ -70,7 +70,7 @@ const pittsburgFaqs = [
     question: "How much does a dumpster rental cost in Pittsburg?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Pittsburg dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your Pittsburg project.
+        Pittsburg dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your Pittsburg project.
       </p>
     ),
   },
@@ -96,13 +96,13 @@ const pittsburgAbout = {
     "Landscaping projects and yard debris removal throughout Pittsburg",
   ],
   closingText:
-    "Whether you're building new in Highlands Ranch or renovating a property in Downtown Pittsburg, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows East County. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're building new in Highlands Ranch or renovating a property in Downtown Pittsburg, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows East County. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Pittsburg, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Pittsburg, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Pittsburg, Bay Point & East County. Call (510) 650-2083",
+    "Affordable dumpster rentals in Pittsburg, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Pittsburg, Bay Point & East County. Call (510) 650-0080",
   keywords: [
     "dumpster rental Pittsburg CA",
     "Pittsburg dumpster rental",
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Pittsburg, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Pittsburg. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Pittsburg. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/pittsburg",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Pittsburg, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Pittsburg. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Pittsburg. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/pittsburg" },
@@ -145,7 +145,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Pittsburg, CA. Same-day delivery to all Pittsburg neighborhoods, Bay Point, and East Contra Costa County.",
   url: "https://tpdumpsters.com/pittsburg",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

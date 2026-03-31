@@ -93,13 +93,13 @@ const sanCarlosAbout = {
     "Roofing and exterior upgrades across San Carlos",
   ],
   closingText:
-    "Whether you're updating a classic San Carlos home or building an ADU in Devonshire, TP Dumpsters delivers reliable waste removal. We offer transparent pricing, same-day delivery, and local expertise. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're updating a classic San Carlos home or building an ADU in Devonshire, TP Dumpsters delivers reliable waste removal. We offer transparent pricing, same-day delivery, and local expertise. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Carlos, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Carlos, CA. Serving White Oaks, Devonshire, Highlands, Howard Park & all neighborhoods. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in San Carlos, CA. Serving White Oaks, Devonshire, Highlands, Howard Park & all neighborhoods. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental San Carlos CA",
     "San Carlos dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - San Carlos",
   description: "Fast, reliable dumpster rentals in San Carlos, CA. Serving all San Carlos neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-carlos",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

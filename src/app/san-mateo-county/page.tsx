@@ -14,7 +14,7 @@ import CountyMapWrapper from "./components/CountyMapWrapper";
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Mateo County, CA | TP Dumpsters",
   description:
-    "Affordable dumpster rental across all San Mateo County cities. 10, 20 & 30 yard roll-off containers with same-day delivery. Serving Daly City, Redwood City, San Mateo, South San Francisco, Pacifica & more. Call (510) 650-2083.",
+    "Affordable dumpster rental across all San Mateo County cities. 10, 20 & 30 yard roll-off containers with same-day delivery. Serving Daly City, Redwood City, San Mateo, South San Francisco, Pacifica & more. Call (510) 650-0080.",
   keywords: [
     "dumpster rental San Mateo County",
     "roll-off dumpster San Mateo County",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in San Mateo County, CA | TP Dumpsters",
     description:
-      "Serving 13+ cities across San Mateo County. Same-day delivery, transparent pricing, bilingual support. Book online or call (510) 650-2083.",
+      "Serving 13+ cities across San Mateo County. Same-day delivery, transparent pricing, bilingual support. Book online or call (510) 650-0080.",
     url: "https://tpdumpsters.com/san-mateo-county",
     siteName: "TP Dumpsters",
     type: "website",
@@ -156,7 +156,7 @@ const countyFaqs = [
     question: "Can I book a dumpster online?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Absolutely! Book online at <a href="/booking" className="text-tp-red hover:underline font-semibold">tpdumpsters.com/booking</a> and receive an instant <strong>5% discount</strong>. You can also call us at <a href="tel:+15106502083" className="text-tp-red hover:underline font-semibold">(510) 650-2083</a> for personalized service.
+        Absolutely! Book online at <a href="/booking" className="text-tp-red hover:underline font-semibold">tpdumpsters.com/booking</a> and receive an instant <strong>5% discount</strong>. You can also call us at <a href="tel:+15106500080" className="text-tp-red hover:underline font-semibold">(510) 650-0080</a> for personalized service.
       </p>
     ),
   },
@@ -178,7 +178,7 @@ const jsonLd = {
   description:
     "Affordable dumpster rental across all San Mateo County cities. Same-day delivery, transparent pricing, bilingual support.",
   url: "https://tpdumpsters.com/san-mateo-county",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -255,10 +255,10 @@ export default function SanMateoCountyPage() {
               <FaCalendarDays /> Book Online — 5% Off
             </a>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-7 py-3 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
         </div>
@@ -395,10 +395,10 @@ export default function SanMateoCountyPage() {
                   <FaCalendarDays /> Book Online — 5% Off
                 </a>
                 <a
-                  href="tel:+15106502083"
+                  href="tel:+15106500080"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-lg text-lg font-semibold bg-white text-tp-red border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
                 >
-                  <FaPhone /> (510) 650-2083
+                  <FaPhone /> (510) 650-0080
                 </a>
               </div>
             </div>

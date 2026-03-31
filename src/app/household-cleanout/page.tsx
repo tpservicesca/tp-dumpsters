@@ -62,7 +62,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-2083",
+    telephone: "+1-510-650-0080",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -190,7 +190,7 @@ const faqSchema = {
       name: "How quickly can I get a dumpster for a cleanout?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "We offer same-day and next-day delivery for most Bay Area locations. Book online or call us at (510) 650-2083 to check availability for your area.",
+        text: "We offer same-day and next-day delivery for most Bay Area locations. Book online or call us at (510) 650-0080 to check availability for your area.",
       },
     },
   ],
@@ -286,7 +286,7 @@ const faqsLeft = [
           <li className="text-sm text-[#666] leading-[1.7] mb-1"><strong>30-yard:</strong> Whole-house cleanout, large estate, or hoarding situations</li>
         </ul>
         <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-          Not sure? Call us at <strong>(510) 650-2083</strong> and we&apos;ll help you pick the right size.
+          Not sure? Call us at <strong>(510) 650-0080</strong> and we&apos;ll help you pick the right size.
         </p>
       </>
     ),
@@ -354,7 +354,7 @@ const faqsRight = [
     question: "Do you deliver to apartments or condos?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes, we deliver to apartments, condos, and townhomes as long as there is a suitable placement location such as a driveway, parking lot, or street (with permit if required). Contact us at <strong>(510) 650-2083</strong> to discuss placement options for your specific situation. We&apos;ll work with you to find the best spot.
+        Yes, we deliver to apartments, condos, and townhomes as long as there is a suitable placement location such as a driveway, parking lot, or street (with permit if required). Contact us at <strong>(510) 650-0080</strong> to discuss placement options for your specific situation. We&apos;ll work with you to find the best spot.
       </p>
     ),
   },
@@ -362,7 +362,7 @@ const faqsRight = [
     question: "How quickly can I get a dumpster for a cleanout?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        We offer <strong>same-day and next-day delivery</strong> for most Bay Area locations. If you&apos;re planning a cleanout, we recommend booking 1-2 days in advance to guarantee your preferred delivery date. For urgent requests, call us at <strong>(510) 650-2083</strong> and we&apos;ll do our best to accommodate you.
+        We offer <strong>same-day and next-day delivery</strong> for most Bay Area locations. If you&apos;re planning a cleanout, we recommend booking 1-2 days in advance to guarantee your preferred delivery date. For urgent requests, call us at <strong>(510) 650-0080</strong> and we&apos;ll do our best to accommodate you.
       </p>
     ),
   },
@@ -411,10 +411,10 @@ export default function HouseholdCleanoutPage() {
               <FaCalendarDays /> Get a Quote
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
         </div>
@@ -719,7 +719,7 @@ export default function HouseholdCleanoutPage() {
                 ))}
               </ul>
               <p className="text-sm text-[#666] leading-[1.7] mt-5">
-                Not sure if your item is accepted? Call us at <strong>(510) 650-2083</strong> and we&apos;ll help you figure it out. We&apos;re happy to answer any questions about what can go in your dumpster.
+                Not sure if your item is accepted? Call us at <strong>(510) 650-0080</strong> and we&apos;ll help you figure it out. We&apos;re happy to answer any questions about what can go in your dumpster.
               </p>
             </div>
           </div>
@@ -779,7 +779,7 @@ export default function HouseholdCleanoutPage() {
                 step: "2",
                 icon: <FaCalendarDays />,
                 title: "Schedule Delivery",
-                desc: "Book online or call (510) 650-2083. Same-day delivery available for most Bay Area locations.",
+                desc: "Book online or call (510) 650-0080. Same-day delivery available for most Bay Area locations.",
               },
               {
                 step: "3",
@@ -871,7 +871,7 @@ export default function HouseholdCleanoutPage() {
           </div>
 
           <p className="text-center text-sm text-[#888] mt-8 font-[var(--font-poppins)]">
-            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-2083</strong> to confirm delivery availability.
+            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-0080</strong> to confirm delivery availability.
           </p>
         </div>
       </section>
@@ -911,10 +911,10 @@ export default function HouseholdCleanoutPage() {
               <FaCalendarDays /> Book Online Now
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-white hover:bg-white hover:text-tp-red transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
         </div>

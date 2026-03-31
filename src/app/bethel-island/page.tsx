@@ -99,13 +99,13 @@ const bethelIslandAbout = {
     "Landscaping and yard waste removal along Gateway Road",
   ],
   closingText:
-    "Whether you're renovating a waterfront cottage or clearing a rural lot on Bethel Island, TP Dumpsters makes waste removal easy — even on the Delta. We offer transparent pricing, reliable delivery, and the local knowledge to handle island logistics. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a waterfront cottage or clearing a rural lot on Bethel Island, TP Dumpsters makes waste removal easy — even on the Delta. We offer transparent pricing, reliable delivery, and the local knowledge to handle island logistics. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Bethel Island, CA | Delta Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals on Bethel Island, CA. Serving the entire Delta island community & ZIP code 94511. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Fast, reliable dumpster rentals on Bethel Island, CA. Serving the entire Delta island community & ZIP code 94511. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental Bethel Island CA",
     "Bethel Island dumpster rental",
@@ -143,7 +143,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals on Bethel Island, CA. Serving the entire Delta island community with same-day delivery.",
   url: "https://tpdumpsters.com/bethel-island",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -254,7 +254,7 @@ export default function BethelIslandPage() {
               property smoothly. Our 10, 20, and 30-yard roll-off dumpsters handle everything from
               small cleanouts to major renovation projects. With same-day delivery available, transparent
               pricing, and a bilingual team ready to assist, we make waste removal on the island as
-              simple as calling (510) 650-2083.
+              simple as calling (510) 650-0080.
             </p>
           </div>
         </div>

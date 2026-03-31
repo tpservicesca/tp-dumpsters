@@ -93,13 +93,13 @@ const sanMateoAbout = {
     "New construction support in the Bay Meadows development area",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in San Mateo easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in San Mateo easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Mateo, CA | Central Peninsula - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Mateo, CA. Serving Downtown, Hillsdale, Bay Meadows, Beresford & all ZIP codes. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in San Mateo, CA. Serving Downtown, Hillsdale, Bay Meadows, Beresford & all ZIP codes. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental San Mateo CA",
     "San Mateo dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - San Mateo",
   description: "Fast, reliable dumpster rentals in San Mateo, CA. Serving all San Mateo neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-mateo",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

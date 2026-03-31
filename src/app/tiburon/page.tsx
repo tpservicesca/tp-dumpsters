@@ -104,13 +104,13 @@ const tiburonAbout = {
     "Roof replacements and exterior renovations throughout Tiburon",
   ],
   closingText:
-    "Whether you're managing a high-end renovation on Belvedere Island or clearing out a property near Paradise Cay, TP Dumpsters delivers premium waste removal service to match Tiburon's standards. We handle the challenging terrain so you can focus on your project. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're managing a high-end renovation on Belvedere Island or clearing out a property near Paradise Cay, TP Dumpsters delivers premium waste removal service to match Tiburon's standards. We handle the challenging terrain so you can focus on your project. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Tiburon, CA | Peninsula Delivery - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Tiburon, CA. Serving Belvedere Island, Paradise Cay, Ring Mountain & all neighborhoods. Peninsula delivery experts. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Tiburon, CA. Serving Belvedere Island, Paradise Cay, Ring Mountain & all neighborhoods. Peninsula delivery experts. Call (510) 650-0080",
   keywords: [
     "dumpster rental Tiburon CA",
     "Tiburon dumpster rental",
@@ -150,7 +150,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Tiburon, CA. Peninsula delivery experts serving all Tiburon neighborhoods and Belvedere Island.",
   url: "https://tpdumpsters.com/tiburon",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -261,7 +261,7 @@ export default function TiburonPage() {
               Belvedere with same-day availability. We take extra care with placement to protect
               premium driveways and landscaping. With transparent flat-rate pricing and bilingual
               support in English and Spanish, we deliver the professional service that Tiburon
-              homeowners and contractors expect. Call (510) 650-2083 for your free quote.
+              homeowners and contractors expect. Call (510) 650-0080 for your free quote.
             </p>
           </div>
         </div>

@@ -80,7 +80,7 @@ const fremontFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Our Fremont dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). 20-yard starts at $649 and 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for
         an exact quote based on your project.
       </p>
     ),
@@ -107,13 +107,13 @@ const fremontAbout = {
     "Commercial tenant improvements and warehouse cleanouts in Newark",
   ],
   closingText:
-    "Whether you're building new, remodeling, or just clearing out years of clutter, TP Dumpsters makes waste removal in Fremont easy and affordable. We offer transparent pricing, same-day delivery, and dependable service. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're building new, remodeling, or just clearing out years of clutter, TP Dumpsters makes waste removal in Fremont easy and affordable. We offer transparent pricing, same-day delivery, and dependable service. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Fremont, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Fremont, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Niles, Mission San Jose, Warm Springs & all neighborhoods. Call (510) 650-2083",
+    "Affordable dumpster rentals in Fremont, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Niles, Mission San Jose, Warm Springs & all neighborhoods. Call (510) 650-0080",
   keywords: [
     "dumpster rental Fremont CA",
     "Fremont dumpster rental",
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Fremont, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Fremont. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Fremont. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/fremont",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -149,7 +149,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Fremont, CA. Same-day delivery to all Fremont neighborhoods, Newark, and Union City.",
   url: "https://tpdumpsters.com/fremont",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -231,7 +231,7 @@ export default function FremontPage() {
               With Fremont&apos;s booming tech corridor and new residential developments in Warm Springs, there&apos;s always a need for efficient waste hauling. TP Dumpsters offers 10, 20, and 30 yard roll-off containers ideal for everything from small garage cleanouts to major demolition projects. Our containers are delivered on your schedule with transparent, all-inclusive pricing.
             </p>
             <p>
-              Book your Fremont dumpster rental online today and get an instant 5% discount, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> to speak with our team. We offer same-day delivery and bilingual support throughout Fremont.
+              Book your Fremont dumpster rental online today and get an instant 5% discount, or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> to speak with our team. We offer same-day delivery and bilingual support throughout Fremont.
             </p>
           </div>
         </div>

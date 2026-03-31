@@ -9,8 +9,8 @@ export default function Footer() {
         </p>
         <p className="text-[#ddd] text-sm leading-[1.8] font-[var(--font-poppins)]">
           Customer service{" "}
-          <a href="tel:+15106502083" className="text-[#ddd] hover:text-white transition-colors duration-200">
-            510-650-2083
+          <a href="tel:+15106500080" className="text-[#ddd] hover:text-white transition-colors duration-200">
+            510-650-0080
           </a>
         </p>
         <p className="text-[#ddd] text-sm leading-[1.8] font-[var(--font-poppins)]">

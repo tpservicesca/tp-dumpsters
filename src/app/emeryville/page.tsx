@@ -93,13 +93,13 @@ const emeryvilleAbout = {
     "Residential cleanouts and small remodels on Doyle Street",
   ],
   closingText:
-    "Whether you&apos;re a business renovating office space or a homeowner updating a loft, TP Dumpsters makes waste removal in Emeryville effortless. We offer transparent pricing, same-day delivery, and the expertise to work within Emeryville&apos;s compact urban footprint. Call us at (510) 650-2083 for a free quote.",
+    "Whether you&apos;re a business renovating office space or a homeowner updating a loft, TP Dumpsters makes waste removal in Emeryville effortless. We offer transparent pricing, same-day delivery, and the expertise to work within Emeryville&apos;s compact urban footprint. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Emeryville, CA | Quick Delivery - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Emeryville, CA. Serving Downtown Emeryville, Emery Bay, Triangle Neighborhood & all areas. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Emeryville, CA. Serving Downtown Emeryville, Emery Bay, Triangle Neighborhood & all areas. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental Emeryville CA",
     "Emeryville dumpster rental",
@@ -139,7 +139,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Emeryville, CA. Quick delivery to all Emeryville neighborhoods.",
   url: "https://tpdumpsters.com/emeryville",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -103,13 +103,13 @@ const novatoAbout = {
     "Commercial renovation projects in Downtown Novato",
   ],
   closingText:
-    "Whether you're clearing a rural lot, renovating a suburban home, or managing a construction project in Novato, TP Dumpsters delivers reliable waste removal across all of Marin County's largest city. Transparent pricing, same-day availability, and bilingual support. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're clearing a rural lot, renovating a suburban home, or managing a construction project in Novato, TP Dumpsters delivers reliable waste removal across all of Marin County's largest city. Transparent pricing, same-day availability, and bilingual support. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Novato, CA | Fast Delivery - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Novato, CA. Serving Hamilton, Ignacio, Indian Valley, San Marin & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Novato, CA. Serving Hamilton, Ignacio, Indian Valley, San Marin & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental Novato CA",
     "Novato dumpster rental",
@@ -149,7 +149,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Novato, CA. Serving all Novato neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/novato",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -260,7 +260,7 @@ export default function NovatoPage() {
               delivery to every corner of Novato. Our drivers know the back roads, handle long
               driveways, and deliver with care. Transparent pricing, bilingual support in English
               and Spanish, and reliable pickup make us Novato&apos;s go-to dumpster rental service.
-              Call (510) 650-2083 today.
+              Call (510) 650-0080 today.
             </p>
           </div>
         </div>

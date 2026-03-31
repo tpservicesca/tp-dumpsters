@@ -93,13 +93,13 @@ const pacificaAbout = {
     "Roofing and structural repair on cliff-side homes",
   ],
   closingText:
-    "Whether you're renovating a coastal property or tackling a weekend cleanup, TP Dumpsters makes waste removal in Pacifica easy. We offer transparent pricing, same-day delivery, and the local expertise to navigate Pacifica's unique coastal terrain. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a coastal property or tackling a weekend cleanup, TP Dumpsters makes waste removal in Pacifica easy. We offer transparent pricing, same-day delivery, and the local expertise to navigate Pacifica's unique coastal terrain. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Pacifica, CA | Coastal San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Pacifica, CA. Serving Linda Mar, Rockaway Beach, Pedro Point, Sharp Park & all neighborhoods. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Pacifica, CA. Serving Linda Mar, Rockaway Beach, Pedro Point, Sharp Park & all neighborhoods. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental Pacifica CA",
     "Pacifica dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Pacifica",
   description: "Fast, reliable dumpster rentals in Pacifica, CA. Serving all Pacifica neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/pacifica",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -67,7 +67,7 @@ const lafayetteFaqs = [
         Our Lafayette dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at <strong>$649</strong> and the 30-yard
         at <strong>$749</strong>. All pricing is transparent with no hidden fees. Call{" "}
-        <strong>(510) 650-2083</strong> or email dumpster@tpservicesca.com for an exact quote.
+        <strong>(510) 650-0080</strong> or email dumpster@tpservicesca.com for an exact quote.
       </p>
     ),
   },
@@ -105,13 +105,13 @@ const lafayetteAbout = {
     "Deck and patio tear-outs in Springhill and Acalanes Ridge",
   ],
   closingText:
-    "Whether you're a contractor managing a luxury remodel or a homeowner clearing out a lifetime of belongings, TP Dumpsters delivers reliable, HOA-friendly service throughout Lafayette and the entire Lamorinda area. Transparent pricing, careful placement, and local expertise — that's our promise. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're a contractor managing a luxury remodel or a homeowner clearing out a lifetime of belongings, TP Dumpsters delivers reliable, HOA-friendly service throughout Lafayette and the entire Lamorinda area. Transparent pricing, careful placement, and local expertise — that's our promise. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Lafayette, CA | HOA-Friendly Service - TP Dumpsters",
   description:
-    "Premium dumpster rentals in Lafayette, CA. 10, 20 & 30 yard roll-off dumpsters. Hillside delivery experts. HOA-friendly service for Lamorinda. Same-day available. Call (510) 650-2083",
+    "Premium dumpster rentals in Lafayette, CA. 10, 20 & 30 yard roll-off dumpsters. Hillside delivery experts. HOA-friendly service for Lamorinda. Same-day available. Call (510) 650-0080",
   keywords: [
     "dumpster rental Lafayette CA",
     "Lafayette dumpster rental",
@@ -131,7 +131,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Lafayette, CA - TP Dumpsters",
     description:
-      "Premium dumpster rentals in Lafayette. 10, 20 & 30 yard dumpsters. Hillside delivery experts. Call (510) 650-2083",
+      "Premium dumpster rentals in Lafayette. 10, 20 & 30 yard dumpsters. Hillside delivery experts. Call (510) 650-0080",
     url: "https://tpdumpsters.com/lafayette",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -148,7 +148,7 @@ const jsonLd = {
   description:
     "Premium dumpster rentals in Lafayette, CA. Hillside delivery experts serving all Lamorinda neighborhoods. HOA-friendly service.",
   url: "https://tpdumpsters.com/lafayette",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

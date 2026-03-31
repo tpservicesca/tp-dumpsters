@@ -72,7 +72,7 @@ const haywardFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Our Hayward dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). 20-yard starts at $649 and 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for
         an exact quote based on your project.
       </p>
     ),
@@ -99,13 +99,13 @@ const haywardAbout = {
     "Commercial cleanouts and tenant improvements in Hayward industrial areas",
   ],
   closingText:
-    "Whether you're a contractor working a job site or a homeowner tackling a weekend cleanout, TP Dumpsters makes waste removal in Hayward fast and hassle-free. We offer transparent pricing, same-day delivery, and the local knowledge you need. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're a contractor working a job site or a homeowner tackling a weekend cleanout, TP Dumpsters makes waste removal in Hayward fast and hassle-free. We offer transparent pricing, same-day delivery, and the local knowledge you need. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Hayward, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Hayward, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown Hayward, Castro Valley, San Leandro & all neighborhoods. Call (510) 650-2083",
+    "Affordable dumpster rentals in Hayward, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Downtown Hayward, Castro Valley, San Leandro & all neighborhoods. Call (510) 650-0080",
   keywords: [
     "dumpster rental Hayward CA",
     "Hayward dumpster rental",
@@ -124,7 +124,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Hayward, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Hayward. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Hayward. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/hayward",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -141,7 +141,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Hayward, CA. Same-day delivery to all Hayward neighborhoods and South County.",
   url: "https://tpdumpsters.com/hayward",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -223,7 +223,7 @@ export default function HaywardPage() {
               Hayward&apos;s growing downtown revitalization and new housing developments create steady demand for reliable waste management. From roofing tear-offs to estate cleanouts, TP Dumpsters delivers 10, 20, and 30 yard containers directly to your Hayward location with same-day availability and straightforward pricing that includes delivery, pickup, and disposal.
             </p>
             <p>
-              Start your Hayward project the right way — book your dumpster online and save 5%, or call us at <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free estimate. Bilingual support available in English and Spanish.
+              Start your Hayward project the right way — book your dumpster online and save 5%, or call us at <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for a free estimate. Bilingual support available in English and Spanish.
             </p>
           </div>
         </div>

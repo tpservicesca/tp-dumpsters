@@ -54,7 +54,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-2083",
+    telephone: "+1-510-650-0080",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -182,7 +182,7 @@ const faqSchema = {
       name: "Do roofing contractors get special rates?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes! We offer volume discounts and priority scheduling for roofing contractors with regular jobs. Call us at (510) 650-2083 to set up a contractor account and get preferred pricing on multiple rentals.",
+        text: "Yes! We offer volume discounts and priority scheduling for roofing contractors with regular jobs. Call us at (510) 650-0080 to set up a contractor account and get preferred pricing on multiple rentals.",
       },
     },
   ],
@@ -340,7 +340,7 @@ const faqsRight = [
     question: "Do roofing contractors get special rates?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes! We offer <strong>volume discounts and priority scheduling</strong> for roofing contractors with regular jobs. Call us at <strong>(510) 650-2083</strong> to set up a contractor account and get preferred pricing on multiple rentals. Many Bay Area roofers rely on TP Dumpsters for consistent, reliable service.
+        Yes! We offer <strong>volume discounts and priority scheduling</strong> for roofing contractors with regular jobs. Call us at <strong>(510) 650-0080</strong> to set up a contractor account and get preferred pricing on multiple rentals. Many Bay Area roofers rely on TP Dumpsters for consistent, reliable service.
       </p>
     ),
   },
@@ -389,10 +389,10 @@ export default function RoofingPage() {
               <FaCalendarDays /> Get a Quote
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
           <div className="mt-10">
@@ -656,7 +656,7 @@ export default function RoofingPage() {
                 ))}
               </ul>
               <p className="text-sm text-[#666] leading-[1.7] mt-5">
-                Not sure if your roofing materials contain asbestos? If your home was built <strong>before 1980</strong>, we recommend having the roofing materials tested before beginning your tear-off. Call us at <strong>(510) 650-2083</strong> with any questions.
+                Not sure if your roofing materials contain asbestos? If your home was built <strong>before 1980</strong>, we recommend having the roofing materials tested before beginning your tear-off. Call us at <strong>(510) 650-0080</strong> with any questions.
               </p>
             </div>
           </div>
@@ -716,7 +716,7 @@ export default function RoofingPage() {
                 step: "2",
                 icon: <FaCalendarDays />,
                 title: "Schedule Delivery",
-                desc: "Book online or call (510) 650-2083. We\u2019ll place the dumpster close to the roofline for easy toss-down of materials.",
+                desc: "Book online or call (510) 650-0080. We\u2019ll place the dumpster close to the roofline for easy toss-down of materials.",
               },
               {
                 step: "3",
@@ -808,7 +808,7 @@ export default function RoofingPage() {
           </div>
 
           <p className="text-center text-sm text-[#888] mt-8 font-[var(--font-poppins)]">
-            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-2083</strong> to confirm delivery availability.
+            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-0080</strong> to confirm delivery availability.
           </p>
         </div>
       </section>
@@ -848,10 +848,10 @@ export default function RoofingPage() {
               <FaCalendarDays /> Book Online Now
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-white hover:bg-white hover:text-tp-red transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
         </div>

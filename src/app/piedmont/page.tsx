@@ -93,13 +93,13 @@ const piedmontAbout = {
     "Home additions and expansion in Crocker Highlands area",
   ],
   closingText:
-    "Whether you&apos;re renovating a historic Piedmont home or tackling a landscaping overhaul, TP Dumpsters delivers premium waste removal service tailored to Piedmont&apos;s residential character. We offer transparent pricing, same-day delivery, and the local expertise to navigate your neighborhood with care. Call us at (510) 650-2083 for a free quote.",
+    "Whether you&apos;re renovating a historic Piedmont home or tackling a landscaping overhaul, TP Dumpsters delivers premium waste removal service tailored to Piedmont&apos;s residential character. We offer transparent pricing, same-day delivery, and the local expertise to navigate your neighborhood with care. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Piedmont, CA | Residential Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Piedmont, CA. Serving Piedmont Center, Upper & Lower Piedmont, Piedmont Park & all neighborhoods. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Piedmont, CA. Serving Piedmont Center, Upper & Lower Piedmont, Piedmont Park & all neighborhoods. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental Piedmont CA",
     "Piedmont dumpster rental",
@@ -139,7 +139,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Piedmont, CA. Premium residential service with same-day delivery.",
   url: "https://tpdumpsters.com/piedmont",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -72,7 +72,7 @@ export default function SuccessContent() {
                 <FaPhone className="text-tp-green flex-shrink-0 mt-1" />
                 <div>
                   <p className="font-[var(--font-poppins)] text-sm font-semibold text-[#333]">Need changes?</p>
-                  <p className="font-[var(--font-poppins)] text-xs text-[#888]">Call us at (510) 650-2083 for any modifications.</p>
+                  <p className="font-[var(--font-poppins)] text-xs text-[#888]">Call us at (510) 650-0080 for any modifications.</p>
                 </div>
               </li>
             </ul>
@@ -94,10 +94,10 @@ export default function SuccessContent() {
               Back to Home
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="px-6 py-3 rounded-lg font-[var(--font-poppins)] font-semibold text-sm bg-gray-100 text-[#333] hover:bg-gray-200 transition-colors"
             >
-              📞 Call (510) 650-2083
+              📞 Call (510) 650-0080
             </a>
           </div>
         </div>

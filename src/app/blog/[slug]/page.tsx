@@ -42,10 +42,10 @@ function InlineCTA({ variant = 'primary' }: { variant?: 'primary' | 'secondary' 
           TP Dumpsters offers same-day delivery across the Bay Area with transparent pricing and bilingual support.
         </p>
         <a
-          href="tel:+15106502083"
+          href="tel:+15106500080"
           className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-8 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
         >
-          <FiPhone className="w-5 h-5" /> (510) 650-2083
+          <FiPhone className="w-5 h-5" /> (510) 650-0080
         </a>
       </div>
     );
@@ -61,7 +61,7 @@ function InlineCTA({ variant = 'primary' }: { variant?: 'primary' | 'secondary' 
       </p>
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <a
-          href="tel:+15106502083"
+          href="tel:+15106500080"
           className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-8 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
         >
           <FiPhone className="w-5 h-5" /> Call Now

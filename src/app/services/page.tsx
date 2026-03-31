@@ -69,7 +69,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-2083",
+    telephone: "+1-510-650-0080",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -288,10 +288,10 @@ export default function ServicesPage() {
                 <FaCalendarDays /> Book Online
               </Link>
               <a
-                href="tel:+15106502083"
+                href="tel:+15106500080"
                 className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-black text-white font-bold px-8 py-4 rounded-lg text-lg transition-colors"
               >
-                <FaPhone /> (510) 650-2083
+                <FaPhone /> (510) 650-0080
               </a>
             </div>
           </div>
@@ -331,7 +331,7 @@ export default function ServicesPage() {
             <p className="text-gray-600 max-w-2xl mx-auto">
               Each service category is designed for specific materials and project
               types. Not sure which one you need?{" "}
-              <a href="tel:+15106502083" className="text-orange-500 font-semibold hover:underline">
+              <a href="tel:+15106500080" className="text-orange-500 font-semibold hover:underline">
                 Call us
               </a>{" "}
               — we&apos;ll help you pick the right one.
@@ -659,10 +659,10 @@ export default function ServicesPage() {
                 <FaCalendarDays /> Book Online Now
               </Link>
               <a
-                href="tel:+15106502083"
+                href="tel:+15106500080"
                 className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-orange-600 font-bold px-8 py-4 rounded-lg text-lg transition-colors"
               >
-                <FaPhone /> (510) 650-2083
+                <FaPhone /> (510) 650-0080
               </a>
             </div>
           </div>

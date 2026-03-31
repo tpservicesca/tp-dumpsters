@@ -93,13 +93,13 @@ const dalyCityAbout = {
     "Construction debris removal for projects near the SF border",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Daly City easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Daly City easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Daly City, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Daly City, CA. Serving Westlake, Serramonte, Broadmoor, Hillside & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Daly City, CA. Serving Westlake, Serramonte, Broadmoor, Hillside & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental Daly City CA",
     "Daly City dumpster rental",
@@ -139,7 +139,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Daly City, CA. Serving all Daly City neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/daly-city",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

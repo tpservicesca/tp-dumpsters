@@ -61,7 +61,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-2083",
+    telephone: "+1-510-650-0080",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -181,7 +181,7 @@ const faqSchema = {
       name: "How do I schedule a pickup?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Call us at (510) 650-2083 or text us when you're done. We typically pick up within 24 hours of your request.",
+        text: "Call us at (510) 650-0080 or text us when you're done. We typically pick up within 24 hours of your request.",
       },
     },
     {
@@ -337,7 +337,7 @@ const faqsRight = [
     question: "Do you deliver on weekends?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes, we offer <strong>Saturday deliveries</strong> for most Bay Area locations. Sunday delivery may be available depending on your area. Book online or call us at <strong>(510) 650-2083</strong> to check weekend availability for your address.
+        Yes, we offer <strong>Saturday deliveries</strong> for most Bay Area locations. Sunday delivery may be available depending on your area. Book online or call us at <strong>(510) 650-0080</strong> to check weekend availability for your address.
       </p>
     ),
   },
@@ -345,7 +345,7 @@ const faqsRight = [
     question: "How do I schedule a pickup?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        When you&apos;re done filling your dumpster, simply call us at <strong>(510) 650-2083</strong> or text us to schedule a pickup. We typically pick up within 24 hours of your request. Make sure debris doesn&apos;t extend above the fill line so our truck can safely transport it.
+        When you&apos;re done filling your dumpster, simply call us at <strong>(510) 650-0080</strong> or text us to schedule a pickup. We typically pick up within 24 hours of your request. Make sure debris doesn&apos;t extend above the fill line so our truck can safely transport it.
       </p>
     ),
   },
@@ -413,10 +413,10 @@ export default function GeneralDebrisPage() {
               <FaCalendarDays /> Get a Quote
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
           <div className="mt-10">
@@ -729,7 +729,7 @@ export default function GeneralDebrisPage() {
                 ))}
               </ul>
               <p className="text-sm text-[#666] leading-[1.7] mt-5">
-                Not sure if your item is accepted? Call us at <strong>(510) 650-2083</strong> and we&apos;ll help you figure it out. We&apos;re happy to answer any questions about what can go in your dumpster.
+                Not sure if your item is accepted? Call us at <strong>(510) 650-0080</strong> and we&apos;ll help you figure it out. We&apos;re happy to answer any questions about what can go in your dumpster.
               </p>
             </div>
           </div>
@@ -789,7 +789,7 @@ export default function GeneralDebrisPage() {
                 step: "2",
                 icon: <FaCalendarDays />,
                 title: "Schedule Delivery",
-                desc: "Book online or call (510) 650-2083. Same-day delivery available for most Bay Area locations.",
+                desc: "Book online or call (510) 650-0080. Same-day delivery available for most Bay Area locations.",
               },
               {
                 step: "3",
@@ -881,7 +881,7 @@ export default function GeneralDebrisPage() {
           </div>
 
           <p className="text-center text-sm text-[#888] mt-8 font-[var(--font-poppins)]">
-            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-2083</strong> to confirm delivery availability.
+            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-0080</strong> to confirm delivery availability.
           </p>
         </div>
       </section>
@@ -921,10 +921,10 @@ export default function GeneralDebrisPage() {
               <FaCalendarDays /> Book Online Now
             </Link>
             <a
-              href="tel:+15106502083"
+              href="tel:+15106500080"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-white hover:bg-white hover:text-tp-red transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-2083
+              <FaPhone /> (510) 650-0080
             </a>
           </div>
         </div>

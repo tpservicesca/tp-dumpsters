@@ -70,7 +70,7 @@ const newarkFaqs = [
     question: "How much does a dumpster rental cost in Newark, CA?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Newark dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your Newark project.
+        Newark dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your Newark project.
       </p>
     ),
   },
@@ -96,13 +96,13 @@ const newarkAbout = {
     "Concrete driveway and patio demolition for property upgrades",
   ],
   closingText:
-    "Whether you're building new in NewPark or renovating a classic home in Old Town Newark, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows the South East Bay. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're building new in NewPark or renovating a classic home in Old Town Newark, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows the South East Bay. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Newark, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Newark, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Newark & South East Bay. Call (510) 650-2083",
+    "Affordable dumpster rentals in Newark, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Newark & South East Bay. Call (510) 650-0080",
   keywords: [
     "dumpster rental Newark CA",
     "Newark dumpster rental",
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Newark, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Newark. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Newark. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/newark",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Newark, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Newark. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Newark. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/newark" },
@@ -145,7 +145,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Newark, CA. Same-day delivery to all Newark neighborhoods and South East Bay communities.",
   url: "https://tpdumpsters.com/newark",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

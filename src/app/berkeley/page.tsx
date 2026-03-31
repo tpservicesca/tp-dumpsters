@@ -103,13 +103,13 @@ const berkeleyAbout = {
     "Roofing projects across Berkeley's older housing stock",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Berkeley easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Berkeley easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Berkeley, CA | East Bay Service - TP Dumpsters",
   description:
-    "Dumpster rental Berkeley CA — fast, reliable roll-off dumpster rental in Berkeley and the East Bay. Serving Downtown, North Berkeley, UC Berkeley Area, Berkeley Hills & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
+    "Dumpster rental Berkeley CA — fast, reliable roll-off dumpster rental in Berkeley and the East Bay. Serving Downtown, North Berkeley, UC Berkeley Area, Berkeley Hills & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
   keywords: [
     "dumpster rental berkeley ca",
     "dumpster rental east bay",
@@ -160,7 +160,7 @@ const jsonLd = {
   description:
     "Dumpster rental Berkeley, CA. Roll-off dumpster rental serving all Berkeley and East Bay neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/berkeley",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: {
     "@type": "ImageObject",

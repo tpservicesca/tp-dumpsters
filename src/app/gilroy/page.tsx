@@ -93,13 +93,13 @@ const gilroyAbout = {
     "Commercial projects near Gilroy Gardens and downtown",
   ],
   closingText:
-    "Whether you're building in a new development, renovating a historic home, or managing a farm cleanup, TP Dumpsters provides reliable waste removal in Gilroy. We offer transparent pricing and service you can count on. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're building in a new development, renovating a historic home, or managing a farm cleanup, TP Dumpsters provides reliable waste removal in Gilroy. We offer transparent pricing and service you can count on. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Gilroy, CA | Santa Clara County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Gilroy, CA. Serving Downtown, Eagle Ridge, Glen Loma Ranch & all neighborhoods. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Gilroy, CA. Serving Downtown, Eagle Ridge, Glen Loma Ranch & all neighborhoods. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental Gilroy CA",
     "Gilroy dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Gilroy",
   description: "Fast, reliable dumpster rentals in Gilroy, CA. Serving all Gilroy neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/gilroy",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

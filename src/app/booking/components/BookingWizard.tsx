@@ -130,11 +130,11 @@ export default function BookingWizard() {
         // Redirect to Stripe Checkout
         window.location.href = data.checkoutUrl;
       } else {
-        alert("Error creating payment session. Please call us at (510) 650-2083.");
+        alert("Error creating payment session. Please call us at (510) 650-0080.");
         setIsSubmitting(false);
       }
     } catch {
-      alert("Error creating payment session. Please call us at (510) 650-2083.");
+      alert("Error creating payment session. Please call us at (510) 650-0080.");
       setIsSubmitting(false);
     }
   };

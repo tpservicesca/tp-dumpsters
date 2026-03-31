@@ -90,7 +90,7 @@ export default function SizesSection() {
                 </ul>
               </div>
               <a
-                href="tel:+15106502083"
+                href="/booking"
                 className="flex items-center justify-center gap-2 w-[calc(100%-50px)] mx-6 mb-6 mt-5 py-3.5 px-5 bg-tp-red text-white rounded-lg text-base font-semibold transition-colors duration-300 hover:bg-tp-red-dark font-[var(--font-poppins)] text-center"
               >
                 <FaCalendarDays /> Rent Now

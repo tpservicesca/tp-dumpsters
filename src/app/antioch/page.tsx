@@ -83,7 +83,7 @@ const antiochFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Antioch dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact
+        No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact
         quote for your Antioch project.
       </p>
     ),
@@ -110,13 +110,13 @@ const antiochAbout = {
     "Concrete driveway and patio demolition for property upgrades",
   ],
   closingText:
-    "Whether you're building a new home in Sand Creek or renovating a property in Downtown Antioch, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that understands East County. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're building a new home in Sand Creek or renovating a property in Downtown Antioch, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that understands East County. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Antioch, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Antioch, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Antioch & East Contra Costa. Call (510) 650-2083",
+    "Affordable dumpster rentals in Antioch, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Antioch & East Contra Costa. Call (510) 650-0080",
   keywords: [
     "dumpster rental Antioch CA",
     "Antioch dumpster rental",
@@ -136,7 +136,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Antioch, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Antioch. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Antioch. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/antioch",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -153,7 +153,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Antioch, CA. Same-day delivery to all Antioch neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/antioch",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -236,7 +236,7 @@ export default function AntiochPage() {
               With ongoing residential development and the BART extension bringing new investment to Antioch, renovation and construction projects are on the rise. TP Dumpsters offers affordable 10, 20, and 30 yard roll-off containers perfect for roofing jobs, garage cleanouts, landscaping overhauls, and full home demolitions throughout the Antioch area.
             </p>
             <p>
-              Book your Antioch dumpster rental online and save 5% instantly, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for same-day delivery. Transparent pricing and bilingual support — that&apos;s the TP Dumpsters promise.
+              Book your Antioch dumpster rental online and save 5% instantly, or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for same-day delivery. Transparent pricing and bilingual support — that&apos;s the TP Dumpsters promise.
             </p>
           </div>
         </div>

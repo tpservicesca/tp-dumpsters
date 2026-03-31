@@ -75,7 +75,7 @@ const orindaFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Orinda dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact
+        No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact
         quote for your Orinda project.
       </p>
     ),
@@ -102,13 +102,13 @@ const orindaAbout = {
     "Garage and basement cleanouts in Orinda Village & Downtown",
   ],
   closingText:
-    "Whether you're renovating a hillside estate in Sleepy Hollow or updating a home near Orinda Village, TP Dumpsters provides premium dumpster service for Orinda's discerning homeowners. Same-day delivery, transparent pricing, and careful handling on canyon roads. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a hillside estate in Sleepy Hollow or updating a home near Orinda Village, TP Dumpsters provides premium dumpster service for Orinda's discerning homeowners. Same-day delivery, transparent pricing, and careful handling on canyon roads. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Orinda, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Premium dumpster rentals in Orinda, CA. 10, 20 & 30 yard roll-off dumpsters for renovations, remodels & estate cleanouts. Same-day delivery to Orinda & Lamorinda. Call (510) 650-2083",
+    "Premium dumpster rentals in Orinda, CA. 10, 20 & 30 yard roll-off dumpsters for renovations, remodels & estate cleanouts. Same-day delivery to Orinda & Lamorinda. Call (510) 650-0080",
   keywords: [
     "dumpster rental Orinda CA",
     "Orinda dumpster rental",
@@ -128,7 +128,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Orinda, CA - TP Dumpsters",
     description:
-      "Premium dumpster rentals in Orinda. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Premium dumpster rentals in Orinda. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/orinda",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -138,7 +138,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Orinda, CA - TP Dumpsters",
     description:
-      "Premium dumpster rentals in Orinda. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Premium dumpster rentals in Orinda. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/orinda" },
@@ -151,7 +151,7 @@ const jsonLd = {
   description:
     "Premium dumpster rentals in Orinda, CA. Same-day delivery to all Orinda neighborhoods and the Lamorinda area.",
   url: "https://tpdumpsters.com/orinda",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

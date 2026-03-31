@@ -93,13 +93,13 @@ const halfMoonBayAbout = {
     "Roofing and siding projects on salt-air-exposed homes",
   ],
   closingText:
-    "Whether you're renovating a coastal cottage in Miramar or managing a construction project in downtown Half Moon Bay, TP Dumpsters delivers reliable waste removal to the coast. We offer transparent pricing and the coastal expertise your project needs. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a coastal cottage in Miramar or managing a construction project in downtown Half Moon Bay, TP Dumpsters delivers reliable waste removal to the coast. We offer transparent pricing and the coastal expertise your project needs. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Half Moon Bay, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Half Moon Bay, CA. Serving El Granada, Miramar, Princeton, Montara, Moss Beach & all coastal areas. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Half Moon Bay, CA. Serving El Granada, Miramar, Princeton, Montara, Moss Beach & all coastal areas. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental Half Moon Bay CA",
     "Half Moon Bay dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Half Moon Bay",
   description: "Fast, reliable dumpster rentals in Half Moon Bay, CA. Serving all coastal communities with reliable delivery.",
   url: "https://tpdumpsters.com/half-moon-bay",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

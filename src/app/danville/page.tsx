@@ -60,7 +60,7 @@ const danvilleFaqs = [
     question: "How much does a dumpster rental cost in Danville?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Danville dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your Danville project.
+        Danville dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your Danville project.
       </p>
     ),
   },
@@ -86,13 +86,13 @@ const danvilleAbout = {
     "Horse property cleanups and barn renovations in rural Diablo areas",
   ],
   closingText:
-    "Whether you're renovating a Blackhawk estate or updating a home in Downtown Danville, TP Dumpsters makes waste removal simple and professional. Same-day delivery, transparent pricing, and a team that understands the San Ramon Valley's premium market. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a Blackhawk estate or updating a home in Downtown Danville, TP Dumpsters makes waste removal simple and professional. Same-day delivery, transparent pricing, and a team that understands the San Ramon Valley's premium market. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Danville, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Danville, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Danville, Blackhawk & Alamo. Call (510) 650-2083",
+    "Affordable dumpster rentals in Danville, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Danville, Blackhawk & Alamo. Call (510) 650-0080",
   keywords: [
     "dumpster rental Danville CA",
     "Danville dumpster rental",
@@ -113,7 +113,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Danville, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Danville. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Danville. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
     url: "https://tpdumpsters.com/danville",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -123,7 +123,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Danville, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Danville. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
+      "Fast, affordable dumpster rentals in Danville. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/danville" },
@@ -136,7 +136,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Danville, CA. Same-day delivery to all Danville neighborhoods, Blackhawk, Alamo, and the San Ramon Valley.",
   url: "https://tpdumpsters.com/danville",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

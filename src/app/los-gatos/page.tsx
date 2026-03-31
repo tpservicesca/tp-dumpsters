@@ -93,13 +93,13 @@ const losGatosAbout = {
     "Estate cleanouts in Shannon and Belgatos",
   ],
   closingText:
-    "Whether you're renovating a mountain estate or restoring a historic home downtown, TP Dumpsters provides the professional waste removal Los Gatos expects. We offer transparent pricing, same-day delivery, and hillside expertise. Call us at (510) 650-2083 for a free quote.",
+    "Whether you're renovating a mountain estate or restoring a historic home downtown, TP Dumpsters provides the professional waste removal Los Gatos expects. We offer transparent pricing, same-day delivery, and hillside expertise. Call us at (510) 650-0080 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Los Gatos, CA | Santa Clara County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Los Gatos, CA. Serving Downtown, Blossom Manor, Los Gatos Mountains & all neighborhoods. Same-day delivery. Call (510) 650-2083",
+    "Fast, reliable dumpster rentals in Los Gatos, CA. Serving Downtown, Blossom Manor, Los Gatos Mountains & all neighborhoods. Same-day delivery. Call (510) 650-0080",
   keywords: [
     "dumpster rental Los Gatos CA",
     "Los Gatos dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Los Gatos",
   description: "Fast, reliable dumpster rentals in Los Gatos, CA. Serving all Los Gatos neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/los-gatos",
-  telephone: "+1-510-650-2083",
+  telephone: "+1-510-650-0080",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

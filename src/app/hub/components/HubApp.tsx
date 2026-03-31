@@ -190,7 +190,7 @@ const quickActions = [
     iconColor: 'text-purple-400',
   },
   {
-    href: 'tel:+15106502083',
+    href: 'tel:+15106500080',
     icon: IconPhone,
     title: 'Call Customer',
     subtitle: 'Main Line',
