@@ -103,13 +103,13 @@ const sanRafaelAbout = {
     "Commercial renovation projects in Downtown San Rafael",
   ],
   closingText:
-    "Whether you&apos;re a homeowner tackling a weekend cleanup or a contractor managing a major renovation in San Rafael, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County&apos;s unique terrain. Call us at (510) 650-0080 for a free quote.",
+    "Whether you&apos;re a homeowner tackling a weekend cleanup or a contractor managing a major renovation in San Rafael, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County&apos;s unique terrain. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Rafael, CA | Marin County Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Rafael, CA. Serving Downtown, Terra Linda, Gerstle Park, Canal District & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in San Rafael, CA. Serving Downtown, Terra Linda, Gerstle Park, Canal District & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental San Rafael CA",
     "San Rafael dumpster rental",
@@ -149,7 +149,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in San Rafael, CA. Serving all San Rafael neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-rafael",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -259,7 +259,7 @@ export default function SanRafaelPage() {
               requirements, and neighborhood regulations. We offer 10, 20, and 30-yard roll-off
               dumpsters with same-day delivery, transparent pricing, and bilingual support in English
               and Spanish. Whether you&apos;re a contractor managing multiple Marin County job sites or
-              a homeowner clearing out a garage, call (510) 650-0080 for fast, dependable service.
+              a homeowner clearing out a garage, call (510) 650-2083 for fast, dependable service.
             </p>
           </div>
         </div>

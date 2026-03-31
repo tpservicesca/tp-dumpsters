@@ -76,7 +76,7 @@ const moragaFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Moraga dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact
+        No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact
         quote for your Moraga project.
       </p>
     ),
@@ -103,13 +103,13 @@ const moragaAbout = {
     "Campus and facility projects near Saint Mary's College",
   ],
   closingText:
-    "Whether you're renovating a hillside home in Bollinger Canyon or updating a property near Moraga Town Center, TP Dumpsters provides reliable dumpster service for Moraga's community. Same-day delivery, transparent pricing, and a team that knows Lamorinda. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a hillside home in Bollinger Canyon or updating a property near Moraga Town Center, TP Dumpsters provides reliable dumpster service for Moraga's community. Same-day delivery, transparent pricing, and a team that knows Lamorinda. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Moraga, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Moraga, CA. 10, 20 & 30 yard roll-off dumpsters for renovations, remodels & cleanouts. Same-day delivery to Moraga & Lamorinda. Call (510) 650-0080",
+    "Affordable dumpster rentals in Moraga, CA. 10, 20 & 30 yard roll-off dumpsters for renovations, remodels & cleanouts. Same-day delivery to Moraga & Lamorinda. Call (510) 650-2083",
   keywords: [
     "dumpster rental Moraga CA",
     "Moraga dumpster rental",
@@ -129,7 +129,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Moraga, CA - TP Dumpsters",
     description:
-      "Affordable dumpster rentals in Moraga. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Affordable dumpster rentals in Moraga. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/moraga",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -139,7 +139,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Moraga, CA - TP Dumpsters",
     description:
-      "Affordable dumpster rentals in Moraga. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Affordable dumpster rentals in Moraga. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/moraga" },
@@ -152,7 +152,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Moraga, CA. Same-day delivery to all Moraga neighborhoods and the Lamorinda area.",
   url: "https://tpdumpsters.com/moraga",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

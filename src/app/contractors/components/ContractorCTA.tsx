@@ -20,10 +20,10 @@ export default function ContractorCTA() {
             <FaCalendarDays /> Book Online Now
           </a>
           <a
-            href="tel:+15106500080"
+            href="tel:+15106502083"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-transparent text-white border-2 border-white/30 hover:border-tp-red hover:bg-tp-red transition-all duration-300 font-[var(--font-poppins)]"
           >
-            <FaPhone /> (510) 650-0080
+            <FaPhone /> (510) 650-2083
           </a>
         </div>
 

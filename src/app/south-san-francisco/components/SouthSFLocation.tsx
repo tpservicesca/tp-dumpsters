@@ -90,10 +90,10 @@ export default function SouthSFLocation() {
           Ready to rent your dumpster in South San Francisco?
         </h2>
         <a
-          href="tel:+15106500080"
+          href="tel:+15106502083"
           className="flex items-center justify-center gap-2 w-full py-[18px] px-5 bg-tp-red text-white rounded-lg text-xl font-semibold transition-colors duration-300 hover:bg-tp-red-dark font-[var(--font-poppins)] text-center"
         >
-          <FaCalendarDays /> Call (510) 650-0080
+          <FaCalendarDays /> Call (510) 650-2083
         </a>
       </div>
     </section>

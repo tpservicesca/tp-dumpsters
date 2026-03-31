@@ -102,13 +102,13 @@ const sausalitoAbout = {
     "Landscape and deck construction on steep lots",
   ],
   closingText:
-    "Whether you're renovating a waterfront property or clearing out a hillside studio, TP Dumpsters brings reliable waste removal to every corner of Sausalito. We handle the logistics of tight streets and limited access so your project runs smoothly. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a waterfront property or clearing out a hillside studio, TP Dumpsters brings reliable waste removal to every corner of Sausalito. We handle the logistics of tight streets and limited access so your project runs smoothly. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Sausalito, CA | Waterfront Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Sausalito, CA. Serving Downtown, Marinship, Wolfback Ridge, Houseboats & all ZIP codes. Waterfront delivery experts. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Sausalito, CA. Serving Downtown, Marinship, Wolfback Ridge, Houseboats & all ZIP codes. Waterfront delivery experts. Call (510) 650-2083",
   keywords: [
     "dumpster rental Sausalito CA",
     "Sausalito dumpster rental",
@@ -148,7 +148,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Sausalito, CA. Waterfront delivery experts serving all Sausalito neighborhoods.",
   url: "https://tpdumpsters.com/sausalito",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -258,7 +258,7 @@ export default function SausalitoPage() {
               navigating these exact conditions. Our 10, 20, and 30-yard roll-off containers fit
               projects of every scale, from small houseboat cleanups to full historic renovations.
               With same-day delivery, transparent pricing, and bilingual support in English and
-              Spanish, we make dumpster rental in Sausalito hassle-free. Call (510) 650-0080 for
+              Spanish, we make dumpster rental in Sausalito hassle-free. Call (510) 650-2083 for
               a free quote today.
             </p>
           </div>

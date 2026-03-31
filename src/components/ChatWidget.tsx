@@ -88,8 +88,8 @@ export default function ChatWidget() {
           {
             role: "assistant",
             content: language === "en"
-              ? "Sorry, I'm having trouble connecting. Please call us at **(510) 650-0080** or visit our [booking page](/booking)."
-              : "Lo siento, tengo problemas de conexión. Por favor llámanos al **(510) 650-0080** o visita nuestra [página de reservas](/booking).",
+              ? "Sorry, I'm having trouble connecting. Please call us at **(510) 650-2083** or visit our [booking page](/booking)."
+              : "Lo siento, tengo problemas de conexión. Por favor llámanos al **(510) 650-2083** o visita nuestra [página de reservas](/booking).",
           },
         ]);
       }
@@ -100,8 +100,8 @@ export default function ChatWidget() {
         {
           role: "assistant",
           content: language === "en"
-            ? "Sorry, I'm having trouble connecting. Please call us at **(510) 650-0080** or visit our [booking page](/booking)."
-            : "Lo siento, tengo problemas de conexión. Por favor llámanos al **(510) 650-0080** o visita nuestra [página de reservas](/booking).",
+            ? "Sorry, I'm having trouble connecting. Please call us at **(510) 650-2083** or visit our [booking page](/booking)."
+            : "Lo siento, tengo problemas de conexión. Por favor llámanos al **(510) 650-2083** o visita nuestra [página de reservas](/booking).",
         },
       ]);
     }

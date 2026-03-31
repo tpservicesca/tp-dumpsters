@@ -101,13 +101,13 @@ const mountainViewAbout = {
     "Home cleanouts and garage cleanups across Mountain View",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Mountain View easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Mountain View easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Mountain View, CA | Tech Hub - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Mountain View, CA. Serving Downtown, Old Mountain View, Cuesta Park, Shoreline & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Mountain View, CA. Serving Downtown, Old Mountain View, Cuesta Park, Shoreline & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental Mountain View CA",
     "Mountain View dumpster rental",
@@ -147,7 +147,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Mountain View, CA. Serving all Mountain View neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/mountain-view",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

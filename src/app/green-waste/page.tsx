@@ -60,7 +60,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-0080",
+    telephone: "+1-510-650-2083",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -132,7 +132,7 @@ const faqSchema = {
       name: "Can I put tree stumps in a green waste dumpster?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Small tree stumps are accepted in green waste dumpsters. Large stumps may be too heavy and could push your load over the weight limit. We recommend cutting stumps into smaller pieces when possible. Call us at (510) 650-0080 if you're unsure about your specific situation.",
+        text: "Small tree stumps are accepted in green waste dumpsters. Large stumps may be too heavy and could push your load over the weight limit. We recommend cutting stumps into smaller pieces when possible. Call us at (510) 650-2083 if you're unsure about your specific situation.",
       },
     },
     {
@@ -172,7 +172,7 @@ const faqSchema = {
       name: "Do you offer same-day delivery for storm cleanup?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes! We understand that storm cleanup is urgent. We offer same-day and next-day delivery for most Bay Area locations. Call us at (510) 650-0080 to check availability for your area.",
+        text: "Yes! We understand that storm cleanup is urgent. We offer same-day and next-day delivery for most Bay Area locations. Call us at (510) 650-2083 to check availability for your area.",
       },
     },
     {
@@ -285,7 +285,7 @@ const faqsLeft = [
     question: "Can I put tree stumps in a green waste dumpster?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Small tree stumps are accepted in green waste dumpsters. Large stumps may be too heavy and could push your load over the weight limit. We recommend cutting stumps into smaller pieces when possible. Call us at <strong>(510) 650-0080</strong> if you&apos;re unsure about your specific situation.
+        Small tree stumps are accepted in green waste dumpsters. Large stumps may be too heavy and could push your load over the weight limit. We recommend cutting stumps into smaller pieces when possible. Call us at <strong>(510) 650-2083</strong> if you&apos;re unsure about your specific situation.
       </p>
     ),
   },
@@ -336,7 +336,7 @@ const faqsRight = [
     question: "Do you offer same-day delivery for storm cleanup?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes! We understand that storm cleanup is urgent. We offer <strong>same-day and next-day delivery</strong> for most Bay Area locations. Call us at <strong>(510) 650-0080</strong> to check availability for your area. We prioritize storm-related deliveries to help you get your property cleaned up fast.
+        Yes! We understand that storm cleanup is urgent. We offer <strong>same-day and next-day delivery</strong> for most Bay Area locations. Call us at <strong>(510) 650-2083</strong> to check availability for your area. We prioritize storm-related deliveries to help you get your property cleaned up fast.
       </p>
     ),
   },
@@ -401,10 +401,10 @@ export default function GreenWastePage() {
               <FaCalendarDays /> Get a Quote
             </Link>
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-0080
+              <FaPhone /> (510) 650-2083
             </a>
           </div>
         </div>
@@ -706,7 +706,7 @@ export default function GreenWastePage() {
                 ))}
               </ul>
               <p className="text-sm text-[#666] leading-[1.7] mt-5">
-                Not sure which dumpster type you need? Call us at <strong>(510) 650-0080</strong> and we&apos;ll help you choose the right one for your project.
+                Not sure which dumpster type you need? Call us at <strong>(510) 650-2083</strong> and we&apos;ll help you choose the right one for your project.
               </p>
             </div>
           </div>
@@ -766,7 +766,7 @@ export default function GreenWastePage() {
                 step: "2",
                 icon: <FaCalendarDays />,
                 title: "Schedule Delivery",
-                desc: "Book online or call (510) 650-0080. Same-day delivery available for most Bay Area locations.",
+                desc: "Book online or call (510) 650-2083. Same-day delivery available for most Bay Area locations.",
               },
               {
                 step: "3",
@@ -858,7 +858,7 @@ export default function GreenWastePage() {
           </div>
 
           <p className="text-center text-sm text-[#888] mt-8 font-[var(--font-poppins)]">
-            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-0080</strong> to confirm delivery availability.
+            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-2083</strong> to confirm delivery availability.
           </p>
         </div>
       </section>
@@ -898,10 +898,10 @@ export default function GreenWastePage() {
               <FaCalendarDays /> Book Online Now
             </Link>
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-white hover:bg-white hover:text-tp-red transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-0080
+              <FaPhone /> (510) 650-2083
             </a>
           </div>
         </div>

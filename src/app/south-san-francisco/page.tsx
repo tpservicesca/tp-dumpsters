@@ -93,13 +93,13 @@ const southSFAbout = {
     "Roofing projects across South SF's residential areas",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major industrial project, TP Dumpsters makes waste removal in South San Francisco easy. We offer transparent pricing, same-day delivery, and the expertise to handle both residential and commercial projects. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major industrial project, TP Dumpsters makes waste removal in South San Francisco easy. We offer transparent pricing, same-day delivery, and the expertise to handle both residential and commercial projects. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in South San Francisco, CA | Industrial City - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in South San Francisco, CA. Serving Downtown SSF, Westborough, Oyster Point, industrial zones & all ZIP codes. Same-day delivery. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in South San Francisco, CA. Serving Downtown SSF, Westborough, Oyster Point, industrial zones & all ZIP codes. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental South San Francisco CA",
     "South San Francisco dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - South San Francisco",
   description: "Fast, reliable dumpster rentals in South San Francisco, CA. Serving all South SF neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/south-san-francisco",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -77,7 +77,7 @@ const americanCanyonFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         American Canyon dumpster rental prices start at <strong>$599 for a 10-yard</strong>
         dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at
-        $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an
+        $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an
         exact quote for your American Canyon project.
       </p>
     ),
@@ -104,13 +104,13 @@ const americanCanyonAbout = {
     "Landscaping overhauls and yard debris removal in Green Island",
   ],
   closingText:
-    "Whether you're building a new home in Watson Ranch or cleaning up a vineyard property near Napa, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows wine country. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're building a new home in Watson Ranch or cleaning up a vineyard property near Napa, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows wine country. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in American Canyon, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in American Canyon, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to American Canyon & South Napa. Call (510) 650-0080",
+    "Affordable dumpster rentals in American Canyon, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to American Canyon & South Napa. Call (510) 650-2083",
   keywords: [
     "dumpster rental American Canyon CA",
     "American Canyon dumpster rental",
@@ -129,7 +129,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in American Canyon, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in American Canyon. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in American Canyon. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/american-canyon",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -139,7 +139,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in American Canyon, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in American Canyon. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in American Canyon. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/american-canyon" },
@@ -152,7 +152,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in American Canyon, CA. Same-day delivery to all American Canyon neighborhoods and South Napa County.",
   url: "https://tpdumpsters.com/american-canyon",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

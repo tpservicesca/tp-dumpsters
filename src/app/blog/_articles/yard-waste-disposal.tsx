@@ -225,7 +225,7 @@ export default function YardWasteDisposal() {
 
       <p>
         Ready to tackle that yard project? <Link href="/booking">Book your dumpster online</Link> in minutes
-        or call us at <a href="tel:+15106500080"><strong>(510) 650-0080</strong></a>. We serve{' '}
+        or call us at <a href="tel:+15106502083"><strong>(510) 650-2083</strong></a>. We serve{' '}
         <Link href="/oakland">Oakland</Link>, <Link href="/concord">Concord</Link>,{' '}
         <Link href="/richmond">Richmond</Link>, <Link href="/hayward">Hayward</Link>,{' '}
         <Link href="/walnut-creek">Walnut Creek</Link>, <Link href="/san-leandro">San Leandro</Link>, and
@@ -242,10 +242,10 @@ export default function YardWasteDisposal() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-6 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
             >
-              <FiPhone className="w-5 h-5" /> (510) 650-0080
+              <FiPhone className="w-5 h-5" /> (510) 650-2083
             </a>
             <Link
               href="/booking"

@@ -115,13 +115,13 @@ const fairfaxAbout = {
     "Roofing projects on Fairfax's smaller homes and cabins",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor managing a renovation in Fairfax, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County's unique terrain. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor managing a renovation in Fairfax, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County's unique terrain. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Fairfax, CA | West Marin Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Fairfax, CA. Serving Downtown, Manor, Cascade Canyon, White Hill & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Fairfax, CA. Serving Downtown, Manor, Cascade Canyon, White Hill & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental Fairfax CA",
     "Fairfax dumpster rental",
@@ -161,7 +161,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Fairfax, CA. Serving all Fairfax neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/fairfax",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -271,7 +271,7 @@ export default function FairfaxPage() {
               and the eco-conscious values of the community. We offer 10, 20, and 30-yard roll-off
               dumpsters with same-day delivery, transparent pricing, and bilingual support in English
               and Spanish. Whether you&apos;re a homeowner clearing out a garage or a contractor
-              managing a renovation, call (510) 650-0080 for fast, dependable service.
+              managing a renovation, call (510) 650-2083 for fast, dependable service.
             </p>
           </div>
         </div>

@@ -73,7 +73,7 @@ const bayPointFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Bay Point dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact
+        No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact
         quote for your Bay Point project.
       </p>
     ),
@@ -100,13 +100,13 @@ const bayPointAbout = {
     "Commercial property cleanup in Port Chicago & Clyde industrial areas",
   ],
   closingText:
-    "Whether you're renovating a home in Shore Acres or cleaning out a property near the waterfront, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows East County. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a home in Shore Acres or cleaning out a property near the waterfront, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows East County. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Bay Point, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Bay Point, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Bay Point & East Contra Costa. Call (510) 650-0080",
+    "Affordable dumpster rentals in Bay Point, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Bay Point & East Contra Costa. Call (510) 650-2083",
   keywords: [
     "dumpster rental Bay Point CA",
     "Bay Point dumpster rental",
@@ -125,7 +125,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Bay Point, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Bay Point. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Bay Point. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/bay-point",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -135,7 +135,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Bay Point, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Bay Point. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Bay Point. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/bay-point" },
@@ -148,7 +148,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Bay Point, CA. Same-day delivery to all Bay Point neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/bay-point",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -105,13 +105,13 @@ const millValleyAbout = {
     "Roofing replacements on Mill Valley's older homes",
   ],
   closingText:
-    "Whether you're renovating a hillside retreat or clearing out a Strawberry cottage, TP Dumpsters delivers reliable waste removal across all of Mill Valley. We handle the tight roads and steep driveways so you can focus on your project. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a hillside retreat or clearing out a Strawberry cottage, TP Dumpsters delivers reliable waste removal across all of Mill Valley. We handle the tight roads and steep driveways so you can focus on your project. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Mill Valley, CA | Hillside Delivery - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Mill Valley, CA. Serving Tamalpais Valley, Strawberry, Alto, Cascade Canyon & all ZIP codes. Hillside delivery experts. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Mill Valley, CA. Serving Tamalpais Valley, Strawberry, Alto, Cascade Canyon & all ZIP codes. Hillside delivery experts. Call (510) 650-2083",
   keywords: [
     "dumpster rental Mill Valley CA",
     "Mill Valley dumpster rental",
@@ -151,7 +151,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Mill Valley, CA. Hillside delivery experts serving all Mill Valley neighborhoods.",
   url: "https://tpdumpsters.com/mill-valley",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -261,7 +261,7 @@ export default function MillValleyPage() {
               a contractor managing a high-end build or a homeowner clearing decades of accumulated
               belongings, our 10, 20, and 30-yard dumpsters fit the job. We offer same-day delivery,
               transparent flat-rate pricing, and bilingual support in English and Spanish. For
-              dependable dumpster rental in Mill Valley, call TP Dumpsters at (510) 650-0080.
+              dependable dumpster rental in Mill Valley, call TP Dumpsters at (510) 650-2083.
             </p>
           </div>
         </div>

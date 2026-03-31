@@ -83,7 +83,7 @@ const brentwoodFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Brentwood dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for an
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for an
         exact quote for your Brentwood project.
       </p>
     ),
@@ -110,13 +110,13 @@ const brentwoodAbout = {
     "Garage cleanouts and move-in prep for new Brentwood families",
   ],
   closingText:
-    "Whether you're building a new home in Deer Ridge or renovating in Downtown Brentwood, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that understands East County's growth. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're building a new home in Deer Ridge or renovating in Downtown Brentwood, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that understands East County's growth. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Brentwood, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Brentwood, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Brentwood & East County. Call (510) 650-0080",
+    "Affordable dumpster rentals in Brentwood, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Brentwood & East County. Call (510) 650-2083",
   keywords: [
     "dumpster rental Brentwood CA",
     "Brentwood dumpster rental",
@@ -136,7 +136,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Brentwood, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Brentwood. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Brentwood. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/brentwood",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -153,7 +153,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Brentwood, CA. Same-day delivery to all Brentwood neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/brentwood",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

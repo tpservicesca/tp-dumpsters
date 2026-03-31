@@ -93,13 +93,13 @@ const redwoodCityAbout = {
     "Roofing projects across Redwood City's diverse housing stock",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Redwood City easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Redwood City easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Redwood City, CA | County Seat - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Redwood City, CA. Serving Downtown, Redwood Shores, Emerald Hills, Woodside Plaza & all ZIP codes. Same-day delivery. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Redwood City, CA. Serving Downtown, Redwood Shores, Emerald Hills, Woodside Plaza & all ZIP codes. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental Redwood City CA",
     "Redwood City dumpster rental",
@@ -133,7 +133,7 @@ const jsonLd = {
   name: "TP Dumpsters - Redwood City",
   description: "Fast, reliable dumpster rentals in Redwood City, CA. Serving all Redwood City neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/redwood-city",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

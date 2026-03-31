@@ -84,7 +84,7 @@ const alamedaFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Our Alameda dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        Transparent pricing with no hidden fees — call <strong>(510) 650-0080</strong> for an
+        Transparent pricing with no hidden fees — call <strong>(510) 650-2083</strong> for an
         exact quote tailored to your project.
       </p>
     ),
@@ -111,13 +111,13 @@ const alamedaAbout = {
     "Concrete and foundation work for older Alameda properties",
   ],
   closingText:
-    "Whether you're restoring a classic Victorian or clearing out a garage on Bay Farm Island, TP Dumpsters delivers fast, affordable dumpster rentals anywhere on Alameda Island. Transparent pricing, same-day availability, and local expertise. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're restoring a classic Victorian or clearing out a garage on Bay Farm Island, TP Dumpsters delivers fast, affordable dumpster rentals anywhere on Alameda Island. Transparent pricing, same-day availability, and local expertise. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Alameda, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Alameda, CA. 10, 20 & 30 yard roll-off dumpsters delivered to Alameda Island & Bay Farm. Victorian renovation debris, small lot friendly. Call (510) 650-0080",
+    "Affordable dumpster rentals in Alameda, CA. 10, 20 & 30 yard roll-off dumpsters delivered to Alameda Island & Bay Farm. Victorian renovation debris, small lot friendly. Call (510) 650-2083",
   keywords: [
     "dumpster rental Alameda CA",
     "Alameda dumpster rental",
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Alameda, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Alameda. 10, 20 & 30 yard dumpsters. Same-day island delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Alameda. 10, 20 & 30 yard dumpsters. Same-day island delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/alameda",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -154,7 +154,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Alameda, CA. Same-day delivery to Alameda Island, Bay Farm Island, and surrounding East Bay cities.",
   url: "https://tpdumpsters.com/alameda",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -237,7 +237,7 @@ export default function AlamedaPage() {
               The island&apos;s ongoing development at Alameda Point and Site A, along with steady residential remodeling throughout neighborhoods like Fernside and Bay Farm Island, creates consistent demand for reliable roll-off dumpster service. TP Dumpsters delivers 10, 20, and 30 yard containers right to your Alameda address with same-day availability and no hidden fees.
             </p>
             <p>
-              Ready to tackle your Alameda project? Book online for a 5% discount or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for a free quote. We proudly serve all of Alameda with fast delivery and bilingual customer support.
+              Ready to tackle your Alameda project? Book online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free quote. We proudly serve all of Alameda with fast delivery and bilingual customer support.
             </p>
           </div>
         </div>

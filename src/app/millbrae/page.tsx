@@ -93,13 +93,13 @@ const millbraeAbout = {
     "Estate cleanouts in Lomita Heights and Central Millbrae",
   ],
   closingText:
-    "Whether you're updating a home in the Meadows or managing a renovation in Millbrae Highlands, TP Dumpsters makes waste removal simple. We offer transparent pricing, same-day delivery, and the local expertise Millbrae homeowners trust. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're updating a home in the Meadows or managing a renovation in Millbrae Highlands, TP Dumpsters makes waste removal simple. We offer transparent pricing, same-day delivery, and the local expertise Millbrae homeowners trust. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Millbrae, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Millbrae, CA. Serving the Meadows, Green Hills, Millbrae Highlands, Lomita Heights & all neighborhoods. Same-day delivery. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Millbrae, CA. Serving the Meadows, Green Hills, Millbrae Highlands, Lomita Heights & all neighborhoods. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental Millbrae CA",
     "Millbrae dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Millbrae",
   description: "Fast, reliable dumpster rentals in Millbrae, CA. Serving all Millbrae neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/millbrae",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

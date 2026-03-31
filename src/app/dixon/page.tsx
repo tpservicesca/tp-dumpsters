@@ -104,13 +104,13 @@ const dixonAbout = {
     "Landscaping and yard debris removal projects",
   ],
   closingText:
-    "Whether you&apos;re a farmer clearing old equipment, a contractor building in Dixon&apos;s newest subdivisions, or a homeowner tackling a weekend project, TP Dumpsters delivers fast, affordable waste removal. We understand Dixon&apos;s agricultural roots and residential growth. Call us at (510) 650-0080 for a free quote.",
+    "Whether you&apos;re a farmer clearing old equipment, a contractor building in Dixon&apos;s newest subdivisions, or a homeowner tackling a weekend project, TP Dumpsters delivers fast, affordable waste removal. We understand Dixon&apos;s agricultural roots and residential growth. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Dixon, CA | Agricultural & Residential - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Dixon, CA. Serving Downtown Dixon, Valley Glen, Homestead, farms & rural properties. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Dixon, CA. Serving Downtown Dixon, Valley Glen, Homestead, farms & rural properties. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental Dixon CA",
     "Dixon dumpster rental",
@@ -148,7 +148,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Dixon, CA. Serving farms, ranches, and all Dixon neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/dixon",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

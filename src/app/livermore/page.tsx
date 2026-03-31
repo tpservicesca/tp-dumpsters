@@ -83,7 +83,7 @@ const livermoreFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Livermore dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for an
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for an
         exact quote tailored to your Livermore project.
       </p>
     ),
@@ -110,13 +110,13 @@ const livermoreAbout = {
     "Concrete driveway and patio demolition for property upgrades",
   ],
   closingText:
-    "Whether you're renovating a Ruby Hill estate or clearing debris from a South Livermore ranch, TP Dumpsters delivers fast, affordable service anywhere in Livermore and the Tri-Valley. Same-day availability, transparent pricing, and experience with large properties. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a Ruby Hill estate or clearing debris from a South Livermore ranch, TP Dumpsters delivers fast, affordable service anywhere in Livermore and the Tri-Valley. Same-day availability, transparent pricing, and experience with large properties. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Livermore, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Livermore, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to all Livermore & Tri-Valley areas. Large property specialists. Call (510) 650-0080",
+    "Affordable dumpster rentals in Livermore, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to all Livermore & Tri-Valley areas. Large property specialists. Call (510) 650-2083",
   keywords: [
     "dumpster rental Livermore CA",
     "Livermore dumpster rental",
@@ -136,7 +136,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Livermore, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Livermore. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Livermore. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/livermore",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -153,7 +153,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Livermore, CA. Same-day delivery to all Livermore neighborhoods and Tri-Valley cities.",
   url: "https://tpdumpsters.com/livermore",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -236,7 +236,7 @@ export default function LivermorePage() {
               With Livermore&apos;s downtown revitalization and new housing developments in areas like Cayetano Creek and Isabel, contractors and homeowners consistently need reliable waste hauling services. TP Dumpsters delivers 10, 20, and 30 yard containers to your Livermore location with same-day availability, transparent pricing, and no hidden fees for disposal or delivery.
             </p>
             <p>
-              Get your Livermore project started right — book online for a 5% discount or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for a free quote. We serve all of Livermore with fast delivery and bilingual customer support.
+              Get your Livermore project started right — book online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for a free quote. We serve all of Livermore with fast delivery and bilingual customer support.
             </p>
           </div>
         </div>

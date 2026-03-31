@@ -82,7 +82,7 @@ const dublinFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Dublin dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for an
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for an
         exact quote for your Dublin project.
       </p>
     ),
@@ -109,13 +109,13 @@ const dublinAbout = {
     "Garage cleanouts and decluttering across all Dublin neighborhoods",
   ],
   closingText:
-    "Whether you're building a new home in Jordan Ranch or renovating in Dublin Ranch, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that keeps up with Dublin's growth. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're building a new home in Jordan Ranch or renovating in Dublin Ranch, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that keeps up with Dublin's growth. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Dublin, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Dublin, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Dublin & East Bay. Call (510) 650-0080",
+    "Affordable dumpster rentals in Dublin, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Dublin & East Bay. Call (510) 650-2083",
   keywords: [
     "dumpster rental Dublin CA",
     "Dublin CA dumpster rental",
@@ -134,7 +134,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Dublin, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Dublin. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Dublin. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/dublin",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -151,7 +151,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Dublin, CA. Same-day delivery to all Dublin neighborhoods and the East Bay.",
   url: "https://tpdumpsters.com/dublin",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -234,7 +234,7 @@ export default function DublinPage() {
               Dublin&apos;s rapid growth and new developments like Boulevard and Dublin Crossing mean contractors and homeowners need efficient, reliable waste hauling. TP Dumpsters offers 10, 20, and 30 yard containers with transparent all-inclusive pricing, same-day delivery, and flexible rental periods — ideal for projects of any size from weekend cleanups to multi-week construction jobs.
             </p>
             <p>
-              Book your Dublin dumpster online today and save 5%, or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> for personalized service. Same-day delivery and bilingual support available throughout Dublin.
+              Book your Dublin dumpster online today and save 5%, or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> for personalized service. Same-day delivery and bilingual support available throughout Dublin.
             </p>
           </div>
         </div>

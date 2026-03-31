@@ -111,7 +111,7 @@ export default function HowToRentADumpster() {
 
       <ul>
         <li><strong>Book online</strong> — Visit our <Link href="/booking">booking page</Link>, select your dumpster size, choose your delivery date, and confirm. It takes about 2 minutes.</li>
-        <li><strong>Call us</strong> — Reach our bilingual team at <a href="tel:+15106500080"><strong>(510) 650-0080</strong></a>. We&apos;ll walk you through the process and answer any questions.</li>
+        <li><strong>Call us</strong> — Reach our bilingual team at <a href="tel:+15106502083"><strong>(510) 650-2083</strong></a>. We&apos;ll walk you through the process and answer any questions.</li>
       </ul>
 
       <p>When booking, have this information ready:</p>
@@ -209,7 +209,7 @@ export default function HowToRentADumpster() {
 
       <p>
         When you&apos;re done loading — or when your rental period ends — it&apos;s time for pickup. Simply call us
-        at <a href="tel:+15106500080"><strong>(510) 650-0080</strong></a> or let us know online when you&apos;re ready.
+        at <a href="tel:+15106502083"><strong>(510) 650-2083</strong></a> or let us know online when you&apos;re ready.
         Our driver will come out, hook up the container, and haul it to the appropriate disposal or recycling facility.
       </p>
 
@@ -272,10 +272,10 @@ export default function HowToRentADumpster() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-6 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
             >
-              <FiPhone className="w-5 h-5" /> (510) 650-0080
+              <FiPhone className="w-5 h-5" /> (510) 650-2083
             </a>
             <Link
               href="/booking"

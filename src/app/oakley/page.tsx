@@ -76,7 +76,7 @@ const oakleyFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Oakley dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact
+        No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact
         quote for your Oakley project.
       </p>
     ),
@@ -103,13 +103,13 @@ const oakleyAbout = {
     "Concrete driveway and patio demolition for property upgrades",
   ],
   closingText:
-    "Whether you're building a new home in Summer Lakes or cleaning out a property near the Delta, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that understands East County. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're building a new home in Summer Lakes or cleaning out a property near the Delta, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that understands East County. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Oakley, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Oakley, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Oakley & East Contra Costa. Call (510) 650-0080",
+    "Affordable dumpster rentals in Oakley, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Oakley & East Contra Costa. Call (510) 650-2083",
   keywords: [
     "dumpster rental Oakley CA",
     "Oakley dumpster rental",
@@ -129,7 +129,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Oakley, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Oakley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Oakley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/oakley",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -139,7 +139,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Oakley, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Oakley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Oakley. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/oakley" },
@@ -152,7 +152,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Oakley, CA. Same-day delivery to all Oakley neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/oakley",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

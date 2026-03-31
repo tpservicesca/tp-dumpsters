@@ -93,13 +93,13 @@ const morganHillAbout = {
     "Roofing and exterior projects across Morgan Hill",
   ],
   closingText:
-    "Whether you're building a new home in Jackson Oaks or renovating in Downtown Morgan Hill, TP Dumpsters provides reliable waste removal. We offer transparent pricing and professional service. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're building a new home in Jackson Oaks or renovating in Downtown Morgan Hill, TP Dumpsters provides reliable waste removal. We offer transparent pricing and professional service. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Morgan Hill, CA | Santa Clara County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Morgan Hill, CA. Serving El Toro, Paradise Valley, Jackson Oaks & all neighborhoods. Same-day delivery. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Morgan Hill, CA. Serving El Toro, Paradise Valley, Jackson Oaks & all neighborhoods. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental Morgan Hill CA",
     "Morgan Hill dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Morgan Hill",
   description: "Fast, reliable dumpster rentals in Morgan Hill, CA. Serving all Morgan Hill neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/morgan-hill",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

@@ -59,7 +59,7 @@ const jsonLd = {
   provider: {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
-    telephone: "+1-510-650-0080",
+    telephone: "+1-510-650-2083",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",
@@ -165,7 +165,7 @@ const faqSchema = {
       name: "Do you offer same-day delivery for demolition projects?",
       acceptedAnswer: {
         "@type": "Answer",
-        text: "Yes! We offer same-day delivery for most Bay Area locations when you book before noon. Demolition projects often need dumpsters on short notice, and we're set up to accommodate that. Call us at (510) 650-0080 or book online.",
+        text: "Yes! We offer same-day delivery for most Bay Area locations when you book before noon. Demolition projects often need dumpsters on short notice, and we're set up to accommodate that. Call us at (510) 650-2083 or book online.",
       },
     },
     {
@@ -289,7 +289,7 @@ const faqsRight = [
     question: "Do you offer same-day delivery for demolition projects?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Yes! We offer <strong>same-day delivery</strong> for most Bay Area locations when you book before noon. Demolition projects often need dumpsters on short notice, and we&apos;re set up to accommodate that. Call us at <strong>(510) 650-0080</strong> or book online for fast delivery.
+        Yes! We offer <strong>same-day delivery</strong> for most Bay Area locations when you book before noon. Demolition projects often need dumpsters on short notice, and we&apos;re set up to accommodate that. Call us at <strong>(510) 650-2083</strong> or book online for fast delivery.
       </p>
     ),
   },
@@ -338,10 +338,10 @@ export default function CleanConcretePage() {
               <FaCalendarDays /> Book Now — $599
             </Link>
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-tp-red hover:bg-tp-red hover:text-white transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-0080
+              <FaPhone /> (510) 650-2083
             </a>
           </div>
         </div>
@@ -647,7 +647,7 @@ export default function CleanConcretePage() {
                 step: "1",
                 icon: <FaClipboardList />,
                 title: "Book Your Dumpster",
-                desc: "Reserve your 10-yard clean concrete dumpster online or call (510) 650-0080. Just $599 — no weight limit.",
+                desc: "Reserve your 10-yard clean concrete dumpster online or call (510) 650-2083. Just $599 — no weight limit.",
               },
               {
                 step: "2",
@@ -745,7 +745,7 @@ export default function CleanConcretePage() {
           </div>
 
           <p className="text-center text-sm text-[#888] mt-8 font-[var(--font-poppins)]">
-            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-0080</strong> to confirm delivery availability.
+            Don&apos;t see your city? We likely serve your area. Call <strong>(510) 650-2083</strong> to confirm delivery availability.
           </p>
         </div>
       </section>
@@ -785,10 +785,10 @@ export default function CleanConcretePage() {
               <FaCalendarDays /> Book Online — $599
             </Link>
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center gap-2 w-full sm:w-auto justify-center px-8 py-4 rounded-lg text-lg font-semibold bg-transparent text-white border-2 border-white hover:bg-white hover:text-tp-red transition-all duration-300 font-[var(--font-poppins)]"
             >
-              <FaPhone /> (510) 650-0080
+              <FaPhone /> (510) 650-2083
             </a>
           </div>
         </div>

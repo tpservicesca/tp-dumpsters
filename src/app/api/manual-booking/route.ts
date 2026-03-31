@@ -170,7 +170,7 @@ export async function POST(req: NextRequest) {
           `🗑️ ${serviceType} - ${dumpsterSize} Yard\n` +
           `📦 Delivery: ${formattedDate} (${windowLabel})\n` +
           `📍 ${fullAddress}\n\n` +
-          `Questions? Call (510) 650-0080\n` +
+          `Questions? Call (510) 650-2083\n` +
           `— TP Dumpsters`;
 
         const smsResult = await sendSMS(phone, smsBody);

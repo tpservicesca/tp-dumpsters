@@ -249,7 +249,7 @@ export default function ConstructionDebrisDisposal() {
 
       <p>
         Need a dumpster for your next project? <Link href="/booking">Book online</Link> or call{' '}
-        <a href="tel:+15106500080"><strong>(510) 650-0080</strong></a> for a free quote.
+        <a href="tel:+15106502083"><strong>(510) 650-2083</strong></a> for a free quote.
       </p>
 
       <div className="bg-gray-900 text-white rounded-2xl p-6 md:p-8 my-10 not-prose">
@@ -262,10 +262,10 @@ export default function ConstructionDebrisDisposal() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-6 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
             >
-              <FiPhone className="w-5 h-5" /> (510) 650-0080
+              <FiPhone className="w-5 h-5" /> (510) 650-2083
             </a>
             <Link
               href="/booking"

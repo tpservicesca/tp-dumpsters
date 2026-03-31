@@ -93,13 +93,13 @@ const sanBrunoAbout = {
     "Estate cleanouts and downsizing in Lomita Park",
   ],
   closingText:
-    "Whether you're remodeling a home in Crestmoor or managing a commercial project near Bayhill, TP Dumpsters makes waste removal in San Bruno easy. We offer transparent pricing, same-day delivery, and local expertise. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're remodeling a home in Crestmoor or managing a commercial project near Bayhill, TP Dumpsters makes waste removal in San Bruno easy. We offer transparent pricing, same-day delivery, and local expertise. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Bruno, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Bruno, CA. Serving Crestmoor, Mills Park, Bayhill, Rollingwood & all neighborhoods. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in San Bruno, CA. Serving Crestmoor, Mills Park, Bayhill, Rollingwood & all neighborhoods. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental San Bruno CA",
     "San Bruno dumpster rental",
@@ -139,7 +139,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in San Bruno, CA. Serving all San Bruno neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-bruno",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

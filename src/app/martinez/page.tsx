@@ -70,7 +70,7 @@ const martinezFaqs = [
     question: "How much does a dumpster rental cost in Martinez?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Martinez dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your Martinez project.
+        Martinez dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your Martinez project.
       </p>
     ),
   },
@@ -96,13 +96,13 @@ const martinezAbout = {
     "Estate cleanouts and garage demolitions across Martinez",
   ],
   closingText:
-    "Whether you're restoring a historic home in Downtown Martinez or upgrading a waterfront property, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows North Contra Costa. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're restoring a historic home in Downtown Martinez or upgrading a waterfront property, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows North Contra Costa. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Martinez, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Martinez, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Martinez & North Contra Costa. Call (510) 650-0080",
+    "Affordable dumpster rentals in Martinez, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Martinez & North Contra Costa. Call (510) 650-2083",
   keywords: [
     "dumpster rental Martinez CA",
     "Martinez dumpster rental",
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Martinez, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Martinez. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Martinez. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/martinez",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Martinez, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Martinez. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Martinez. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/martinez" },
@@ -145,7 +145,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Martinez, CA. Same-day delivery to all Martinez neighborhoods and North Contra Costa County.",
   url: "https://tpdumpsters.com/martinez",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

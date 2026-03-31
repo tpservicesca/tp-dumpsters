@@ -83,7 +83,7 @@ const vallejoFaqs = [
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
         Vallejo dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749.
-        Transparent pricing with no hidden fees. Call <strong>(510) 650-0080</strong> for an
+        Transparent pricing with no hidden fees. Call <strong>(510) 650-2083</strong> for an
         exact quote tailored to your Vallejo project.
       </p>
     ),
@@ -110,13 +110,13 @@ const vallejoAbout = {
     "Landscaping and yard debris removal throughout Benicia and American Canyon",
   ],
   closingText:
-    "Whether you're restoring a historic home on Mare Island or renovating a property in Glen Cove, TP Dumpsters delivers fast, affordable dumpster rentals anywhere in Vallejo and Solano County. Same-day delivery, transparent pricing, and waterfront expertise. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're restoring a historic home on Mare Island or renovating a property in Glen Cove, TP Dumpsters delivers fast, affordable dumpster rentals anywhere in Vallejo and Solano County. Same-day delivery, transparent pricing, and waterfront expertise. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Vallejo, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Vallejo, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Vallejo, Benicia & Solano County. Mare Island specialists. Call (510) 650-0080",
+    "Affordable dumpster rentals in Vallejo, CA. 10, 20 & 30 yard roll-off dumpsters. Same-day delivery to Vallejo, Benicia & Solano County. Mare Island specialists. Call (510) 650-2083",
   keywords: [
     "dumpster rental Vallejo CA",
     "Vallejo dumpster rental",
@@ -137,7 +137,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Vallejo, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Vallejo. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Vallejo. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/vallejo",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -154,7 +154,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Vallejo, CA. Same-day delivery to all Vallejo neighborhoods, Benicia, and Solano County.",
   url: "https://tpdumpsters.com/vallejo",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -238,7 +238,7 @@ export default function VallejoPage() {
               With Vallejo&apos;s affordable housing market attracting new buyers and investors, home renovation projects are more common than ever. From flooring removal to full property cleanouts, TP Dumpsters delivers 10, 20, and 30 yard roll-off containers to any Vallejo address with same-day service and all-inclusive pricing — no surprise fees at pickup.
             </p>
             <p>
-              Start your Vallejo project with confidence. Book your dumpster online for a 5% discount or call <a href="tel:+15106500080" className="text-tp-red font-semibold hover:underline">(510) 650-0080</a> today. Bilingual service available in English and Spanish.
+              Start your Vallejo project with confidence. Book your dumpster online for a 5% discount or call <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">(510) 650-2083</a> today. Bilingual service available in English and Spanish.
             </p>
           </div>
         </div>

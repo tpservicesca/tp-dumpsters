@@ -93,13 +93,13 @@ const sanLorenzoAbout = {
     "Suburban cleanup and decluttering throughout the Eden Area",
   ],
   closingText:
-    "Whether you&apos;re a homeowner tackling a weekend cleanup or a contractor running a renovation in San Lorenzo, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
+    "Whether you&apos;re a homeowner tackling a weekend cleanup or a contractor running a renovation in San Lorenzo, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Lorenzo, CA | East Bay Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Lorenzo, CA. Serving San Lorenzo Village, Ashland, Cherryland, Lewelling & the Eden Area. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in San Lorenzo, CA. Serving San Lorenzo Village, Ashland, Cherryland, Lewelling & the Eden Area. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental San Lorenzo CA",
     "San Lorenzo dumpster rental",
@@ -139,7 +139,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in San Lorenzo, CA. Serving the Eden Area with same-day delivery.",
   url: "https://tpdumpsters.com/san-lorenzo",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

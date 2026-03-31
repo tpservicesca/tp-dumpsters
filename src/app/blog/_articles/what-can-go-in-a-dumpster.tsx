@@ -285,7 +285,7 @@ export default function WhatCanGoInDumpster() {
       <p>
         At <strong>TP Dumpsters</strong>, we want you to know exactly what&apos;s allowed before you start loading.
         Our team is always available to answer questions about specific items — just call{' '}
-        <a href="tel:+15106500080"><strong>(510) 650-0080</strong></a> or reach out through our{' '}
+        <a href="tel:+15106502083"><strong>(510) 650-2083</strong></a> or reach out through our{' '}
         <Link href="/booking">booking page</Link>. We&apos;re bilingual (English &amp; Spanish) and happy to help.
       </p>
 
@@ -307,10 +307,10 @@ export default function WhatCanGoInDumpster() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-6 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
             >
-              <FiPhone className="w-5 h-5" /> (510) 650-0080
+              <FiPhone className="w-5 h-5" /> (510) 650-2083
             </a>
             <Link
               href="/booking"

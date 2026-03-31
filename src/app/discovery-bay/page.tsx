@@ -98,13 +98,13 @@ const discoveryBayAbout = {
     "Dock and outdoor living space renovation debris",
   ],
   closingText:
-    "Whether you're renovating a waterfront home in Newport or building an addition in Sand Point, TP Dumpsters makes waste removal in Discovery Bay simple. We offer transparent pricing, same-day delivery, and the local knowledge to work within your HOA guidelines. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a waterfront home in Newport or building an addition in Sand Point, TP Dumpsters makes waste removal in Discovery Bay simple. We offer transparent pricing, same-day delivery, and the local knowledge to work within your HOA guidelines. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Discovery Bay, CA | Delta Area - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Discovery Bay, CA. Serving Newport, Sand Point, Ravenswood Shores & ZIP code 94505. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Discovery Bay, CA. Serving Newport, Sand Point, Ravenswood Shores & ZIP code 94505. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental Discovery Bay CA",
     "Discovery Bay dumpster rental",
@@ -142,7 +142,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Discovery Bay, CA. Serving all Discovery Bay neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/discovery-bay",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

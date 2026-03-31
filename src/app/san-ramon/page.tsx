@@ -23,7 +23,7 @@ const sanRamonFaqs = [
         San Ramon dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at <strong>$649</strong> and our largest
         30-yard at <strong>$749</strong>. Pricing is all-inclusive with no hidden fees. Call{" "}
-        <strong>(510) 650-0080</strong> or email dumpster@tpservicesca.com for your personalized quote.
+        <strong>(510) 650-2083</strong> or email dumpster@tpservicesca.com for your personalized quote.
       </p>
     ),
   },
@@ -105,13 +105,13 @@ const sanRamonAbout = {
     "Office and commercial tenant improvement waste near Bishop Ranch",
   ],
   closingText:
-    "From master-planned communities to the Bishop Ranch business corridor, TP Dumpsters is San Ramon's trusted choice for clean, reliable waste removal. Transparent pricing, HOA-compliant placement, and same-day service — that's what sets us apart. Call (510) 650-0080 for your free quote today.",
+    "From master-planned communities to the Bishop Ranch business corridor, TP Dumpsters is San Ramon's trusted choice for clean, reliable waste removal. Transparent pricing, HOA-compliant placement, and same-day service — that's what sets us apart. Call (510) 650-2083 for your free quote today.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Ramon, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Reliable dumpster rentals in San Ramon, CA. 10, 20 & 30 yard roll-off dumpsters. Serving Dougherty Valley, Gale Ranch & all neighborhoods. Same-day delivery. Call (510) 650-0080",
+    "Reliable dumpster rentals in San Ramon, CA. 10, 20 & 30 yard roll-off dumpsters. Serving Dougherty Valley, Gale Ranch & all neighborhoods. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental San Ramon CA",
     "San Ramon dumpster rental",
@@ -131,7 +131,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in San Ramon, CA - TP Dumpsters",
     description:
-      "Reliable dumpster rentals in San Ramon. 10, 20 & 30 yard dumpsters. Serving Dougherty Valley & all neighborhoods. Call (510) 650-0080",
+      "Reliable dumpster rentals in San Ramon. 10, 20 & 30 yard dumpsters. Serving Dougherty Valley & all neighborhoods. Call (510) 650-2083",
     url: "https://tpdumpsters.com/san-ramon",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -148,7 +148,7 @@ const jsonLd = {
   description:
     "Reliable dumpster rentals in San Ramon, CA. Serving all San Ramon Valley communities with same-day delivery and transparent pricing.",
   url: "https://tpdumpsters.com/san-ramon",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

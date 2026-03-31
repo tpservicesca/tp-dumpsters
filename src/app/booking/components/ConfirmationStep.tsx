@@ -72,10 +72,10 @@ export default function ConfirmationStep({ booking }: Props) {
         </p>
 
         <a
-          href="tel:+15106500080"
+          href="tel:+15106502083"
           className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg font-[var(--font-poppins)] font-bold text-base bg-tp-red text-white hover:bg-tp-red-dark shadow-lg transition-all duration-200"
         >
-          <FaPhone /> Call (510) 650-0080
+          <FaPhone /> Call (510) 650-2083
         </a>
       </div>
     </div>

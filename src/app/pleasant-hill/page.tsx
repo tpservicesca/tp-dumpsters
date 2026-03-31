@@ -70,7 +70,7 @@ const pleasantHillFaqs = [
     question: "How much does a dumpster rental cost in Pleasant Hill?",
     answer: (
       <p className="text-sm text-[#666] leading-[1.7] mb-2.5">
-        Pleasant Hill dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-0080</strong> for an exact quote for your Pleasant Hill project.
+        Pleasant Hill dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster (7-day rental, 1 ton included). The 20-yard starts at $649 and the 30-yard at $749. No hidden fees, no surprise charges. Call <strong>(510) 650-2083</strong> for an exact quote for your Pleasant Hill project.
       </p>
     ),
   },
@@ -96,13 +96,13 @@ const pleasantHillAbout = {
     "ADU construction and addition projects for growing families",
   ],
   closingText:
-    "Whether you're remodeling a kitchen in Gregory Gardens or building an ADU in Poets Corner, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows Central Contra Costa. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're remodeling a kitchen in Gregory Gardens or building an ADU in Poets Corner, TP Dumpsters makes waste removal simple and affordable. Same-day delivery, transparent pricing, and a team that knows Central Contra Costa. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Pleasant Hill, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Affordable dumpster rentals in Pleasant Hill, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Pleasant Hill & Central Contra Costa. Call (510) 650-0080",
+    "Affordable dumpster rentals in Pleasant Hill, CA. 10, 20 & 30 yard roll-off dumpsters for construction, remodels & cleanouts. Same-day delivery to Pleasant Hill & Central Contra Costa. Call (510) 650-2083",
   keywords: [
     "dumpster rental Pleasant Hill CA",
     "Pleasant Hill dumpster rental",
@@ -122,7 +122,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dumpster Rental in Pleasant Hill, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Pleasant Hill. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Pleasant Hill. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
     url: "https://tpdumpsters.com/pleasant-hill",
     siteName: "TP Dumpsters",
     locale: "en_US",
@@ -132,7 +132,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Dumpster Rental in Pleasant Hill, CA - TP Dumpsters",
     description:
-      "Fast, affordable dumpster rentals in Pleasant Hill. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-0080",
+      "Fast, affordable dumpster rentals in Pleasant Hill. 10, 20 & 30 yard dumpsters. Same-day delivery. Call (510) 650-2083",
   },
   robots: { index: true, follow: true },
   alternates: { canonical: "https://tpdumpsters.com/pleasant-hill" },
@@ -145,7 +145,7 @@ const jsonLd = {
   description:
     "Affordable, reliable dumpster rentals in Pleasant Hill, CA. Same-day delivery to all Pleasant Hill neighborhoods and Central Contra Costa County.",
   url: "https://tpdumpsters.com/pleasant-hill",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

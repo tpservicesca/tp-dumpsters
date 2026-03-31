@@ -275,10 +275,10 @@ export default function HomeRenovationDumpster() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center justify-center gap-2 bg-tp-red text-white font-bold px-6 py-3.5 rounded-full hover:bg-tp-red-dark transition-all text-lg"
             >
-              <FiPhone className="w-5 h-5" /> (510) 650-0080
+              <FiPhone className="w-5 h-5" /> (510) 650-2083
             </a>
             <Link
               href="/booking"

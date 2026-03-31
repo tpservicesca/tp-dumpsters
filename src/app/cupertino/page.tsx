@@ -93,13 +93,13 @@ const cupertinoAbout = {
     "Roofing and exterior upgrades across Cupertino neighborhoods",
   ],
   closingText:
-    "Whether you're renovating a home in Monta Vista or managing a commercial project near Apple Park, TP Dumpsters delivers reliable waste removal in Cupertino. We offer transparent pricing, same-day delivery, and the professionalism Silicon Valley expects. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a home in Monta Vista or managing a commercial project near Apple Park, TP Dumpsters delivers reliable waste removal in Cupertino. We offer transparent pricing, same-day delivery, and the professionalism Silicon Valley expects. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Cupertino, CA | Santa Clara County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Cupertino, CA. Serving Rancho Rinconada, Monta Vista, Garden Gate, Homestead & all neighborhoods. Same-day delivery. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Cupertino, CA. Serving Rancho Rinconada, Monta Vista, Garden Gate, Homestead & all neighborhoods. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental Cupertino CA",
     "Cupertino dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Cupertino",
   description: "Fast, reliable dumpster rentals in Cupertino, CA. Serving all Cupertino neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/cupertino",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

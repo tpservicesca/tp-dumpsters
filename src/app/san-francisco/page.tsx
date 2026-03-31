@@ -105,13 +105,13 @@ const sanFranciscoAbout = {
     "Roofing projects across San Francisco's older housing stock",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in San Francisco easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in San Francisco easy. We offer transparent pricing, same-day delivery, and the local expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Francisco, CA | Same-Day Delivery - TP Dumpsters",
   description:
-    "Dumpster rental San Francisco — fast, reliable roll-off dumpster rentals in San Francisco, CA. Serving Mission District, SoMa, Sunset, Richmond & all ZIP codes. Same-day delivery. Cheap dumpster rental San Francisco Bay Area. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Dumpster rental San Francisco — fast, reliable roll-off dumpster rentals in San Francisco, CA. Serving Mission District, SoMa, Sunset, Richmond & all ZIP codes. Same-day delivery. Cheap dumpster rental San Francisco Bay Area. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental san francisco",
     "san francisco dumpster rental",
@@ -162,7 +162,7 @@ const jsonLd = {
   description:
     "Dumpster rental San Francisco, CA. Fast, reliable roll-off dumpster rentals serving all San Francisco neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-francisco",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: {
     "@type": "ImageObject",

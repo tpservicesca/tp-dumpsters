@@ -22,10 +22,10 @@ export default function ThankYouPage() {
           <br />
           If you need immediate assistance, call us at{" "}
           <a
-            href="tel:+15106500080"
+            href="tel:+15106502083"
             className="text-tp-red font-semibold hover:underline"
           >
-            (510) 650-0080
+            (510) 650-2083
           </a>
         </p>
         <Link

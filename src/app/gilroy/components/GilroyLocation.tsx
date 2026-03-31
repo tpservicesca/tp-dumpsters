@@ -64,8 +64,8 @@ export default function GilroyLocation() {
         </div>
         <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center mt-10">FAST AND EASY</h4>
         <h2 className="font-[var(--font-poppins)] text-[22px] md:text-[28px] font-bold text-white mb-6 text-center">Ready to rent your dumpster in Gilroy?</h2>
-        <a href="tel:+15106500080" className="flex items-center justify-center gap-2 w-full py-[18px] px-5 bg-tp-red text-white rounded-lg text-xl font-semibold transition-colors duration-300 hover:bg-tp-red-dark font-[var(--font-poppins)] text-center">
-          <FaCalendarDays /> Call (510) 650-0080
+        <a href="tel:+15106502083" className="flex items-center justify-center gap-2 w-full py-[18px] px-5 bg-tp-red text-white rounded-lg text-xl font-semibold transition-colors duration-300 hover:bg-tp-red-dark font-[var(--font-poppins)] text-center">
+          <FaCalendarDays /> Call (510) 650-2083
         </a>
       </div>
     </section>

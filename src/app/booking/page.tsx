@@ -7,7 +7,7 @@ import DynamicBookingWizard from "./components/DynamicBookingWizard";
 export const metadata: Metadata = {
   title: "Book a Dumpster Online | TP Dumpsters - Bay Area",
   description:
-    "Book your dumpster rental online. Choose your size, pick your dates, and get an instant quote. Same-day delivery available in the Bay Area. Call (510) 650-0080",
+    "Book your dumpster rental online. Choose your size, pick your dates, and get an instant quote. Same-day delivery available in the Bay Area. Call (510) 650-2083",
   robots: {
     index: true,
     follow: true,
@@ -39,10 +39,10 @@ export default function BookingPage() {
           </div>
           <div className="mt-3">
             <a
-              href="tel:+15106500080"
+              href="tel:+15106502083"
               className="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-[var(--font-poppins)] transition-colors"
             >
-              Or call us now: <span className="font-semibold underline">(510) 650-0080</span>
+              Or call us now: <span className="font-semibold underline">(510) 650-2083</span>
             </a>
           </div>
         </div>

@@ -112,13 +112,13 @@ const corteMaderaAbout = {
     "Roofing projects across Corte Madera's residential neighborhoods",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor managing a major renovation in Corte Madera, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County's unique terrain. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor managing a major renovation in Corte Madera, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County's unique terrain. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Corte Madera, CA | Marin County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Corte Madera, CA. Serving Downtown, Town Center, Christmas Tree Hill, Madera Gardens & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Corte Madera, CA. Serving Downtown, Town Center, Christmas Tree Hill, Madera Gardens & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental Corte Madera CA",
     "Corte Madera dumpster rental",
@@ -158,7 +158,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Corte Madera, CA. Serving all Corte Madera neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/corte-madera",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -268,7 +268,7 @@ export default function CorteMaderaPage() {
               and neighborhood regulations. We offer 10, 20, and 30-yard roll-off dumpsters with
               same-day delivery, transparent pricing, and bilingual support in English and Spanish.
               Whether you&apos;re a contractor managing multiple Marin County job sites or a homeowner
-              clearing out a garage, call (510) 650-0080 for fast, dependable service.
+              clearing out a garage, call (510) 650-2083 for fast, dependable service.
             </p>
           </div>
         </div>

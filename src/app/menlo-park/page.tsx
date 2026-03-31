@@ -93,13 +93,13 @@ const menloParkAbout = {
     "Roofing and exterior upgrades on mid-century homes",
   ],
   closingText:
-    "Whether you're renovating a classic Menlo Park home or managing a commercial construction project, TP Dumpsters delivers reliable waste removal. We offer transparent pricing, same-day delivery, and the professionalism Menlo Park expects. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're renovating a classic Menlo Park home or managing a commercial construction project, TP Dumpsters delivers reliable waste removal. We offer transparent pricing, same-day delivery, and the professionalism Menlo Park expects. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Menlo Park, CA | San Mateo County - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Menlo Park, CA. Serving Sharon Heights, Belle Haven, Allied Arts, The Willows & all neighborhoods. Same-day delivery. Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Menlo Park, CA. Serving Sharon Heights, Belle Haven, Allied Arts, The Willows & all neighborhoods. Same-day delivery. Call (510) 650-2083",
   keywords: [
     "dumpster rental Menlo Park CA",
     "Menlo Park dumpster rental",
@@ -132,7 +132,7 @@ const jsonLd = {
   name: "TP Dumpsters - Menlo Park",
   description: "Fast, reliable dumpster rentals in Menlo Park, CA. Serving all Menlo Park neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/menlo-park",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

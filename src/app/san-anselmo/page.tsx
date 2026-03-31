@@ -114,13 +114,13 @@ const sanAnselmoAbout = {
     "Roofing projects across San Anselmo's residential neighborhoods",
   ],
   closingText:
-    "Whether you're a homeowner tackling a weekend cleanup or a contractor managing a major renovation in San Anselmo, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County's unique terrain. Call us at (510) 650-0080 for a free quote.",
+    "Whether you're a homeowner tackling a weekend cleanup or a contractor managing a major renovation in San Anselmo, TP Dumpsters makes waste removal easy. We offer transparent pricing, same-day delivery, and the local expertise to handle Marin County's unique terrain. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in San Anselmo, CA | Ross Valley - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in San Anselmo, CA. Serving Downtown, Sleepy Hollow, Seminary, Red Hill & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in San Anselmo, CA. Serving Downtown, Sleepy Hollow, Seminary, Red Hill & all ZIP codes. Same-day delivery. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental San Anselmo CA",
     "San Anselmo dumpster rental",
@@ -160,7 +160,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in San Anselmo, CA. Serving all San Anselmo neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-anselmo",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
@@ -270,7 +270,7 @@ export default function SanAnselmoPage() {
               neighborhood character. We offer 10, 20, and 30-yard roll-off dumpsters with same-day
               delivery, transparent pricing, and bilingual support in English and Spanish. Whether
               you&apos;re a contractor managing multiple Marin County job sites or a homeowner clearing
-              out a garage, call (510) 650-0080 for fast, dependable service.
+              out a garage, call (510) 650-2083 for fast, dependable service.
             </p>
           </div>
         </div>

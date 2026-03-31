@@ -97,13 +97,13 @@ const vacavilleAbout = {
     "Landscaping and yard debris removal in Southtown and Foxboro",
   ],
   closingText:
-    "Whether you\u2019re a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Vacaville easy. We offer transparent pricing, fast delivery from the Bay Area, and the expertise to get your dumpster exactly where you need it. Call us at (510) 650-0080 for a free quote.",
+    "Whether you\u2019re a homeowner tackling a weekend cleanup or a contractor running a major renovation, TP Dumpsters makes waste removal in Vacaville easy. We offer transparent pricing, fast delivery from the Bay Area, and the expertise to get your dumpster exactly where you need it. Call us at (510) 650-2083 for a free quote.",
 };
 
 export const metadata: Metadata = {
   title: "Dumpster Rental in Vacaville, CA | Fast Bay Area Service - TP Dumpsters",
   description:
-    "Fast, reliable dumpster rentals in Vacaville, CA. Serving Downtown Vacaville, Nut Tree, Alamo Creek & all ZIP codes. Same-day delivery available. Bilingual support (EN/ES). Call (510) 650-0080",
+    "Fast, reliable dumpster rentals in Vacaville, CA. Serving Downtown Vacaville, Nut Tree, Alamo Creek & all ZIP codes. Same-day delivery available. Bilingual support (EN/ES). Call (510) 650-2083",
   keywords: [
     "dumpster rental vacaville ca",
     "vacaville dumpster rental",
@@ -143,7 +143,7 @@ const jsonLd = {
   description:
     "Fast, reliable dumpster rentals in Vacaville, CA. Serving all Vacaville neighborhoods with fast delivery from the Bay Area.",
   url: "https://tpdumpsters.com/vacaville",
-  telephone: "+1-510-650-0080",
+  telephone: "+1-510-650-2083",
   email: "dumpster@tpservicesca.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",

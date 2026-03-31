@@ -75,7 +75,7 @@ export default function Header() {
             ))}
           </ul>
           <a
-            href="tel:+15106500080"
+            href="tel:+15106502083"
             className="ml-4 bg-tp-red hover:bg-tp-red-dark text-white font-bold uppercase text-sm px-6 py-2.5 rounded-lg transition-colors duration-300 font-[var(--font-poppins)] whitespace-nowrap"
           >
             BOOK ONLINE
@@ -99,7 +99,7 @@ export default function Header() {
               ))}
               <li className="mt-3">
                 <a
-                  href="tel:+15106500080"
+                  href="tel:+15106502083"
                   onClick={() => setMobileOpen(false)}
                   className="bg-tp-red hover:bg-tp-red-dark text-white font-bold uppercase text-sm px-8 py-3 rounded-lg transition-colors duration-300 font-[var(--font-poppins)] inline-block"
                 >

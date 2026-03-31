@@ -3,7 +3,7 @@ import { sendSMS } from "@/lib/twilio";
 
 const AUTH_CODE = "Cantaritos1.";
 
-// GET /api/sms/test?auth=Cantaritos1.&to=+15106500080
+// GET /api/sms/test?auth=Cantaritos1.&to=+15106502083
 // Sends a test SMS to the specified number
 export async function GET(req: NextRequest) {
   const auth = req.nextUrl.searchParams.get("auth");
