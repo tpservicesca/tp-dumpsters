@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
 const AUTH_KEY = "Cantaritos1.";
@@ -42,7 +42,15 @@ interface Pagination {
   totalPages: number;
 }
 
-export default function ChatDashboard() {
+export default function ChatDashboardWrapper() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><p className="text-gray-500">Loading...</p></div>}>
+      <ChatDashboard />
+    </Suspense>
+  );
+}
+
+function ChatDashboard() {
   const searchParams = useSearchParams();
   const auth = searchParams.get("auth");
 
