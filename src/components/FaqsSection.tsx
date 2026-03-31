@@ -118,7 +118,7 @@ const rightFaqs: FaqItem[] = [
           <li className="text-sm text-[#666] leading-[1.7] mb-1">Tires: $30 each</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">Mattresses: $35 each</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">Appliances (with Freon): $40-$80</li>
-          <li className="text-sm text-[#666] leading-[1.7] mb-1">Treated wood: to be determinated</li>
+          <li className="text-sm text-[#666] leading-[1.7] mb-1">Treated wood: to be determined</li>
           <li className="text-sm text-[#666] leading-[1.7] mb-1">Electronics: $20-$40 depending on size</li>
         </ul>
       </>

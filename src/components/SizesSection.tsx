@@ -50,7 +50,7 @@ export default function SizesSection() {
           SIZES
         </h4>
         <h2 className="font-[var(--font-poppins)] text-[26px] md:text-[32px] font-bold text-[#333] mb-10">
-          Dumpster sizes &amp; common proyects
+          Dumpster sizes &amp; common projects
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
           {sizes.map((size) => (
