@@ -2,10 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import mysql from "mysql2/promise";
 
 const dbConfig = {
-  host: "localhost",
-  user: "u781187371_tp_dumpsters",
-  password: "Cantaritos1.",
-  database: "u781187371_tp_dumpsters",
+  host: "127.0.0.1",
+  user: "u781187371_cristoferdeita",
+  password: "Locomen50.",
+  database: "u781187371_DumspterBookin",
 };
 
 const AUTH_KEY = "Cantaritos1.";
