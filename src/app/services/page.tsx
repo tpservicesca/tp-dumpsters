@@ -112,7 +112,7 @@ const services = [
     title: "General Debris",
     subtitle: "Most Popular",
     icon: FaTrashCan,
-    image: "/images/dumpsters/yard-waste-driveway.jpg",
+    image: "/images/dumpsters/delivery-residential.jpg",
     description:
       "The most versatile dumpster for home cleanouts, renovations, junk removal, and mixed waste projects.",
     sizes: ["10 yd", "20 yd", "30 yd"],
@@ -126,7 +126,7 @@ const services = [
     title: "Household Cleanout",
     subtitle: "Home Projects",
     icon: FaHouse,
-    image: "/images/dumpsters/delivery-residential.jpg",
+    image: "/images/dumpsters/yard-waste-driveway.jpg",
     description:
       "Perfect for garage cleanouts, estate cleanups, moving projects, and decluttering your entire home.",
     sizes: ["10 yd", "20 yd", "30 yd"],
@@ -168,7 +168,7 @@ const services = [
     title: "Green Waste",
     subtitle: "Yard & Landscaping",
     icon: FaTree,
-    image: "/images/dumpsters/dumpster-dirt-sunny.jpg",
+    image: "/images/dumpsters/delivery-suburban.jpg",
     description:
       "Eco-friendly disposal for landscaping projects, tree trimming, brush clearing, and yard cleanups.",
     sizes: ["10 yd", "20 yd", "30 yd"],
@@ -182,7 +182,7 @@ const services = [
     title: "Clean Soil",
     subtitle: "Excavation & Grading",
     icon: FaMound,
-    image: "/images/dumpsters/tp-truck-yard.jpg",
+    image: "/images/dumpsters/dumpster-dirt-sunny.jpg",
     description:
       "For excavation, grading, and dirt removal. Must be 95% pure — no rocks, grass, gravel, mesh, or garbage.",
     sizes: ["10 yd only"],
@@ -197,7 +197,7 @@ const services = [
     title: "Clean Concrete",
     subtitle: "Demo & Flatwork",
     icon: FaCubes,
-    image: "/images/dumpsters/truck-dumping.jpg",
+    image: "/images/dumpsters/dumpsters-side-by-side.jpg",
     description:
       "For concrete demolition and flatwork removal. Must be 95% pure — no rebar or mixed garbage.",
     sizes: ["10 yd only"],
@@ -212,7 +212,7 @@ const services = [
     title: "Mixed Materials",
     subtitle: "Soil + Concrete Mix",
     icon: FaShuffle,
-    image: "/images/dumpsters/delivery-suburban.jpg",
+    image: "/images/dumpsters/tp-truck-yard.jpg",
     description:
       "For projects with a mix of soil and concrete. Must be 95% pure — no wood, garbage, or other debris.",
     sizes: ["10 yd only"],
