@@ -769,7 +769,7 @@ export default function MixedMaterialsPage() {
       </section>
 
       {/* ────── 11. FINAL CTA ────── */}
-      <section className="py-20 bg-tp-red">
+      <section className="py-20 pb-32 bg-tp-red">
         <div className="w-[92%] sm:w-[80%] max-w-[1080px] mx-auto text-center">
           <h2 className="font-[var(--font-oswald)] text-[28px] sm:text-[36px] lg:text-[48px] font-extrabold text-white uppercase mb-4">
             Ready to Haul Away Your Mixed Materials?
