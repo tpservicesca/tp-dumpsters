@@ -8,7 +8,7 @@ const navItems = [
   { label: "DUMPSTER SIZES", href: "#sizes" },
   { label: "FAQS", href: "#fqa" },
   { label: "REVIEWS", href: "#reviews" },
-  { label: "CLIENTS", href: "#clients" },
+  { label: "GALLERY", href: "#gallery" },
   { label: "CITIES", href: "#rent" },
   { label: "SERVICES", href: "/services" },
   { label: "BLOG", href: "/blog" },
