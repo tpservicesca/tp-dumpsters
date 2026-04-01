@@ -105,7 +105,7 @@ export default function GallerySection() {
 
   return (
     <>
-      <section id="clients" className="py-20 pb-15 bg-white">
+      <section id="gallery" className="py-20 pb-15 bg-white">
         <div className="w-[95%] max-w-[1200px] mx-auto">
           <h4 className="font-[var(--font-red-hat)] text-sm font-bold text-tp-gold uppercase tracking-[2px] mb-2 text-center">
             GALLERY
