@@ -269,7 +269,7 @@ export default function ServicesPage() {
             />
           </div>
           <div className="relative z-10 max-w-6xl mx-auto px-4 py-20 md:py-28 text-center">
-            <p className="text-orange-400 font-semibold tracking-widest uppercase text-sm mb-4">
+            <p className="text-tp-red font-semibold tracking-widest uppercase text-sm mb-4">
               Our Services
             </p>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
@@ -283,7 +283,7 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/booking"
-                className="inline-flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-white font-bold px-8 py-4 rounded-lg text-lg transition-colors"
+                className="inline-flex items-center gap-2 bg-tp-red hover:bg-tp-red-dark text-white font-bold px-8 py-4 rounded-lg text-lg transition-colors"
               >
                 <FaCalendarDays /> Book Online
               </Link>
@@ -298,7 +298,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ───── QUICK STATS BAR ───── */}
-        <section className="bg-orange-500 text-white">
+        <section className="bg-tp-red text-white">
           <div className="max-w-6xl mx-auto px-4 py-5 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div>
               <p className="text-2xl font-black">8</p>
@@ -322,7 +322,7 @@ export default function ServicesPage() {
         {/* ───── SERVICES GRID ───── */}
         <section className="max-w-7xl mx-auto px-4 py-16 md:py-24">
           <div className="text-center mb-14">
-            <p className="text-orange-500 font-semibold tracking-widest uppercase text-sm mb-3">
+            <p className="text-tp-red font-semibold tracking-widest uppercase text-sm mb-3">
               What We Offer
             </p>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
@@ -331,7 +331,7 @@ export default function ServicesPage() {
             <p className="text-gray-600 max-w-2xl mx-auto">
               Each service category is designed for specific materials and project
               types. Not sure which one you need?{" "}
-              <a href="tel:+15106502083" className="text-orange-500 font-semibold hover:underline">
+              <a href="tel:+15106502083" className="text-tp-red font-semibold hover:underline">
                 Call us
               </a>{" "}
               — we&apos;ll help you pick the right one.
@@ -345,7 +345,7 @@ export default function ServicesPage() {
                 href={`/${svc.slug}`}
                 className={`group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
                   svc.featured
-                    ? "ring-2 ring-orange-500 md:col-span-2 lg:col-span-1"
+                    ? "ring-2 ring-tp-red md:col-span-2 lg:col-span-1"
                     : ""
                 }`}
               >
@@ -359,7 +359,7 @@ export default function ServicesPage() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   {svc.featured && (
-                    <span className="absolute top-3 right-3 bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
+                    <span className="absolute top-3 right-3 bg-tp-red text-white text-xs font-bold px-3 py-1 rounded-full uppercase">
                       Most Popular
                     </span>
                   )}
@@ -408,7 +408,7 @@ export default function ServicesPage() {
                         {svc.sizes.join(" · ")} · {svc.rental}
                       </p>
                     </div>
-                    <span className="flex items-center gap-1 text-orange-500 font-bold text-sm group-hover:gap-2 transition-all">
+                    <span className="flex items-center gap-1 text-tp-red font-bold text-sm group-hover:gap-2 transition-all">
                       Details <FaArrowRight className="text-xs" />
                     </span>
                   </div>
@@ -422,7 +422,7 @@ export default function ServicesPage() {
         <section className="bg-gray-50 py-16 md:py-24">
           <div className="max-w-6xl mx-auto px-4">
             <div className="text-center mb-14">
-              <p className="text-orange-500 font-semibold tracking-widest uppercase text-sm mb-3">
+              <p className="text-tp-red font-semibold tracking-widest uppercase text-sm mb-3">
                 Size Guide
               </p>
               <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
@@ -437,8 +437,8 @@ export default function ServicesPage() {
             <div className="grid md:grid-cols-3 gap-8">
               {/* 10 yard */}
               <div className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow">
-                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <span className="text-3xl font-black text-orange-500">10</span>
+                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <span className="text-3xl font-black text-tp-red">10</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   10-Yard Dumpster
@@ -468,19 +468,19 @@ export default function ServicesPage() {
                 </ul>
                 <Link
                   href="/booking"
-                  className="mt-6 block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition-colors"
+                  className="mt-6 block bg-tp-red hover:bg-tp-red-dark text-white font-bold py-3 rounded-lg transition-colors"
                 >
                   Book 10-Yard
                 </Link>
               </div>
 
               {/* 20 yard */}
-              <div className="bg-white rounded-2xl shadow-xl p-8 text-center ring-2 ring-orange-500 relative">
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
+              <div className="bg-white rounded-2xl shadow-xl p-8 text-center ring-2 ring-tp-red relative">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-tp-red text-white text-xs font-bold px-4 py-1 rounded-full uppercase">
                   Most Popular
                 </span>
-                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <span className="text-3xl font-black text-orange-500">20</span>
+                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <span className="text-3xl font-black text-tp-red">20</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   20-Yard Dumpster
@@ -510,7 +510,7 @@ export default function ServicesPage() {
                 </ul>
                 <Link
                   href="/booking"
-                  className="mt-6 block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition-colors"
+                  className="mt-6 block bg-tp-red hover:bg-tp-red-dark text-white font-bold py-3 rounded-lg transition-colors"
                 >
                   Book 20-Yard
                 </Link>
@@ -518,8 +518,8 @@ export default function ServicesPage() {
 
               {/* 30 yard */}
               <div className="bg-white rounded-2xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow">
-                <div className="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <span className="text-3xl font-black text-orange-500">30</span>
+                <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                  <span className="text-3xl font-black text-tp-red">30</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   30-Yard Dumpster
@@ -549,7 +549,7 @@ export default function ServicesPage() {
                 </ul>
                 <Link
                   href="/booking"
-                  className="mt-6 block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded-lg transition-colors"
+                  className="mt-6 block bg-tp-red hover:bg-tp-red-dark text-white font-bold py-3 rounded-lg transition-colors"
                 >
                   Book 30-Yard
                 </Link>
@@ -567,7 +567,7 @@ export default function ServicesPage() {
         {/* ───── WHY CHOOSE US ───── */}
         <section className="max-w-6xl mx-auto px-4 py-16 md:py-24">
           <div className="text-center mb-14">
-            <p className="text-orange-500 font-semibold tracking-widest uppercase text-sm mb-3">
+            <p className="text-tp-red font-semibold tracking-widest uppercase text-sm mb-3">
               Why TP Dumpsters
             </p>
             <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-4">
@@ -578,8 +578,8 @@ export default function ServicesPage() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {whyUs.map((item) => (
               <div key={item.title} className="text-center">
-                <div className="w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="text-orange-500 text-2xl" />
+                <div className="w-16 h-16 bg-red-100 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="text-tp-red text-2xl" />
                 </div>
                 <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -598,7 +598,7 @@ export default function ServicesPage() {
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-gray-800 rounded-xl p-6">
-                <h3 className="font-bold text-orange-400 mb-3">
+                <h3 className="font-bold text-tp-red mb-3">
                   📅 Extra Days
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -608,7 +608,7 @@ export default function ServicesPage() {
                 </p>
               </div>
               <div className="bg-gray-800 rounded-xl p-6">
-                <h3 className="font-bold text-orange-400 mb-3">
+                <h3 className="font-bold text-tp-red mb-3">
                   ⚖️ Overweight Fees
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -618,7 +618,7 @@ export default function ServicesPage() {
                 </p>
               </div>
               <div className="bg-gray-800 rounded-xl p-6">
-                <h3 className="font-bold text-orange-400 mb-3">
+                <h3 className="font-bold text-tp-red mb-3">
                   🛏️ Special Items
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -628,7 +628,7 @@ export default function ServicesPage() {
                 </p>
               </div>
               <div className="bg-gray-800 rounded-xl p-6">
-                <h3 className="font-bold text-orange-400 mb-3">
+                <h3 className="font-bold text-tp-red mb-3">
                   ❌ Cancellation
                 </h3>
                 <p className="text-gray-300 text-sm">
@@ -642,7 +642,7 @@ export default function ServicesPage() {
         </section>
 
         {/* ───── CTA ───── */}
-        <section className="bg-orange-500 text-white py-16">
+        <section className="bg-tp-red text-white py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h2 className="text-3xl md:text-4xl font-black mb-4">
               Ready to Get Started?
@@ -654,13 +654,13 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/booking"
-                className="inline-flex items-center gap-2 bg-white text-orange-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-tp-red hover:bg-gray-100 font-bold px-8 py-4 rounded-lg text-lg transition-colors"
               >
                 <FaCalendarDays /> Book Online Now
               </Link>
               <a
                 href="tel:+15106502083"
-                className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-orange-600 font-bold px-8 py-4 rounded-lg text-lg transition-colors"
+                className="inline-flex items-center gap-2 border-2 border-white hover:bg-white hover:text-tp-red font-bold px-8 py-4 rounded-lg text-lg transition-colors"
               >
                 <FaPhone /> (510) 650-2083
               </a>
