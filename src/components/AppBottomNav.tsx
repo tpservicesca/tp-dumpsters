@@ -110,8 +110,8 @@ function NavIcon({ href, active }: { href: string; active: boolean }) {
 export default function AppBottomNav() {
   const pathname = usePathname();
 
-  // Only show on internal/app pages
-  const showNav = ['/hub', '/dashboard', '/driver', '/booking', '/internal'].some(
+  // Only show on internal/app pages (NOT on /booking — that's public)
+  const showNav = ['/hub', '/dashboard', '/driver', '/internal'].some(
     (p) => pathname.startsWith(p)
   );
 
