@@ -27,6 +27,16 @@ declare global {
 export default function GoogleAnalytics() {
   // Track conversions on link clicks (calls, CTAs, booking links)
   useEffect(() => {
+    function safeGtag(...args: unknown[]) {
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag(...args);
+      } else {
+        // Queue for when gtag loads
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push(args);
+      }
+    }
+
     function getPageName(): string {
       const path = window.location.pathname;
       if (path === "/") return "home";
@@ -36,7 +46,6 @@ export default function GoogleAnalytics() {
     function getButtonLocation(el: HTMLElement): string {
       const section = el.closest("section");
       if (section?.id) return section.id;
-      // Check if in header, footer, hero
       if (el.closest("header")) return "header";
       if (el.closest("footer")) return "footer";
       if (el.closest(".hero-bg, [id='home']")) return "hero";
@@ -58,39 +67,33 @@ export default function GoogleAnalytics() {
       // Phone call clicks
       if (href.startsWith("tel:")) {
         trackConversion();
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "call_click", {
+          safeGtag("event", "call_click", {
             page,
             button_location: location,
             button_text: text,
             phone_number: href.replace("tel:", ""),
           });
-        }
         return;
       }
 
       // Email clicks
       if (href.startsWith("mailto:")) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "email_click", {
+        safeGtag("event", "email_click", {
             page,
             button_location: location,
             email: href.replace("mailto:", ""),
           });
-        }
         return;
       }
 
       // Booking/CTA link clicks
       if (href.includes("/booking")) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "cta_click", {
+        safeGtag("event", "cta_click", {
             page,
             cta_text: text,
             cta_type: "booking",
             button_location: location,
           });
-        }
         return;
       }
 
@@ -100,14 +103,12 @@ export default function GoogleAnalytics() {
           href.includes("/clean-soil") || href.includes("/clean-concrete") ||
           href.includes("/mixed-materials") || href.includes("/household") ||
           href.includes("/services")) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "service_click", {
+        safeGtag("event", "service_click", {
             page,
             service_page: href.split("/").pop() || "services",
             button_text: text,
             button_location: location,
           });
-        }
         return;
       }
 
@@ -115,36 +116,30 @@ export default function GoogleAnalytics() {
       const cityMatch = href.match(/tpdumpsters\.com\/([a-z-]+)$/) ||
         (href.startsWith("/") && !href.includes(".") && href.match(/^\/([a-z-]+)$/));
       if (cityMatch && !["booking","services","blog","hub","dashboard","driver"].includes(cityMatch[1])) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "city_click", {
+        safeGtag("event", "city_click", {
             page,
             city: cityMatch[1],
             button_location: location,
           });
-        }
         return;
       }
 
       // Blog clicks
       if (href.includes("/blog")) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "blog_click", {
+        safeGtag("event", "blog_click", {
             page,
             blog_post: href.split("/").pop() || "blog",
             button_location: location,
           });
-        }
         return;
       }
 
       // WhatsApp clicks
       if (href.includes("wa.me") || href.includes("whatsapp")) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "whatsapp_click", {
+        safeGtag("event", "whatsapp_click", {
             page,
             button_location: location,
           });
-        }
         return;
       }
 
@@ -152,14 +147,12 @@ export default function GoogleAnalytics() {
       const isStyledButton = button ||
         clickable.classList.toString().match(/bg-tp-red|bg-white|rounded-lg|btn|cta|font-bold/);
       if (isStyledButton) {
-        if (typeof window.gtag === "function") {
-          window.gtag("event", "button_click", {
+        safeGtag("event", "button_click", {
             page,
             button_text: text,
             button_location: location,
             button_href: href.substring(0, 100) || "none",
           });
-        }
       }
     }
 
