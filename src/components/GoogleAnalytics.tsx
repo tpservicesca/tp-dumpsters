@@ -44,30 +44,120 @@ export default function GoogleAnalytics() {
     }
 
     function handleClick(e: MouseEvent) {
-      const anchor = (e.target as HTMLElement).closest("a");
-      if (!anchor) return;
+      const el = e.target as HTMLElement;
+      const anchor = el.closest("a");
+      const button = el.closest("button");
+      const clickable = anchor || button;
+      if (!clickable) return;
 
       const page = getPageName();
-      const location = getButtonLocation(anchor);
+      const location = getButtonLocation(clickable as HTMLElement);
+      const text = clickable.textContent?.trim()?.substring(0, 60) || "unknown";
+      const href = anchor?.href || anchor?.getAttribute("href") || "";
 
       // Phone call clicks
-      if (anchor.href?.startsWith("tel:")) {
+      if (href.startsWith("tel:")) {
         trackConversion();
         if (typeof window.gtag === "function") {
           window.gtag("event", "call_click", {
             page,
             button_location: location,
+            button_text: text,
+            phone_number: href.replace("tel:", ""),
           });
         }
+        return;
+      }
+
+      // Email clicks
+      if (href.startsWith("mailto:")) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "email_click", {
+            page,
+            button_location: location,
+            email: href.replace("mailto:", ""),
+          });
+        }
+        return;
       }
 
       // Booking/CTA link clicks
-      if (anchor.href?.includes("/booking") || anchor.getAttribute("href") === "/booking") {
+      if (href.includes("/booking")) {
         if (typeof window.gtag === "function") {
           window.gtag("event", "cta_click", {
             page,
-            cta_text: anchor.textContent?.trim()?.substring(0, 50) || "Book",
+            cta_text: text,
+            cta_type: "booking",
             button_location: location,
+          });
+        }
+        return;
+      }
+
+      // Service page clicks
+      if (href.includes("/general-debris") || href.includes("/construction-debris") ||
+          href.includes("/roofing") || href.includes("/green-waste") ||
+          href.includes("/clean-soil") || href.includes("/clean-concrete") ||
+          href.includes("/mixed-materials") || href.includes("/household") ||
+          href.includes("/services")) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "service_click", {
+            page,
+            service_page: href.split("/").pop() || "services",
+            button_text: text,
+            button_location: location,
+          });
+        }
+        return;
+      }
+
+      // City page clicks
+      const cityMatch = href.match(/tpdumpsters\.com\/([a-z-]+)$/) ||
+        (href.startsWith("/") && !href.includes(".") && href.match(/^\/([a-z-]+)$/));
+      if (cityMatch && !["booking","services","blog","hub","dashboard","driver"].includes(cityMatch[1])) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "city_click", {
+            page,
+            city: cityMatch[1],
+            button_location: location,
+          });
+        }
+        return;
+      }
+
+      // Blog clicks
+      if (href.includes("/blog")) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "blog_click", {
+            page,
+            blog_post: href.split("/").pop() || "blog",
+            button_location: location,
+          });
+        }
+        return;
+      }
+
+      // WhatsApp clicks
+      if (href.includes("wa.me") || href.includes("whatsapp")) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "whatsapp_click", {
+            page,
+            button_location: location,
+          });
+        }
+        return;
+      }
+
+      // Any other button/CTA with visual styling (not plain nav links)
+      const isStyledButton = button ||
+        clickable.classList.toString().match(/bg-tp-red|bg-white|rounded-lg|btn|cta|font-bold/);
+      if (isStyledButton) {
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "button_click", {
+            page,
+            button_text: text,
+            button_location: location,
+            button_href: href.substring(0, 100) || "none",
           });
         }
       }
