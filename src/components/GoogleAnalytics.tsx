@@ -64,15 +64,23 @@ export default function GoogleAnalytics() {
       const text = clickable.textContent?.trim()?.substring(0, 60) || "unknown";
       const href = anchor?.href || anchor?.getAttribute("href") || "";
 
-      // Phone call clicks
+      // Phone call clicks — only count once per session, track device type
       if (href.startsWith("tel:")) {
-        trackConversion();
+        const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+        const alreadyCalled = sessionStorage.getItem("tp_call_tracked");
+        
+        if (!alreadyCalled) {
+          sessionStorage.setItem("tp_call_tracked", "1");
+          trackConversion();
           safeGtag("event", "call_click", {
             page,
             button_location: location,
             button_text: text,
             phone_number: href.replace("tel:", ""),
+            device_type: isMobile ? "mobile" : "desktop",
+            likely_real_call: isMobile ? "yes" : "no",
           });
+        }
         return;
       }
 
@@ -86,14 +94,18 @@ export default function GoogleAnalytics() {
         return;
       }
 
-      // Booking/CTA link clicks
+      // Booking/CTA link clicks — once per session
       if (href.includes("/booking")) {
-        safeGtag("event", "cta_click", {
+        const alreadyClicked = sessionStorage.getItem("tp_cta_tracked");
+        if (!alreadyClicked) {
+          sessionStorage.setItem("tp_cta_tracked", "1");
+          safeGtag("event", "cta_click", {
             page,
             cta_text: text,
             cta_type: "booking",
             button_location: location,
           });
+        }
         return;
       }
 
