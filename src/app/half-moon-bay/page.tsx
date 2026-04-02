@@ -133,7 +133,7 @@ const jsonLd = {
   description: "Fast, reliable dumpster rentals in Half Moon Bay, CA. Serving all coastal communities with reliable delivery.",
   url: "https://tpdumpsters.com/half-moon-bay",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: { "@type": "PostalAddress", addressLocality: "Half Moon Bay", addressRegion: "CA", addressCountry: "US" },

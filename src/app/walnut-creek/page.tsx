@@ -142,7 +142,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Walnut Creek, CA. Same-day delivery to all Walnut Creek neighborhoods and Lamorinda.",
   url: "https://tpdumpsters.com/walnut-creek",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

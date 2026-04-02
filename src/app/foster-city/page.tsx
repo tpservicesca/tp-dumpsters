@@ -133,7 +133,7 @@ const jsonLd = {
   description: "Fast, reliable dumpster rentals in Foster City, CA. Serving all Foster City neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/foster-city",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: { "@type": "PostalAddress", addressLocality: "Foster City", addressRegion: "CA", addressCountry: "US" },

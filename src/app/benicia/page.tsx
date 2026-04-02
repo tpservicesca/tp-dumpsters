@@ -136,7 +136,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Benicia, CA. Same-day delivery to all Benicia neighborhoods and the Carquinez Strait area.",
   url: "https://tpdumpsters.com/benicia",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

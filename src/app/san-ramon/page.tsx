@@ -23,7 +23,7 @@ const sanRamonFaqs = [
         San Ramon dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at <strong>$649</strong> and our largest
         30-yard at <strong>$749</strong>. Pricing is all-inclusive with no hidden fees. Call{" "}
-        <strong>(510) 650-2083</strong> or email dumpster@tpservicesca.com for your personalized quote.
+        <strong>(510) 650-2083</strong> or email contact@tpdumpsters.com for your personalized quote.
       </p>
     ),
   },
@@ -149,7 +149,7 @@ const jsonLd = {
     "Reliable dumpster rentals in San Ramon, CA. Serving all San Ramon Valley communities with same-day delivery and transparent pricing.",
   url: "https://tpdumpsters.com/san-ramon",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

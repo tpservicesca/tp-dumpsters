@@ -165,7 +165,7 @@ const jsonLd = {
     "Dumpster rental San Jose, CA. Residential and commercial dumpster rental serving all San Jose neighborhoods with same-day delivery. Construction dumpster rentals San Jose.",
   url: "https://tpdumpsters.com/san-jose",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: {
     "@type": "ImageObject",
     url: "/images/logo/TP.png",

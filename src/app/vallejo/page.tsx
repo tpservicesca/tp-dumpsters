@@ -155,7 +155,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Vallejo, CA. Same-day delivery to all Vallejo neighborhoods, Benicia, and Solano County.",
   url: "https://tpdumpsters.com/vallejo",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

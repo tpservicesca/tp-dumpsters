@@ -149,7 +149,7 @@ const jsonLd = {
     "Fast, reliable dumpster rentals in Palo Alto, CA. Serving all Palo Alto neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/palo-alto",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

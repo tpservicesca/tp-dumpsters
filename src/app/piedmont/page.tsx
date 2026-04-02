@@ -140,7 +140,7 @@ const jsonLd = {
     "Fast, reliable dumpster rentals in Piedmont, CA. Premium residential service with same-day delivery.",
   url: "https://tpdumpsters.com/piedmont",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

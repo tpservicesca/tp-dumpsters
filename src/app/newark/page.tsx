@@ -146,7 +146,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Newark, CA. Same-day delivery to all Newark neighborhoods and South East Bay communities.",
   url: "https://tpdumpsters.com/newark",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

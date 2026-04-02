@@ -153,7 +153,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Moraga, CA. Same-day delivery to all Moraga neighborhoods and the Lamorinda area.",
   url: "https://tpdumpsters.com/moraga",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

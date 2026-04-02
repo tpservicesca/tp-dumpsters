@@ -152,7 +152,7 @@ const jsonLd = {
     "Fast, reliable dumpster rentals in Mill Valley, CA. Hillside delivery experts serving all Mill Valley neighborhoods.",
   url: "https://tpdumpsters.com/mill-valley",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

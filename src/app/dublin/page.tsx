@@ -152,7 +152,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Dublin, CA. Same-day delivery to all Dublin neighborhoods and the East Bay.",
   url: "https://tpdumpsters.com/dublin",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

@@ -151,7 +151,7 @@ const jsonLd = {
     "Fast, reliable dumpster rentals in Tiburon, CA. Peninsula delivery experts serving all Tiburon neighborhoods and Belvedere Island.",
   url: "https://tpdumpsters.com/tiburon",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

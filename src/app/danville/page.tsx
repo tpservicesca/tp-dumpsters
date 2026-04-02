@@ -137,7 +137,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Danville, CA. Same-day delivery to all Danville neighborhoods, Blackhawk, Alamo, and the San Ramon Valley.",
   url: "https://tpdumpsters.com/danville",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

@@ -155,7 +155,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Alameda, CA. Same-day delivery to Alameda Island, Bay Farm Island, and surrounding East Bay cities.",
   url: "https://tpdumpsters.com/alameda",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

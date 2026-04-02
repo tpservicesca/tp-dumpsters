@@ -151,7 +151,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Richmond, CA. Same-day delivery to all Richmond neighborhoods and West Contra Costa County.",
   url: "https://tpdumpsters.com/richmond",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

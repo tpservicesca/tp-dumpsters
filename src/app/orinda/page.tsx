@@ -152,7 +152,7 @@ const jsonLd = {
     "Premium dumpster rentals in Orinda, CA. Same-day delivery to all Orinda neighborhoods and the Lamorinda area.",
   url: "https://tpdumpsters.com/orinda",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

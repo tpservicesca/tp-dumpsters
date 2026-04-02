@@ -146,7 +146,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Pittsburg, CA. Same-day delivery to all Pittsburg neighborhoods, Bay Point, and East Contra Costa County.",
   url: "https://tpdumpsters.com/pittsburg",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

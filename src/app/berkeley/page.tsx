@@ -161,7 +161,7 @@ const jsonLd = {
     "Dumpster rental Berkeley, CA. Roll-off dumpster rental serving all Berkeley and East Bay neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/berkeley",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: {
     "@type": "ImageObject",
     url: "/images/logo/TP.png",

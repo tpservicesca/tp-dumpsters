@@ -133,7 +133,7 @@ const jsonLd = {
   description: "Fast, reliable dumpster rentals in San Carlos, CA. Serving all San Carlos neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/san-carlos",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: { "@type": "PostalAddress", addressLocality: "San Carlos", addressRegion: "CA", addressCountry: "US" },

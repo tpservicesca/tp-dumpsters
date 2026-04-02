@@ -123,7 +123,7 @@ export async function POST(request: NextRequest) {
     // Create customer with full address details
     const customer = await stripe.customers.create({
       name: customerName,
-      email: customerEmail || "dumpster@tpservicesca.com",
+      email: customerEmail || "contact@tpdumpsters.com",
       phone: customerPhone || undefined,
       address: {
         line1: billLine1,
@@ -261,7 +261,7 @@ export async function POST(request: NextRequest) {
 
     // Auto-send to customer if they have a real email
     let sentEmail = false;
-    if (customerEmail && customerEmail !== "dumpster@tpservicesca.com") {
+    if (customerEmail && customerEmail !== "contact@tpdumpsters.com") {
       try {
         await stripe.invoices.sendInvoice(finalized.id);
         sentEmail = true;

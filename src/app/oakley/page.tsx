@@ -153,7 +153,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Oakley, CA. Same-day delivery to all Oakley neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/oakley",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

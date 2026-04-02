@@ -154,7 +154,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in San Leandro, CA. Same-day delivery to all San Leandro neighborhoods and surrounding East Bay cities.",
   url: "https://tpdumpsters.com/san-leandro",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

@@ -148,7 +148,7 @@ const jsonLd = {
     "Reliable, affordable dumpster rentals in Concord, CA. Same-day delivery to all Concord neighborhoods and Central Contra Costa County.",
   url: "https://tpdumpsters.com/concord",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

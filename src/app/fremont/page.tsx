@@ -150,7 +150,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Fremont, CA. Same-day delivery to all Fremont neighborhoods, Newark, and Union City.",
   url: "https://tpdumpsters.com/fremont",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

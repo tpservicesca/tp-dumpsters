@@ -149,7 +149,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Bay Point, CA. Same-day delivery to all Bay Point neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/bay-point",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

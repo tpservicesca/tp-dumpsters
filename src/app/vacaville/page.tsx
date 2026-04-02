@@ -144,7 +144,7 @@ const jsonLd = {
     "Fast, reliable dumpster rentals in Vacaville, CA. Serving all Vacaville neighborhoods with fast delivery from the Bay Area.",
   url: "https://tpdumpsters.com/vacaville",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

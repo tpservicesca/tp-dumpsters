@@ -154,7 +154,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Brentwood, CA. Same-day delivery to all Brentwood neighborhoods and East Contra Costa County.",
   url: "https://tpdumpsters.com/brentwood",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

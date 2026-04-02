@@ -23,7 +23,7 @@ const pleasantonFaqs = [
         Our Pleasanton dumpster rental prices start at <strong>$599 for a 10-yard</strong> dumpster
         (7-day rental, 1 ton included). The 20-yard starts at <strong>$649</strong> and the 30-yard
         at <strong>$749</strong>. We offer transparent, flat-rate pricing with no hidden fees. Call{" "}
-        <strong>(510) 650-2083</strong> or email dumpster@tpservicesca.com for your exact quote.
+        <strong>(510) 650-2083</strong> or email contact@tpdumpsters.com for your exact quote.
       </p>
     ),
   },
@@ -154,7 +154,7 @@ const jsonLd = {
     "Premium dumpster rentals in Pleasanton, CA. Serving all Tri-Valley neighborhoods with same-day delivery and transparent pricing.",
   url: "https://tpdumpsters.com/pleasanton",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

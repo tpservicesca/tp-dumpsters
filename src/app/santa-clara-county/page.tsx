@@ -179,7 +179,7 @@ const jsonLd = {
     "Affordable dumpster rental across all Santa Clara County cities. Same-day delivery, transparent pricing, bilingual support.",
   url: "https://tpdumpsters.com/santa-clara-county",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

@@ -146,7 +146,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Union City, CA. Same-day delivery to all Union City neighborhoods and South Bay communities.",
   url: "https://tpdumpsters.com/union-city",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

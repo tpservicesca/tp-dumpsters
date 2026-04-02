@@ -137,7 +137,7 @@ const jsonLd = {
     "Affordable, reliable dumpster rentals in Castro Valley, CA. Same-day delivery to all Castro Valley neighborhoods and the East Bay Hills.",
   url: "https://tpdumpsters.com/castro-valley",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

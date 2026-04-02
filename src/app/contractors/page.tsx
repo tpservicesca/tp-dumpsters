@@ -169,7 +169,7 @@ const jsonLd = {
     "@type": "LocalBusiness",
     name: "TP Dumpsters",
     telephone: "+1-510-650-2083",
-    email: "dumpster@tpservicesca.com",
+    email: "contact@tpdumpsters.com",
     url: "https://tpdumpsters.com",
     address: {
       "@type": "PostalAddress",

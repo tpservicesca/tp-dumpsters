@@ -149,7 +149,7 @@ const jsonLd = {
     "Fast, reliable dumpster rentals in Dixon, CA. Serving farms, ranches, and all Dixon neighborhoods with same-day delivery.",
   url: "https://tpdumpsters.com/dixon",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {

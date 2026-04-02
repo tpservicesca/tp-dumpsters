@@ -150,7 +150,7 @@ const jsonLd = {
     "Affordable dumpster rentals in Pinole, CA. Serving Pinole and surrounding West Contra Costa communities with same-day delivery.",
   url: "https://tpdumpsters.com/pinole",
   telephone: "+1-510-650-2083",
-  email: "dumpster@tpservicesca.com",
+  email: "contact@tpdumpsters.com",
   image: "/images/logo/TP.png",
   logo: "/images/logo/TP.png",
   address: {
