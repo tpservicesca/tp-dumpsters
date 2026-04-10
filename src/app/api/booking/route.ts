@@ -92,6 +92,20 @@ export async function POST(request: Request) {
       );
     }
 
+    // Forward booking to Dumpsterin
+    try {
+      fetch("https://mbirzaocjkhqydtuqmze.supabase.co/functions/v1/webhook-booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-webhook-secret": "tp-dumpsters-webhook-2026",
+        },
+        body: JSON.stringify({ ...booking, bookingId }),
+      }).catch((err) => console.error("Dumpsterin webhook error:", err));
+    } catch (e) {
+      console.error("Dumpsterin webhook failed:", e);
+    }
+
     return NextResponse.json({
       success: true,
       bookingId,
