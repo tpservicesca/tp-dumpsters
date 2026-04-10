@@ -203,6 +203,37 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // 5. Forward confirmed booking to Dumpsterin
+    let dumpsterinSynced = false;
+    try {
+      const dumpsterinRes = await fetch("https://mbirzaocjkhqydtuqmze.supabase.co/functions/v1/webhook-booking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-webhook-secret": "tp-dumpsters-webhook-2026",
+        },
+        body: JSON.stringify({
+          bookingId,
+          customerName,
+          customerPhone,
+          customerEmail,
+          service: { serviceType, size: dumpsterSize, basePrice: session.amount_total ? session.amount_total / 100 : 0 },
+          deliveryDate,
+          pickupDate,
+          deliveryWindow,
+          address,
+          city,
+          zipCode,
+          totalPrice: session.amount_total ? session.amount_total / 100 : 0,
+          notes: `Paid online via Stripe | ${totalPaid}`,
+        }),
+      });
+      dumpsterinSynced = dumpsterinRes.ok;
+      console.log(`🔗 Dumpsterin sync: ${dumpsterinSynced ? "success" : "failed"}`);
+    } catch (dumpErr) {
+      console.error("🔗 Dumpsterin sync error:", dumpErr);
+    }
+
     return NextResponse.json({
       received: true,
       bookingId,
@@ -212,6 +243,7 @@ export async function POST(req: NextRequest) {
         pickup: pickupResult,
       },
       smsSent,
+      dumpsterinSynced,
     });
   } catch (error) {
     console.error("❌ Webhook error:", error);
