@@ -53,7 +53,7 @@ export default function BookingPage() {
         <DynamicBookingWizard />
       </section>
 
-      <FloatingButtons />
+      <FloatingButtons hideRentNow />
       <Footer />
     </>
   );

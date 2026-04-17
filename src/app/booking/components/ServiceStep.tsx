@@ -357,8 +357,8 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
         Extra weight charged at $125/ton (prorated) · Extra days: $49/day
       </p>
 
-      {/* ── Next button ── */}
-      <div className="flex justify-end">
+      {/* ── Next button (inline — visible on desktop) ── */}
+      <div className="hidden md:flex justify-end">
         <button
           onClick={onNext}
           disabled={!booking.service}
@@ -371,6 +371,40 @@ export default function ServiceStep({ booking, updateBooking, onNext }: Props) {
           <FaCalendarDays /> Next: Choose dates →
         </button>
       </div>
+
+      {/* ── Inline prominent Next button (mobile — shown once a size is selected) ── */}
+      {booking.service && (
+        <div className="md:hidden mt-2 mb-24">
+          <button
+            onClick={onNext}
+            className="flex items-center justify-center gap-2 w-full px-6 py-4 rounded-xl bg-tp-red text-white font-[var(--font-poppins)] font-semibold text-base shadow-lg shadow-red-500/20 hover:brightness-110 transition-all"
+          >
+            <FaCalendarDays /> Next: Choose dates →
+          </button>
+        </div>
+      )}
+
+      {/* ── Sticky mobile bottom bar — only when a dumpster is selected ── */}
+      {booking.service && (
+        <div className="md:hidden fixed bottom-0 left-0 right-0 z-[99997] bg-white border-t border-[#eee] px-4 py-3 shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+          <div className="flex items-center gap-3">
+            <div className="flex-1 min-w-0">
+              <p className="font-[var(--font-poppins)] text-[11px] text-[#999] uppercase tracking-wider">
+                Selected
+              </p>
+              <p className="font-[var(--font-poppins)] text-sm font-semibold text-[#222] truncate">
+                {booking.service.size} · ${booking.service.basePrice}
+              </p>
+            </div>
+            <button
+              onClick={onNext}
+              className="flex items-center gap-2 px-5 py-3 rounded-xl bg-tp-red text-white font-[var(--font-poppins)] font-semibold text-sm shadow-md hover:brightness-110 transition-all whitespace-nowrap"
+            >
+              Next →
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
