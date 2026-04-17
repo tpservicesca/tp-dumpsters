@@ -5,8 +5,9 @@ interface Props {
 }
 
 export default function FloatingButtons({ hideRentNow = false }: Props) {
+  const mobileVisibility = hideRentNow ? "hidden md:flex" : "flex";
   return (
-    <div className="fixed bottom-[15px] right-[15px] md:bottom-[30px] md:right-[30px] z-[99998] flex flex-col gap-3 items-end">
+    <div className={`fixed bottom-[15px] right-[15px] md:bottom-[30px] md:right-[30px] z-[99998] ${mobileVisibility} flex-col gap-3 items-end`}>
       {!hideRentNow && (
         <a
           href="/booking"
