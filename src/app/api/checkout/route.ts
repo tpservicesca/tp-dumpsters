@@ -109,9 +109,9 @@ export async function POST(request: Request) {
       invoice_creation: {
         enabled: true,
         invoice_data: {
-          description: `Dumpster rental — ${booking.service.serviceType} ${booking.service.size}`,
+          description: `${booking.service.size} Dumpster — ${booking.service.serviceType} | 7-day rental | Weight limit: ${({ "10 Yard": "1 ton", "20 Yard": "2 tons", "30 Yard": "3 tons" } as Record<string, string>)[booking.service.size] || "N/A"}`,
           metadata: { booking_id: bookingId },
-          footer: "Thanks for choosing TP Dumpsters!",
+          footer: "Extra days: $49/day • Overweight: $125/ton • Mattresses: $60 • Appliances: $40 • Tires: $20\nKeep debris below fill line. No hazardous materials. 24h cancellation notice ($150 fee).\n\nThanks for choosing TP Dumpsters!",
         },
       },
       payment_intent_data: {
