@@ -131,7 +131,7 @@ export async function POST(req: NextRequest) {
     const deliveryResult = await createCalendarEvent({
       summary: deliverySummary,
       date: deliveryDate,
-      description: `Manual Booking: ${bookingId}\nService: ${serviceType}\nSize: ${dumpsterSize}\nPhone: ${phone}${email ? `\nEmail: ${email}` : ""}\nPrice: $${totalPrice}\nPayment: ${paymentMethod || "Other"}${notes ? `\nNotes: ${notes}` : ""}`,
+      description: `Phone: ${phone}${notes ? `\nNotes: ${notes}` : ""}`,
       location: fullAddress,
       colorId: "10",
       startTime: window.start,
@@ -143,7 +143,7 @@ export async function POST(req: NextRequest) {
     const pickupResult = await createCalendarEvent({
       summary: pickupSummary,
       date: pickupDate,
-      description: `Manual Booking: ${bookingId}\nPickup for ${customerName}\nService: ${serviceType}\nSize: ${dumpsterSize}\nAddress: ${fullAddress}`,
+      description: `Phone: ${phone}${notes ? `\nNotes: ${notes}` : ""}`,
       location: fullAddress,
       colorId: "11",
     });

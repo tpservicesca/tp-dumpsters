@@ -106,6 +106,14 @@ export async function POST(request: Request) {
       payment_method_types: ["card"],
       mode: "payment",
       customer: stripeCustomer.id,
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          description: `Dumpster rental — ${booking.service.serviceType} ${booking.service.size}`,
+          metadata: { booking_id: bookingId },
+          footer: "Thanks for choosing TP Dumpsters!",
+        },
+      },
       payment_intent_data: {
         setup_future_usage: 'off_session',
         statement_descriptor: 'TP DUMPSTERS',

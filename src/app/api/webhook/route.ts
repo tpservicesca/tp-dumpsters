@@ -119,17 +119,7 @@ export async function POST(req: NextRequest) {
     const typeCode = TYPE_CODES[serviceType] || "GD";
     const fullAddress = [address, city, zipCode].filter(Boolean).join(", ");
 
-    // Build description for calendar events
-    const eventDescription = [
-      `Booking ID: ${bookingId}`,
-      `Service: ${serviceType} - ${dumpsterSize} Yard`,
-      windowInfo ? `Delivery Window: ${windowInfo.label}` : null,
-      `Phone: ${customerPhone}`,
-      `Email: ${customerEmail}`,
-      `Total: ${totalPaid}`,
-      `Address: ${fullAddress}`,
-      `Booked online via tpdumpsters.com`,
-    ].filter(Boolean).join("\n");
+    const eventDescription = `Phone: ${customerPhone}`;
 
     // 1. Update booking status in MySQL
     let dbUpdated = false;
