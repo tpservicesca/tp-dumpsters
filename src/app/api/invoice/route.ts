@@ -191,7 +191,7 @@ export async function POST(request: NextRequest) {
       custom_fields: [
         { name: "Delivery Address", value: deliveryAddress.substring(0, 40) },
       ],
-      footer: "Extra days: $49/day • Overweight: $125/ton • Mattresses: $60 • Appliances: $40 • Tires: $20\nKeep debris below fill line. No hazardous materials. 24h cancellation notice ($150 fee).\nZelle: TP PAVERS SERVICE INC — (510) 253-6230\n\nThanks for choosing TP Dumpsters!",
+      footer: "Extra days: $49/day • Overweight: $135/ton • Mattresses: $60 • Appliances: $40 • Tires: $20\nKeep debris below fill line. No hazardous materials. 24h cancellation notice ($150 fee).\nZelle: TP PAVERS SERVICE INC — (510) 253-6230\n\nThanks for choosing TP Dumpsters!",
       pending_invoice_items_behavior: "include" as const,
     };
 
