@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
-import { sendSMS } from "@/lib/twilio";
+import { sendSMS, notifyAdmins } from "@/lib/twilio";
 import * as mysql from "mysql2/promise";
 import * as fs from "fs";
 import * as crypto from "crypto";
@@ -191,6 +191,17 @@ export async function POST(req: NextRequest) {
       } catch (smsErr) {
         console.error("📱 SMS error (non-blocking):", smsErr);
       }
+    }
+
+    // Notify admins (Cristofer + Asaí) of the paid booking
+    try {
+      const adminBody =
+        `New booking paid! ${customerName} - ${dumpsterSize}yd ${serviceType} - ${totalPaid}` +
+        `${deliveryDate ? ` - Delivery ${deliveryDate}` : ""}` +
+        `${customerPhone ? ` - ${customerPhone}` : ""}`;
+      await notifyAdmins(adminBody);
+    } catch (adminErr) {
+      console.error("📱 Admin SMS error (non-blocking):", adminErr);
     }
 
     // 5. Forward confirmed booking to Dumpsterin

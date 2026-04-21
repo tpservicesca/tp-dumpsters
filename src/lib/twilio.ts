@@ -80,6 +80,17 @@ export async function sendSMS(to: string, body: string): Promise<{ success: bool
   }
 }
 
+// Admin numbers that get notified on new bookings / payments.
+// Override via env ADMIN_NOTIFY_PHONES="+15551234567,+15557654321"
+const ADMIN_PHONES = (process.env.ADMIN_NOTIFY_PHONES || "+527717948624,+15106502083")
+  .split(",")
+  .map((p) => p.trim())
+  .filter(Boolean);
+
+export async function notifyAdmins(body: string): Promise<void> {
+  await Promise.allSettled(ADMIN_PHONES.map((phone) => sendSMS(phone, body)));
+}
+
 const WHATSAPP_SANDBOX = "whatsapp:+14155238886";
 
 export async function sendWhatsApp(to: string, body: string): Promise<{ success: boolean; sid?: string; error?: string }> {

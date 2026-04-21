@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
-import { sendSMS } from "@/lib/twilio";
+import { sendSMS, notifyAdmins } from "@/lib/twilio";
 import * as mysql from "mysql2/promise";
 
 const AUTH_CODE = "Cantaritos1.";
@@ -179,6 +179,18 @@ export async function POST(req: NextRequest) {
       } catch (smsErr) {
         console.error("📱 SMS error (non-blocking):", smsErr);
       }
+    }
+
+    // Notify admins (Cristofer + Asaí) of the new manual booking
+    try {
+      const adminBody =
+        `New manual booking! ${customerName} - ${dumpsterSize} ${serviceType} - $${totalPrice}` +
+        `${deliveryDate ? ` - Delivery ${deliveryDate}` : ""}` +
+        `${paymentMethod ? ` - ${paymentMethod}` : ""}` +
+        `${phone ? ` - ${phone}` : ""}`;
+      await notifyAdmins(adminBody);
+    } catch (adminErr) {
+      console.error("📱 Admin SMS error (non-blocking):", adminErr);
     }
 
     return NextResponse.json({
