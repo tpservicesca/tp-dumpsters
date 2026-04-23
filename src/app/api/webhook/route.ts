@@ -296,14 +296,17 @@ export async function POST(req: NextRequest) {
       ...(windowInfo ? { startTime: windowInfo.start, endTime: windowInfo.end } : {}),
     });
 
-    // 3. Create pickup calendar event
+    // 3. Create pickup calendar event — TIMED (same window as delivery)
     const pickupSummary = `${customerName} ${dumpsterSize}${typeCode}pickup`;
+    const pickupWindow = windowInfo || WINDOWS.morning;
     const pickupResult = await createCalendarEvent({
       summary: pickupSummary,
       date: pickupDate,
       description: eventDescription,
       location: fullAddress,
       colorId: "11", // red for pickup
+      startTime: pickupWindow.start,
+      endTime: pickupWindow.end,
     });
 
     console.log(

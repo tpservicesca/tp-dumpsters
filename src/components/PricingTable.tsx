@@ -44,7 +44,7 @@ const services: ServiceCategory[] = [
       },
       {
         size: "30 Yard",
-        price: 849,
+        price: 899,
         dimensions: "16' L × 8' W × 6' H",
         weightLimit: "3 tons",
         rentalDays: "7 days",

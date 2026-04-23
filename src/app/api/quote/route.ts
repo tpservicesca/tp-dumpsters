@@ -7,35 +7,35 @@ const SERVICES: Record<string, { sizes: Record<string, { price: number; dims: st
     sizes: {
       "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
       "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
-      "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+      "30 Yard": { price: 850, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
     },
   },
   "Household Clean Out": {
     sizes: {
       "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
       "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
-      "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+      "30 Yard": { price: 850, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
     },
   },
   "Construction Debris": {
     sizes: {
       "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
       "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
-      "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+      "30 Yard": { price: 850, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
     },
   },
   "Roofing": {
     sizes: {
       "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
       "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
-      "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+      "30 Yard": { price: 850, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
     },
   },
   "Green Waste": {
     sizes: {
       "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
       "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
-      "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
+      "30 Yard": { price: 850, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
     },
   },
   "Clean Soil": {
