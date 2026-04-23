@@ -144,9 +144,18 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
     const dMin = new Date(Date.parse(paidDate) - 30 * 86400000).toISOString().slice(0, 10);
     const dMax = new Date(Date.parse(paidDate) + 30 * 86400000).toISOString().slice(0, 10);
 
+    // Guard: ilike on a 1-2 char name matches too many bookings (a single "S" would hit 27 rows).
+    // For short first names, require the last name to also match.
+    const parts = customerName.split(/\s+/).filter(Boolean);
+    const lastName = parts.length >= 2 ? parts[parts.length - 1].toLowerCase() : "";
+    const useLastName = firstName.length < 3 && lastName.length >= 3;
+    const nameFilter = useLastName
+      ? `customer_name=ilike.*${encodeURIComponent(lastName)}*`
+      : `customer_name=ilike.*${encodeURIComponent(firstName)}*`;
+
     const matchUrl =
       `${SUPABASE_URL}/rest/v1/bookings?select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status` +
-      `&customer_name=ilike.*${encodeURIComponent(firstName)}*` +
+      `&${nameFilter}` +
       `&scheduled_date=gte.${dMin}&scheduled_date=lte.${dMax}`;
     const matchRes = await fetch(matchUrl, {
       headers: { apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}` },
