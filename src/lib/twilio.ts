@@ -82,7 +82,8 @@ export async function sendSMS(to: string, body: string): Promise<{ success: bool
 
 // Admin numbers that get notified on new bookings / payments.
 // Override via env ADMIN_NOTIFY_PHONES="+15551234567,+15557654321"
-const ADMIN_PHONES = (process.env.ADMIN_NOTIFY_PHONES || "+527717948624,+15106502083")
+// Asaí's AT&T US +15106502083 was blocked by A2P 10DLC; using her MX WIM instead.
+const ADMIN_PHONES = (process.env.ADMIN_NOTIFY_PHONES || "+527717948624,+522225238131")
   .split(",")
   .map((p) => p.trim())
   .filter(Boolean);
