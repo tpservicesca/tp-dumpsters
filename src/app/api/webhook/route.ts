@@ -145,13 +145,18 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
     const dMax = new Date(Date.parse(paidDate) + 30 * 86400000).toISOString().slice(0, 10);
 
     // Guard: ilike on a 1-2 char name matches too many bookings (a single "S" would hit 27 rows).
-    // For short first names, require the last name to also match.
-    const parts = customerName.split(/\s+/).filter(Boolean);
-    const lastName = parts.length >= 2 ? parts[parts.length - 1].toLowerCase() : "";
-    const useLastName = firstName.length < 3 && lastName.length >= 3;
-    const nameFilter = useLastName
-      ? `customer_name=ilike.*${encodeURIComponent(lastName)}*`
-      : `customer_name=ilike.*${encodeURIComponent(firstName)}*`;
+    // Pick the most selective name part: skip short pieces (1-2 chars) and business suffixes
+    // (LLC, Inc, Co, Corp, Entreprises) and settle on the longest remaining token.
+    const STOP_WORDS = new Set(["llc", "inc", "co", "corp", "corporation", "entreprises", "enterprises", "ltd", "lp", "services", "service"]);
+    const tokens = customerName
+      .split(/\s+/)
+      .filter(Boolean)
+      .map((t) => t.toLowerCase())
+      .filter((t) => t.length >= 3 && !STOP_WORDS.has(t));
+    // Prefer the longest remaining token (most specific)
+    tokens.sort((a, b) => b.length - a.length);
+    const matchName = tokens[0] || firstName;
+    const nameFilter = `customer_name=ilike.*${encodeURIComponent(matchName)}*`;
 
     const matchUrl =
       `${SUPABASE_URL}/rest/v1/bookings?select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status` +
