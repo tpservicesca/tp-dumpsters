@@ -4,38 +4,38 @@ import { getStripe } from "@/lib/stripe";
 /* ───────── Service pricing ───────── */
 const SERVICES: Record<string, Record<string, { price: number; dims: string; weight: string; days: number }>> = {
   "General Debris": {
-    "10 Yard": { price: 649, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
-    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
     "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
   },
   "Household Clean Out": {
-    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
-    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
     "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
   },
   "Construction Debris": {
-    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
-    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
     "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
   },
   "Roofing": {
-    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
-    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
     "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
   },
   "Green Waste": {
-    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
-    "20 Yard": { price: 649, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "1 ton", days: 7 },
+    "20 Yard": { price: 650, dims: "16'L × 8'W × 4'H", weight: "2 tons", days: 7 },
     "30 Yard": { price: 800, dims: "16'L × 8'W × 6'H", weight: "3 tons", days: 7 },
   },
   "Clean Soil": {
-    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
   },
   "Clean Concrete": {
-    "10 Yard": { price: 599, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
+    "10 Yard": { price: 600, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
   },
   "Mixed Materials": {
-    "10 Yard": { price: 749, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
+    "10 Yard": { price: 750, dims: "12'L × 8'W × 2.5'H", weight: "No weight limit", days: 3 },
   },
 };
 
