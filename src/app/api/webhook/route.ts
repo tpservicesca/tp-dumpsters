@@ -55,6 +55,149 @@ function verifyStripeSignature(payload: string, sigHeader: string, secret: strin
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected));
 }
 
+const SUPABASE_URL = "https://mbirzaocjkhqydtuqmze.supabase.co";
+const SUPABASE_SERVICE_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1iaXJ6YW9jamtocXlkdHVxbXplIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTU2OTE1NSwiZXhwIjoyMDkxMTQ1MTU1fQ.YHwCnfucB1eQN-yb7iNPp16bot_tzDkNdRPHLQb7Cqs";
+
+type Classification = {
+  base_price: number;
+  extra_days_fee: number;
+  overweight_fee: number;
+  special_items_fee: number;
+  discount: number;
+  dumpsterCount: number;
+};
+
+function classifyInvoiceLines(lines: Array<{ description?: string | null; amount?: number; quantity?: number }>): Classification {
+  const c: Classification = {
+    base_price: 0,
+    extra_days_fee: 0,
+    overweight_fee: 0,
+    special_items_fee: 0,
+    discount: 0,
+    dumpsterCount: 0,
+  };
+  for (const line of lines) {
+    const desc = (line.description || "").toLowerCase();
+    const amt = (line.amount || 0) / 100;
+    const qty = line.quantity || 1;
+    if (amt < 0) {
+      c.discount += -amt;
+      continue;
+    }
+    if (desc.includes("extra day") || desc.includes("extra days")) {
+      c.extra_days_fee += amt;
+    } else if (desc.includes("extra weight") || desc.includes("overweight") || desc.includes("sobrepeso")) {
+      c.overweight_fee += amt;
+    } else if (desc.includes("loading machine") || desc.includes("loading") || desc.includes("handling") || desc.includes("multa") || desc.includes("penalty") || desc.includes("fee")) {
+      c.special_items_fee += amt;
+    } else if (desc.includes("mattress") || desc.includes("appliance") || desc.includes("tire") || desc.includes("electronic") || desc.includes("special item")) {
+      c.special_items_fee += amt;
+    } else if (desc.includes("dumpster") || desc.includes("yard") || desc.includes("rental")) {
+      c.base_price += amt;
+      c.dumpsterCount += qty;
+    } else {
+      // Unclassified — treat as base to not lose revenue
+      c.base_price += amt;
+    }
+  }
+  return c;
+}
+
+async function handleInvoicePaid(event: { data?: { object?: Record<string, unknown> } }) {
+  try {
+    const inv = event.data?.object as Record<string, unknown> | undefined;
+    if (!inv) return NextResponse.json({ received: true, error: "no invoice" });
+
+    const invoiceId = inv.id as string;
+    const customerId = inv.customer as string | null;
+    const amountPaid = ((inv.amount_paid as number) || 0) / 100;
+    const paidAt = ((inv.status_transitions as Record<string, unknown> | undefined)?.paid_at as number) || ((inv.created as number) || 0);
+
+    // Read line items from the invoice
+    const linesObj = inv.lines as { data?: Array<{ description?: string | null; amount?: number; quantity?: number }> } | undefined;
+    const lines = linesObj?.data || [];
+    const cls = classifyInvoiceLines(lines);
+
+    // Resolve customer name — Stripe may have it on invoice.customer_name or we fetch the customer
+    let customerName = (inv.customer_name as string) || "";
+    if (!customerName && customerId) {
+      const stripeKeys = JSON.parse(fs.readFileSync("/home/u781187371/stripe-keys.json", "utf8"));
+      const auth = Buffer.from(`${stripeKeys.secret_key}:`).toString("base64");
+      const cRes = await fetch(`https://api.stripe.com/v1/customers/${customerId}`, {
+        headers: { Authorization: `Basic ${auth}` },
+      });
+      if (cRes.ok) {
+        const c = await cRes.json();
+        customerName = c.name || "";
+      }
+    }
+
+    const firstName = (customerName.split(" ")[0] || "").toLowerCase();
+    if (!firstName) {
+      await notifyAdmins(`⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} sin nombre de cliente. Revisar manual.`);
+      return NextResponse.json({ received: true, warning: "no customer name" });
+    }
+
+    // Match bookings in Supabase: first name + scheduled_date within ±30 days of paid_at
+    const paidDate = new Date(paidAt * 1000).toISOString().slice(0, 10);
+    const dMin = new Date(Date.parse(paidDate) - 30 * 86400000).toISOString().slice(0, 10);
+    const dMax = new Date(Date.parse(paidDate) + 30 * 86400000).toISOString().slice(0, 10);
+
+    const matchUrl =
+      `${SUPABASE_URL}/rest/v1/bookings?select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status` +
+      `&customer_name=ilike.*${encodeURIComponent(firstName)}*` +
+      `&scheduled_date=gte.${dMin}&scheduled_date=lte.${dMax}`;
+    const matchRes = await fetch(matchUrl, {
+      headers: { apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}` },
+    });
+    const matches = (await matchRes.json()) as Array<Record<string, unknown>>;
+
+    if (!matches.length) {
+      await notifyAdmins(
+        `💳 Stripe invoice ${invoiceId} pagada $${amountPaid} de ${customerName} — no hay booking en la app. ¿Era un servicio no registrado?`
+      );
+      return NextResponse.json({ received: true, warning: "no match", customerName });
+    }
+
+    if (matches.length === 1) {
+      // Single match: apply classification directly
+      const b = matches[0];
+      const updateBody = {
+        base_price: cls.base_price || b.base_price,
+        extra_days_fee: cls.extra_days_fee,
+        overweight_fee: cls.overweight_fee,
+        special_items_fee: cls.special_items_fee,
+        discount: cls.discount,
+        notes: `Auto-sync from Stripe invoice ${invoiceId} paid $${amountPaid} on ${paidDate}`,
+      };
+      await fetch(`${SUPABASE_URL}/rest/v1/bookings?id=eq.${b.id}`, {
+        method: "PATCH",
+        headers: {
+          apikey: SUPABASE_SERVICE_KEY,
+          Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updateBody),
+      });
+      await notifyAdmins(
+        `💰 Pago recibido: ${customerName} $${amountPaid} → booking ${b.booking_number} actualizado ✓`
+      );
+      return NextResponse.json({ received: true, matched: b.booking_number, classification: cls });
+    }
+
+    // Multiple matches → alert admin for manual resolution
+    const match_numbers = matches.map((m) => m.booking_number).join(", ");
+    await notifyAdmins(
+      `⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} de ${customerName} — ${matches.length} bookings coinciden (${match_numbers}). Necesito que Asaí me diga a cuál aplicar.`
+    );
+    return NextResponse.json({ received: true, ambiguous: matches.length, matches: match_numbers });
+  } catch (err) {
+    console.error("❌ handleInvoicePaid error:", err);
+    return NextResponse.json({ received: true, error: String(err) }, { status: 500 });
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     // Verify Stripe webhook signature
@@ -74,7 +217,13 @@ export async function POST(req: NextRequest) {
 
     const event = JSON.parse(rawBody);
 
-    // Only handle checkout.session.completed
+    // Manual-invoice flow — Asaí creates invoices in Stripe Dashboard and client pays them.
+    // We read the line items and update the matching booking in Supabase.
+    if (event.type === "invoice.payment_succeeded") {
+      return await handleInvoicePaid(event);
+    }
+
+    // Only handle checkout.session.completed for the online booking flow
     if (event.type !== "checkout.session.completed") {
       console.log(`⏭️ Webhook: ignoring event type ${event.type}`);
       return NextResponse.json({ received: true, ignored: true });
