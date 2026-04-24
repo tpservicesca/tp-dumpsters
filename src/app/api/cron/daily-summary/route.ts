@@ -1,15 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import * as fs from "fs";
-import { sendWhatsApp } from "@/lib/twilio";
 
 const SUPABASE_URL = "https://mbirzaocjkhqydtuqmze.supabase.co";
 const SUPABASE_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1iaXJ6YW9jamtocXlkdHVxbXplIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NTU2OTE1NSwiZXhwIjoyMDkxMTQ1MTU1fQ.YHwCnfucB1eQN-yb7iNPp16bot_tzDkNdRPHLQb7Cqs";
 
-const WHATSAPP_RECIPIENTS: Array<{ phone: string; name: string }> = [
-  { phone: "+522225238131", name: "Asaí" },
-  { phone: "+527717948624", name: "Cristofer" },
+const TELEGRAM_RECIPIENTS: Array<{ chatId: string; name: string }> = [
+  { chatId: "1572834634", name: "Asaí" },
+  { chatId: "8665156164", name: "Cristofer" },
 ];
+
+async function tg(chatId: string, text: string) {
+  const token = process.env.TELEGRAM_BOT_TOKEN;
+  if (!token) return false;
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: "Markdown" }),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
 
 function getStripeKey(): string | null {
   try {
@@ -191,15 +205,11 @@ export async function GET(req: NextRequest) {
 
     const text = lines.join("\n");
     const results = await Promise.all(
-      WHATSAPP_RECIPIENTS.map((r) =>
-        sendWhatsApp(r.phone, text)
-          .then((x) => x.success)
-          .catch(() => false)
-      )
+      TELEGRAM_RECIPIENTS.map((r) => tg(r.chatId, text).catch(() => false))
     );
 
     return NextResponse.json({
-      sent_to: WHATSAPP_RECIPIENTS.map((r, i) => ({ name: r.name, ok: results[i] })),
+      sent_to: TELEGRAM_RECIPIENTS.map((r, i) => ({ name: r.name, ok: results[i] })),
       summary_chars: text.length,
       metrics: {
         tomorrowDeliveries: tomorrowDeliveries.length,
