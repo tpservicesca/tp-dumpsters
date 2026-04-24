@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
 import { sendSMS, notifyAdmins } from "@/lib/twilio";
+import { getStripe } from "@/lib/stripe";
 import * as mysql from "mysql2/promise";
 
 const AUTH_CODE = "Cantaritos1.";
@@ -181,13 +182,66 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    // Create Stripe invoice so everything lives in one place (no more manual invoicing from Dashboard)
+    let stripeInvoiceId: string | null = null;
+    let stripeInvoiceUrl: string | null = null;
+    try {
+      const stripe = getStripe();
+      // Find existing customer by email or phone, else create
+      let stripeCustomer = null;
+      if (email) {
+        const list = await stripe.customers.list({ email, limit: 1 });
+        if (list.data.length > 0) stripeCustomer = list.data[0];
+      }
+      if (!stripeCustomer && phone) {
+        const search = await stripe.customers.search({ query: `phone:"${phone}"`, limit: 1 });
+        if (search.data.length > 0) stripeCustomer = search.data[0];
+      }
+      if (!stripeCustomer) {
+        stripeCustomer = await stripe.customers.create({
+          name: customerName,
+          email: email || undefined,
+          phone,
+        });
+      }
+
+      // Create invoice item for the dumpster
+      const sizeLabel = dumpsterSize.includes("Yard") ? dumpsterSize : `${dumpsterSize} Yard`;
+      await stripe.invoiceItems.create({
+        customer: stripeCustomer.id,
+        amount: Math.round(Number(totalPrice) * 100),
+        currency: "usd",
+        description: `${sizeLabel} dumpster for ${serviceType.toLowerCase()}`,
+      });
+
+      // Create invoice (draft first, then finalize)
+      const invoice = await stripe.invoices.create({
+        customer: stripeCustomer.id,
+        collection_method: "send_invoice",
+        days_until_due: 7,
+        description: `${sizeLabel} Dumpster — ${serviceType} | 7-day rental`,
+        custom_fields: [{ name: "Booking ID", value: bookingId }],
+        metadata: { booking_id: bookingId },
+        footer: "Extra days: $49/day • Overweight: $135/ton • Mattresses: $60 • Appliances: $40 • Tires: $20\nKeep debris below fill line. No hazardous materials. 24h cancellation notice ($150 fee).\n\nThanks for choosing TP Dumpsters!",
+        auto_advance: false,
+        pending_invoice_items_behavior: "include",
+      });
+      const finalized = await stripe.invoices.finalizeInvoice(invoice.id as string);
+      stripeInvoiceId = finalized.id as string;
+      stripeInvoiceUrl = finalized.hosted_invoice_url as string | null;
+      console.log(`💳 Stripe invoice ${stripeInvoiceId} for ${customerName}: ${stripeInvoiceUrl}`);
+    } catch (stripeErr) {
+      console.error("💳 Stripe invoice error (non-blocking):", stripeErr);
+    }
+
     // Notify admins (Cristofer + Asaí) of the new manual booking
     try {
       const adminBody =
         `New manual booking! ${customerName} - ${dumpsterSize} ${serviceType} - $${totalPrice}` +
         `${deliveryDate ? ` - Delivery ${deliveryDate}` : ""}` +
         `${paymentMethod ? ` - ${paymentMethod}` : ""}` +
-        `${phone ? ` - ${phone}` : ""}`;
+        `${phone ? ` - ${phone}` : ""}` +
+        (stripeInvoiceUrl ? `\n💳 Invoice: ${stripeInvoiceUrl}` : "");
       await notifyAdmins(adminBody);
     } catch (adminErr) {
       console.error("📱 Admin SMS error (non-blocking):", adminErr);
@@ -198,6 +252,8 @@ export async function POST(req: NextRequest) {
       bookingId,
       deliveryEventId: deliveryResult.eventId || null,
       pickupEventId: pickupResult.eventId || null,
+      stripeInvoiceId,
+      stripeInvoiceUrl,
       smsSent,
       calendarErrors: [
         !deliveryResult.success ? `Delivery: ${deliveryResult.error}` : null,
