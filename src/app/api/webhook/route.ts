@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
 import { sendSMS, notifyAdmins } from "@/lib/twilio";
+import { notifyAdminsTelegram, notifyAdminsAll } from "@/lib/telegram";
 import * as mysql from "mysql2/promise";
 import * as fs from "fs";
 import * as crypto from "crypto";
@@ -135,7 +136,7 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
 
     const firstName = (customerName.split(" ")[0] || "").toLowerCase();
     if (!firstName) {
-      await notifyAdmins(`⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} sin nombre de cliente. Revisar manual.`);
+      await notifyAdminsAll(`⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} sin nombre de cliente. Revisar manual.`);
       return NextResponse.json({ received: true, warning: "no customer name" });
     }
 
@@ -168,7 +169,7 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
     const matches = (await matchRes.json()) as Array<Record<string, unknown>>;
 
     if (!matches.length) {
-      await notifyAdmins(
+      await notifyAdminsAll(
         `💳 Stripe invoice ${invoiceId} pagada $${amountPaid} de ${customerName} — no hay booking en la app. ¿Era un servicio no registrado?`
       );
       return NextResponse.json({ received: true, warning: "no match", customerName });
@@ -194,7 +195,7 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
         },
         body: JSON.stringify(updateBody),
       });
-      await notifyAdmins(
+      await notifyAdminsAll(
         `💰 Pago recibido: ${customerName} $${amountPaid} → booking ${b.booking_number} actualizado ✓`
       );
       return NextResponse.json({ received: true, matched: b.booking_number, classification: cls });
@@ -202,7 +203,7 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
 
     // Multiple matches → alert admin for manual resolution
     const match_numbers = matches.map((m) => m.booking_number).join(", ");
-    await notifyAdmins(
+    await notifyAdminsAll(
       `⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} de ${customerName} — ${matches.length} bookings coinciden (${match_numbers}). Necesito que Asaí me diga a cuál aplicar.`
     );
     return NextResponse.json({ received: true, ambiguous: matches.length, matches: match_numbers });
@@ -359,16 +360,24 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Notify admins (Cristofer + Asaí) of the paid booking
-    try {
-      const adminBody =
-        `New booking paid! ${customerName} - ${dumpsterSize}yd ${serviceType} - ${totalPaid}` +
-        `${deliveryDate ? ` - Delivery ${deliveryDate}` : ""}` +
-        `${customerPhone ? ` - ${customerPhone}` : ""}`;
-      await notifyAdmins(adminBody);
-    } catch (adminErr) {
-      console.error("📱 Admin SMS error (non-blocking):", adminErr);
-    }
+    // Notify admins (Cristofer + Asaí) of the paid booking — Telegram + SMS
+    const windowLabel = windowInfo?.label || "TBD";
+    const adminSMS =
+      `New booking paid! ${customerName} - ${dumpsterSize}yd ${serviceType} - ${totalPaid}` +
+      `${deliveryDate ? ` - Delivery ${deliveryDate}` : ""}` +
+      `${customerPhone ? ` - ${customerPhone}` : ""}`;
+    const adminTelegram =
+      `💰 *New booking paid — ${totalPaid}*\n\n` +
+      `👤 ${customerName}${customerPhone ? ` — ${customerPhone}` : ""}\n` +
+      `🗑️ ${dumpsterSize}yd ${serviceType}\n` +
+      `📦 ${deliveryDate} — ${windowLabel}\n` +
+      `📍 ${fullAddress}\n` +
+      `📋 ${bookingId}`;
+
+    await Promise.allSettled([
+      notifyAdminsTelegram(adminTelegram),
+      notifyAdmins(adminSMS).catch((e) => console.error("📱 Admin SMS error:", e)),
+    ]);
 
     // 5. Forward confirmed booking to Dumpsterin
     let dumpsterinSynced = false;

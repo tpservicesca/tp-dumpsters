@@ -16,12 +16,17 @@ const SA_KEY_PATHS = [
 export async function getCalendarAccessToken(): Promise<string | null> {
   let keyData: string | null = null;
 
-  for (const p of SA_KEY_PATHS) {
-    try {
-      keyData = fs.readFileSync(p, "utf8");
-      break;
-    } catch {
-      continue;
+  // Prefer env var (Vercel), fall back to on-disk key (Hostinger)
+  if (process.env.GOOGLE_CALENDAR_SA_JSON) {
+    keyData = process.env.GOOGLE_CALENDAR_SA_JSON;
+  } else {
+    for (const p of SA_KEY_PATHS) {
+      try {
+        keyData = fs.readFileSync(p, "utf8");
+        break;
+      } catch {
+        continue;
+      }
     }
   }
 
