@@ -61,6 +61,28 @@ function isSunday(dateStr: string): boolean {
   return new Date(dateStr + "T12:00:00").getDay() === 0;
 }
 
+// Days TP Dumpsters is fully booked / blacked out. Add YYYY-MM-DD strings here
+// when Asaí or Cristofer say the fleet is at capacity for that day. Remove
+// them after the date passes.
+const FULLY_BOOKED_DATES = new Set<string>([
+  "2026-04-25", // Sat — fleet at capacity (per Cristofer 2026-04-24 evening)
+]);
+
+function isFullyBooked(dateStr: string): boolean {
+  return FULLY_BOOKED_DATES.has(dateStr);
+}
+
+// Skip forward day-by-day until we land on a day that is neither Sunday nor
+// fully-booked. Used when the user types/auto-selects a blocked date.
+function nextAvailableDay(dateStr: string): string {
+  let d = dateStr;
+  for (let i = 0; i < 14; i++) {
+    if (!isSunday(d) && !isFullyBooked(d)) return d;
+    d = addDays(d, 1);
+  }
+  return d;
+}
+
 // True when `windowId` on `dateStr` is at least ADVANCE_NOTICE_HOURS in the
 // future from now. Used to gate same-day windows when it's already too late.
 function windowMeetsAdvanceNotice(dateStr: string, windowId: string): boolean {
@@ -87,13 +109,14 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
   // Block Sundays. If user picks a Sunday, bump to the next day (Monday) and
   // surface a friendly message.
   const sundayWarning = booking.deliveryDate && isSunday(booking.deliveryDate);
+  const fullyBookedWarning = booking.deliveryDate && isFullyBooked(booking.deliveryDate);
 
   // When delivery date changes, auto-set pickup to minimum and reset window.
-  // If they picked a Sunday, jump to Monday silently.
+  // If they picked a Sunday or a fully-booked day, jump to the next available.
   const handleDeliveryChange = (date: string) => {
     let chosen = date;
-    if (chosen && isSunday(chosen)) {
-      chosen = addDays(chosen, 1);
+    if (chosen && (isSunday(chosen) || isFullyBooked(chosen))) {
+      chosen = nextAvailableDay(addDays(chosen, 1));
     }
     const autoPickup = addDays(chosen, baseDays);
     const totalDays = baseDays;
@@ -160,6 +183,11 @@ export default function DateStep({ booking, updateBooking, onNext, onBack }: Pro
           {sundayWarning && (
             <p className="text-xs text-amber-700 mt-1.5">
               ⚠️ No delivery on Sundays — moved to the next available day.
+            </p>
+          )}
+          {fullyBookedWarning && (
+            <p className="text-xs text-amber-700 mt-1.5">
+              ⚠️ Our fleet is fully booked that day — we moved you to the next available date.
             </p>
           )}
           {booking.deliveryDate && (
