@@ -148,6 +148,81 @@ export async function createCalendarEvent(params: {
 }
 
 /**
+ * Updates a Google Calendar event by ID. Patches only the fields provided.
+ */
+export async function updateCalendarEvent(eventId: string, params: {
+  summary?: string;
+  date?: string;
+  description?: string;
+  location?: string;
+  colorId?: string;
+  startTime?: string;
+  endTime?: string;
+}): Promise<{ success: boolean; error?: string }> {
+  try {
+    const token = await getCalendarAccessToken();
+    if (!token) return { success: false, error: "no calendar token" };
+
+    const body: Record<string, unknown> = {};
+    if (params.summary) body.summary = params.summary;
+    if (params.description !== undefined) body.description = params.description;
+    if (params.location !== undefined) body.location = params.location;
+    if (params.colorId) body.colorId = params.colorId;
+
+    if (params.date) {
+      if (params.startTime && params.endTime) {
+        body.start = { dateTime: `${params.date}T${params.startTime}`, timeZone: "America/Los_Angeles" };
+        body.end = { dateTime: `${params.date}T${params.endTime}`, timeZone: "America/Los_Angeles" };
+      } else {
+        const startDate = new Date(params.date + "T00:00:00Z");
+        const endDate = new Date(startDate);
+        endDate.setDate(endDate.getDate() + 1);
+        body.start = { date: params.date };
+        body.end = { date: endDate.toISOString().split("T")[0] };
+      }
+    }
+
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events/${eventId}`;
+    const res = await fetch(url, {
+      method: "PATCH",
+      headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      console.error("Calendar PATCH error:", data);
+      return { success: false, error: data.error?.message || `HTTP ${res.status}` };
+    }
+    return { success: true };
+  } catch (err) {
+    console.error("updateCalendarEvent error:", err);
+    return { success: false, error: String(err) };
+  }
+}
+
+/**
+ * Deletes a Google Calendar event. 410 (already gone) is treated as success.
+ */
+export async function deleteCalendarEvent(eventId: string): Promise<{ success: boolean; error?: string }> {
+  try {
+    const token = await getCalendarAccessToken();
+    if (!token) return { success: false, error: "no calendar token" };
+
+    const url = `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(CALENDAR_ID)}/events/${eventId}`;
+    const res = await fetch(url, {
+      method: "DELETE",
+      headers: { Authorization: "Bearer " + token },
+    });
+    if (res.ok || res.status === 410 || res.status === 404) return { success: true };
+    const data = await res.json().catch(() => ({}));
+    return { success: false, error: data.error?.message || `HTTP ${res.status}` };
+  } catch (err) {
+    return { success: false, error: String(err) };
+  }
+}
+
+/**
  * Fetches calendar events between timeMin and timeMax.
  * Returns array of Google Calendar event objects.
  */
