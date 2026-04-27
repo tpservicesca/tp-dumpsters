@@ -362,15 +362,23 @@ export async function POST(req: NextRequest) {
 
     // Notify admins (Cristofer + Asaí) of the paid booking — Telegram + SMS
     const windowLabel = windowInfo?.label || "TBD";
+    // Format delivery date for humans: "Mon Apr 27" instead of "2026-04-27"
+    const deliveryDateLabel = deliveryDate
+      ? new Date(deliveryDate + "T12:00:00").toLocaleDateString("en-US", {
+          weekday: "short",
+          month: "short",
+          day: "numeric",
+        })
+      : "";
     const adminSMS =
       `New booking paid! ${customerName} - ${dumpsterSize}yd ${serviceType} - ${totalPaid}` +
-      `${deliveryDate ? ` - Delivery ${deliveryDate}` : ""}` +
+      `${deliveryDateLabel ? ` - Delivery ${deliveryDateLabel} (${windowLabel})` : ""}` +
       `${customerPhone ? ` - ${customerPhone}` : ""}`;
     const adminTelegram =
       `💰 *New booking paid — ${totalPaid}*\n\n` +
       `👤 ${customerName}${customerPhone ? ` — ${customerPhone}` : ""}\n` +
       `🗑️ ${dumpsterSize}yd ${serviceType}\n` +
-      `📦 ${deliveryDate} — ${windowLabel}\n` +
+      `📦 ${deliveryDateLabel || deliveryDate} — ${windowLabel}\n` +
       `📍 ${fullAddress}\n` +
       `📋 ${bookingId}`;
 
