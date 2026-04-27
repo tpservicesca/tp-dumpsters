@@ -38,6 +38,10 @@ export interface ReviewsResponse {
   source: "google" | "fallback";
 }
 
+// Fallback only kicks in if the Google Places API fails or returns no reviews.
+// Keep these short, generic, and free of business-name "authors" (e.g. the
+// previous "Caning Repair" entry rendered with a broken avatar). Real reviews
+// from Google take precedence whenever available.
 const FALLBACK_REVIEWS: ReviewData[] = [
   {
     name: "Jose Antonio Miranda",
@@ -46,15 +50,6 @@ const FALLBACK_REVIEWS: ReviewData[] = [
     rating: 5,
     text: "Tiago and his crew were amazing and fast. My wife and I were very impressed with the quality of the work. They were very professional and knowledgeable. I highly recommend them for any project.",
     date: "7 months ago",
-    publishTime: "",
-  },
-  {
-    name: "Caning Repair",
-    avatar: "/images/reviews/avatar-caning.jpg",
-    profileUrl: "#",
-    rating: 5,
-    text: "Great service and very reliable. They showed up on time and took care of everything. Would definitely use them again!",
-    date: "8 months ago",
     publishTime: "",
   },
   {
@@ -86,10 +81,12 @@ const FALLBACK_REVIEWS: ReviewData[] = [
   },
 ];
 
-// Cache reviews in memory for 24 hours
+// In-memory cache. We only cache Google responses — fallback responses
+// stay uncached so a transient Google outage doesn't pin us to fallback for
+// the rest of the lambda's life.
 let cachedData: ReviewsResponse | null = null;
 let cacheTimestamp = 0;
-const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+const CACHE_DURATION = 60 * 60 * 1000; // 1 hour — fresh enough for new reviews
 
 async function fetchGoogleReviews(): Promise<ReviewsResponse> {
   const apiKey = process.env.GOOGLE_PLACES_API_KEY;
@@ -160,19 +157,25 @@ async function fetchGoogleReviews(): Promise<ReviewsResponse> {
 export async function GET() {
   const now = Date.now();
 
-  // Return cached data if still valid
-  if (cachedData && now - cacheTimestamp < CACHE_DURATION) {
+  // Return cached data if still valid AND it's a real Google response. Cached
+  // fallbacks would otherwise persist for an hour after Google failed once.
+  if (
+    cachedData &&
+    cachedData.source === "google" &&
+    now - cacheTimestamp < CACHE_DURATION
+  ) {
     return NextResponse.json(cachedData);
   }
 
   try {
     const data = await fetchGoogleReviews();
-    cachedData = data;
-    cacheTimestamp = now;
+    if (data.source === "google") {
+      cachedData = data;
+      cacheTimestamp = now;
+    }
     return NextResponse.json(data);
   } catch (error) {
     console.error("Failed to fetch reviews:", error);
-    // Return fallback on any error
     const fallback: ReviewsResponse = {
       reviews: FALLBACK_REVIEWS,
       overallRating: 5,
