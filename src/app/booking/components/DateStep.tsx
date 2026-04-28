@@ -66,6 +66,7 @@ function isSunday(dateStr: string): boolean {
 // them after the date passes.
 const FULLY_BOOKED_DATES = new Set<string>([
   "2026-04-28", // Tue — fleet at capacity (per Cristofer 2026-04-28)
+  "2026-04-29", // Wed — fleet at capacity (per Cristofer 2026-04-28)
 ]);
 
 function isFullyBooked(dateStr: string): boolean {
