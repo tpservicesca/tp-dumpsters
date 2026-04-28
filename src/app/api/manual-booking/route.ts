@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createCalendarEvent } from "@/lib/calendar";
 import { sendSMS } from "@/lib/twilio";
-import { notifyAdminsAll } from "@/lib/telegram";
+import { notifyAdminsTelegram } from "@/lib/telegram";
 import { getStripe } from "@/lib/stripe";
 import * as mysql from "mysql2/promise";
 
@@ -243,7 +243,7 @@ export async function POST(req: NextRequest) {
         `${paymentMethod ? ` - ${paymentMethod}` : ""}` +
         `${phone ? ` - ${phone}` : ""}` +
         (stripeInvoiceUrl ? `\n💳 Invoice: ${stripeInvoiceUrl}` : "");
-      await notifyAdminsAll(adminBody);
+      await notifyAdminsTelegram(adminBody);
     } catch (adminErr) {
       console.error("📱 Admin SMS error (non-blocking):", adminErr);
     }
