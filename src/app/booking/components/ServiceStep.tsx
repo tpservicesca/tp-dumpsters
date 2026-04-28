@@ -35,13 +35,23 @@ const GENERAL_SIZES: SizeOption[] = [
   { size: "30 Yard", price: 849, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
 ];
 
+// General Debris uses a 3-day rental on the 10yd box per Asaí (2026-04-28)
+// — high-turnover small jobs come back on Day 4 anyway, and the shorter
+// included period nudges customers to schedule pickup or pay extra-day fees.
+// 20yd and 30yd stay at 7 days.
+const GENERAL_DEBRIS_SIZES: SizeOption[] = [
+  { size: "10 Yard", price: 649, dimensions: "12' L × 8' W × 2.5' H", weightLimit: "1 ton", rentalDays: 3 },
+  { size: "20 Yard", price: 699, dimensions: "16' L × 8' W × 4' H", weightLimit: "2 tons", rentalDays: 7 },
+  { size: "30 Yard", price: 849, dimensions: "16' L × 8' W × 6' H", weightLimit: "3 tons", rentalDays: 7 },
+];
+
 const services: ServiceCategory[] = [
   {
     service: "General Debris",
     icon: "🏗️",
     description: "Home remodels, furniture, junk, light demolition",
     note: "⚠️ Mattresses/appliances/tires: $20–$60 each (size dependent, special disposal)",
-    sizes: GENERAL_SIZES,
+    sizes: GENERAL_DEBRIS_SIZES,
   },
   {
     service: "Household Clean Out",
