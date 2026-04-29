@@ -134,39 +134,104 @@ async function handleInvoicePaid(event: { data?: { object?: Record<string, unkno
       }
     }
 
-    const firstName = (customerName.split(" ")[0] || "").toLowerCase();
-    if (!firstName) {
-      await notifyAdminsTelegram(`⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} sin nombre de cliente. Revisar manual.`);
-      return NextResponse.json({ received: true, warning: "no customer name" });
+    // === Step 1: Direct booking-id lookup ===
+    // Invoices generated from the app embed the booking number in
+    // metadata.booking_id and as a "Booking ID" custom field. Manual invoices
+    // can also include it in the description (we look for TP-XXXXX patterns).
+    // Trust the booking-id when it's there — it's a perfect match.
+    const invMetadata = (inv.metadata as Record<string, unknown> | undefined) || {};
+    const customFields = (inv.custom_fields as Array<{ name?: string; value?: string }> | undefined) || [];
+    const description = (inv.description as string | null) || "";
+    const footer = (inv.footer as string | null) || "";
+
+    let bookingNumberHint: string | null =
+      (invMetadata.booking_id as string) || (invMetadata.booking_number as string) || null;
+    if (!bookingNumberHint) {
+      const cf = customFields.find(
+        (f) => /booking[\s_-]*id/i.test(f.name || "") || /booking[\s_-]*number/i.test(f.name || "")
+      );
+      if (cf?.value) bookingNumberHint = cf.value;
+    }
+    if (!bookingNumberHint) {
+      // Last-ditch: extract a TP-XXXXX (or BD-XXXXX) reference from description/footer
+      const text = `${description}\n${footer}`;
+      const m = text.match(/\b((?:TP|BD|CAL|EXTRA|SB)-[A-Z0-9-]+)\b/);
+      if (m) bookingNumberHint = m[1];
     }
 
-    // Match bookings in Supabase: first name + scheduled_date within ±30 days of paid_at
+    if (bookingNumberHint) {
+      const directRes = await fetch(
+        `${SUPABASE_URL}/rest/v1/bookings?booking_number=eq.${encodeURIComponent(bookingNumberHint)}&select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status`,
+        { headers: { apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}` } }
+      );
+      const directMatches = (await directRes.json()) as Array<Record<string, unknown>>;
+      if (directMatches.length === 1) {
+        const b = directMatches[0];
+        await fetch(`${SUPABASE_URL}/rest/v1/bookings?id=eq.${b.id}`, {
+          method: "PATCH",
+          headers: {
+            apikey: SUPABASE_SERVICE_KEY,
+            Authorization: `Bearer ${SUPABASE_SERVICE_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            base_price: cls.base_price || b.base_price,
+            extra_days_fee: cls.extra_days_fee,
+            overweight_fee: cls.overweight_fee,
+            special_items_fee: cls.special_items_fee,
+            discount: cls.discount,
+            notes: `Auto-sync from Stripe invoice ${invoiceId} paid $${amountPaid} on ${new Date(paidAt * 1000).toISOString().slice(0, 10)} (matched via booking-id)`,
+          }),
+        });
+        await notifyAdminsTelegram(
+          `💰 Pago recibido: ${customerName || b.customer_name} $${amountPaid} → booking ${b.booking_number} actualizado ✓`
+        );
+        return NextResponse.json({ received: true, matched: b.booking_number, via: "booking_id" });
+      }
+    }
+
+    // === Step 2: Fallback to email + name + date heuristics ===
+    const customerEmail = ((inv.customer_email as string) || "").toLowerCase().trim();
+    const firstName = (customerName.split(" ")[0] || "").toLowerCase();
+    if (!firstName && !customerEmail) {
+      await notifyAdminsTelegram(`⚠️ Stripe invoice ${invoiceId} pagada $${amountPaid} sin nombre ni email. Revisar manual.`);
+      return NextResponse.json({ received: true, warning: "no customer info" });
+    }
+
     const paidDate = new Date(paidAt * 1000).toISOString().slice(0, 10);
     const dMin = new Date(Date.parse(paidDate) - 30 * 86400000).toISOString().slice(0, 10);
     const dMax = new Date(Date.parse(paidDate) + 30 * 86400000).toISOString().slice(0, 10);
 
-    // Guard: ilike on a 1-2 char name matches too many bookings (a single "S" would hit 27 rows).
-    // Pick the most selective name part: skip short pieces (1-2 chars) and business suffixes
-    // (LLC, Inc, Co, Corp, Entreprises) and settle on the longest remaining token.
-    const STOP_WORDS = new Set(["llc", "inc", "co", "corp", "corporation", "entreprises", "enterprises", "ltd", "lp", "services", "service"]);
-    const tokens = customerName
-      .split(/\s+/)
-      .filter(Boolean)
-      .map((t) => t.toLowerCase())
-      .filter((t) => t.length >= 3 && !STOP_WORDS.has(t));
-    // Prefer the longest remaining token (most specific)
-    tokens.sort((a, b) => b.length - a.length);
-    const matchName = tokens[0] || firstName;
-    const nameFilter = `customer_name=ilike.*${encodeURIComponent(matchName)}*`;
+    // Try email match first — most reliable
+    let matches: Array<Record<string, unknown>> = [];
+    if (customerEmail) {
+      const emailRes = await fetch(
+        `${SUPABASE_URL}/rest/v1/bookings?customer_email=eq.${encodeURIComponent(customerEmail)}&scheduled_date=gte.${dMin}&scheduled_date=lte.${dMax}&select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status`,
+        { headers: { apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}` } }
+      );
+      matches = (await emailRes.json()) as Array<Record<string, unknown>>;
+    }
 
-    const matchUrl =
-      `${SUPABASE_URL}/rest/v1/bookings?select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status` +
-      `&${nameFilter}` +
-      `&scheduled_date=gte.${dMin}&scheduled_date=lte.${dMax}`;
-    const matchRes = await fetch(matchUrl, {
-      headers: { apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}` },
-    });
-    const matches = (await matchRes.json()) as Array<Record<string, unknown>>;
+    // Then try name token match
+    if (matches.length === 0 && firstName) {
+      const STOP_WORDS = new Set(["llc", "inc", "co", "corp", "corporation", "entreprises", "enterprises", "ltd", "lp", "services", "service"]);
+      const tokens = customerName
+        .split(/\s+/)
+        .filter(Boolean)
+        .map((t) => t.toLowerCase())
+        .filter((t) => t.length >= 3 && !STOP_WORDS.has(t));
+      tokens.sort((a, b) => b.length - a.length);
+      const matchName = tokens[0] || firstName;
+      const nameFilter = `customer_name=ilike.*${encodeURIComponent(matchName)}*`;
+      const matchUrl =
+        `${SUPABASE_URL}/rest/v1/bookings?select=id,booking_number,customer_name,scheduled_date,base_price,extra_days_fee,overweight_fee,special_items_fee,discount,status` +
+        `&${nameFilter}` +
+        `&scheduled_date=gte.${dMin}&scheduled_date=lte.${dMax}`;
+      const matchRes = await fetch(matchUrl, {
+        headers: { apikey: SUPABASE_SERVICE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_KEY}` },
+      });
+      matches = (await matchRes.json()) as Array<Record<string, unknown>>;
+    }
 
     if (!matches.length) {
       await notifyAdminsTelegram(
