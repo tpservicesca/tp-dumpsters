@@ -3,7 +3,9 @@
 import { useEffect } from "react";
 import Script from "next/script";
 
-const GA_ID = "G-RLV3201E1G";
+// GA4 (G-RLV3201E1G) is now configured inside GTM (the "GA4 - Config" Google
+// Tag), not here — see the comment by the Script tags below. Only Google Ads
+// stays in code for now.
 const AW_ID = "AW-17134217839";
 const CONVERSION_LABEL = "AW-17134217839/EtBFCMDt_-EaEO_Uneo_";
 
@@ -190,9 +192,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           style={{ display: 'none', visibility: 'hidden' }}
         />
       </noscript>
-      {/* Google Analytics */}
+      {/* Google Ads only. GA4 (G-RLV3201E1G) is now configured INSIDE GTM
+          (the "GA4 - Config" Google Tag, All Pages), so we no longer config it
+          here — that double-counted pageviews. gtag stays loaded for the Ads
+          conversion tag (AW) that trackConversion()/trackBookingCompleted() fire. */}
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${AW_ID}`}
         strategy="afterInteractive"
       />
       <Script id="gtag-init" strategy="afterInteractive">
@@ -200,7 +205,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_ID}');
           gtag('config', '${AW_ID}');
         `}
       </Script>
